@@ -10,21 +10,22 @@ import {
 } from "@workspace/shadverse/components/card";
 import { useAuth } from "@/lib/auth-context";
 import { getCheckoutUrl } from "@/lib/polar-client";
+import { log } from "@/lib/logger";
 
 export function UpgradeToPro() {
   const { user } = useAuth();
 
-  const handleUpgrade = async () => {
+  const handleUpgrade = () => {
     if (!user) {
-      console.log("❌ No user found, redirecting to login");
+      log("❌ No user found, redirecting to login");
       window.location.href = "/auth/login";
       return;
     }
 
-    console.log(`🛒 Starting checkout process for user: ${user.id}`);
+    log(`🛒 Starting checkout process for user: ${user.id}`);
 
-    const checkoutUrl = getCheckoutUrl(user.email!, user.id);
-    console.log("🔗 Redirecting to checkout:", checkoutUrl);
+    const checkoutUrl = getCheckoutUrl(user.email || "", user.id);
+    log("🔗 Redirecting to checkout:", checkoutUrl);
 
     window.location.href = checkoutUrl;
   };

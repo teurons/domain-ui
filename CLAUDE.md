@@ -2,6 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Linting and Formatting
+
+This project uses **Biome** (not ESLint) for linting and formatting. Biome configuration is in `biome.jsonc`.
+
+- To run linting: `pnpm lint`
+- To format code: `pnpm format`
+- Biome handles both TypeScript/JavaScript linting and formatting
+- Console warnings are disabled for logger.ts file via Biome overrides
+
 ## Development Commands
 
 ### Root Level Commands

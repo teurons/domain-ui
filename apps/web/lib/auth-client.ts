@@ -64,7 +64,7 @@ class SupabaseAuthClient {
   onAuthStateChange(callback: (user: User | null) => void) {
     const {
       data: { subscription },
-    } = this.supabase.auth.onAuthStateChange((event, session) => {
+    } = this.supabase.auth.onAuthStateChange((_event, session) => {
       callback(session?.user ?? null);
     });
 

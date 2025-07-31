@@ -41,5 +41,17 @@
   },
   "files": {
     "includes": ["**/*", "!packages/shadverse/**/*"]
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/logger.ts"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    }
+  ]
 }

@@ -1,5 +1,6 @@
 import { env } from "./env";
 import { polar } from "./polar";
+import { logError } from "./logger";
 
 export interface PolarCustomer {
   id: string;
@@ -53,11 +54,8 @@ class PolarClient {
       }
 
       return response.json();
-    } catch (error) {
-      // Log error in development only
-      if (process.env.NODE_ENV === "development") {
-        console.error("Error fetching customer state:", error);
-      }
+    } catch {
+      // Error is silently ignored - customer state will be null
       return null;
     }
   }
@@ -113,10 +111,7 @@ class PolarClient {
 
       return customer?.id || null;
     } catch (error) {
-      // Log error in development only
-      if (process.env.NODE_ENV === "development") {
-        console.error("Error finding customer ID:", error);
-      }
+      logError("Error finding customer ID:", error);
       return null;
     }
   }

@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
+import { log } from "@/lib/logger";
 
 function ConfirmationContent() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +39,7 @@ function ConfirmationContent() {
       const customerSessionToken = searchParams.get("customer_session_token");
 
       if (checkoutId || customerSessionToken) {
-        console.log("🎉 Payment successful!", {
+        log("🎉 Payment successful!", {
           checkoutId,
           customerSessionToken,
         });
