@@ -44,6 +44,9 @@ export default function AppHeader() {
             <Button asChild variant="outline" size="sm">
               <Link href="/protected">Dashboard</Link>
             </Button>
+            <Button asChild variant="outline" size="sm">
+              <Link href="/subscription">Subscription</Link>
+            </Button>
 
             <LogoutButton />
           </div>
