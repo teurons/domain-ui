@@ -12,7 +12,7 @@ export default async function Page() {
     <div className="flex items-center justify-center min-h-svh">
       <div className="flex flex-col items-center justify-center gap-4 max-w-md mx-auto p-6">
         <h1 className="text-2xl font-bold">Domain UI</h1>
-        
+
         {user ? (
           <div className="flex flex-col items-center gap-4">
             <p className="text-center">
@@ -20,7 +20,9 @@ export default async function Page() {
             </p>
             <div className="flex gap-2">
               <Link href="/protected">
-                <Button size="sm" variant="outline">Protected Page</Button>
+                <Button size="sm" variant="outline">
+                  Protected Page
+                </Button>
               </Link>
               <LogoutButton />
             </div>
@@ -35,7 +37,9 @@ export default async function Page() {
                 <Button size="sm">Login</Button>
               </Link>
               <Link href="/auth/sign-up">
-                <Button size="sm" variant="outline">Sign Up</Button>
+                <Button size="sm" variant="outline">
+                  Sign Up
+                </Button>
               </Link>
             </div>
           </div>
