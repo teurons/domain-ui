@@ -1,10 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
-  "globalEnv": [
-    "NODE_ENV",
-    "SKIP_ENV_VALIDATION"
-  ],
+  "globalEnv": ["NODE_ENV", "SKIP_ENV_VALIDATION"],
   "tasks": {
     "//#format": {},
     "//#lint": {
@@ -16,7 +13,7 @@
       "outputs": [".next/**", "!.next/cache/**"],
       "env": [
         "POLAR_ACCESS_TOKEN",
-        "POLAR_WEBHOOK_SECRET", 
+        "POLAR_WEBHOOK_SECRET",
         "POLAR_ORG_ID",
         "POLAR_PRODUCT_ID",
         "POLAR_IS_SANDBOX",
@@ -35,7 +32,7 @@
       "env": [
         "POLAR_ACCESS_TOKEN",
         "POLAR_WEBHOOK_SECRET",
-        "POLAR_ORG_ID", 
+        "POLAR_ORG_ID",
         "POLAR_PRODUCT_ID",
         "POLAR_IS_SANDBOX",
         "NEXT_PUBLIC_*"

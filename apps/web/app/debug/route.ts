@@ -19,10 +19,10 @@ export async function GET() {
     const customerState = await getCustomerState(userId);
 
     // Also try direct API call for debugging
-    const apiUrl = env.POLAR_IS_SANDBOX 
-      ? "https://sandbox-api.polar.sh" 
+    const apiUrl = env.POLAR_IS_SANDBOX
+      ? "https://sandbox-api.polar.sh"
       : "https://api.polar.sh";
-      
+
     const directResponse = await fetch(
       `${apiUrl}/v1/customers/external/${userId}/state`,
       {
@@ -46,13 +46,18 @@ export async function GET() {
       directApiCall: {
         status: directResponse.status,
         statusText: directResponse.statusText,
-        response: directResponse.ok ? await directResponse.json() : await directResponse.text(),
+        response: directResponse.ok
+          ? await directResponse.json()
+          : await directResponse.text(),
       },
     });
   } catch (error) {
-    return NextResponse.json({ 
-      error: "Debug failed", 
-      details: error instanceof Error ? error.message : String(error) 
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: "Debug failed",
+        details: error instanceof Error ? error.message : String(error),
+      },
+      { status: 500 }
+    );
   }
 }

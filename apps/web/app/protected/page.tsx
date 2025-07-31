@@ -22,14 +22,16 @@ export default async function ProtectedPage() {
     redirect("/auth/login");
   }
 
-  log(`🔐 Protected page accessed by user: ${data.user.id} (${data.user.email})`);
+  log(
+    `🔐 Protected page accessed by user: ${data.user.id} (${data.user.email})`
+  );
   const hasSubscription = await hasProductSubscription(data.user.id);
   log(`🎯 Protected page - subscription status: ${hasSubscription}`);
-  
+
   if (hasSubscription) {
-    log(`✅ User has subscription - showing premium content`);
+    log("✅ User has subscription - showing premium content");
   } else {
-    log(`❌ User does not have subscription - showing upgrade prompt`);
+    log("❌ User does not have subscription - showing upgrade prompt");
   }
 
   if (!hasSubscription) {

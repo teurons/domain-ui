@@ -17,10 +17,10 @@ export default async function UpgradePage() {
   log(`🎯 Upgrade page - subscription status: ${hasSubscription}`);
 
   if (hasSubscription) {
-    log(`✅ User already has subscription, redirecting to protected page`);
+    log("✅ User already has subscription, redirecting to protected page");
     redirect("/protected");
   } else {
-    log(`❌ User does not have subscription - showing upgrade form`);
+    log("❌ User does not have subscription - showing upgrade form");
   }
 
   return (

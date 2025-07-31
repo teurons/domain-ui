@@ -8,22 +8,19 @@ export default function Page() {
         <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
           Welcome to Domain UI
         </h1>
-        
+
         <p className="text-lg text-muted-foreground max-w-lg">
-          A modern Next.js application with Supabase authentication and Polar.sh subscription management.
+          A modern Next.js application with Supabase authentication and Polar.sh
+          subscription management.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-8">
           <Button asChild size="lg">
-            <Link href="/auth/login">
-              Get Started
-            </Link>
+            <Link href="/auth/login">Get Started</Link>
           </Button>
-          
+
           <Button asChild variant="outline" size="lg">
-            <Link href="/protected">
-              View Features
-            </Link>
+            <Link href="/protected">View Features</Link>
           </Button>
         </div>
 
@@ -34,14 +31,14 @@ export default function Page() {
               Powered by Supabase with email verification and secure sessions.
             </p>
           </div>
-          
+
           <div className="p-6 rounded-lg border bg-card">
             <h3 className="font-semibold mb-2">💳 Subscription Management</h3>
             <p className="text-sm text-muted-foreground">
               Integrated with Polar.sh for seamless subscription handling.
             </p>
           </div>
-          
+
           <div className="p-6 rounded-lg border bg-card">
             <h3 className="font-semibold mb-2">⚡ Modern Stack</h3>
             <p className="text-sm text-muted-foreground">

@@ -9,9 +9,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const session = useSession();
 
   return (
-    <AuthContext.Provider value={session}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={session}>{children}</AuthContext.Provider>
   );
 }
 

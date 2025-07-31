@@ -19,7 +19,11 @@ class SupabaseAuthClient {
     return { data, error };
   }
 
-  async signUp(email: string, password: string, options?: { redirectTo?: string }) {
+  async signUp(
+    email: string,
+    password: string,
+    options?: { redirectTo?: string }
+  ) {
     const { data, error } = await this.supabase.auth.signUp({
       email,
       password,
@@ -41,9 +45,12 @@ class SupabaseAuthClient {
   }
 
   async resetPassword(email: string, redirectTo?: string) {
-    const { data, error } = await this.supabase.auth.resetPasswordForEmail(email, {
-      redirectTo,
-    });
+    const { data, error } = await this.supabase.auth.resetPasswordForEmail(
+      email,
+      {
+        redirectTo,
+      }
+    );
     return { data, error };
   }
 
@@ -55,11 +62,11 @@ class SupabaseAuthClient {
   }
 
   onAuthStateChange(callback: (user: User | null) => void) {
-    const { data: { subscription } } = this.supabase.auth.onAuthStateChange(
-      (event, session) => {
-        callback(session?.user ?? null);
-      }
-    );
+    const {
+      data: { subscription },
+    } = this.supabase.auth.onAuthStateChange((event, session) => {
+      callback(session?.user ?? null);
+    });
 
     return () => subscription.unsubscribe();
   }
@@ -77,7 +84,8 @@ export function useSession(): AuthSession {
     // Get initial session
     const getInitialSession = async () => {
       try {
-        const { user: currentUser, error: userError } = await authClient.getUser();
+        const { user: currentUser, error: userError } =
+          await authClient.getUser();
         if (userError) {
           setError(userError);
         } else {
@@ -106,4 +114,11 @@ export function useSession(): AuthSession {
 }
 
 // Export individual functions for convenience
-export const { signIn, signUp, signOut, getUser, resetPassword, updatePassword } = authClient;
+export const {
+  signIn,
+  signUp,
+  signOut,
+  getUser,
+  resetPassword,
+  updatePassword,
+} = authClient;

@@ -31,20 +31,24 @@ function ConfirmationContent() {
       }
 
       setUser(data.user);
-      
+
       // Clean up URL parameters after a short delay
-      const checkoutId = searchParams.get("checkout_id") || searchParams.get("checkoutId");
+      const checkoutId =
+        searchParams.get("checkout_id") || searchParams.get("checkoutId");
       const customerSessionToken = searchParams.get("customer_session_token");
-      
+
       if (checkoutId || customerSessionToken) {
-        console.log("🎉 Payment successful!", { checkoutId, customerSessionToken });
-        
+        console.log("🎉 Payment successful!", {
+          checkoutId,
+          customerSessionToken,
+        });
+
         // Clean URL after 2 seconds
         setTimeout(() => {
           window.history.replaceState({}, "", "/confirmation");
         }, 2000);
       }
-      
+
       setIsLoading(false);
     };
 
@@ -57,7 +61,7 @@ function ConfirmationContent() {
         <Card className="w-full max-w-md mx-auto">
           <CardContent className="pt-6">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4" />
               <p>Processing your subscription...</p>
             </div>
           </CardContent>
@@ -72,7 +76,8 @@ function ConfirmationContent() {
         <CardHeader>
           <CardTitle>Welcome to Pro! 🎉</CardTitle>
           <CardDescription>
-            Thank you for upgrading! You now have access to all premium features.
+            Thank you for upgrading! You now have access to all premium
+            features.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -92,18 +97,20 @@ function ConfirmationContent() {
 
 export default function ConfirmationPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-md mx-auto">
-          <CardContent className="pt-6">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4"></div>
-              <p>Loading...</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center p-4">
+          <Card className="w-full max-w-md mx-auto">
+            <CardContent className="pt-6">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-4" />
+                <p>Loading...</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      }
+    >
       <ConfirmationContent />
     </Suspense>
   );

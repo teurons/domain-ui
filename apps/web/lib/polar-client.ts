@@ -22,14 +22,16 @@ export interface CustomerState {
 }
 
 class PolarClient {
-  private apiUrl = env.POLAR_IS_SANDBOX 
-    ? "https://sandbox-api.polar.sh" 
+  private apiUrl = env.POLAR_IS_SANDBOX
+    ? "https://sandbox-api.polar.sh"
     : "https://api.polar.sh";
 
   /**
    * Get customer state by external ID (Supabase user ID)
    */
-  async getCustomerState(externalCustomerId: string): Promise<CustomerState | null> {
+  async getCustomerState(
+    externalCustomerId: string
+  ): Promise<CustomerState | null> {
     try {
       const response = await fetch(
         `${this.apiUrl}/v1/customers/external/${externalCustomerId}/state`,
@@ -45,7 +47,9 @@ class PolarClient {
       }
 
       if (!response.ok) {
-        throw new Error(`Polar API error: ${response.status} ${response.statusText}`);
+        throw new Error(
+          `Polar API error: ${response.status} ${response.statusText}`
+        );
       }
 
       return response.json();
@@ -63,14 +67,16 @@ class PolarClient {
    */
   async hasActiveSubscription(externalCustomerId: string): Promise<boolean> {
     const customerState = await this.getCustomerState(externalCustomerId);
-    return customerState ? customerState.active_subscriptions.length > 0 : false;
+    return customerState
+      ? customerState.active_subscriptions.length > 0
+      : false;
   }
 
   /**
    * Check if user has subscription for a specific product
    */
   async hasProductSubscription(
-    externalCustomerId: string, 
+    externalCustomerId: string,
     productId: string = env.POLAR_PRODUCT_ID
   ): Promise<boolean> {
     const customerState = await this.getCustomerState(externalCustomerId);
@@ -86,7 +92,9 @@ class PolarClient {
   /**
    * Find Polar customer by external ID and return their internal customer ID
    */
-  async findCustomerIdByExternalId(externalCustomerId: string): Promise<string | null> {
+  async findCustomerIdByExternalId(
+    externalCustomerId: string
+  ): Promise<string | null> {
     try {
       // First check if customer exists via state API
       const customerState = await this.getCustomerState(externalCustomerId);
@@ -116,7 +124,11 @@ class PolarClient {
   /**
    * Create checkout URL with proper external customer ID linking
    */
-  getCheckoutUrl(userEmail: string, externalCustomerId: string, productId?: string): string {
+  getCheckoutUrl(
+    userEmail: string,
+    externalCustomerId: string,
+    productId?: string
+  ): string {
     const params = new URLSearchParams({
       products: productId || env.POLAR_PRODUCT_ID,
       customerEmail: userEmail,
@@ -137,20 +149,24 @@ class PolarClient {
 export const polarClient = new PolarClient();
 
 // Export convenience functions with proper binding
-export const getCustomerState = (externalCustomerId: string) => 
+export const getCustomerState = (externalCustomerId: string) =>
   polarClient.getCustomerState(externalCustomerId);
 
-export const hasActiveSubscription = (externalCustomerId: string) => 
+export const hasActiveSubscription = (externalCustomerId: string) =>
   polarClient.hasActiveSubscription(externalCustomerId);
 
-export const hasProductSubscription = (externalCustomerId: string, productId?: string) => 
-  polarClient.hasProductSubscription(externalCustomerId, productId);
+export const hasProductSubscription = (
+  externalCustomerId: string,
+  productId?: string
+) => polarClient.hasProductSubscription(externalCustomerId, productId);
 
-export const findCustomerIdByExternalId = (externalCustomerId: string) => 
+export const findCustomerIdByExternalId = (externalCustomerId: string) =>
   polarClient.findCustomerIdByExternalId(externalCustomerId);
 
-export const getCheckoutUrl = (userEmail: string, externalCustomerId: string, productId?: string) => 
-  polarClient.getCheckoutUrl(userEmail, externalCustomerId, productId);
+export const getCheckoutUrl = (
+  userEmail: string,
+  externalCustomerId: string,
+  productId?: string
+) => polarClient.getCheckoutUrl(userEmail, externalCustomerId, productId);
 
-export const getPortalUrl = () => 
-  polarClient.getPortalUrl();
+export const getPortalUrl = () => polarClient.getPortalUrl();

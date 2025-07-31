@@ -16,16 +16,16 @@ export function UpgradeToPro() {
 
   const handleUpgrade = async () => {
     if (!user) {
-      console.log(`❌ No user found, redirecting to login`);
+      console.log("❌ No user found, redirecting to login");
       window.location.href = "/auth/login";
       return;
     }
-    
+
     console.log(`🛒 Starting checkout process for user: ${user.id}`);
-    
+
     const checkoutUrl = getCheckoutUrl(user.email!, user.id);
-    console.log(`🔗 Redirecting to checkout:`, checkoutUrl);
-    
+    console.log("🔗 Redirecting to checkout:", checkoutUrl);
+
     window.location.href = checkoutUrl;
   };
 
