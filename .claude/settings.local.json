@@ -3,7 +3,11 @@
     "allow": [
       "Bash(npx ultracite lint:*)",
       "WebFetch(domain:supabase.com)",
-      "Bash(pnpm typecheck:*)"
+      "Bash(pnpm typecheck:*)",
+      "WebFetch(domain:docs.polar.sh)",
+      "WebFetch(domain:github.com)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm update:*)"
     ],
     "deny": []
   }
