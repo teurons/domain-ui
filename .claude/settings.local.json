@@ -1,6 +1,9 @@
 {
   "permissions": {
-    "allow": ["Bash(npx ultracite lint:*)"],
+    "allow": [
+      "Bash(npx ultracite lint:*)",
+      "WebFetch(domain:supabase.com)"
+    ],
     "deny": []
   }
 }
