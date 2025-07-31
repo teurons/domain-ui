@@ -77,8 +77,12 @@ class PolarClient {
     externalCustomerId: string,
     productId?: string
   ): Promise<boolean> {
-    // Use server-side env var for this server-side function
-    const defaultProductId = productId || process.env.POLAR_PRODUCT_ID || "";
+    // Use appropriate env var based on context (server vs client)
+    const defaultProductId =
+      productId ||
+      process.env.POLAR_PRODUCT_ID ||
+      process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID ||
+      "";
     if (!defaultProductId) {
       return false;
     }

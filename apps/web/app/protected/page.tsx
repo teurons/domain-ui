@@ -1,11 +1,8 @@
 import { redirect } from "next/navigation";
-import Link from "next/link";
 
 import { LogoutButton } from "@/components/logout-button";
-import { UpgradeToPro } from "@/components/upgrade-to-pro";
 import { createClient } from "@/lib/supabase/server";
 import { hasProductSubscription } from "@/lib/subscription";
-import { Button } from "@workspace/shadverse/components/button";
 import {
   Card,
   CardContent,
@@ -29,19 +26,14 @@ export default async function ProtectedPage() {
   const hasSubscription = await hasProductSubscription(data.user.id);
   log(`🎯 Protected page - subscription status: ${hasSubscription}`);
 
-  if (hasSubscription) {
-    log("✅ User has subscription - showing premium content");
-  } else {
-    log("❌ User does not have subscription - showing upgrade prompt");
+  if (!hasSubscription) {
+    log(
+      "❌ User does not have subscription - redirecting to subscription page"
+    );
+    redirect("/subscription");
   }
 
-  if (!hasSubscription) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <UpgradeToPro />
-      </div>
-    );
-  }
+  log("✅ User has subscription - showing premium content");
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -56,18 +48,11 @@ export default async function ProtectedPage() {
           <p className="text-center">
             You have access to all premium features as a Pro subscriber.
           </p>
-          <div className="space-y-2">
-            <Button asChild variant="outline" className="w-full">
-              <Link href="/portal" target="_blank" rel="noopener noreferrer">
-                Manage Subscription
-              </Link>
-            </Button>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">
-                Logged in as {data.user.email}
-              </span>
-              <LogoutButton />
-            </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-muted-foreground">
+              Logged in as {data.user.email}
+            </span>
+            <LogoutButton />
           </div>
         </CardContent>
       </Card>
