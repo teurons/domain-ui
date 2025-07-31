@@ -1,5 +1,4 @@
-import { env } from "./env";
-import { polar } from "./polar";
+import { api } from "./polar";
 import { logError } from "./logger";
 
 export interface PolarCustomer {
@@ -23,7 +22,7 @@ export interface CustomerState {
 }
 
 class PolarClient {
-  private apiUrl = env.POLAR_IS_SANDBOX
+  private apiUrl = process.env.POLAR_IS_SANDBOX === "true"
     ? "https://sandbox-api.polar.sh"
     : "https://api.polar.sh";
 
@@ -38,7 +37,7 @@ class PolarClient {
         `${this.apiUrl}/v1/customers/external/${externalCustomerId}/state`,
         {
           headers: {
-            Authorization: `Bearer ${env.POLAR_ACCESS_TOKEN}`,
+            Authorization: `Bearer ${process.env.POLAR_ACCESS_TOKEN}`,
           },
         }
       );
@@ -75,7 +74,7 @@ class PolarClient {
    */
   async hasProductSubscription(
     externalCustomerId: string,
-    productId: string = env.POLAR_PRODUCT_ID
+    productId: string = process.env.POLAR_PRODUCT_ID || ""
   ): Promise<boolean> {
     const customerState = await this.getCustomerState(externalCustomerId);
     if (!customerState) {
@@ -101,7 +100,7 @@ class PolarClient {
       }
 
       // Get customer list to find the internal customer ID
-      const customerResponse = await polar.customers.list({
+      const customerResponse = await api.customers.list({
         limit: 100,
       });
 
@@ -125,7 +124,7 @@ class PolarClient {
     productId?: string
   ): string {
     const params = new URLSearchParams({
-      products: productId || env.POLAR_PRODUCT_ID,
+      products: productId || process.env.POLAR_PRODUCT_ID || "",
       customerEmail: userEmail,
       customerExternalId: externalCustomerId,
     });

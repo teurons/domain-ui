@@ -11,6 +11,24 @@ This project uses **Biome** (not ESLint) for linting and formatting. Biome confi
 - Biome handles both TypeScript/JavaScript linting and formatting
 - Console warnings are disabled for logger.ts file via Biome overrides
 
+## Logging
+
+This project uses a custom logger utility instead of `console.log` statements. Always use the logger from `@/lib/logger`:
+
+```typescript
+import { info, warn, error, debug } from "@/lib/logger";
+
+// Usage examples
+info("User logged in successfully", { userId });
+warn("Deprecated API endpoint used", { endpoint });
+error("Failed to connect to database", errorObject);
+debug("Debug information", { data });
+```
+
+- Set `NEXT_PUBLIC_APP_DEBUG=true` in `.env` to enable logging
+- Set `NEXT_PUBLIC_LOG_LEVEL` to control log level (DEBUG, INFO, WARN, ERROR)
+- NEVER use `console.log`, `console.error`, etc. directly - always use the logger
+
 ## Development Commands
 
 ### Root Level Commands

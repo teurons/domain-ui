@@ -3,18 +3,11 @@
 import { Button } from "@workspace/shadverse/components/button";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
-import { signOut } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
+import { LogoutButton } from "@/components/logout-button";
 import Link from "next/link";
 
 export default function AppHeader() {
   const { user, loading, error } = useAuth();
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    await signOut();
-    router.push("/auth/login");
-  };
 
   const renderAuthStatus = () => {
     if (loading) {
@@ -28,7 +21,7 @@ export default function AppHeader() {
 
     if (error) {
       return (
-        <div className="text-sm text-destructive">Error: {error.message}</div>
+        <div className="text-sm text-destructive">Error: {error}</div>
       );
     }
 
@@ -54,9 +47,7 @@ export default function AppHeader() {
               <Link href="/protected">Dashboard</Link>
             </Button>
 
-            <Button onClick={handleSignOut} variant="ghost" size="sm">
-              Sign Out
-            </Button>
+            <LogoutButton />
           </div>
         </div>
       );
