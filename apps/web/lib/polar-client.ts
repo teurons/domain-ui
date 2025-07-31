@@ -3,7 +3,6 @@ import { polar } from "./polar";
 
 export interface PolarCustomer {
   id: string;
-  external_id?: string;
   externalId?: string;
   email: string;
   name?: string;
@@ -51,7 +50,10 @@ class PolarClient {
 
       return response.json();
     } catch (error) {
-      console.error("Error fetching customer state:", error);
+      // Log error in development only
+      if (process.env.NODE_ENV === "development") {
+        console.error("Error fetching customer state:", error);
+      }
       return null;
     }
   }
@@ -72,7 +74,9 @@ class PolarClient {
     productId: string = env.POLAR_PRODUCT_ID
   ): Promise<boolean> {
     const customerState = await this.getCustomerState(externalCustomerId);
-    if (!customerState) return false;
+    if (!customerState) {
+      return false;
+    }
 
     return customerState.active_subscriptions.some(
       (sub) => sub.product_id === productId && sub.status === "active"
@@ -86,7 +90,9 @@ class PolarClient {
     try {
       // First check if customer exists via state API
       const customerState = await this.getCustomerState(externalCustomerId);
-      if (!customerState) return null;
+      if (!customerState) {
+        return null;
+      }
 
       // Get customer list to find the internal customer ID
       const customerResponse = await polar.customers.list({
@@ -94,12 +100,15 @@ class PolarClient {
       });
 
       const customer = customerResponse.result?.items?.find(
-        (c: any) => c.external_id === externalCustomerId || c.externalId === externalCustomerId
+        (c) => c.externalId === externalCustomerId
       );
 
       return customer?.id || null;
     } catch (error) {
-      console.error("Error finding customer ID:", error);
+      // Log error in development only
+      if (process.env.NODE_ENV === "development") {
+        console.error("Error finding customer ID:", error);
+      }
       return null;
     }
   }

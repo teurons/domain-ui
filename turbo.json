@@ -1,6 +1,10 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
+  "globalEnv": [
+    "NODE_ENV",
+    "SKIP_ENV_VALIDATION"
+  ],
   "tasks": {
     "//#format": {},
     "//#lint": {
@@ -9,7 +13,15 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": [
+        "POLAR_ACCESS_TOKEN",
+        "POLAR_WEBHOOK_SECRET", 
+        "POLAR_ORG_ID",
+        "POLAR_PRODUCT_ID",
+        "POLAR_IS_SANDBOX",
+        "NEXT_PUBLIC_*"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -19,7 +31,15 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": [
+        "POLAR_ACCESS_TOKEN",
+        "POLAR_WEBHOOK_SECRET",
+        "POLAR_ORG_ID", 
+        "POLAR_PRODUCT_ID",
+        "POLAR_IS_SANDBOX",
+        "NEXT_PUBLIC_*"
+      ]
     }
   }
 }

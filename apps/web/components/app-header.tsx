@@ -1,13 +1,5 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "@workspace/shadverse/components/card";
 import { Button } from "@workspace/shadverse/components/button";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
@@ -44,7 +36,7 @@ export default function AppHeader() {
               </div>
             ) : error ? (
               <div className="text-sm text-destructive">
-                Error: {error}
+                Error: {error.message}
               </div>
             ) : user ? (
               <div className="flex items-center space-x-4">
