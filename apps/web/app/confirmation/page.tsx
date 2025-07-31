@@ -79,7 +79,9 @@ export default function ConfirmationPage() {
             <Link href="/protected">Access Premium Features</Link>
           </Button>
           <Button asChild variant="outline" className="w-full">
-            <Link href="/portal">Manage Subscription</Link>
+            <Link href="/portal" target="_blank" rel="noopener noreferrer">
+              Manage Subscription
+            </Link>
           </Button>
         </CardContent>
       </Card>

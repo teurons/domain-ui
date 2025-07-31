@@ -73,7 +73,9 @@ export default async function ProtectedPage() {
           </p>
           <div className="space-y-2">
             <Button asChild variant="outline" className="w-full">
-              <Link href="/portal">Manage Subscription</Link>
+              <Link href="/portal" target="_blank" rel="noopener noreferrer">
+                Manage Subscription
+              </Link>
             </Button>
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">
