@@ -10,7 +10,9 @@
       "Bash(pnpm update:*)",
       "Bash(npx tsc:*)",
       "Bash(pnpm web:build:*)",
-      "Bash(npx @biomejs/biome format:*)"
+      "Bash(npx @biomejs/biome format:*)",
+      "Bash(pnpm build:*)",
+      "Bash(mv:*)"
     ],
     "deny": []
   }

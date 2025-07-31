@@ -11,6 +11,12 @@ This project uses **Biome** (not ESLint) for linting and formatting. Biome confi
 - Biome handles both TypeScript/JavaScript linting and formatting
 - Console warnings are disabled for logger.ts file via Biome overrides
 
+### IMPORTANT: Code Quality Requirements
+
+- **ALWAYS run `pnpm lint` from the root of the monorepo after making code changes**
+- **Ensure there are 0 linting issues before completing any task**
+- **NEVER run build commands (`pnpm build`, `pnpm web:build`, etc.) unless explicitly asked by the user**
+
 ## Logging
 
 This project uses a custom logger utility instead of `console.log` statements. Always use the logger from `@/lib/logger`:

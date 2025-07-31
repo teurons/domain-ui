@@ -75,15 +75,20 @@ class PolarClient {
    */
   async hasProductSubscription(
     externalCustomerId: string,
-    productId: string = process.env.POLAR_PRODUCT_ID || ""
+    productId?: string
   ): Promise<boolean> {
+    // Use server-side env var for this server-side function
+    const defaultProductId = productId || process.env.POLAR_PRODUCT_ID || "";
+    if (!defaultProductId) {
+      return false;
+    }
     const customerState = await this.getCustomerState(externalCustomerId);
     if (!customerState) {
       return false;
     }
 
     return customerState.active_subscriptions.some(
-      (sub) => sub.product_id === productId && sub.status === "active"
+      (sub) => sub.product_id === defaultProductId && sub.status === "active"
     );
   }
 
@@ -124,8 +129,14 @@ class PolarClient {
     externalCustomerId: string,
     productId?: string
   ): string {
+    // Use client-side env var when available, fallback to server-side
+    const defaultProductId =
+      typeof window !== "undefined"
+        ? process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID
+        : process.env.POLAR_PRODUCT_ID;
+
     const params = new URLSearchParams({
-      products: productId || process.env.POLAR_PRODUCT_ID || "",
+      products: productId || defaultProductId || "",
       customerEmail: userEmail,
       customerExternalId: externalCustomerId,
     });
