@@ -5,8 +5,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "npx ultracite@latest format",
+    "lint": "npx ultracite@latest lint",
     "web:dev": "turbo dev --filter=web",
     "web:build": "turbo build --filter=web",
     "web:start": "pnpm --filter web start"
