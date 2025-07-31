@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 
 import { LogoutButton } from "@/components/logout-button";
+import { UpgradeToPro } from "@/components/upgrade-to-pro";
 import { createClient } from "@/lib/supabase/server";
 import { hasProductSubscription } from "@/lib/subscription";
 import { Button } from "@workspace/shadverse/components/button";
@@ -37,25 +38,7 @@ export default async function ProtectedPage() {
   if (!hasSubscription) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-md mx-auto">
-          <CardHeader>
-            <CardTitle>Premium Features</CardTitle>
-            <CardDescription>
-              This content is only available to Pro subscribers.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Button asChild className="w-full">
-              <Link href="/upgrade">Upgrade to Pro</Link>
-            </Button>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">
-                Logged in as {data.user.email}
-              </span>
-              <LogoutButton />
-            </div>
-          </CardContent>
-        </Card>
+        <UpgradeToPro />
       </div>
     );
   }

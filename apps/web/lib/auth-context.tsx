@@ -23,7 +23,10 @@ function useSession(): AuthSession {
     // Get initial session
     const getInitialSession = async () => {
       try {
-        const { data: { user: currentUser }, error: userError } = await supabase.auth.getUser();
+        const {
+          data: { user: currentUser },
+          error: userError,
+        } = await supabase.auth.getUser();
         if (userError) {
           setError(userError.message);
         } else {
@@ -39,7 +42,9 @@ function useSession(): AuthSession {
     getInitialSession();
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
       setLoading(false);
       setError(null);

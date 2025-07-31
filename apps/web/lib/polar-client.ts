@@ -22,9 +22,10 @@ export interface CustomerState {
 }
 
 class PolarClient {
-  private apiUrl = process.env.POLAR_IS_SANDBOX === "true"
-    ? "https://sandbox-api.polar.sh"
-    : "https://api.polar.sh";
+  private apiUrl =
+    process.env.POLAR_IS_SANDBOX === "true"
+      ? "https://sandbox-api.polar.sh"
+      : "https://api.polar.sh";
 
   /**
    * Get customer state by external ID (Supabase user ID)

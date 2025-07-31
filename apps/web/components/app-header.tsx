@@ -20,9 +20,7 @@ export default function AppHeader() {
     }
 
     if (error) {
-      return (
-        <div className="text-sm text-destructive">Error: {error}</div>
-      );
+      return <div className="text-sm text-destructive">Error: {error}</div>;
     }
 
     if (user) {
