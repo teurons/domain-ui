@@ -37,7 +37,8 @@
       "Bash(shadcn build --help)",
       "Bash(pnpm shadcn build:*)",
       "Bash(chmod:*)",
-      "Bash(pnpm web:dev:*)"
+      "Bash(pnpm web:dev:*)",
+      "Bash(pnpm run:*)"
     ],
     "deny": []
   }

@@ -47,6 +47,7 @@ export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
+  console.log("params.slug", params.slug);
   const page = docsSource.getPage(params.slug);
   if (!page) notFound();
 

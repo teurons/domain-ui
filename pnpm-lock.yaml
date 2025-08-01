@@ -53,6 +53,12 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.1.9)(react@19.1.1)
+      '@shikijs/transformers':
+        specifier: ^3.2.1
+        version: 3.9.1
+      '@standard-schema/spec':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@supabase/ssr':
         specifier: ^0.6.1
         version: 0.6.1(@supabase/supabase-js@2.53.0)
@@ -62,6 +68,15 @@ importers:
       '@t3-oss/env-nextjs':
         specifier: ^0.13.8
         version: 0.13.8(typescript@5.7.3)(zod@4.0.14)
+      '@types/mdx':
+        specifier: ^2.0.13
+        version: 2.0.13
+      '@workspace/cms':
+        specifier: workspace:*
+        version: link:../../packages/cms
+      '@workspace/config':
+        specifier: workspace:*
+        version: link:../../packages/config
       '@workspace/domain-ui-pro-registry':
         specifier: workspace:*
         version: link:../../packages/domain-ui-pro-registry
@@ -71,6 +86,21 @@ importers:
       '@workspace/shadverse':
         specifier: workspace:*
         version: link:../../packages/shadverse
+      '@workspace/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      fumadocs-core:
+        specifier: ^15.6.7
+        version: 15.6.7(@types/react@19.1.9)(next@15.4.5(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      fumadocs-mdx:
+        specifier: ^11.7.3
+        version: 11.7.3(acorn@8.15.0)(fumadocs-core@15.6.7(@types/react@19.1.9)(next@15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(next@15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)(vite@7.0.6(@types/node@20.17.19)(jiti@2.5.1)(lightningcss@1.30.1))
+      fumadocs-twoslash:
+        specifier: ^3.1.0
+        version: 3.1.4(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(fumadocs-ui@15.6.7(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(next@15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(tailwindcss@4.1.11))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.7.3)
+      fumadocs-ui:
+        specifier: ^15.6.7
+        version: 15.6.7(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(next@15.4.5(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(tailwindcss@4.1.11)
       jose:
         specifier: ^6.0.12
         version: 6.0.12
@@ -83,6 +113,9 @@ importers:
       next:
         specifier: ^15.4.5
         version: 15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      next-sitemap:
+        specifier: ^4.2.3
+        version: 4.2.3(next@15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))
       next-themes:
         specifier: ^0.4.4
         version: 0.4.4(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -95,9 +128,18 @@ importers:
       react-hook-form:
         specifier: ^7.61.1
         version: 7.61.1(react@19.1.1)
+      rehype-katex:
+        specifier: 7.0.1
+        version: 7.0.1
+      remark-math:
+        specifier: 6.0.0
+        version: 6.0.0
       shadcn:
         specifier: 2.9.3-canary.0
         version: 2.9.3-canary.0(@types/node@20.17.19)(typescript@5.7.3)
+      shiki:
+        specifier: ^3.2.1
+        version: 3.9.1
       zod:
         specifier: ^4.0.14
         version: 4.0.14
@@ -901,6 +943,9 @@ packages:
   '@clack/prompts@0.11.0':
     resolution: {integrity: sha512-pMN5FcrEw9hUkZA4f+zLlzivQSeQf5dRGJjSUbvVYDLvpKCdQx5OaknvKzgbtXOizhP+SJJJjqEbOe55uKKfAw==}
 
+  '@corex/deepmerge@4.0.43':
+    resolution: {integrity: sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==}
+
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
@@ -1373,6 +1418,9 @@ packages:
   '@mswjs/interceptors@0.39.5':
     resolution: {integrity: sha512-B9nHSJYtsv79uo7QdkZ/b/WoKm20IkVSmTc/WCKarmDtFwM0dRx2ouEniqwNkzCSLn3fydzKmnMzjtfdOWt3VQ==}
     engines: {node: '>=18'}
+
+  '@next/env@13.5.11':
+    resolution: {integrity: sha512-fbb2C7HChgM7CemdCY+y3N1n8pcTKdqtQLbC7/EQtPdLvlMUT9JX/dBYl8MMZAtYG4uVMyPFHXckb68q/NRwqg==}
 
   '@next/env@15.4.5':
     resolution: {integrity: sha512-ruM+q2SCOVCepUiERoxOmZY9ZVoecR3gcXNwCYZRvQQWRjhOiPJGmQ2fAiLR6YKWXcSAh7G79KEFxN3rwhs4LQ==}
@@ -4759,6 +4807,13 @@ packages:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
     engines: {node: '>= 0.4.0'}
 
+  next-sitemap@4.2.3:
+    resolution: {integrity: sha512-vjdCxeDuWDzldhCnyFCQipw5bfpl4HmZA7uoo3GAaYGjGgfL4Cxb1CiztPuWGmS+auYs7/8OekRS8C2cjdAsjQ==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      next: '*'
+
   next-themes@0.4.4:
     resolution: {integrity: sha512-LDQ2qIOJF0VnuVrrMSMLrWGjRMkq+0mpgl6e0juCLqdJ+oo8Q84JRWT6Wh11VDQKkMMe+dVzDKLWs5n87T+PkQ==}
     peerDependencies:
@@ -6393,6 +6448,8 @@ snapshots:
       picocolors: 1.1.1
       sisteransi: 1.0.5
 
+  '@corex/deepmerge@4.0.43': {}
+
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
@@ -6846,6 +6903,8 @@ snapshots:
       is-node-process: 1.2.0
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
+
+  '@next/env@13.5.11': {}
 
   '@next/env@15.4.5': {}
 
@@ -7817,6 +7876,15 @@ snapshots:
       '@shikijs/core': 3.9.1
       '@shikijs/types': 3.9.1
 
+  '@shikijs/twoslash@3.9.1(typescript@5.7.3)':
+    dependencies:
+      '@shikijs/core': 3.9.1
+      '@shikijs/types': 3.9.1
+      twoslash: 0.3.3(typescript@5.7.3)
+      typescript: 5.7.3
+    transitivePeerDependencies:
+      - supports-color
+
   '@shikijs/twoslash@3.9.1(typescript@5.8.2)':
     dependencies:
       '@shikijs/core': 3.9.1
@@ -8258,6 +8326,13 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.24.1
       eslint-visitor-keys: 4.2.0
+
+  '@typescript/vfs@1.6.1(typescript@5.7.3)':
+    dependencies:
+      debug: 4.4.1
+      typescript: 5.7.3
+    transitivePeerDependencies:
+      - supports-color
 
   '@typescript/vfs@1.6.1(typescript@5.8.2)':
     dependencies:
@@ -9508,6 +9583,29 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  fumadocs-mdx@11.7.3(acorn@8.15.0)(fumadocs-core@15.6.7(@types/react@19.1.9)(next@15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(next@15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)(vite@7.0.6(@types/node@20.17.19)(jiti@2.5.1)(lightningcss@1.30.1)):
+    dependencies:
+      '@mdx-js/mdx': 3.1.0(acorn@8.15.0)
+      '@standard-schema/spec': 1.0.0
+      chokidar: 4.0.3
+      esbuild: 0.25.8
+      estree-util-value-to-estree: 3.4.0
+      fumadocs-core: 15.6.7(@types/react@19.1.9)(next@15.4.5(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      js-yaml: 4.1.0
+      lru-cache: 11.1.0
+      picocolors: 1.1.1
+      tinyexec: 1.0.1
+      tinyglobby: 0.2.14
+      unist-util-visit: 5.0.0
+      zod: 4.0.14
+    optionalDependencies:
+      next: 15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      react: 19.1.1
+      vite: 7.0.6(@types/node@20.17.19)(jiti@2.5.1)(lightningcss@1.30.1)
+    transitivePeerDependencies:
+      - acorn
+      - supports-color
+
   fumadocs-mdx@11.7.3(acorn@8.15.0)(fumadocs-core@15.6.7(@types/react@19.1.9)(next@15.4.5(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(next@15.4.5(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)(vite@7.0.6(@types/node@22.17.0)(jiti@2.5.1)(lightningcss@1.30.1)):
     dependencies:
       '@mdx-js/mdx': 3.1.0(acorn@8.15.0)
@@ -9530,6 +9628,26 @@ snapshots:
     transitivePeerDependencies:
       - acorn
       - supports-color
+
+  fumadocs-twoslash@3.1.4(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(fumadocs-ui@15.6.7(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(next@15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(tailwindcss@4.1.11))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.7.3):
+    dependencies:
+      '@radix-ui/react-popover': 1.1.14(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      '@shikijs/twoslash': 3.9.1(typescript@5.7.3)
+      fumadocs-ui: 15.6.7(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(next@15.4.5(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(tailwindcss@4.1.11)
+      mdast-util-from-markdown: 2.0.2
+      mdast-util-gfm: 3.1.0
+      mdast-util-to-hast: 13.2.0
+      react: 19.1.1
+      shiki: 3.9.1
+      tailwind-merge: 3.3.1
+      twoslash: 0.3.3(typescript@5.7.3)
+    optionalDependencies:
+      '@types/react': 19.1.9
+    transitivePeerDependencies:
+      - '@types/react-dom'
+      - react-dom
+      - supports-color
+      - typescript
 
   fumadocs-twoslash@3.1.4(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(fumadocs-ui@15.6.7(@types/react-dom@19.1.7(@types/react@19.1.9))(@types/react@19.1.9)(next@15.4.5(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(tailwindcss@4.1.11))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.8.2):
     dependencies:
@@ -10908,6 +11026,14 @@ snapshots:
 
   netmask@2.0.2: {}
 
+  next-sitemap@4.2.3(next@15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)):
+    dependencies:
+      '@corex/deepmerge': 4.0.43
+      '@next/env': 13.5.11
+      fast-glob: 3.3.3
+      minimist: 1.2.8
+      next: 15.4.5(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+
   next-themes@0.4.4(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
     dependencies:
       react: 19.1.1
@@ -12237,6 +12363,14 @@ snapshots:
 
   twoslash-protocol@0.3.3: {}
 
+  twoslash@0.3.3(typescript@5.7.3):
+    dependencies:
+      '@typescript/vfs': 1.6.1(typescript@5.7.3)
+      twoslash-protocol: 0.3.3
+      typescript: 5.7.3
+    transitivePeerDependencies:
+      - supports-color
+
   twoslash@0.3.3(typescript@5.8.2):
     dependencies:
       '@typescript/vfs': 1.6.1(typescript@5.8.2)
@@ -12519,6 +12653,21 @@ snapshots:
       - terser
       - tsx
       - yaml
+
+  vite@7.0.6(@types/node@20.17.19)(jiti@2.5.1)(lightningcss@1.30.1):
+    dependencies:
+      esbuild: 0.25.8
+      fdir: 6.4.6(picomatch@4.0.3)
+      picomatch: 4.0.3
+      postcss: 8.5.6
+      rollup: 4.46.2
+      tinyglobby: 0.2.14
+    optionalDependencies:
+      '@types/node': 20.17.19
+      fsevents: 2.3.3
+      jiti: 2.5.1
+      lightningcss: 1.30.1
+    optional: true
 
   vite@7.0.6(@types/node@22.17.0)(jiti@2.5.1)(lightningcss@1.30.1):
     dependencies:
