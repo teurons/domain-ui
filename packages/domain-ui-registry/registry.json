@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "domain-ui",
+  "homepage": "https://domain-ui.dev",
+  "items": [
+    {
+      "name": "my-badge",
+      "type": "registry:component",
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "components/domain-ui/my-badge.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "tailwind": {
+        "config": {}
+      }
+    }
+  ]
+}
