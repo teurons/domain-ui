@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@domain-ui-registry/lib/utils";
+import { cn } from "@workspace/domain-ui-registry/lib/utils";
 
 interface SubHeadingProps extends React.HTMLAttributes<HTMLParagraphElement> {
   variant?: "default" | "muted" | "accent";

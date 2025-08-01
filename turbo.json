@@ -4,6 +4,7 @@
   "globalEnv": [
     "NODE_ENV",
     "SKIP_ENV_VALIDATION",
+    "REGISTRY_TOKEN_SECRET",
     "POLAR_ACCESS_TOKEN",
     "POLAR_ORG_ID",
     "POLAR_PRODUCT_ID",
@@ -11,6 +12,10 @@
     "VERCEL_URL"
   ],
   "tasks": {
+    "clean": {
+      "cache": false,
+      "persistent": false
+    },
     "//#format": {},
     "//#lint": {
       "cache": false

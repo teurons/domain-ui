@@ -11,11 +11,11 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@domain-ui-pro-registry/components",
-    "utils": "@domain-ui-pro-registry/lib/utils",
-    "ui": "@domain-ui-pro-registry/components/ui",
-    "lib": "@domain-ui-pro-registry/lib",
-    "hooks": "@domain-ui-pro-registry/hooks"
+    "components": "@workspace/domain-ui-pro-registry/components",
+    "utils": "@workspace/domain-ui-pro-registry/lib/utils",
+    "ui": "@workspace/domain-ui-pro-registry/components/ui",
+    "lib": "@workspace/domain-ui-pro-registry/lib",
+    "hooks": "@workspace/domain-ui-pro-registry/hooks"
   },
   "iconLibrary": "lucide"
 }

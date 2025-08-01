@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@domain-ui-registry/*": ["./*"]
+      "@workspace/domain-ui-registry/*": ["./*"]
     }
   },
   "include": ["."],

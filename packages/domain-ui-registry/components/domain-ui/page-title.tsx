@@ -1,7 +1,7 @@
 import React from "react";
-import { cn } from "@domain-ui-registry/lib/utils";
-import Heading from "@domain-ui-registry/components/domain-ui/heading";
-import SubHeading from "@domain-ui-registry/components/domain-ui/sub-heading";
+import { cn } from "@workspace/domain-ui-registry/lib/utils";
+import Heading from "@workspace/domain-ui-registry/components/domain-ui/heading";
+import SubHeading from "@workspace/domain-ui-registry/components/domain-ui/sub-heading";
 
 interface PageTitleProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;

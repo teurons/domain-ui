@@ -1,7 +1,7 @@
 import { Button } from "@workspace/shadverse/components/button";
 import Link from "next/link";
-import MyBadge from "@domain-ui-registry/components/domain-ui/my-badge";
-import PageTitle from "@domain-ui-registry/components/domain-ui/page-title";
+import MyBadge from "@workspace/domain-ui-registry/components/domain-ui/my-badge";
+import PageTitle from "@workspace/domain-ui-registry/components/domain-ui/page-title";
 
 export default function Page() {
   return (
