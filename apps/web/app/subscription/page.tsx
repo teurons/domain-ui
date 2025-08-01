@@ -15,7 +15,7 @@ import { UpgradeToPro } from "@/components/upgrade-to-pro";
 import { log } from "@/lib/logger";
 
 interface SubscriptionPageProps {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function SubscriptionPage({
@@ -28,8 +28,9 @@ export default async function SubscriptionPage({
     redirect("/auth/login");
   }
 
-  const checkoutId = searchParams.checkout_id || searchParams.checkoutId;
-  const customerSessionToken = searchParams.customer_session_token;
+  const params = await searchParams;
+  const checkoutId = params.checkout_id || params.checkoutId;
+  const customerSessionToken = params.customer_session_token;
 
   // Show success message if coming from successful checkout
   if (checkoutId || customerSessionToken) {
