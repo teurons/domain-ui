@@ -4,7 +4,6 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     POLAR_ACCESS_TOKEN: z.string(),
-    POLAR_WEBHOOK_SECRET: z.string(),
     POLAR_ORG_ID: z.string(),
     POLAR_PRODUCT_ID: z.string(),
     POLAR_IS_SANDBOX: z.string().transform((val) => val === "true"),
@@ -17,7 +16,6 @@ export const env = createEnv({
   },
   runtimeEnv: {
     POLAR_ACCESS_TOKEN: process.env.POLAR_ACCESS_TOKEN,
-    POLAR_WEBHOOK_SECRET: process.env.POLAR_WEBHOOK_SECRET,
     POLAR_ORG_ID: process.env.POLAR_ORG_ID,
     POLAR_PRODUCT_ID: process.env.POLAR_PRODUCT_ID,
     POLAR_IS_SANDBOX: process.env.POLAR_IS_SANDBOX,
