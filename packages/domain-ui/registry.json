@@ -9,7 +9,7 @@
       "registryDependencies": ["badge"],
       "files": [
         {
-          "path": "src/registry/domain-ui/my-badge.tsx",
+          "path": "src/components/domain-ui/my-badge.tsx",
           "type": "registry:component"
         }
       ],

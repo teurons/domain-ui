@@ -6,9 +6,19 @@ import { verifyToken } from "@/lib/shadcn/registry/utils";
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Handle registry routes - only token validation, no session updates
+  // Handle registry UI routes - only token validation, no session updates
   if (pathname.startsWith("/registry/")) {
     return handleRegistryRoute(request);
+  }
+
+  // Handle static registry files - differentiate between free and pro
+  if (pathname.startsWith("/r/")) {
+    return handleStaticRegistryFiles(request);
+  }
+
+  // Handle API registry routes - differentiate between free and pro
+  if (pathname.startsWith("/api/registry/")) {
+    return handleApiRegistryRoutes(request);
   }
 
   // For all other routes, just update session if needed
@@ -57,16 +67,90 @@ async function handleRegistryRoute(request: NextRequest) {
   return NextResponse.next();
 }
 
+async function handleStaticRegistryFiles(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  // Free components - allow public access
+  if (pathname.startsWith("/r/domain-ui/")) {
+    return NextResponse.next();
+  }
+
+  // Pro components - require token validation
+  if (pathname.startsWith("/r/domain-ui-pro/")) {
+    const token = request.nextUrl.searchParams.get("token");
+
+    if (!token) {
+      return NextResponse.json(
+        { error: "Authentication required. Please provide a valid token." },
+        { status: 401 }
+      );
+    }
+
+    const isValidToken = await verifyToken(token);
+
+    if (!isValidToken) {
+      return NextResponse.json(
+        { error: "Invalid or expired token" },
+        { status: 401 }
+      );
+    }
+
+    return NextResponse.next();
+  }
+
+  // Other registry files - continue normally
+  return NextResponse.next();
+}
+
+async function handleApiRegistryRoutes(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  // Free components API - allow public access
+  if (pathname.startsWith("/api/registry/domain-ui/")) {
+    return NextResponse.next();
+  }
+
+  // Pro components API - require token validation
+  if (pathname.startsWith("/api/registry/domain-ui-pro/")) {
+    const token = request.nextUrl.searchParams.get("token");
+
+    if (!token) {
+      return NextResponse.json(
+        { error: "Authentication required. Please provide a valid token." },
+        { status: 401 }
+      );
+    }
+
+    const isValidToken = await verifyToken(token);
+
+    if (!isValidToken) {
+      return NextResponse.json(
+        { error: "Invalid or expired token" },
+        { status: 401 }
+      );
+    }
+
+    return NextResponse.next();
+  }
+
+  // Other API registry routes - continue normally
+  return NextResponse.next();
+}
+
 export const config = {
   matcher: [
     "/registry/:path*",
+    "/r/:path*",
+    "/api/registry/:path*",
     /*
      * Match all request paths except for the ones starting with:
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
+     * - r/ (registry static files - handled separately)
+     * - api/registry/ (registry API routes - handled separately)
      * Feel free to modify this pattern to include more paths.
      */
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|r/|api/registry/|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

@@ -11,7 +11,8 @@
     "web:build": "turbo build --filter=web",
     "web:start": "pnpm --filter web start",
     "domain:build": "pnpm --filter @workspace/domain-ui registry:build",
-    "domain-pro:build": "pnpm --filter @workspace/domain-ui-pro registry:build"
+    "domain-pro:build": "pnpm --filter @workspace/domain-ui-pro registry:build",
+    "registry:build": "pnpm domain:build && pnpm domain-pro:build"
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",

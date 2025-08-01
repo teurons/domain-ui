@@ -40,7 +40,7 @@
     }
   },
   "files": {
-    "includes": ["**/*", "!packages/shadverse/**/*"]
+    "includes": ["**/*", "!packages/shadverse/**/*", "!packages/domain-ui/**/*"]
   },
   "overrides": [
     {
