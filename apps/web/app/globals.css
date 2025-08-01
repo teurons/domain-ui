@@ -17,7 +17,7 @@
 /* Import Sources */
 
 @source '../../../packages/ui/src/**/*.tsx';
-@source '../../../packages/cms/src/**/*.tsx';
+@source '../../../foundations/cms/src/**/*.tsx';
 
 #nd-nav {
   @apply !max-w-7xl rounded-lg !bg-transparent !shadow-none mx-4 mx-auto;

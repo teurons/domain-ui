@@ -34,23 +34,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
+        className={`${fontSans.variable} ${fontMono.variable} bg-background overscroll-none font-sans antialiased`}
       >
         <RootProvider
           search={{
             options: {
               type: "static",
-              defaultTag: "docs",
-              tags: [
-                {
-                  name: "Docs",
-                  value: "docs",
-                },
-                {
-                  name: "Blog",
-                  value: "blog",
-                },
-              ],
             },
           }}
         >
