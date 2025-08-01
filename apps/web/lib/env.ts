@@ -11,7 +11,6 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
-    NEXT_PUBLIC_APP_URL: z.string().url(),
     NEXT_PUBLIC_POLAR_PRODUCT_ID: z.string(),
   },
   runtimeEnv: {
@@ -21,7 +20,6 @@ export const env = createEnv({
     POLAR_IS_SANDBOX: process.env.POLAR_IS_SANDBOX,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_POLAR_PRODUCT_ID: process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
