@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@workspace/shadverse/globals.css";
 import { Providers } from "@/components/providers";
 import { AuthProvider } from "@/lib/auth-context";
-import AppHeader from "@/components/app-header";
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -26,10 +25,7 @@ export default function RootLayout({
         className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
       >
         <Providers>
-          <AuthProvider>
-            <AppHeader />
-            {children}
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </Providers>
       </body>
     </html>

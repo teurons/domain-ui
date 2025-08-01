@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { info } from "@/lib/logger";
+import AppHeader from "@/components/app-header";
 
 export default async function DashboardLayout({
   children,
@@ -20,5 +21,10 @@ export default async function DashboardLayout({
 
   info(`Dashboard accessed by user: ${data.user.id} (${data.user.email})`);
 
-  return <>{children}</>;
+  return (
+    <>
+      <AppHeader />
+      {children}
+    </>
+  );
 }
