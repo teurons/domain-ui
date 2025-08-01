@@ -1,21 +1,20 @@
 import { Button } from "@workspace/shadverse/components/button";
 import Link from "next/link";
 import MyBadge from "@domain-ui-registry/components/domain-ui/my-badge";
+import PageTitle from "@domain-ui-registry/components/domain-ui/page-title";
 
 export default function Page() {
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-80px)]">
       <div className="flex flex-col items-center justify-center gap-6 max-w-2xl mx-auto p-6 text-center">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Welcome to Domain UI
-        </h1>
+        <PageTitle
+          title="Welcome to Domain UI"
+          subtitle="A modern Next.js application with Supabase authentication and Polar.sh subscription management."
+          headingVariant="gradient"
+          alignment="center"
+        />
 
         <MyBadge />
-
-        <p className="text-lg text-muted-foreground max-w-lg">
-          A modern Next.js application with Supabase authentication and Polar.sh
-          subscription management.
-        </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-8">
           <Button asChild size="lg">
