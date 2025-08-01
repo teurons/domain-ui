@@ -21,7 +21,8 @@
       "Bash(pnpm install:*)",
       "Bash(pnpm domain:build:*)",
       "Bash(pnpm domain-pro:build:*)",
-      "Bash(pnpm format:*)"
+      "Bash(pnpm format:*)",
+      "Bash(npx @biomejs/biome check:*)"
     ],
     "deny": []
   }

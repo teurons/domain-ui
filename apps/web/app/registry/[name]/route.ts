@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import path from "path";
-import { promises as fs } from "fs";
+import path from "node:path";
+import { promises as fs } from "node:fs";
 import { registryItemSchema } from "shadcn/registry";
 import { error as logError } from "@/lib/logger";
 

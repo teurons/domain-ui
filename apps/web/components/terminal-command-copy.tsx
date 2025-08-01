@@ -22,7 +22,13 @@ import {
 // shadcn logo
 function Logo(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      role="img"
+      aria-label="Terminal logo"
+      {...props}
+    >
       <rect width="256" height="256" fill="none" />
       <line
         x1="208"
@@ -72,7 +78,7 @@ export function TerminalCommandCopy({
   const searchParams = useSearchParams();
   const returnPath = searchParams.get("return") || "/";
 
-  const command = `pnpm dlx shadcn add "${window.location.origin + returnPath + "?token=" + token}"`;
+  const command = `pnpm dlx shadcn add "${`${window.location.origin + returnPath}?token=${token}`}"`;
 
   async function handleCopy() {
     try {

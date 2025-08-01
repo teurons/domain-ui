@@ -7,7 +7,7 @@ import { TerminalCommandCopy } from "@/components/terminal-command-copy";
 
 function PolarLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 300 300" {...props}>
+    <svg viewBox="0 0 300 300" role="img" aria-label="Polar.sh logo" {...props}>
       <g clipPath="url(#clip0_1_10)">
         <path
           fillRule="evenodd"
@@ -44,8 +44,8 @@ export default function ValidateLicensePage() {
       } else {
         setError(result.error || "Invalid license key.");
       }
-    } catch (error) {
-      setError((error as Error).message || "Unexpected error.");
+    } catch (err) {
+      setError((err as Error).message || "Unexpected error.");
     }
   }
 
