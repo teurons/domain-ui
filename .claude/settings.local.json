@@ -33,7 +33,10 @@
       "Bash(rm:*)",
       "Bash(pnpm dlx shadcn:*)",
       "Bash(find:*)",
-      "Bash(pnpm --filter @workspace/domain-ui registry:build)"
+      "Bash(pnpm --filter @workspace/domain-ui registry:build)",
+      "Bash(shadcn build --help)",
+      "Bash(pnpm shadcn build:*)",
+      "Bash(chmod:*)"
     ],
     "deny": []
   }
