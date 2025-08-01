@@ -1,0 +1,75 @@
+import MdxLayout from "@workspace/cms/mdx-layout";
+import { Button } from "@workspace/ui/button";
+
+<MdxLayout title="About" toc={toc}>
+
+# SaaS Foundations for Open Source Projects
+
+A framework for building open source SaaS applications with focus on performance and user engagement.
+
+## Core Features
+
+### Completely Static Architecture
+
+- Optimized build process generating static assets
+- Pre-rendered pages for maximum performance
+- Edge-deployed static files for global CDN distribution
+
+### Content Management
+
+- **MDX-Driven Content**: Combine Markdown with React components
+- **Content Categories**:
+  - Docs
+  - Blog
+  - Guides and tutorials
+  - Landing pages with conversion elements
+  - Static information pages
+
+### Developer Experience
+
+- TypeScript throughout the codebase
+- Modular architecture with clear separation of concerns
+- Well-defined component interfaces and type safety
+
+### User Experience
+
+- **Search Functionality**
+  - Full-text search across all content types
+  - Faceted filtering by content type
+  - Search analytics for content improvement
+- **Navigation**
+  - Auto-generated table of contents
+  - Related content suggestions
+
+### Performance Optimizations
+
+- Image optimization and lazy loading
+- Code splitting and bundle optimization
+- Caching strategies for static content
+
+### SEO & Social
+
+- Structured data for search engines
+- Open Graph and Twitter card metadata
+- XML sitemaps and RSS feeds
+
+### User Engagement
+
+- **Comments System**
+  - GitHub-based commenting system
+  - Moderation tools
+- **Subscription Management**
+  - Newsletter sign-up forms
+  - Update notifications
+
+## Build-Time Generation
+
+All content is processed and optimized at build time:
+
+- Static HTML generation for all pages
+- Asset optimization and bundling
+- Image processing and responsive sizes
+- Sitemap and metadata generation
+- Search index creation
+
+</MdxLayout>
