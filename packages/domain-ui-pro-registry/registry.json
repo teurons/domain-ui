@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "domain-ui",
+  "homepage": "https://domain-ui.dev",
+  "items": [
+    {
+      "name": "my-badge",
+      "type": "registry:component",
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "components/domain-ui-pro/my-badge.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "tailwind": {
+        "config": {}
+      }
+    },
+    {
+      "name": "heading",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/domain-ui-pro/heading.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": ["typography", "heading"]
+      }
+    },
+    {
+      "name": "sub-heading",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/domain-ui-pro/sub-heading.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": ["typography", "subtitle"]
+      }
+    },
+    {
+      "name": "page-title",
+      "type": "registry:block",
+      "registryDependencies": [
+        "http://localhost:3000/r/domain-ui-pro/heading.json",
+        "http://localhost:3000/r/domain-ui-pro/sub-heading.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui-pro/page-title.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": ["typography", "page-title", "heading", "subtitle"]
+      }
+    }
+  ]
+}

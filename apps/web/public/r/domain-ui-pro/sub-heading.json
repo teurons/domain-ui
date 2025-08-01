@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sub-heading",
+  "type": "registry:component",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/domain-ui-pro/sub-heading.tsx",
+      "content": "import React from \"react\";\nimport { cn } from \"@/registry/default/lib/utils\";\n\ninterface SubHeadingProps extends React.HTMLAttributes<HTMLParagraphElement> {\n  variant?: \"default\" | \"muted\" | \"accent\";\n  size?: \"sm\" | \"md\" | \"lg\";\n}\n\nexport default function SubHeading({\n  variant = \"default\",\n  size = \"md\",\n  className,\n  children,\n  ...props\n}: SubHeadingProps) {\n  const variants = {\n    default: \"text-muted-foreground\",\n    muted: \"text-muted-foreground/70\",\n    accent: \"text-primary\",\n  };\n\n  const sizes = {\n    sm: \"text-sm\",\n    md: \"text-base lg:text-lg\",\n    lg: \"text-lg lg:text-xl\",\n  };\n\n  return (\n    <p\n      className={cn(\n        \"font-medium leading-relaxed\",\n        variants[variant],\n        sizes[size],\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </p>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "typography",
+      "subtitle"
+    ]
+  }
+}

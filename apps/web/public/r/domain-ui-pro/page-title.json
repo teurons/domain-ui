@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-title",
+  "type": "registry:block",
+  "registryDependencies": [
+    "http://localhost:3000/r/domain-ui-pro/heading.json",
+    "http://localhost:3000/r/domain-ui-pro/sub-heading.json"
+  ],
+  "files": [
+    {
+      "path": "components/domain-ui-pro/page-title.tsx",
+      "content": "import React from \"react\";\nimport { cn } from \"@/registry/default/lib/utils\";\nimport Heading from \"@/registry/default/components/domain-ui/heading\";\nimport SubHeading from \"@/registry/default/components/domain-ui/sub-heading\";\n\ninterface PageTitleProps extends React.HTMLAttributes<HTMLDivElement> {\n  title: string;\n  subtitle?: string;\n  headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;\n  headingVariant?: \"default\" | \"muted\" | \"gradient\";\n  subtitleVariant?: \"default\" | \"muted\" | \"accent\";\n  alignment?: \"left\" | \"center\" | \"right\";\n}\n\nexport default function PageTitle({\n  title,\n  subtitle,\n  headingLevel = 1,\n  headingVariant = \"default\",\n  subtitleVariant = \"default\",\n  alignment = \"left\",\n  className,\n  ...props\n}: PageTitleProps) {\n  const alignmentClasses = {\n    left: \"text-left\",\n    center: \"text-center\",\n    right: \"text-right\",\n  };\n\n  return (\n    <div\n      className={cn(\"space-y-2\", alignmentClasses[alignment], className)}\n      {...props}\n    >\n      <Heading level={headingLevel} variant={headingVariant}>\n        {title}\n      </Heading>\n      {subtitle && (\n        <SubHeading variant={subtitleVariant} size=\"lg\">\n          {subtitle}\n        </SubHeading>\n      )}\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "typography",
+      "page-title",
+      "heading",
+      "subtitle"
+    ]
+  }
+}
