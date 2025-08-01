@@ -36,7 +36,8 @@
       "Bash(pnpm --filter @workspace/domain-ui registry:build)",
       "Bash(shadcn build --help)",
       "Bash(pnpm shadcn build:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(pnpm web:dev:*)"
     ],
     "deny": []
   }

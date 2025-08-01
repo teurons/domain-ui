@@ -8,6 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "registry:build": "shadcn build -o ../../apps/web/public/r/domain-ui && sed -i '' 's/@workspace\\/domain-ui-registry/@\\/registry\\/default/g' ../../apps/web/public/r/domain-ui/*.json"
   },
+  "exports": {
+    "./lib/*": "./lib/*.ts",
+    "./components/*": "./components/*.tsx"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
