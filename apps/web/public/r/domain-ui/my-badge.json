@@ -8,7 +8,7 @@
   "files": [
     {
       "path": "components/domain-ui/my-badge.tsx",
-      "content": "import { Badge } from \"@/domain-ui-registry/components/ui/badge\";\n\nexport default function Component() {\n  return <Badge>My Domain UI Free Badge</Badge>;\n}\n",
+      "content": "import { Badge } from \"@/registry/default/components/ui/badge\";\n\nexport default function Component() {\n  return <Badge>My Domain UI Free Badge</Badge>;\n}\n",
       "type": "registry:component"
     }
   ],

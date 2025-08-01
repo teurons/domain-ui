@@ -16,6 +16,51 @@
       "tailwind": {
         "config": {}
       }
+    },
+    {
+      "name": "heading",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/domain-ui/heading.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": ["typography", "heading"]
+      }
+    },
+    {
+      "name": "sub-heading",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/domain-ui/sub-heading.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": ["typography", "subtitle"]
+      }
+    },
+    {
+      "name": "page-title",
+      "type": "registry:block",
+      "registryDependencies": [
+        "http://localhost:3000/r/domain-ui/heading.json",
+        "http://localhost:3000/r/domain-ui/sub-heading.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/page-title.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": ["typography", "page-title", "heading", "subtitle"]
+      }
     }
   ]
 }
