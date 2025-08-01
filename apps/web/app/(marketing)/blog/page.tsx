@@ -1,4 +1,4 @@
-import List from "@workspace/cms/blog/list";
+import List from "@foundations/cms/blog/list";
 import { baseUrl, createMetadata } from "@workspace/config/metadata";
 import type { Metadata, ResolvingMetadata } from "next";
 

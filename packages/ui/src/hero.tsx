@@ -28,7 +28,7 @@ export default function Hero() {
 
   return (
     <div>
-      <header className="absolute inset-x-0 top-0 z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <header className="absolute inset-x-0 top-0 z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 hidden">
         <nav
           aria-label="Global"
           className="flex items-center justify-between p-6 lg:px-8 @container"

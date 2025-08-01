@@ -12,12 +12,12 @@ import { transformerRemoveNotationEscape } from "@shikijs/transformers";
 import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins";
 
 export const docs = defineDocs({
-  dir: "../content/docs",
+  dir: "../../packages/content/docs",
 });
 
 export const blogPosts = defineCollections({
   type: "doc",
-  dir: "../content/blog",
+  dir: "../../packages/content/blog",
   schema: frontmatterSchema.extend({
     author: z.string(),
     date: z

@@ -1,5 +1,5 @@
 import { createMetadataImage } from "fumadocs-core/server";
-import { docsSource, blogSource } from "@workspace/cms/source";
+import { docsSource, blogSource } from "@foundations/cms/source";
 import type { Metadata } from "next";
 
 // Define the interface for the return type of createMetadataImage

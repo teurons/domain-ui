@@ -1,6 +1,6 @@
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import type { ReactNode } from "react";
-import { blogSource, sortedByDatePageTree } from "@workspace/cms/source";
+import { blogSource, sortedByDatePageTree } from "@foundations/cms/source";
 import { GridBackground } from "@workspace/ui/grid-background";
 
 export default function Layout({ children }: { children: ReactNode }) {

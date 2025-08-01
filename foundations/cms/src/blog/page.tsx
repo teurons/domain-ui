@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
-import { blogSource } from "@workspace/cms/source";
+import { blogSource } from "@foundations/cms/source";
 import {
   DocsPage,
   DocsBody,
   DocsDescription,
   DocsTitle,
 } from "fumadocs-ui/page";
-import { blogsMetaImage } from "@workspace/cms/metadata-image";
+import { blogsMetaImage } from "@foundations/cms/metadata-image";
 import { createMetadata } from "@workspace/config/metadata";
 
 export default async function Page(props: {

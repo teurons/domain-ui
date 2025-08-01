@@ -1,4 +1,4 @@
-import { GET } from "@workspace/cms/search-static";
+import { GET } from "@foundations/cms/search-static";
 
 export const revalidate = false;
 

@@ -1,7 +1,7 @@
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import type { ReactNode } from "react";
 import { baseOptions } from "@workspace/config/layout.config";
-import { docsSource } from "@workspace/cms/source";
+import { docsSource } from "@foundations/cms/source";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (

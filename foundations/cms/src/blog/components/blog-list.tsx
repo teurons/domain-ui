@@ -1,4 +1,4 @@
-import { getSortedByDatePosts } from "@workspace/cms/source";
+import { getSortedByDatePosts } from "@foundations/cms/source";
 import { PostList } from "./post-list";
 
 export function BlogList({ page = 1 }: { page?: number }) {

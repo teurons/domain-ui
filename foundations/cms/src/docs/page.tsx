@@ -1,4 +1,4 @@
-import { docsSource } from "@workspace/cms/source";
+import { docsSource } from "@foundations/cms/source";
 import {
   DocsPage,
   DocsBody,
@@ -7,7 +7,7 @@ import {
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
-import { docsMetaImage } from "@workspace/cms/metadata-image";
+import { docsMetaImage } from "@foundations/cms/metadata-image";
 import { createMetadata } from "@workspace/config/metadata";
 
 export default async function Page(props: {
@@ -47,7 +47,7 @@ export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  console.log("params.slug", params.slug);
+  console.log("params.slug", params.slug, docsSource.getPages());
   const page = docsSource.getPage(params.slug);
   if (!page) notFound();
 

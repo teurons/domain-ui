@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BlogPost } from "@workspace/cms/source";
+import { BlogPost } from "@foundations/cms/source";
 import { Card } from "@workspace/shadverse/components/card";
 import { ArrowRight } from "lucide-react";
 import { GridBackground } from "@workspace/ui/grid-background";

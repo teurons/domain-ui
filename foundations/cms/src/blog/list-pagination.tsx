@@ -1,4 +1,4 @@
-import { getSortedByDatePosts } from "@workspace/cms/source";
+import { getSortedByDatePosts } from "@foundations/cms/source";
 import { BlogList } from "./components/blog-list";
 
 export const dynamic = "force-static";

@@ -1,5 +1,5 @@
 import { generateOGImage } from "fumadocs-ui/og";
-import { blogsMetaImage } from "@workspace/cms/metadata-image";
+import { blogsMetaImage } from "@foundations/cms/metadata-image";
 import type { ImageResponse } from "next/og";
 
 export const GET = blogsMetaImage.createAPI((page): ImageResponse => {

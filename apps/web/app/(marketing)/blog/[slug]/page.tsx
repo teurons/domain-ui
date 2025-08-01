@@ -1,7 +1,7 @@
 import Page, {
   generateStaticParams,
   generateMetadata,
-} from "@workspace/cms/blog/page";
+} from "@foundations/cms/blog/page";
 
 export default Page;
 

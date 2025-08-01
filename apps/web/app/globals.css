@@ -16,10 +16,8 @@
 
 /* Import Sources */
 
-@source '../node_modules/fumadocs-ui/dist/**/*.js';
-
-@source '../../../workspace/ui/src/**/*.tsx';
-@source '../../../workspace/cms/src/**/*.tsx';
+@source '../../../packages/ui/src/**/*.tsx';
+@source '../../../packages/cms/src/**/*.tsx';
 
 #nd-nav {
   @apply !max-w-7xl rounded-lg !bg-transparent !shadow-none mx-4 mx-auto;

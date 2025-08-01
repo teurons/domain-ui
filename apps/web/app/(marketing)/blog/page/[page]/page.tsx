@@ -1,6 +1,6 @@
 import ListWithPagination, {
   generateStaticParams,
-} from "@workspace/cms/blog/list-pagination";
+} from "@foundations/cms/blog/list-pagination";
 import { baseUrl, createMetadata } from "@workspace/config/metadata";
 import type { Metadata, ResolvingMetadata } from "next";
 

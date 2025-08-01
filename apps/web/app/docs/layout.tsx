@@ -1,4 +1,4 @@
-import Layout from "@workspace/cms/docs/layout";
+import Layout from "@foundations/cms/docs/layout";
 import type { ReactNode } from "react";
 
 export default function StaticLayout({ children }: { children: ReactNode }) {

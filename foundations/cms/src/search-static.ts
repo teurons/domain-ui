@@ -1,4 +1,4 @@
-import { docsSource, blogSource } from "@workspace/cms/source";
+import { docsSource, blogSource } from "@foundations/cms/source";
 import { createSearchAPI } from "fumadocs-core/search/server";
 
 export const revalidate = false;
