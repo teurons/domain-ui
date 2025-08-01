@@ -190,6 +190,9 @@ importers:
         specifier: ^3.24.2
         version: 3.25.76
     devDependencies:
+      '@domain-ui-pro-registry':
+        specifier: workspace:*
+        version: 'link:'
       '@tailwindcss/postcss':
         specifier: ^4.0.8
         version: 4.0.8
