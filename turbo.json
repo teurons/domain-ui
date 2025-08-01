@@ -7,7 +7,8 @@
     "POLAR_ACCESS_TOKEN",
     "POLAR_ORG_ID",
     "POLAR_PRODUCT_ID",
-    "POLAR_IS_SANDBOX"
+    "POLAR_IS_SANDBOX",
+    "VERCEL_URL"
   ],
   "tasks": {
     "//#format": {},

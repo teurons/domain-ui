@@ -15,6 +15,12 @@
       "Bash(pnpm build:*)",
       "Bash(mv:*)",
       "WebFetch(domain:zeta-registry.vercel.app)",
+      "Bash(pnpm format:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm domain:build:*)",
+      "Bash(pnpm domain-pro:build:*)",
       "Bash(pnpm format:*)"
     ],
     "deny": []
