@@ -22,7 +22,7 @@ export default function Page() {
           </Button>
 
           <Button asChild variant="outline" size="lg">
-            <Link href="/protected">View Features</Link>
+            <Link href="/dashboard">View Features</Link>
           </Button>
         </div>
 

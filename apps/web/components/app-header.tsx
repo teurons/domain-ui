@@ -42,7 +42,7 @@ export default function AppHeader() {
 
           <div className="flex items-center space-x-2">
             <Button asChild variant="outline" size="sm">
-              <Link href="/protected">Dashboard</Link>
+              <Link href="/dashboard">Dashboard</Link>
             </Button>
             <Button asChild variant="outline" size="sm">
               <Link href="/subscription">Subscription</Link>

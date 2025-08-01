@@ -93,7 +93,7 @@ export default async function SubscriptionPage({
             </div>
             <div className="space-y-2">
               <Button asChild className="w-full">
-                <Link href="/protected">Access Premium Features</Link>
+                <Link href="/dashboard">Access Premium Features</Link>
               </Button>
               <Button asChild variant="outline" className="w-full">
                 <Link href="/portal" target="_blank" rel="noopener noreferrer">
