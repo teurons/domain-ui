@@ -80,8 +80,6 @@ async function handleStaticRegistryFiles(request: NextRequest) {
     const token = request.nextUrl.searchParams.get("token");
 
     if (!token) {
-      console.log("401 for path:", pathname);
-
       return NextResponse.json(
         { error: "Authentication required. Please provide a valid token." },
         { status: 401 }

@@ -12,42 +12,32 @@ interface PageTitleProps extends React.HTMLAttributes<HTMLDivElement> {
   alignment?: "left" | "center" | "right";
 }
 
-export default function PageTitle({ 
+export default function PageTitle({
   title,
   subtitle,
   headingLevel = 1,
   headingVariant = "default",
   subtitleVariant = "default",
   alignment = "left",
-  className, 
-  ...props 
+  className,
+  ...props
 }: PageTitleProps) {
   const alignmentClasses = {
     left: "text-left",
     center: "text-center",
-    right: "text-right"
+    right: "text-right",
   };
 
   return (
-    <div 
-      className={cn(
-        "space-y-2",
-        alignmentClasses[alignment],
-        className
-      )}
+    <div
+      className={cn("space-y-2", alignmentClasses[alignment], className)}
       {...props}
     >
-      <Heading 
-        level={headingLevel}
-        variant={headingVariant}
-      >
+      <Heading level={headingLevel} variant={headingVariant}>
         {title}
       </Heading>
       {subtitle && (
-        <SubHeading 
-          variant={subtitleVariant}
-          size="lg"
-        >
+        <SubHeading variant={subtitleVariant} size="lg">
           {subtitle}
         </SubHeading>
       )}

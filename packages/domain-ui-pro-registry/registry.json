@@ -48,13 +48,18 @@
     {
       "name": "page-title",
       "type": "registry:block",
-      "registryDependencies": [
-        "http://localhost:3000/r/domain-ui-pro/heading.json",
-        "http://localhost:3000/r/domain-ui-pro/sub-heading.json"
-      ],
+      "registryDependencies": [],
       "files": [
         {
           "path": "components/domain-ui-pro/page-title.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/domain-ui-pro/heading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/domain-ui-pro/sub-heading.tsx",
           "type": "registry:component"
         }
       ],

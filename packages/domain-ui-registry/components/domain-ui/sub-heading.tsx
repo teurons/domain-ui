@@ -6,27 +6,27 @@ interface SubHeadingProps extends React.HTMLAttributes<HTMLParagraphElement> {
   size?: "sm" | "md" | "lg";
 }
 
-export default function SubHeading({ 
+export default function SubHeading({
   variant = "default",
   size = "md",
-  className, 
-  children, 
-  ...props 
+  className,
+  children,
+  ...props
 }: SubHeadingProps) {
   const variants = {
     default: "text-muted-foreground",
     muted: "text-muted-foreground/70",
-    accent: "text-primary"
+    accent: "text-primary",
   };
 
   const sizes = {
     sm: "text-sm",
     md: "text-base lg:text-lg",
-    lg: "text-lg lg:text-xl"
+    lg: "text-lg lg:text-xl",
   };
 
   return (
-    <p 
+    <p
       className={cn(
         "font-medium leading-relaxed",
         variants[variant],

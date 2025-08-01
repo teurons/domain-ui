@@ -6,39 +6,33 @@ interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
   variant?: "default" | "muted" | "gradient";
 }
 
-export default function Heading({ 
-  level = 1, 
+export default function Heading({
+  level = 1,
   variant = "default",
-  className, 
-  children, 
-  ...props 
+  className,
+  children,
+  ...props
 }: HeadingProps) {
   const Tag = `h${level}` as keyof JSX.IntrinsicElements;
-  
+
   const variants = {
     default: "text-foreground font-semibold tracking-tight",
     muted: "text-muted-foreground font-medium tracking-tight",
-    gradient: "bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent font-bold tracking-tight"
+    gradient:
+      "bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent font-bold tracking-tight",
   };
 
   const sizes = {
     1: "text-4xl lg:text-5xl",
-    2: "text-3xl lg:text-4xl", 
+    2: "text-3xl lg:text-4xl",
     3: "text-2xl lg:text-3xl",
     4: "text-xl lg:text-2xl",
     5: "text-lg lg:text-xl",
-    6: "text-base lg:text-lg"
+    6: "text-base lg:text-lg",
   };
 
   return (
-    <Tag 
-      className={cn(
-        variants[variant],
-        sizes[level],
-        className
-      )}
-      {...props}
-    >
+    <Tag className={cn(variants[variant], sizes[level], className)} {...props}>
       {children}
     </Tag>
   );
