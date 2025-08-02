@@ -15,7 +15,8 @@
     "./blog/list": "./src/blog/list.tsx",
     "./blog/list-pagination": "./src/blog/list-pagination.tsx",
     "./blog/page": "./src/blog/page.tsx",
-    "./mdx-layout": "./src/mdx-layout.tsx"
+    "./mdx-layout": "./src/mdx-layout.tsx",
+    "./mdx-components": "./src/mdx-components.tsx"
   },
   "scripts": {
     "clean": "rm -rf node_modules",
@@ -40,6 +41,7 @@
     "@workspace/config": "workspace:*",
     "@workspace/ui": "workspace:*",
     "fumadocs-core": "^15.6.7",
+    "fumadocs-docgen": "^2.1.0",
     "fumadocs-mdx": "^11.7.3",
     "fumadocs-twoslash": "^3.1.0",
     "fumadocs-ui": "^15.6.7",
@@ -47,6 +49,7 @@
     "next": "^15.4.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-social-media-embed": "^2.5.18",
     "rehype-katex": "7.0.1",
     "remark-math": "6.0.0",
     "shiki": "^3.2.1",

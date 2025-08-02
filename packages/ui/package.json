@@ -6,7 +6,8 @@
   "exports": {
     "./*": "./src/*.tsx",
     "./globals.css": "./src/styles/globals.css",
-    "./ohimg": "./src/ohimg/index.ts"
+    "./ohimg": "./src/ohimg/index.ts",
+    "./components/*": "./src/components/*.tsx"
   },
   "scripts": {
     "clean": "rm -rf node_modules",

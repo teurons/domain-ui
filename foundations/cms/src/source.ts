@@ -1,4 +1,4 @@
-import { docs, blogPosts } from "@/.source";
+import { docs, blog } from "@/.source";
 import { loader } from "fumadocs-core/source";
 import { createMDXSource } from "fumadocs-mdx";
 import type { InferMetaType, InferPageType } from "fumadocs-core/source";
@@ -11,7 +11,7 @@ export const docsSource = loader({
 
 export const blogSource = loader({
   baseUrl: "/blog",
-  source: createMDXSource(blogPosts),
+  source: createMDXSource(blog),
 });
 
 export const {

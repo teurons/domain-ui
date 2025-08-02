@@ -8,14 +8,21 @@ import { z } from "zod";
 import { transformerTwoslash } from "fumadocs-twoslash";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
-import { transformerRemoveNotationEscape } from "@shikijs/transformers";
+import {
+  transformerRemoveNotationEscape,
+  transformerRemoveNotationEscape,
+  transformerNotationHighlight,
+  transformerNotationFocus,
+  transformerMetaHighlight,
+} from "@shikijs/transformers";
 import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins";
+import { remarkInstall } from "fumadocs-docgen";
 
 export const docs = defineDocs({
   dir: "../../packages/content/docs",
 });
 
-export const blogPosts = defineCollections({
+export const blog = defineCollections({
   type: "doc",
   dir: "../../packages/content/blog",
   schema: frontmatterSchema.extend({
@@ -42,19 +49,22 @@ export const blogPosts = defineCollections({
 export default defineConfig({
   lastModifiedTime: "git",
   mdxOptions: {
+    providerImportSource: "@foundations/cms/mdx-components",
     rehypeCodeOptions: {
       inline: "tailing-curly-colon",
       themes: {
-        light: "catppuccin-latte",
-        dark: "catppuccin-mocha",
+        light: "github-light",
+        dark: "github-dark",
       },
       transformers: [
         ...(rehypeCodeDefaultOptions.transformers ?? []),
         transformerTwoslash(),
         transformerRemoveNotationEscape(),
+        transformerNotationFocus(),
+        transformerMetaHighlight(),
       ],
     },
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkMath, remarkInstall],
     rehypePlugins: (v) => [rehypeKatex, ...v],
   },
 });
