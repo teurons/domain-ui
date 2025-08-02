@@ -34,6 +34,7 @@
     "@workspace/shadverse": "workspace:*",
     "@workspace/ui": "workspace:*",
     "class-variance-authority": "^0.7.1",
+    "framer-motion": "^12.5.0",
     "fumadocs-core": "^15.6.7",
     "fumadocs-docgen": "^2.1.0",
     "fumadocs-mdx": "^11.7.3",

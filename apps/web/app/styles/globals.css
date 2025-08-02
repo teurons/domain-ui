@@ -1,31 +1,64 @@
 @import "tailwindcss";
-
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+@import "fumadocs-twoslash/twoslash.css";
 @import "tw-animate-css";
-
-@import "@workspace/shadverse/globals.css";
-@import "@workspace/ui/globals.css";
-
-@import "./patterns.css";
-@import "./theme-transition.css";
-
-@import "@workspace/fumadocs-blog/globals.css";
 
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-/* Import styles */
+@import "@workspace/shadverse/globals.css";
+@import "@workspace/ui/globals.css";
 
-@import "fumadocs-ui/css/neutral.css";
-@import "fumadocs-ui/css/preset.css";
-@import "fumadocs-twoslash/twoslash.css";
+@source '../../node_modules/fumadocs-ui/dist/**/*.js';
 
-/* Import Sources */
+@layer utilities {
+  .bg-dashed {
+    background-image: linear-gradient(
+      45deg,
+      var(--color-border) 12.5%,
+      transparent 12.5%,
+      transparent 50%,
+      var(--color-border) 50%,
+      var(--color-border) 62.5%,
+      transparent 62.5%,
+      transparent 100%
+    );
+    background-size: 0.25rem 0.25rem;
+  }
+}
 
-@source '../../../packages/ui/src/**/*.tsx';
-@source '../../../foundations/cms/src/**/*.tsx';
+@import "./patterns.css";
+@import "./theme-transition.css";
 
-#nd-nav {
-  @apply !max-w-7xl rounded-lg !bg-transparent !shadow-none mx-4 mx-auto;
+@import "@workspace/fumadocs-blog/globals.css";
+
+/* Keyframe animation for the move effect */
+@keyframes move {
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Animation utility class */
+.animate-move {
+  animation: move 0.6s ease-out forwards;
+  will-change: transform;
+}
+
+.blog-content {
+  /* @apply !bg-orange-50; */
+
+  /* article {
+    @apply col-span-4 xl:col-span-3 order-last;
+  } */
+
+  #nd-toc {
+    @apply mx-auto;
+    div {
+      @apply !pe-0;
+    }
+  }
 }

@@ -1,8 +1,8 @@
-import Hero from "@workspace/ui/hero";
 import { GridBackground } from "@workspace/ui/grid-background";
 import { getBlogPosts } from "@/lib/source";
 import { RecentPosts } from "@workspace/fumadocs-blog/blog";
 import { getBlogConfiguration } from "@/blog-configuration";
+import Hero from "@/components/hero";
 
 export default function HomePage() {
   const defaultFeatures = [

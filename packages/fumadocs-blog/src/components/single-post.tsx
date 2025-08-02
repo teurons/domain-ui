@@ -131,46 +131,48 @@ export function SinglePost({
         </div>
       </div>
 
-      <DocsLayout
-        nav={{ enabled: false }}
-        tree={{
-          name: "Tree",
-          children: [],
-        }}
-        sidebar={{ enabled: false, prefetch: false, tabs: false }}
-        containerProps={{
-          className: classNames(
-            "flex-row-reverse",
-            "relative container [--fd-nav-height:calc(var(--spacing)*14)] md:[--fd-nav-height:57px]"
-          ),
-        }}
-      >
-        {slot(configuration?.backgroundPattern, null)}
+      <div className="container">
+        <DocsLayout
+          // nav={{ enabled: false }}
+          tree={{
+            name: "Tree",
+            children: [],
+          }}
+          sidebar={{ enabled: false, prefetch: false, tabs: false }}
+          containerProps={{
+            className:
+              classNames(
+                // "[--fd-nav-height:calc(var(--spacing)*14)]"
+                // "bg-green-200"
+                // "flex-row-reverse",
+                // "relative container [--fd-nav-height:calc(var(--spacing)*14)] md:[--fd-nav-height:57px]"
+              ),
+          }}
+        >
+          {slot(configuration?.backgroundPattern, null)}
 
-        <div className="grid grid-cols-4">
           <DocsPage
             toc={page.data.toc}
             full={page.data.full}
             lastUpdate={lastUpdate}
-            footer={{
-              enabled: false,
-            }}
             tableOfContent={{
               style: "clerk",
               single: false,
             }}
+            container={{
+              className: "grid grid-cols-4 blog-content !max-w-none",
+            }}
             article={{
-              className: classNames(
-                "!m-[unset] max-w-none bg-zinc-50/50 dark:bg-zinc-900/50 py-8 md:py-12"
-              ),
+              className:
+                "col-span-4 xl:col-span-3 order-last bg-zinc-50/50 dark:bg-zinc-900/50",
             }}
           >
             <DocsBody>
               <MDX configuration={mdxComponents} />
             </DocsBody>
           </DocsPage>
-        </div>
-      </DocsLayout>
+        </DocsLayout>
+      </div>
     </>
   );
 }
