@@ -45,7 +45,7 @@ export function SinglePost({
 
   return (
     <>
-      <div className="relative container px-4 py-8 lg:py-12 lg:px-6 text-left">
+      <div className="relative container px-4 xl:py-12 lg:px-6 text-left pt-[67px]">
         {slot(configuration?.backgroundPattern, null)}
 
         {category && (
@@ -140,13 +140,13 @@ export function SinglePost({
           }}
           sidebar={{ enabled: false, prefetch: false, tabs: false }}
           containerProps={{
-            className:
-              classNames(
-                // "[--fd-nav-height:calc(var(--spacing)*14)]"
-                // "bg-green-200"
-                // "flex-row-reverse",
-                // "relative container [--fd-nav-height:calc(var(--spacing)*14)] md:[--fd-nav-height:57px]"
-              ),
+            className: classNames(
+              "md:[--fd-nav-height:57px]"
+              // "[--fd-nav-height:calc(var(--spacing)*14)]"
+              // "bg-green-200"
+              // "flex-row-reverse",
+              // "relative container [--fd-nav-height:calc(var(--spacing)*14)] md:[--fd-nav-height:57px]"
+            ),
           }}
         >
           {slot(configuration?.backgroundPattern, null)}
@@ -160,10 +160,10 @@ export function SinglePost({
               single: false,
             }}
             tableOfContentPopover={{
-              enabled: false,
+              enabled: true,
             }}
             container={{
-              className: "grid grid-cols-4 blog-content !max-w-none",
+              className: "grid grid-cols-4 blog-content !max-w-none !p-0",
             }}
             article={{
               className:
