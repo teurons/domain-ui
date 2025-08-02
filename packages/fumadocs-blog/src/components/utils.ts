@@ -14,7 +14,7 @@ export function cn(...inputs: ClassValue[]) {
  */
 export const getSortedByDatePosts = (
   posts: BlogPost[],
-  includeDrafts: boolean = false
+  includeDrafts = false
 ): BlogPost[] => {
   const filteredPosts = posts.filter(
     (post) => includeDrafts || !post.data.draft

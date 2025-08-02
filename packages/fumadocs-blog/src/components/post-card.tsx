@@ -18,7 +18,9 @@ export function PostCard({ post, configuration = {} }: PostCardProps) {
       <div className="sm:col-span-5">
         <div className="mb-4 md:mb-6">
           <div className="flex flex-wrap gap-3 text-xs uppercase tracking-wider text-muted-foreground md:gap-5 lg:gap-6">
-            {post.data.tags?.map((tag) => <span key={tag}>{tag}</span>)}
+            {post.data.tags?.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
           </div>
         </div>
         <h3 className="text-xl font-semibold md:text-2xl lg:text-3xl text-left">

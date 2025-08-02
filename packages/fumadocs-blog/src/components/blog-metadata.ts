@@ -38,11 +38,11 @@ export async function generateBlogMetadata(props: {
     getCategoryBySlug,
     getSeriesBySlug,
   } = props;
-  
+
   // Create URL utilities instance
   const urlUtils = createUrlUtils({
     blogBase: blogConstants.blogBase,
-    blogOgImageBase: blogConstants.blogOgImageBase
+    blogOgImageBase: blogConstants.blogOgImageBase,
   });
 
   // Default for root blog page or when slug is undefined
@@ -52,20 +52,23 @@ export async function generateBlogMetadata(props: {
       blogConstants
     );
 
-    return createBlogMetadata({
-      title: blogConstants.blogTitle,
-      description: blogConstants.blogDescription,
-      openGraph: {
-        url: urlUtils.getBlogUrl(),
-        images: imageMetaData,
+    return createBlogMetadata(
+      {
+        title: blogConstants.blogTitle,
+        description: blogConstants.blogDescription,
+        openGraph: {
+          url: urlUtils.getBlogUrl(),
+          images: imageMetaData,
+        },
+        twitter: {
+          images: imageMetaData,
+        },
+        alternates: {
+          canonical: urlUtils.getBlogUrl(),
+        },
       },
-      twitter: {
-        images: imageMetaData,
-      },
-      alternates: {
-        canonical: urlUtils.getBlogUrl(),
-      },
-    }, blogConstants);
+      blogConstants
+    );
   }
 
   // Handle blog post page
@@ -78,20 +81,23 @@ export async function generateBlogMetadata(props: {
       blogConstants
     );
 
-    return createBlogMetadata({
-      title: page.data.title,
-      description: page.data.description,
-      openGraph: {
-        url: page.url,
-        images: imageMetaData,
+    return createBlogMetadata(
+      {
+        title: page.data.title,
+        description: page.data.description,
+        openGraph: {
+          url: page.url,
+          images: imageMetaData,
+        },
+        twitter: {
+          images: imageMetaData,
+        },
+        alternates: {
+          canonical: page.url,
+        },
       },
-      twitter: {
-        images: imageMetaData,
-      },
-      alternates: {
-        canonical: page.url,
-      },
-    }, blogConstants);
+      blogConstants
+    );
   }
 
   // Handle series page
@@ -106,20 +112,23 @@ export async function generateBlogMetadata(props: {
       blogConstants
     );
 
-    const metadata = createBlogMetadata({
-      title: `${series.label}`,
-      description: series.description,
-      openGraph: {
-        url: canonicalUrl,
-        images: imageMetaData,
+    const metadata = createBlogMetadata(
+      {
+        title: `${series.label}`,
+        description: series.description,
+        openGraph: {
+          url: canonicalUrl,
+          images: imageMetaData,
+        },
+        twitter: {
+          images: imageMetaData,
+        },
+        alternates: {
+          canonical: canonicalUrl,
+        },
       },
-      twitter: {
-        images: imageMetaData,
-      },
-      alternates: {
-        canonical: canonicalUrl,
-      },
-    }, blogConstants);
+      blogConstants
+    );
 
     return metadata;
   }
@@ -128,16 +137,19 @@ export async function generateBlogMetadata(props: {
   if (isCategoryPage(params)) {
     const category = getCategorySlug(params);
     if (!category) {
-      return createBlogMetadata({
-        title: blogConstants.blogTitle,
-        description: blogConstants.blogDescription,
-        openGraph: {
-          url: blogConstants.urls.blogBase,
+      return createBlogMetadata(
+        {
+          title: blogConstants.blogTitle,
+          description: blogConstants.blogDescription,
+          openGraph: {
+            url: blogConstants.urls.blogBase,
+          },
+          alternates: {
+            canonical: blogConstants.urls.blogBase,
+          },
         },
-        alternates: {
-          canonical: blogConstants.urls.blogBase,
-        },
-      }, blogConstants);
+        blogConstants
+      );
     }
 
     const canonicalUrl = urlUtils.getCategoryUrl(category);
@@ -148,20 +160,23 @@ export async function generateBlogMetadata(props: {
       blogConstants
     );
 
-    const metadata = createBlogMetadata({
-      title: `${categoryInfo.label}`,
-      description: categoryInfo.description,
-      openGraph: {
-        url: canonicalUrl,
-        images: imageMetaData,
+    const metadata = createBlogMetadata(
+      {
+        title: `${categoryInfo.label}`,
+        description: categoryInfo.description,
+        openGraph: {
+          url: canonicalUrl,
+          images: imageMetaData,
+        },
+        twitter: {
+          images: imageMetaData,
+        },
+        alternates: {
+          canonical: canonicalUrl,
+        },
       },
-      twitter: {
-        images: imageMetaData,
-      },
-      alternates: {
-        canonical: canonicalUrl,
-      },
-    }, blogConstants);
+      blogConstants
+    );
 
     return metadata;
   }
@@ -176,26 +191,29 @@ export async function generateBlogMetadata(props: {
       blogConstants
     );
 
-    return createBlogMetadata({
-      title: blogConstants.paginationTitle(page),
-      description: blogConstants.paginationDescription(page),
-      openGraph: {
-        url: canonicalUrl,
-        images: imageMetaData,
+    return createBlogMetadata(
+      {
+        title: blogConstants.paginationTitle(page),
+        description: blogConstants.paginationDescription(page),
+        openGraph: {
+          url: canonicalUrl,
+          images: imageMetaData,
+        },
+        twitter: {
+          images: imageMetaData,
+        },
+        alternates: {
+          canonical: canonicalUrl,
+        },
       },
-      twitter: {
-        images: imageMetaData,
-      },
-      alternates: {
-        canonical: canonicalUrl,
-      },
-    }, blogConstants);
+      blogConstants
+    );
   }
 
   // Handle paginated category page
   if (isPaginatedCategoryPage(params) && params.slug) {
-    const category = params.slug[0] || '';
-    const page = Number(params.slug[2] || '1');
+    const category = params.slug[0] || "";
+    const page = Number(params.slug[2] || "1");
     const canonicalUrl = urlUtils.getCategoryUrl(category); // Use main category URL as canonical
 
     const imageMetaData = getImageMetadata(
@@ -203,20 +221,26 @@ export async function generateBlogMetadata(props: {
       blogConstants
     );
 
-    return createBlogMetadata({
-      title: blogConstants.categoryPaginationTitle(category, page),
-      description: blogConstants.categoryPaginationDescription(category, page),
-      openGraph: {
-        url: canonicalUrl,
-        images: imageMetaData,
+    return createBlogMetadata(
+      {
+        title: blogConstants.categoryPaginationTitle(category, page),
+        description: blogConstants.categoryPaginationDescription(
+          category,
+          page
+        ),
+        openGraph: {
+          url: canonicalUrl,
+          images: imageMetaData,
+        },
+        twitter: {
+          images: imageMetaData,
+        },
+        alternates: {
+          canonical: canonicalUrl,
+        },
       },
-      twitter: {
-        images: imageMetaData,
-      },
-      alternates: {
-        canonical: canonicalUrl,
-      },
-    }, blogConstants);
+      blogConstants
+    );
   }
 
   const imageMetaData = getImageMetadata(
@@ -225,18 +249,21 @@ export async function generateBlogMetadata(props: {
   );
 
   // Default fallback
-  return createBlogMetadata({
-    title: blogConstants.blogTitle,
-    description: blogConstants.blogDescription,
-    openGraph: {
-      url: urlUtils.getBlogUrl(),
-      images: imageMetaData,
+  return createBlogMetadata(
+    {
+      title: blogConstants.blogTitle,
+      description: blogConstants.blogDescription,
+      openGraph: {
+        url: urlUtils.getBlogUrl(),
+        images: imageMetaData,
+      },
+      twitter: {
+        images: imageMetaData,
+      },
+      alternates: {
+        canonical: urlUtils.getBlogUrl(),
+      },
     },
-    twitter: {
-      images: imageMetaData,
-    },
-    alternates: {
-      canonical: urlUtils.getBlogUrl(),
-    },
-  }, blogConstants);
+    blogConstants
+  );
 }

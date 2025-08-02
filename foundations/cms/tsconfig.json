@@ -10,12 +10,8 @@
       }
     ],
     "paths": {
-      "@/.source": [
-        "./.source/index.ts"
-      ],
-      "@/*": [
-        "./*"
-      ]
+      "@/.source": ["./.source/index.ts"],
+      "@/*": ["./*"]
     }
   },
   "include": [
@@ -25,7 +21,5 @@
     "next.config.mjs",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

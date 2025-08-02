@@ -37,7 +37,7 @@ const PatientDetails: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const sectionId = parseInt(
+            const sectionId = Number.parseInt(
               entry.target.getAttribute("data-section") || "0",
               10
             );

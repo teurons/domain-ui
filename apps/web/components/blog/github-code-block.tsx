@@ -26,7 +26,7 @@ interface GitHubReference {
 
 // Helper functions
 function formatHighlightLines(highlightLines?: string): string | undefined {
-  if (!highlightLines) return undefined;
+  if (!highlightLines) return;
   return highlightLines.startsWith("{") && highlightLines.endsWith("}")
     ? highlightLines
     : `{${highlightLines}}`;
@@ -59,10 +59,10 @@ function parseGitHubUrl(url: string): GitHubReference {
       const lineParts = loc.split("-");
 
       if (lineParts[0]?.startsWith("L")) {
-        fromLine = parseInt(lineParts[0].slice(1), 10) - 1;
+        fromLine = Number.parseInt(lineParts[0].slice(1), 10) - 1;
 
         if (lineParts[1]?.startsWith("L")) {
-          toLine = parseInt(lineParts[1].slice(1), 10) - 1;
+          toLine = Number.parseInt(lineParts[1].slice(1), 10) - 1;
         } else {
           toLine = fromLine;
         }
@@ -90,7 +90,7 @@ function parseGitHubUrl(url: string): GitHubReference {
 
     const [org, repo, _, branch, ...pathSeg] = pathParts;
 
-    if (!org || !repo || !branch || pathSeg.length === 0) {
+    if (!(org && repo && branch) || pathSeg.length === 0) {
       throw new Error("Missing required GitHub path components");
     }
 
@@ -141,14 +141,16 @@ async function fetchCode(url: string, fromLine?: number, toLine?: number) {
         const spaces = line.match(/^\s+/);
         return spaces ? Math.min(indent, spaces[0].length) : 0;
       },
-      Infinity
+      Number.POSITIVE_INFINITY
     );
 
     // Remove common indentation and join lines
     return selectedLines
       .map((line) => {
         if (line.length === 0) return line;
-        return line.slice(commonIndent < Infinity ? commonIndent : 0);
+        return line.slice(
+          commonIndent < Number.POSITIVE_INFINITY ? commonIndent : 0
+        );
       })
       .join("\n");
   } catch (error) {

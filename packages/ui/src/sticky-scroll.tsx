@@ -113,7 +113,9 @@ const PaymentFeaturesUI = () => {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              const id = parseInt(entry.target.id.replace("section-", ""));
+              const id = Number.parseInt(
+                entry.target.id.replace("section-", "")
+              );
               setActiveFeature(id);
             }
           });
@@ -214,7 +216,7 @@ const PaymentFeaturesUI = () => {
                         strokeLinejoin="round"
                         strokeWidth="2"
                         d="M9 5l7 7-7 7"
-                      ></path>
+                      />
                     </svg>
                   </a>
                 </div>
