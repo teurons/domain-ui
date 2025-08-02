@@ -159,6 +159,9 @@ export function SinglePost({
               style: "clerk",
               single: false,
             }}
+            tableOfContentPopover={{
+              enabled: false,
+            }}
             container={{
               className: "grid grid-cols-4 blog-content !max-w-none",
             }}

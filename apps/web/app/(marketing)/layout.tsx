@@ -64,15 +64,15 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <HomeLayout
       {...baseOptions}
-      nav={{
-        component: (
-          <Header
-            finalLinks={getLinks(linkItems, baseOptions.githubUrl)}
-            {...baseOptions}
-          />
-        ),
-      }}
-      className="pt-0 home-layout"
+      // nav={{
+      //   component: (
+      //     <Header
+      //       finalLinks={getLinks(linkItems, baseOptions.githubUrl)}
+      //       {...baseOptions}
+      //     />
+      //   ),
+      // }}
+      // className="pt-0"
     >
       <div className="home-children flex flex-1 flex-col divide-y divide-dashed divide-border/70 border-border/70 border-dashed sm:border-b dark:divide-border dark:border-border">
         {children}

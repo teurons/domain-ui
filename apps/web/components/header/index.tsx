@@ -22,7 +22,6 @@ import { ChevronDown, Languages } from "lucide-react";
 import { ThemeToggle } from "../theme-toggle";
 import { Menu, MenuContent, MenuLinkItem, MenuTrigger } from "./menu";
 import { Navbar, NavbarMenuLink } from "./navbar";
-import { cn } from "@workspace/shadverse/lib/utils";
 
 export const Header = ({
   nav: { enableSearch = true, ...nav } = {},

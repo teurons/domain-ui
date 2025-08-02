@@ -49,16 +49,18 @@
 }
 
 .blog-content {
-  /* @apply !bg-orange-50; */
-
-  /* article {
-    @apply col-span-4 xl:col-span-3 order-last;
-  } */
-
   #nd-toc {
     @apply mx-auto;
     div {
       @apply !pe-0;
     }
   }
+
+  /* #nd-tocnav {
+    @apply !sticky !overflow-visible !z-20 xl:!hidden !h-10;
+  } */
+}
+
+#nd-nav {
+  @apply container w-full bg-background/80 backdrop-blur-lg transition-colors border-border/70 border-b border-l border-r border-dashed dark:border-border;
 }

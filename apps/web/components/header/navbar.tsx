@@ -32,7 +32,7 @@ export const Navbar = (props: HTMLAttributes<HTMLElement>) => {
         >
           <GridBackground maxWidthClass="container" />
           <div
-            className="absolute top-0 left-0 h-14 w-14 -z-10"
+            className="absolute top-0 left-0 h-14 w-14 z-10"
             style={{
               backgroundColor: "#f5f5f5",
               opacity: 0.2,
@@ -48,7 +48,7 @@ export const Navbar = (props: HTMLAttributes<HTMLElement>) => {
             {props.children}
           </div>
         </div>
-        <NavigationMenuViewport />
+        {/* <NavigationMenuViewport /> */}
       </header>
     </NavigationMenu>
   );
