@@ -49,7 +49,7 @@ export const blog = defineCollections({
 export default defineConfig({
   lastModifiedTime: "git",
   mdxOptions: {
-    providerImportSource: "@foundations/cms/mdx-components",
+    // providerImportSource: "@foundations/cms/mdx-components",
     rehypeCodeOptions: {
       inline: "tailing-curly-colon",
       themes: {

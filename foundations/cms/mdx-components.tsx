@@ -1,12 +1,12 @@
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import type { MDXComponents } from "mdx/types";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
-import GithubCodeBlock from "./github-code-block";
-import { XEmbedClient } from "./XEmbedClient";
+import GithubCodeBlock from "./src/github-code-block";
+import { XEmbedClient } from "./src/XEmbedClient";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { Step, Steps } from "fumadocs-ui/components/steps";
 
-import CodeDisplay from "./code-display";
+import CodeDisplay from "./src/code-display";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
