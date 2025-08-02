@@ -1,7 +1,8 @@
-import MinimalGridFeatures from "@workspace/ui/features/minimal-grid";
-import AnimatedHero from "@workspace/ui/heros/animated-hero";
 import Hero from "@workspace/ui/hero";
-import StickyScroll from "@workspace/ui/sticky-scroll";
+import { GridBackground } from "@workspace/ui/grid-background";
+import { getBlogPosts } from "@/lib/source";
+import { RecentPosts } from "@workspace/fumadocs-blog/blog";
+import { getBlogConfiguration } from "@/blog-configuration";
 
 export default function HomePage() {
   const defaultFeatures = [
@@ -53,13 +54,24 @@ export default function HomePage() {
   ];
 
   return (
-    <div>
-      {/* <AnimatedHero /> */}
-      <Hero />
+    <div className="flex flex-1 flex-col justify-center text-center">
+      <div className="relative flex w-full flex-col items-center overflow-x-hidden">
+        <GridBackground maxWidthClass="container" />
+        {/* <AnimatedHero /> */}
 
-      {/* <StickyScroll /> */}
+        <div className="relative flex items-center justify-center w-full mx-auto container">
+          <div className="space-y-8">
+            <Hero />
+          </div>
+        </div>
 
-      {/* <MinimalGridFeatures features={defaultFeatures} /> */}
+        <RecentPosts
+          configuration={getBlogConfiguration()}
+          posts={getBlogPosts()}
+          heading="Recent Posts"
+          description="The recently published"
+        />
+      </div>
     </div>
   );
 }

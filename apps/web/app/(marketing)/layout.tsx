@@ -3,7 +3,9 @@ import { HomeLayout } from "fumadocs-ui/layouts/home";
 import SimpleFooter from "@workspace/ui/footers/simple";
 import { Icons } from "@workspace/ui/icons";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
-import { baseOptions } from "@workspace/config/layout.config";
+import { baseOptions, linkItems } from "@/app/layout.config";
+import { getLinks } from "fumadocs-ui/layouts/shared";
+import { Header } from "@/components/header";
 
 // const baseOptions: BaseLayoutProps = {
 //   githubUrl: "https://github.com/rjvim/saas-foundations",
@@ -60,8 +62,21 @@ export default function Layout({ children }: { children: ReactNode }) {
   ];
 
   return (
-    <HomeLayout {...baseOptions}>
-      {children}
+    <HomeLayout
+      {...baseOptions}
+      nav={{
+        component: (
+          <Header
+            finalLinks={getLinks(linkItems, baseOptions.githubUrl)}
+            {...baseOptions}
+          />
+        ),
+      }}
+      className="pt-0 home-layout"
+    >
+      <div className="home-children flex flex-1 flex-col divide-y divide-dashed divide-border/70 border-border/70 border-dashed sm:border-b dark:divide-border dark:border-border">
+        {children}
+      </div>
       <SimpleFooter navigation={footerNavigation} />
       {/* <GridBackground maxWidthClass="max-w-7xl" /> */}
     </HomeLayout>

@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 
-import "./globals.css";
+import "./styles/globals.css";
 import { Providers } from "@/components/providers";
 import { AuthProvider } from "@/lib/auth-context";
 import { RootProvider } from "fumadocs-ui/provider";
