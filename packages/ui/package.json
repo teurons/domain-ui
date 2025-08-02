@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./*": "./src/*.tsx"
+    "./*": "./src/*.tsx",
+    "./globals.css": "./src/styles/globals.css",
+    "./ohimg": "./src/ohimg/index.ts"
   },
   "scripts": {
     "clean": "rm -rf node_modules",
