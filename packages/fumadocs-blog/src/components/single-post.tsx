@@ -46,7 +46,7 @@ export function SinglePost({
   return (
     <>
       <div className="relative container px-4 xl:py-12 lg:px-6 text-left pt-[67px]">
-        {slot(configuration?.backgroundPattern, null)}
+        {/* {slot(configuration?.backgroundPattern, null)} */}
 
         {category && (
           <div className="mb-4 text-gray-600 dark:text-gray-400 text-sm font-medium">
