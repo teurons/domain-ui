@@ -5,16 +5,16 @@ export function createMetadata(override: Metadata): Metadata {
     ...override,
     authors: [
       {
-        name: "Rajiv",
-        url: "https://rjv.im",
+        name: "Domain UI",
+        url: "https://domain-ui.dev",
       },
     ],
-    creator: "Rajiv",
+    creator: "Domain UI",
     openGraph: {
       title: override.title ?? undefined,
       description: override.description ?? undefined,
-      url: "https://rjv.im",
-      siteName: "rjv.im",
+      url: "https://domain-ui.dev",
+      siteName: "domain-ui",
       ...override.openGraph,
     },
     twitter: {

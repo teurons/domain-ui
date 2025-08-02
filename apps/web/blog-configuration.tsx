@@ -34,8 +34,8 @@ export const blogConstants: BlogConstants = {
   // General
   blogTitle: "Blog",
   blogDescription: "Articles and thoughts",
-  siteName: "rjv.im",
-  defaultAuthorName: "Rajiv",
+  siteName: "domain-ui",
+  defaultAuthorName: "Domain UI",
   xUsername: "@rjv_im",
   // Pagination
   paginationTitle: (page: number) => `Blog - Page ${page}`,

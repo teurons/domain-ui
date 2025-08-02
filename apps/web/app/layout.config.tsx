@@ -2,10 +2,10 @@ import type { BaseLayoutProps, LinkItemType } from "fumadocs-ui/layouts/shared";
 import Image from "next/image";
 import { Icons } from "@/components/icons";
 
-export const title = "rjv.im";
+export const title = "domain-ui";
 export const description =
-  "Personal website of rjv.im. This is where I articulate my work, open source projects, thoughts, ideas, work, commentary and opinions.";
-export const owner = "rjv.im";
+  "Personal website of domain-ui. This is where I articulate my work, open source projects, thoughts, ideas, work, commentary and opinions.";
+export const owner = "domain-ui";
 
 export const baseOptions: BaseLayoutProps = {
   nav: {
@@ -15,10 +15,10 @@ export const baseOptions: BaseLayoutProps = {
           src="/avatar.png"
           width={28}
           height={28}
-          alt="rjv.im avatar"
+          alt="domain-ui avatar"
           className="rounded-full"
         />{" "}
-        rjv.im
+        domain-ui
       </>
     ),
   },

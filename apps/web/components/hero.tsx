@@ -80,7 +80,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-              Welcome to rjv.im - This is where I document my work on open
+              Welcome to domain-ui - This is where I document my work on open
               source projects, company and articulate thoughts and ideas.
             </p>
           </div>
