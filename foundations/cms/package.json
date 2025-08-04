@@ -21,8 +21,7 @@
   "scripts": {
     "clean": "rm -rf node_modules",
     "lint": "eslint . --max-warnings 0",
-    "check-types": "tsc --noEmit",
-    "postinstall": "fumadocs-mdx"
+    "check-types": "tsc --noEmit"
   },
   "devDependencies": {
     "@turbo/gen": "^2.4.4",

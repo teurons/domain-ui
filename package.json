@@ -10,6 +10,8 @@
     "biome:lint:write": "npx @biomejs/biome lint --write --diagnostic-level=error",
     "format": "npx ultracite@latest format",
     "lint": "npx ultracite@latest lint --diagnostic-level=error",
+    "docs:dev": "turbo dev --filter=docs",
+    "docs:build": "turbo build --filter=docs",
     "web:dev": "turbo dev --filter=web",
     "web:build": "turbo build --filter=web",
     "web:start": "pnpm --filter web start",
