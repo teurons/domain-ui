@@ -128,7 +128,7 @@ export function generateOGImageMetadata(
   // Single post page (default case for any other URL pattern)
   if (processedParams.slug && processedParams.slug.length > 0) {
     const post = blogSource.getPage(processedParams.slug);
-    if (post && post.data && post.data.title) {
+    if (post?.data?.title) {
       return {
         title: post.data.title,
         description: post.data.description,

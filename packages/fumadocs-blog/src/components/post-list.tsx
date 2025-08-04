@@ -58,6 +58,7 @@ export function PostList({
                   />
                 );
               }
+              return null;
             })}
         </div>
 

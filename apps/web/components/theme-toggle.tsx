@@ -93,11 +93,10 @@ export function ThemeToggle({
     }
   };
 
-  const value = mounted
-    ? mode === "light-dark"
-      ? resolvedTheme
-      : currentTheme
-    : null;
+  let value = null;
+  if (mounted) {
+    value = mode === "light-dark" ? resolvedTheme : currentTheme;
+  }
 
   return (
     <div

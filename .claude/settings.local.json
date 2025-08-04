@@ -42,7 +42,8 @@
       "Bash(pnpm dev:*)",
       "Bash(grep:*)",
       "Bash(npx organize-imports-cli:*)",
-      "Bash(pnpm biome:lint:*)"
+      "Bash(pnpm biome:lint:*)",
+      "Bash(npx ultracite@latest lint)"
     ],
     "deny": []
   }

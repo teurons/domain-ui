@@ -10,7 +10,6 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import {
   transformerRemoveNotationEscape,
-  transformerRemoveNotationEscape,
   transformerNotationHighlight,
   transformerNotationFocus,
   transformerMetaHighlight,

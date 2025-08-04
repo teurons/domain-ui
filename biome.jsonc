@@ -30,16 +30,10 @@
         "useExhaustiveDependencies": "warn",
         "noUnknownTypeSelector": "off"
       },
-      "nursery": {
-        "useSortedClasses": "warn",
-        "useSingleJsDocAsterisk": "warn",
-        "noUnknownAtRule": "off",
-        "noShadow": "warn",
-        "useParseIntRadix": "warn"
-      },
       "complexity": {
         "noUselessFragments": "warn",
-        "noForEach": "warn"
+        "noForEach": "warn",
+        "noExcessiveCognitiveComplexity": "warn"
       },
       "performance": {
         "noNamespaceImport": "warn",
@@ -51,7 +45,8 @@
         "useImportType": "warn",
         "useTemplate": "warn",
         "useBlockStatements": "warn",
-        "useFilenamingConvention": "on"
+        "useFilenamingConvention": "on",
+        "noNonNullAssertion": "warn"
       },
       "suspicious": {
         "noArrayIndexKey": "warn",
@@ -68,7 +63,18 @@
         "useSemanticElements": "warn",
         "useValidAnchor": "warn",
         "noRedundantRoles": "warn",
-        "noRedundantAlt": "warn"
+        "noRedundantAlt": "warn",
+        "noStaticElementInteractions": "warn",
+        "useKeyWithClickEvents": "warn",
+        "useAriaPropsSupportedByRole": "warn"
+      },
+      "nursery": {
+        "useSortedClasses": "warn",
+        "useSingleJsDocAsterisk": "warn",
+        "noUnknownAtRule": "off",
+        "noShadow": "warn",
+        "useParseIntRadix": "warn",
+        "noNoninteractiveElementInteractions": "warn"
       }
     }
   },
