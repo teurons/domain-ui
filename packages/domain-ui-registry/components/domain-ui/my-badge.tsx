@@ -1,5 +1,9 @@
 import { Badge } from "@workspace/domain-ui-registry/components/ui/badge";
 
-export default function Component() {
-  return <Badge>My Domain UI Free Badge</Badge>;
+interface ComponentProps {
+  className?: string;
+}
+
+export default function Component({ className }: ComponentProps) {
+  return <Badge variant={"default"} className={className}>My Domain UI Free Badge</Badge>;
 }

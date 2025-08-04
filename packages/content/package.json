@@ -15,6 +15,8 @@
     "@types/react-dom": "19.1.7",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
+    "@workspace/domain-ui-pro-registry": "workspace:*",
+    "@workspace/domain-ui-registry": "workspace:*",
     "eslint": "^9.22.0",
     "typescript": "5.8.2"
   },

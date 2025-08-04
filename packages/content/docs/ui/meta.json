@@ -1,4 +1,4 @@
 {
   "title": "UI",
-  "pages": ["button", "accordion", "tabs"]
+  "pages": ["page-title", "button", "accordion", "tabs"]
 }
