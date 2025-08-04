@@ -49,12 +49,23 @@ const { parse } = regexpTree;
  * 
  * 4. **Position Beyond Pattern**:
  *    - User tries to type past the pattern length
- *    - No rule exists → character rejected
- *    - Prevents infinite input length
+ *    - No rule exists → ALL SUBSEQUENT INPUT REJECTED
+ *    - Prevents infinite input length naturally
+ *    - Example: Pattern /^[A-Z]{3}$/ → positions 3+ have no rules → rejected
  * 
  * 5. **Invalid Characters**:
  *    - Character not in allowedChars for that position
  *    - Character rejected, input stops processing at that point
+ * 
+ * 6. **Smart Case Conversion**:
+ *    - Pattern expects [A-Z] only → auto-convert lowercase to uppercase
+ *    - Pattern expects [a-z] only → auto-convert uppercase to lowercase
+ *    - Mixed case patterns [A-Za-z] → no conversion (both allowed)
+ *    - Algorithm:
+ *      a) Analyze character set: isOnlyUppercase / isOnlyLowercase
+ *      b) If user types wrong case: transform before validation
+ *      c) If pattern allows both cases: no transformation
+ *      d) Example: [A-Z] + input 'a' → convert to 'A' → validate
  * 
  * ## Examples:
  * 
@@ -121,31 +132,46 @@ const extractAllowedChars = (expressions: RegexAST[]): string => {
 
 // Parse regex AST to get position-based rules using regexp-tree
 const parseRegexForPositionRules = (pattern: RegExp) => {
-  const rules: Array<{ position: number; allowedChars: string }> = [];
+  const rules = new Map<number, { allowedChars: string; isUppercase: boolean; isLowercase: boolean }>();
   
   try {
     const ast = parse(pattern) as RegexAST;
+    
+    const analyzeCharacterSet = (chars: string) => {
+      const hasUppercase = /[A-Z]/.test(chars);
+      const hasLowercase = /[a-z]/.test(chars);
+      const isOnlyUppercase = hasUppercase && !hasLowercase && !/[0-9]/.test(chars);
+      const isOnlyLowercase = hasLowercase && !hasUppercase && !/[0-9]/.test(chars);
+      
+      return {
+        allowedChars: chars,
+        isUppercase: isOnlyUppercase,
+        isLowercase: isOnlyLowercase
+      };
+    };
     
     const processExpression = (expr: RegexAST, currentPosition: number): number => {
       let position = currentPosition;
       
       if (expr.type === 'Repetition' && expr.expression) {
         const repetitions = expr.quantifier?.from || 1;
-        let allowedChars = '';
+        let ruleInfo = { allowedChars: '', isUppercase: false, isLowercase: false };
         
         if (expr.expression.type === 'CharacterClass' && expr.expression.expressions) {
-          allowedChars = extractAllowedChars(expr.expression.expressions);
+          const chars = extractAllowedChars(expr.expression.expressions);
+          ruleInfo = analyzeCharacterSet(chars);
         } else if (expr.expression.type === 'Char') {
-          allowedChars = expr.expression.symbol || expr.expression.value || '';
+          const chars = expr.expression.symbol || expr.expression.value || '';
+          ruleInfo = analyzeCharacterSet(chars);
         } else if (expr.expression.type === 'Meta' && expr.expression.kind === 'd') {
-          allowedChars = '0123456789';
+          ruleInfo = analyzeCharacterSet('0123456789');
         } else if (expr.expression.type === 'Meta' && expr.expression.kind === 'w') {
-          allowedChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';
+          ruleInfo = analyzeCharacterSet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_');
         }
         
         // Apply the rule to multiple positions based on quantifier
         for (let i = 0; i < repetitions; i++) {
-          rules.push({ position, allowedChars });
+          rules.set(position, ruleInfo);
           position++;
         }
         
@@ -153,28 +179,28 @@ const parseRegexForPositionRules = (pattern: RegExp) => {
       }
       
       if (expr.type === 'CharacterClass' && expr.expressions) {
-        const allowedChars = extractAllowedChars(expr.expressions);
-        rules.push({ position, allowedChars });
+        const chars = extractAllowedChars(expr.expressions);
+        rules.set(position, analyzeCharacterSet(chars));
         return position + 1;
       }
       
       if (expr.type === 'Char') {
-        const allowedChars = expr.symbol || expr.value || '';
-        rules.push({ position, allowedChars });
+        const chars = expr.symbol || expr.value || '';
+        rules.set(position, analyzeCharacterSet(chars));
         return position + 1;
       }
       
       if (expr.type === 'Meta') {
-        let allowedChars = '';
+        let chars = '';
         if (expr.kind === 'd') {
-          allowedChars = '0123456789';
+          chars = '0123456789';
         } else if (expr.kind === 'w') {
-          allowedChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';
+          chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';
         } else if (expr.kind === 's') {
-          allowedChars = ' \t\n\r\f\v';
+          chars = ' \t\n\r\f\v';
         }
         
-        rules.push({ position, allowedChars });
+        rules.set(position, analyzeCharacterSet(chars));
         return position + 1;
       }
       
@@ -224,21 +250,36 @@ export const useRegexInput = ({
     return regex.test(value);
   }, [value, regex]);
 
-  const isCharAllowedAtPosition = useCallback(
-    (char: string, position: number) => {
-      const rule = positionRules.find(r => r.position === position);
+  const validateAndTransformChar = useCallback(
+    (char: string, position: number): { isValid: boolean; transformedChar: string } => {
+      const rule = positionRules.get(position);
       
       // If no rule found, this position is beyond the pattern length
       if (!rule) {
-        return false;
+        return { isValid: false, transformedChar: char };
       }
       
       // If rule has empty allowedChars, fall back to basic validation
       if (!rule.allowedChars) {
-        return true;
+        return { isValid: true, transformedChar: char };
       }
       
-      return rule.allowedChars.includes(char);
+      // Smart case conversion
+      let transformedChar = char;
+      
+      // If pattern expects uppercase and we get lowercase, convert it
+      if (rule.isUppercase && char >= 'a' && char <= 'z') {
+        transformedChar = char.toUpperCase();
+      }
+      // If pattern expects lowercase and we get uppercase, convert it  
+      else if (rule.isLowercase && char >= 'A' && char <= 'Z') {
+        transformedChar = char.toLowerCase();
+      }
+      
+      // Check if the (possibly transformed) character is allowed
+      const isValid = rule.allowedChars.includes(transformedChar);
+      
+      return { isValid, transformedChar };
     },
     [positionRules]
   );
@@ -247,12 +288,14 @@ export const useRegexInput = ({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const newValue = e.target.value;
 
-      // Validate each character at its position
+      // Validate and transform each character at its position
       let validatedValue = "";
       for (let i = 0; i < newValue.length; i++) {
-        const char = newValue[i];
-        if (isCharAllowedAtPosition(char, i)) {
-          validatedValue += char;
+        const inputChar = newValue[i];
+        const { isValid, transformedChar } = validateAndTransformChar(inputChar ?? '', i);
+        
+        if (isValid) {
+          validatedValue += transformedChar;
         } else {
           // Reject invalid character - don't add it and stop processing
           break;
@@ -266,7 +309,7 @@ export const useRegexInput = ({
         onChange(validatedValue);
       }
     },
-    [isCharAllowedAtPosition, controlledValue, onChange]
+    [validateAndTransformChar, controlledValue, onChange]
   );
 
   return {
