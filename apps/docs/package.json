@@ -11,13 +11,27 @@
   "dependencies": {
     "@react-router/node": "^7.7.0",
     "@react-router/serve": "^7.7.0",
+    "@shikijs/transformers": "^3.2.1",
+    "@types/mdx": "^2.0.13",
+    "@workspace/config": "workspace:*",
+    "@workspace/domain-ui-pro-registry": "workspace:*",
+    "@workspace/domain-ui-registry": "workspace:*",
+    "@workspace/fumadocs-blog": "workspace:*",
+    "@workspace/shadverse": "workspace:*",
+    "@workspace/ui": "workspace:*",
     "fumadocs-core": "15.6.8",
     "fumadocs-mdx": "11.7.3",
+    "fumadocs-twoslash": "^3.1.4",
     "fumadocs-ui": "15.6.8",
     "isbot": "^5.1.28",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router": "^7.7.0"
+    "react-router": "^7.7.0",
+    "rehype-katex": "7.0.1",
+    "remark-math": "6.0.0",
+    "shiki": "^3.2.1",
+    "twoslash": "^0.3.3",
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@react-router/dev": "^7.7.0",
