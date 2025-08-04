@@ -44,7 +44,8 @@
       "Bash(npx organize-imports-cli:*)",
       "Bash(pnpm biome:lint:*)",
       "Bash(npx ultracite@latest lint)",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "Bash(npx ultracite@latest lint --max-diagnostics=1000)"
     ],
     "deny": []
   }
