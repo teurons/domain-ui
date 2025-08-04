@@ -1,10 +1,9 @@
 "use client";
 
 import { Dialog, DialogPanel } from "@headlessui/react";
-import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { GridBackground } from "../grid-background";
 import { Icons } from "@workspace/ui/icons";
+import { useState } from "react";
 
 export default function SimpleHeader({
   navigationMenu,
@@ -15,11 +14,10 @@ export default function SimpleHeader({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <>
-      <header className="absolute inset-x-0 top-0 z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <header className="absolute inset-x-0 top-0 z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <nav
           aria-label="Global"
-          className="flex items-center justify-between p-6 lg:px-8 @container"
+          className="@container flex items-center justify-between p-6 lg:px-8"
         >
           <div className="flex items-center gap-x-12">
             <a href="#" className="-m-1.5 p-1.5">
@@ -39,7 +37,7 @@ export default function SimpleHeader({
             </button>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
+            <a href="#" className="font-semibold text-gray-900 text-sm/6">
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
@@ -73,6 +71,5 @@ export default function SimpleHeader({
           </DialogPanel>
         </Dialog>
       </header>
-    </>
   );
 }

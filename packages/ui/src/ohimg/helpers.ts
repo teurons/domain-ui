@@ -1,12 +1,5 @@
 import { cn } from "@workspace/shadverse/lib/utils";
-import type {
-  BackgroundImageLayer,
-  ContentLayout,
-  GradientLayer,
-  OhImgBaseTemplateProps,
-  PatternLayer,
-  PositionedElement,
-} from "./types";
+import type { GradientLayer, PatternLayer, PositionedElement } from "./types";
 
 /**
  * Converts hex color to rgba format with specified opacity
@@ -26,7 +19,6 @@ export const hexToRgba = (color: string, opacity: number): string => {
 
   // Validate and use fallback if invalid
   if (!isValidHex(normalizedColor)) {
-    console.warn(`Invalid hex color: ${color}, using default black`);
     normalizedColor = defaultColor;
   }
 
@@ -171,7 +163,7 @@ export function calculateMaxWidth(paddingX: string | undefined): number {
   const paddingValue = Number.parseInt(paddingX.replace("px", ""), 10);
 
   // If parsing fails or results in NaN, return baseWidth
-  if (isNaN(paddingValue)) {
+  if (Number.isNaN(paddingValue)) {
     return baseWidth;
   }
 

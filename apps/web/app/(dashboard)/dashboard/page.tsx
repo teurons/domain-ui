@@ -36,8 +36,8 @@ export default async function ProtectedPage() {
   log("✅ User has subscription - showing premium content");
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="w-full max-w-md mx-auto">
+    <div className="flex min-h-screen items-center justify-center p-4">
+      <Card className="mx-auto w-full max-w-md">
         <CardHeader>
           <CardTitle>🎉 Premium Features</CardTitle>
           <CardDescription>
@@ -49,7 +49,7 @@ export default async function ProtectedPage() {
             You have access to all premium features as a Pro subscriber.
           </p>
           <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               Logged in as {data.user.email}
             </span>
             <LogoutButton />

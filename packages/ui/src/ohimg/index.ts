@@ -1,10 +1,10 @@
+export { OhImgBaseTemplate } from "./template";
 export type {
-  OhImgBaseTemplateProps,
+  AlignmentOption,
+  ContentLayout,
   GradientDirection,
   MaskDirection,
-  ContentLayout,
-  PositionOption,
-  AlignmentOption,
+  OhImgBaseTemplateProps,
   PatternType,
+  PositionOption,
 } from "./types";
-export { OhImgBaseTemplate } from "./template";

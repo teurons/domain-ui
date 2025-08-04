@@ -1,5 +1,6 @@
 import { cn } from "@workspace/shadverse/lib/utils";
-import React, { useRef, useEffect, ReactNode } from "react";
+import type React from "react";
+import { type ReactNode, useEffect, useRef } from "react";
 
 interface StickySectionsProps {
   children: ReactNode;
@@ -15,7 +16,9 @@ const StickySections: React.FC<StickySectionsProps> = ({
 
   useEffect(() => {
     const containerElement = containerRef.current;
-    if (!containerElement) return;
+    if (!containerElement) {
+      return;
+    }
 
     // Create StickySections instance
     class StickySections {
@@ -139,7 +142,7 @@ const StickySections: React.FC<StickySectionsProps> = ({
     <div
       ref={containerRef}
       className={cn(
-        "max-w-md mx-auto lg:max-w-none lg:min-h-(--stick-items)",
+        "mx-auto max-w-md lg:min-h-(--stick-items) lg:max-w-none",
         className
       )}
       data-sticky-sections

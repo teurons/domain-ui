@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 import { Button } from "@workspace/shadverse/components/button";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 interface FeatureCardProps {
   title: string;
@@ -18,7 +18,6 @@ export default function FeatureCard({
   title = "Accept and optimise payments, globally",
   description = "Increase authorisation rates, optimise your checkout conversion, and offer local payment methods in every market.",
   ctaText = "Start with Payments",
-  ctaHref = "#",
   relatedLinks = [
     {
       title: "Tax",
@@ -38,35 +37,35 @@ export default function FeatureCard({
   ],
 }: FeatureCardProps) {
   return (
-    <div className="max-w-xl p-8 flex flex-col space-y-4">
-      <div className="flex items-center gap-2 mb-6">
-        <span className="text-xl text-slate-800 font-medium">Payments</span>
+    <div className="flex max-w-xl flex-col space-y-4 p-8">
+      <div className="mb-6 flex items-center gap-2">
+        <span className="font-medium text-slate-800 text-xl">Payments</span>
       </div>
 
-      <h2 className="text-5xl font-bold text-slate-900 leading-tight">
+      <h2 className="font-bold text-5xl text-slate-900 leading-tight">
         {title}
       </h2>
 
-      <p className="text-xl text-slate-600 leading-relaxed">{description}</p>
+      <p className="text-slate-600 text-xl leading-relaxed">{description}</p>
 
       <Button>
-        {ctaText} <ChevronRight className="w-5 h-5" />
+        {ctaText} <ChevronRight className="h-5 w-5" />
       </Button>
 
       {relatedLinks && relatedLinks.length > 0 && (
         <div>
-          <h3 className="text-xl font-bold text-slate-800 mb-4">See also</h3>
+          <h3 className="mb-4 font-bold text-slate-800 text-xl">See also</h3>
           <div className="space-y-3">
-            {relatedLinks.map((link, index) => (
-              <div key={index} className="flex">
+            {relatedLinks.map((link, _index) => (
+              <div key={link.title} className="flex">
                 <Link
                   href={link.href}
-                  className="text-indigo-500 hover:text-indigo-600 font-medium text-xl"
+                  className="font-medium text-indigo-500 text-xl hover:text-indigo-600"
                 >
                   {link.title}
                 </Link>
-                <span className="text-slate-600 text-xl ml-1">
-                  {" " + link.description}
+                <span className="ml-1 text-slate-600 text-xl">
+                  {` ${link.description}`}
                 </span>
               </div>
             ))}

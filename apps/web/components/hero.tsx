@@ -33,9 +33,9 @@ export default function Hero() {
   }, [titleNumber, titles]);
 
   return (
-    <div className="w-full grid-magicpattern">
+    <div className="grid-magicpattern w-full">
       <div className="container mx-auto">
-        <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
+        <div className="flex flex-col items-center justify-center gap-8 py-20 lg:py-40">
           <div>
             <Announcement>
               <AnnouncementTag>Latest</AnnouncementTag>
@@ -50,10 +50,10 @@ export default function Hero() {
               </Link>
             </Announcement>
           </div>
-          <div className="flex gap-4 flex-col">
-            <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
+          <div className="flex flex-col gap-4">
+            <h1 className="max-w-2xl text-center font-regular text-5xl tracking-tighter md:text-7xl">
               <span className="text-spektr-cyan-50">I am Rajiv</span>
-              <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
+              <span className="relative flex w-full justify-center overflow-hidden text-center md:pt-1 md:pb-4">
                 &nbsp;
                 {titles.map((title, index) => (
                   <motion.span
@@ -79,20 +79,20 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
+            <p className="max-w-2xl text-center text-lg text-muted-foreground leading-relaxed tracking-tight md:text-xl">
               Welcome to domain-ui - This is where I document my work on open
               source projects, company and articulate thoughts and ideas.
             </p>
           </div>
           <div className="flex flex-row gap-3">
             <Link href="https://x.com/rjv_im" target="_blank">
-              <Button size="lg" className="gap-4 cursor-grab" variant="outline">
-                Let's Connect <SocialIcons.x className="w-4 h-4" />
+              <Button size="lg" className="cursor-grab gap-4" variant="outline">
+                Let's Connect <SocialIcons.x className="h-4 w-4" />
               </Button>
             </Link>
             <Link href="blog" target="_blank">
               <Button size="lg" className="gap-4">
-                View Posts <MoveRight className="w-4 h-4" />
+                View Posts <MoveRight className="h-4 w-4" />
               </Button>
             </Link>
           </div>

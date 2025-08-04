@@ -1,6 +1,6 @@
 "use client";
 
-import { XEmbed, XEmbedProps } from "react-social-media-embed";
+import { XEmbed, type XEmbedProps } from "react-social-media-embed";
 
 export function XEmbedClient({ ...props }: XEmbedProps) {
   return (

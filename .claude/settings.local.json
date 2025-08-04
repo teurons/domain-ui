@@ -39,7 +39,10 @@
       "Bash(chmod:*)",
       "Bash(pnpm web:dev:*)",
       "Bash(pnpm run:*)",
-      "Bash(pnpm dev:*)"
+      "Bash(pnpm dev:*)",
+      "Bash(grep:*)",
+      "Bash(npx organize-imports-cli:*)",
+      "Bash(pnpm biome:lint:*)"
     ],
     "deny": []
   }

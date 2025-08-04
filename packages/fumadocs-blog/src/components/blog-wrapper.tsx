@@ -14,7 +14,7 @@ import {
   getCategorySlug,
   getPageNumber,
 } from "./page-type";
-import { type BlogConfiguration } from "./types";
+import type { BlogConfiguration } from "./types";
 import { getSortedByDatePosts } from "./utils";
 
 interface BlogWrapperProps {

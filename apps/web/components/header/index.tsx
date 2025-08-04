@@ -119,12 +119,15 @@ const NavbarLinkItem = ({
   item: LinkItemType;
   className?: string;
 }) => {
-  if (item.type === "custom") return <div {...props}>{item.children}</div>;
+  if (item.type === "custom") {
+    return <div {...props}>{item.children}</div>;
+  }
 
   if (item.type === "menu") {
     const children = item.items.map((child, j) => {
-      if (child.type === "custom")
+      if (child.type === "custom") {
         return <div key={j.toString()}>{child.children}</div>;
+      }
 
       const { banner, footer, ...rest } = child.menu ?? {};
 

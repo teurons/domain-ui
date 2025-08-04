@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { cn } from "@workspace/domain-ui-pro-registry/lib/utils";
 import Heading from "@workspace/domain-ui-pro-registry/components/domain-ui-pro/heading";
 import SubHeading from "@workspace/domain-ui-pro-registry/components/domain-ui-pro/sub-heading";

@@ -23,24 +23,62 @@
   "linter": {
     "rules": {
       "correctness": {
-        "noInvalidPositionAtImportRule": "off"
+        "noInvalidPositionAtImportRule": "off",
+        "noUnusedFunctionParameters": "warn",
+        "noUnusedVariables": "warn",
+        "noUnusedImports": "warn",
+        "useExhaustiveDependencies": "warn",
+        "noUnknownTypeSelector": "off"
       },
       "nursery": {
-        "useSortedClasses": "off",
-        "useSingleJsDocAsterisk": "off",
-        "noUnknownAtRule": "off"
+        "useSortedClasses": "warn",
+        "useSingleJsDocAsterisk": "warn",
+        "noUnknownAtRule": "off",
+        "noShadow": "warn",
+        "useParseIntRadix": "warn"
+      },
+      "complexity": {
+        "noUselessFragments": "warn",
+        "noForEach": "warn"
       },
       "performance": {
-        "noNamespaceImport": "off"
+        "noNamespaceImport": "warn",
+        "noImgElement": "off",
+        "useTopLevelRegex": "warn"
       },
       "style": {
-        "noExportedImports": "off",
-        "useImportType": "off"
+        "noExportedImports": "warn",
+        "useImportType": "warn",
+        "useTemplate": "warn",
+        "useBlockStatements": "warn",
+        "useFilenamingConvention": "on"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "warn",
+        "noExplicitAny": "warn",
+        "noEvolvingTypes": "warn",
+        "noImplicitAnyLet": "warn",
+        "noAssignInExpressions": "warn",
+        "noConsole": "warn",
+        "noGlobalIsNan": "warn",
+        "useAwait": "off"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "off",
+        "useSemanticElements": "warn",
+        "useValidAnchor": "warn",
+        "noRedundantRoles": "warn",
+        "noRedundantAlt": "warn"
       }
     }
   },
   "files": {
-    "includes": ["**/*", "!packages/shadverse/**/*", "!packages/domain-ui/**/*"]
+    "includes": [
+      "**/*",
+      "!packages/shadverse/**/*",
+      "!packages/domain-ui/**/*",
+      "!apps/web/.source/**/*"
+    ]
   },
   "overrides": [
     {

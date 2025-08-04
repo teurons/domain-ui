@@ -21,7 +21,7 @@ interface Feature197Props {
   features: FeatureItem[];
 }
 
-const defaultFeatures: FeatureItem[] = [
+const _defaultFeatures: FeatureItem[] = [
   {
     id: 1,
     title: "Ready-to-Use UI Blocks",
@@ -64,7 +64,7 @@ const AccordionFeatures = ({ features }: Feature197Props) => {
   const [activeImage, setActiveImage] = useState(features[0].image);
 
   return (
-    <section className="relative isolate mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <section className="relative isolate mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <GridBackground maxWidthClass="max-w-7xl" />
       <div className="mb-12 flex w-full items-start justify-between gap-12">
         <div className="w-full md:w-1/2">
@@ -76,10 +76,10 @@ const AccordionFeatures = ({ features }: Feature197Props) => {
                     setActiveImage(tab.image);
                     setActiveTabId(tab.id);
                   }}
-                  className="cursor-pointer py-5 !no-underline transition"
+                  className="!no-underline cursor-pointer py-5 transition"
                 >
                   <h6
-                    className={`text-xl font-semibold ${tab.id === activeTabId ? "text-foreground" : "text-muted-foreground"}`}
+                    className={`font-semibold text-xl ${tab.id === activeTabId ? "text-foreground" : "text-muted-foreground"}`}
                   >
                     {tab.title}
                   </h6>

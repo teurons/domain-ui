@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { validateLicenseKey } from "@/lib/polar/client";
 import { generateToken } from "@/lib/shadcn/registry/utils";
 import { error as logError } from "@/lib/logger";

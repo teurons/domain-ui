@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BlogPost } from "@foundations/cms/source";
+import type { BlogPost } from "@foundations/cms/source";
 import { Card } from "@workspace/shadverse/components/card";
 import { ArrowRight } from "lucide-react";
 import { GridBackground } from "@workspace/ui/grid-background";
@@ -25,9 +25,9 @@ export function PostList({
   return (
     <section className="relative flex w-full flex-col items-center overflow-x-hidden">
       <GridBackground maxWidthClass="max-w-7xl" />
-      <div className="relative flex flex-col items-center justify-center w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12 pt-24 space-y-16">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center justify-center space-y-16 px-4 pt-24 pb-12 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="mx-auto mb-6 text-pretty text-3xl font-semibold md:text-4xl lg:max-w-3xl">
+          <h2 className="mx-auto mb-6 text-pretty font-semibold text-3xl md:text-4xl lg:max-w-3xl">
             {heading}
           </h2>
           <p className="mx-auto max-w-2xl text-muted-foreground md:text-lg">
@@ -48,13 +48,13 @@ export function PostList({
                 <div className="grid gap-y-6 sm:grid-cols-10 sm:gap-x-5 sm:gap-y-0 md:items-center md:gap-x-8 lg:gap-x-12">
                   <div className="sm:col-span-5">
                     <div className="mb-4 md:mb-6">
-                      <div className="flex flex-wrap gap-3 text-xs uppercase tracking-wider text-muted-foreground md:gap-5 lg:gap-6">
+                      <div className="flex flex-wrap gap-3 text-muted-foreground text-xs uppercase tracking-wider md:gap-5 lg:gap-6">
                         {post.data.tags?.map((tag) => (
                           <span key={tag}>{tag}</span>
                         ))}
                       </div>
                     </div>
-                    <h3 className="text-xl font-semibold md:text-2xl lg:text-3xl">
+                    <h3 className="font-semibold text-xl md:text-2xl lg:text-3xl">
                       <Link href={post.url} className="hover:underline">
                         {post.data.title}
                       </Link>
@@ -90,7 +90,7 @@ export function PostList({
                             "https://shadcnblocks.com/images/block/placeholder-2.svg"
                           }
                           alt={post.data.title}
-                          className="h-full w-full object-cover transition-opacity duration-200 fade-in hover:opacity-70"
+                          className="fade-in h-full w-full object-cover transition-opacity duration-200 hover:opacity-70"
                         />
                       </div>
                     </Link>

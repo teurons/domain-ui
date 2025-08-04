@@ -5,8 +5,8 @@ import PageTitle from "@workspace/domain-ui-registry/components/domain-ui/page-t
 
 export default function Page() {
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-80px)]">
-      <div className="flex flex-col items-center justify-center gap-6 max-w-2xl mx-auto p-6 text-center">
+    <div className="flex min-h-[calc(100vh-80px)] items-center justify-center">
+      <div className="mx-auto flex max-w-2xl flex-col items-center justify-center gap-6 p-6 text-center">
         <PageTitle
           title="Welcome to Domain UI"
           subtitle="A modern Next.js application with Supabase authentication and Polar.sh subscription management."
@@ -16,7 +16,7 @@ export default function Page() {
 
         <MyBadge />
 
-        <div className="flex flex-col sm:flex-row gap-4 mt-8">
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <Button asChild size="lg">
             <Link href="/auth/login">Get Started</Link>
           </Button>
@@ -26,24 +26,24 @@ export default function Page() {
           </Button>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-          <div className="p-6 rounded-lg border bg-card">
-            <h3 className="font-semibold mb-2">🔐 Secure Authentication</h3>
-            <p className="text-sm text-muted-foreground">
+        <div className="mt-12 grid w-full grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="rounded-lg border bg-card p-6">
+            <h3 className="mb-2 font-semibold">🔐 Secure Authentication</h3>
+            <p className="text-muted-foreground text-sm">
               Powered by Supabase with email verification and secure sessions.
             </p>
           </div>
 
-          <div className="p-6 rounded-lg border bg-card">
-            <h3 className="font-semibold mb-2">💳 Subscription Management</h3>
-            <p className="text-sm text-muted-foreground">
+          <div className="rounded-lg border bg-card p-6">
+            <h3 className="mb-2 font-semibold">💳 Subscription Management</h3>
+            <p className="text-muted-foreground text-sm">
               Integrated with Polar.sh for seamless subscription handling.
             </p>
           </div>
 
-          <div className="p-6 rounded-lg border bg-card">
-            <h3 className="font-semibold mb-2">⚡ Modern Stack</h3>
-            <p className="text-sm text-muted-foreground">
+          <div className="rounded-lg border bg-card p-6">
+            <h3 className="mb-2 font-semibold">⚡ Modern Stack</h3>
+            <p className="text-muted-foreground text-sm">
               Built with Next.js 15, TypeScript, and Tailwind CSS.
             </p>
           </div>

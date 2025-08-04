@@ -49,7 +49,9 @@ const PatientDetails: React.FC = () => {
     );
 
     leftRefs.current.forEach((ref) => {
-      if (ref) observerRef.current?.observe(ref);
+      if (ref) {
+        observerRef.current?.observe(ref);
+      }
     });
 
     return () => {
@@ -58,36 +60,38 @@ const PatientDetails: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex w-full max-w-6xl mx-auto">
+    <div className="mx-auto flex w-full max-w-6xl">
       {/* Left Scrolling Section */}
-      <div className="w-3/5 h-screen overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+      <div className="scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 h-screen w-3/5 overflow-y-auto">
         {sections.map((section, index) => (
           <div
             key={section.id}
             ref={(el) => {
-              if (el) leftRefs.current[index] = el;
+              if (el) {
+                leftRefs.current[index] = el;
+              }
             }}
             data-section={section.id}
-            className="min-h-screen p-5 bg-gray-500 text-white mb-5"
+            className="mb-5 min-h-screen bg-gray-500 p-5 text-white"
           >
-            <h2 className="text-2xl font-bold mb-2">Section {section.id}</h2>
+            <h2 className="mb-2 font-bold text-2xl">Section {section.id}</h2>
             <p>{section.leftContent}</p>
           </div>
         ))}
       </div>
 
       {/* Sticky Right Section */}
-      <div className="w-2/5 h-screen sticky top-0 p-5">
+      <div className="sticky top-0 h-screen w-2/5 p-5">
         {sections.map((section) => (
           <div
             key={section.id}
-            className={`p-5 absolute top-0 h-[10rem] bg-white border border-gray-200 mb-5 transition-all duration-300 ${
+            className={`absolute top-0 mb-5 h-[10rem] border border-gray-200 bg-white p-5 transition-all duration-300 ${
               activeSection === section.id
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-5 "
+                ? "translate-x-0 opacity-100"
+                : "translate-x-5 opacity-0 "
             }`}
           >
-            <h3 className="text-xl font-semibold mb-2">Sticky {section.id}</h3>
+            <h3 className="mb-2 font-semibold text-xl">Sticky {section.id}</h3>
             <p>{section.rightContent}</p>
           </div>
         ))}

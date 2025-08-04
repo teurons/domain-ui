@@ -50,8 +50,8 @@ export default function ValidateLicensePage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background/80 to-muted/60 p-4">
-      <section className="w-full flex flex-col items-center gap-6">
+    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background/80 to-muted/60 p-4">
+      <section className="flex w-full flex-col items-center gap-6">
         {isLicenseValid ? (
           <Suspense fallback={<div>Loading...</div>}>
             <TerminalCommandCopy
@@ -63,7 +63,7 @@ export default function ValidateLicensePage() {
           <ValidateLicenseForm
             className="w-full max-w-md"
             logo={
-              <PolarLogo className="w-8 h-8 rounded opacity-80 group-hover:opacity-100 transition fill-current text-muted-foreground" />
+              <PolarLogo className="h-8 w-8 rounded fill-current text-muted-foreground opacity-80 transition group-hover:opacity-100" />
             }
             onSubmit={handleSubmit}
             error={error}

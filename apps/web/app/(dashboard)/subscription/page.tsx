@@ -40,8 +40,8 @@ export default async function SubscriptionPage({
     });
 
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-md mx-auto">
+      <div className="flex min-h-screen items-center justify-center p-4">
+        <Card className="mx-auto w-full max-w-md">
           <CardHeader>
             <CardTitle>Welcome to Pro! 🎉</CardTitle>
             <CardDescription>
@@ -51,10 +51,10 @@ export default async function SubscriptionPage({
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="text-center">
-              <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-                <span className="text-green-600 text-2xl">✓</span>
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                <span className="text-2xl text-green-600">✓</span>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Your subscription is now active!
               </p>
             </div>
@@ -77,8 +77,8 @@ export default async function SubscriptionPage({
   // User has subscription - show premium features info
   if (hasSubscription) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <Card className="w-full max-w-md mx-auto">
+      <div className="flex min-h-screen items-center justify-center p-4">
+        <Card className="mx-auto w-full max-w-md">
           <CardHeader>
             <CardTitle>🎉 Pro Subscription Active</CardTitle>
             <CardDescription>
@@ -100,8 +100,8 @@ export default async function SubscriptionPage({
                   Manage Subscription
                 </Link>
               </Button>
-              <div className="text-center pt-2">
-                <span className="text-sm text-muted-foreground">
+              <div className="pt-2 text-center">
+                <span className="text-muted-foreground text-sm">
                   Logged in as {data.user.email}
                 </span>
               </div>
@@ -114,13 +114,13 @@ export default async function SubscriptionPage({
 
   // User doesn't have subscription - show upgrade option
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="flex min-h-screen items-center justify-center p-4">
       <div className="space-y-4">
         <UpgradeToPro />
-        <Card className="w-full max-w-md mx-auto">
+        <Card className="mx-auto w-full max-w-md">
           <CardContent className="pt-4">
             <div className="text-center">
-              <span className="text-sm text-muted-foreground">
+              <span className="text-muted-foreground text-sm">
                 Logged in as {data.user.email}
               </span>
             </div>

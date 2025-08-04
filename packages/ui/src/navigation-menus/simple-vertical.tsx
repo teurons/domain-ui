@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
 
 interface NavigationItem {
@@ -27,7 +26,7 @@ export function VerticalNavigationMenu({
             <Link
               key={item.name}
               href={item.href}
-              className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+              className="-mx-3 block rounded-lg px-3 py-2 font-semibold text-base/7 text-gray-900 hover:bg-gray-50"
             >
               {item.name}
             </Link>
@@ -37,7 +36,7 @@ export function VerticalNavigationMenu({
           <div className="py-6">
             <Link
               href={loginHref}
-              className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+              className="-mx-3 block rounded-lg px-3 py-2.5 font-semibold text-base/7 text-gray-900 hover:bg-gray-50"
             >
               Log in
             </Link>

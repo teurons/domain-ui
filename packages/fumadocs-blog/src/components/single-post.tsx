@@ -5,7 +5,7 @@ import {
   DocsDescription,
   DocsTitle,
 } from "fumadocs-ui/page";
-import { BlogConfiguration } from "./types";
+import type { BlogConfiguration } from "./types";
 
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import { Calendar, BookOpen } from "lucide-react";
@@ -45,11 +45,11 @@ export function SinglePost({
 
   return (
     <>
-      <div className="relative container px-4 xl:py-12 lg:px-6 text-left pt-[67px]">
+      <div className="container relative px-4 pt-[67px] text-left lg:px-6 xl:py-12">
         {/* {slot(configuration?.backgroundPattern, null)} */}
 
         {category && (
-          <div className="mb-4 text-gray-600 dark:text-gray-400 text-sm font-medium">
+          <div className="mb-4 font-medium text-gray-600 text-sm dark:text-gray-400">
             <div className="flex flex-wrap gap-3">
               <span className="inline-flex items-center gap-1.5 capitalize">
                 {getCategoryBySlug(category).icon &&
@@ -79,7 +79,7 @@ export function SinglePost({
             </div>
           </div>
         )}
-        <DocsTitle className="text-left dark:text-white flex items-center gap-2">
+        <DocsTitle className="flex items-center gap-2 text-left dark:text-white">
           {page.data.title}
 
           {page.data.series &&
@@ -98,7 +98,7 @@ export function SinglePost({
                     aria-label="View series information"
                   >
                     <BookOpen className="size-5" aria-hidden="true" />
-                    <configuration.Badge className="absolute -top-2 left-full min-w-5 -translate-x-1/2 px-1 text-xs">
+                    <configuration.Badge className="-top-2 -translate-x-1/2 absolute left-full min-w-5 px-1 text-xs">
                       {page.data.seriesPart}/
                       {getSeriesInfo(page.data.series, posts)?.totalParts || 0}
                     </configuration.Badge>
@@ -115,15 +115,15 @@ export function SinglePost({
               </configuration.Popover>
             )}
         </DocsTitle>
-        <DocsDescription className="text-left mt-3 dark:text-gray-300">
+        <DocsDescription className="mt-3 text-left dark:text-gray-300">
           {page.data.description}
         </DocsDescription>
-        <div className="flex flex-wrap gap-2 mt-4">
+        <div className="mt-4 flex flex-wrap gap-2">
           {tags.length > 0 &&
             tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2.5 py-0.5 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-300 rounded-full text-xs font-medium"
+                className="rounded-full bg-gray-200 px-2.5 py-0.5 font-medium text-gray-800 text-xs dark:bg-gray-800 dark:text-gray-300"
               >
                 {tag}
               </span>

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { getPostsBySeries } from "./utils";
 import { BookOpen } from "lucide-react";
-import { BlogConfiguration } from "./types";
+import type { BlogConfiguration } from "./types";
 import { slot } from "./shared";
 
 interface SeriesListProps {
@@ -27,32 +27,32 @@ export function SeriesList({
     });
 
   return (
-    <div className="container px-4 py-8 lg:py-12 lg:px-6">
+    <div className="container px-4 py-8 lg:px-6 lg:py-12">
       {slot(configuration?.backgroundPattern, null)}
       <div className="relative">
-        <div className="flex flex-col md:flex-row gap-8 mb-8 md:items-center items-start">
+        <div className="mb-8 flex flex-col items-start gap-8 md:flex-row md:items-center">
           {configuration.Book && (
             <configuration.Book
               color="#3b82f6"
               depth={6}
               width={150}
               illustration={
-                <div className="flex items-center justify-center h-full w-full p-4">
+                <div className="flex h-full w-full items-center justify-center p-4">
                   <BookOpen size={32} className="text-white" />
                 </div>
               }
             >
-              <div className="p-3 mb-2 grid gap-2">
+              <div className="mb-2 grid gap-2 p-3">
                 <h3 className="font-semibold text-sm">{seriesInfo.label}</h3>
                 <div className="text-xs">{posts.length} Parts</div>
               </div>
             </configuration.Book>
           )}
           <div className="flex flex-col justify-center">
-            <h1 className="text-4xl font-bold mb-3 text-gray-900 dark:text-white leading-tight">
+            <h1 className="mb-3 font-bold text-4xl text-gray-900 leading-tight dark:text-white">
               {seriesInfo.label}
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600 text-lg dark:text-gray-400">
               {seriesInfo.description}
             </p>
           </div>
@@ -62,22 +62,22 @@ export function SeriesList({
           {seriesPosts.map((post) => (
             <div
               key={post.url}
-              className="p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow"
+              className="rounded-lg border border-gray-200 bg-white p-6 transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-gray-800"
             >
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 font-medium">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 font-medium text-blue-600 dark:bg-blue-900 dark:text-blue-300">
                   {post.data.seriesPart || ""}
                 </div>
                 <div className="flex-1">
                   <Link href={post.url}>
-                    <h2 className="text-xl font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 mb-2">
+                    <h2 className="mb-2 font-semibold text-gray-900 text-xl hover:text-blue-600 dark:text-white dark:hover:text-blue-400">
                       {post.data.title}
                     </h2>
                   </Link>
-                  <p className="text-gray-600 dark:text-gray-400 mb-3">
+                  <p className="mb-3 text-gray-600 dark:text-gray-400">
                     {post.data.description}
                   </p>
-                  <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                  <div className="flex items-center text-gray-500 text-sm dark:text-gray-400">
                     <span>
                       {post.data.date.toLocaleDateString("en-US", {
                         year: "numeric",
@@ -92,7 +92,7 @@ export function SeriesList({
                           {post.data.tags.map((tag: string) => (
                             <span
                               key={tag}
-                              className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 rounded-full text-xs"
+                              className="rounded-full bg-gray-100 px-2 py-0.5 text-xs dark:bg-gray-700"
                             >
                               {tag}
                             </span>

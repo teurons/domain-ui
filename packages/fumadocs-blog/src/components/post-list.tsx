@@ -1,6 +1,6 @@
 import { Pagination } from "./pagination";
 import { DocsTitle, DocsDescription } from "fumadocs-ui/page";
-import { BlogConfiguration, type BlogPost } from "./types";
+import type { BlogConfiguration, BlogPost } from "./types";
 import { slot } from "./shared";
 
 export type PostListProps = {
@@ -28,20 +28,20 @@ export function PostList({
 
   return (
     <>
-      <section className="relative container px-4 py-8 lg:py-12 lg:px-6 text-left bg-zinc-50/50 dark:bg-zinc-900/50">
+      <section className="container relative bg-zinc-50/50 px-4 py-8 text-left lg:px-6 lg:py-12 dark:bg-zinc-900/50">
         {slot(configuration?.backgroundPattern, null)}
 
         <div className="text-center">
-          <DocsTitle className="dark:text-white capitalize">
+          <DocsTitle className="capitalize dark:text-white">
             {heading}
           </DocsTitle>
-          <DocsDescription className="mt-3 dark:text-gray-300 mb-0">
+          <DocsDescription className="mt-3 mb-0 dark:text-gray-300">
             {description}
           </DocsDescription>
         </div>
       </section>
 
-      <section className="relative container px-4 py-8 lg:py-12 lg:px-6 text-left">
+      <section className="container relative px-4 py-8 text-left lg:px-6 lg:py-12">
         {slot(configuration?.backgroundPattern, null)}
         <div className="grid gap-y-10 sm:grid-cols-12 sm:gap-y-12 md:gap-y-16 lg:gap-y-20">
           {posts

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { BlogConfiguration } from "./types";
+import type { BlogConfiguration } from "./types";
 
 export type PaginationProps = {
   currentPage: number;
@@ -24,7 +24,7 @@ export function Pagination({
   if (!configuration.Button) return null;
 
   return (
-    <div className="flex justify-center mt-8 space-x-4">
+    <div className="mt-8 flex justify-center space-x-4">
       <div className="flex items-center gap-2">
         <configuration.Button
           variant="outline"
@@ -39,18 +39,18 @@ export function Pagination({
               }
               prefetch={false}
             >
-              <ChevronLeft className="h-4 w-4 mr-1" />
+              <ChevronLeft className="mr-1 h-4 w-4" />
               Previous
             </Link>
           ) : (
             <>
-              <ChevronLeft className="h-4 w-4 mr-1" />
+              <ChevronLeft className="mr-1 h-4 w-4" />
               Previous
             </>
           )}
         </configuration.Button>
 
-        <div className="text-sm text-muted-foreground">
+        <div className="text-muted-foreground text-sm">
           Page {pageIndex + 1} of {totalPages}
         </div>
 
@@ -63,12 +63,12 @@ export function Pagination({
           {pageIndex + 1 < totalPages ? (
             <Link href={`${basePath}/page/${currentPage + 1}`} prefetch={false}>
               Next
-              <ChevronRight className="h-4 w-4 ml-1" />
+              <ChevronRight className="ml-1 h-4 w-4" />
             </Link>
           ) : (
             <>
               Next
-              <ChevronRight className="h-4 w-4 ml-1" />
+              <ChevronRight className="ml-1 h-4 w-4" />
             </>
           )}
         </configuration.Button>

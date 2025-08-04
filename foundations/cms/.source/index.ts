@@ -15,7 +15,7 @@ import * as blog_2 from "../../../packages/content/blog/edge-computing-revolutio
 import * as blog_1 from "../../../packages/content/blog/data-mesh-architecture.mdx?collection=blog&hash=1754126517963";
 import * as blog_0 from "../../../packages/content/blog/api-first-design.mdx?collection=blog&hash=1754126517963";
 import { _runtime } from "fumadocs-mdx";
-import * as _source from "../source.config";
+import type * as _source from "../source.config";
 export const blog = _runtime.doc<typeof _source.blog>([
   {
     info: {

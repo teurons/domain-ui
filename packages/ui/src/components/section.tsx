@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@workspace/shadverse/lib/utils";
 import { PlusIcon } from "lucide-react";
 import type { HTMLAttributes } from "react";
 import { GridBackground } from "./grid-background";
-import { cn } from "@workspace/shadverse/lib/utils";
 
 type SectionProps = {
   sectionClassName?: string;

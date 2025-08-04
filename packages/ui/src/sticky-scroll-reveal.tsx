@@ -1,8 +1,7 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "motion/react";
-import { motion } from "motion/react";
 import { cn } from "@workspace/shadverse/lib/utils";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import React, { useEffect, useRef, useState } from "react";
 
 export const StickyScroll = ({
   content,
@@ -78,7 +77,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-2xl font-bold text-slate-100"
+                className="font-bold text-2xl text-slate-100"
               >
                 {item.title}
               </motion.h2>
@@ -89,7 +88,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-kg mt-10 max-w-sm text-slate-300"
+                className="mt-10 max-w-sm text-kg text-slate-300"
               >
                 {item.description}
               </motion.p>

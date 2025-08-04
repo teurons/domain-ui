@@ -1,4 +1,5 @@
-import React, { useRef, useState, useLayoutEffect } from "react";
+import type React from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 interface StickySectionsProps {
   children: React.ReactNode;
@@ -27,7 +28,9 @@ const StickySections: React.FC<StickySectionsProps> = ({
 
   useLayoutEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container) {
+      return;
+    }
 
     const sections = Array.from(container.querySelectorAll("section"));
 
@@ -99,7 +102,7 @@ const StickySections: React.FC<StickySectionsProps> = ({
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [activeIndex]); // Re-run if active index changes
+  }, [activeIndex, remapValue]); // Re-run if active index changes
 
   return (
     <div

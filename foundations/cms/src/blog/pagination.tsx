@@ -30,18 +30,18 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
             href={createPageURL(currentPage - 1)}
             aria-label="Previous page"
           >
-            <ChevronLeft className="h-4 w-4 mr-1" />
+            <ChevronLeft className="mr-1 h-4 w-4" />
             Previous
           </Link>
         ) : (
           <>
-            <ChevronLeft className="h-4 w-4 mr-1" />
+            <ChevronLeft className="mr-1 h-4 w-4" />
             Previous
           </>
         )}
       </Button>
 
-      <div className="text-sm text-muted-foreground">
+      <div className="text-muted-foreground text-sm">
         Page {currentPage} of {totalPages}
       </div>
 
@@ -54,12 +54,12 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
         {currentPage < totalPages ? (
           <Link href={createPageURL(currentPage + 1)} aria-label="Next page">
             Next
-            <ChevronRight className="h-4 w-4 ml-1" />
+            <ChevronRight className="ml-1 h-4 w-4" />
           </Link>
         ) : (
           <>
             Next
-            <ChevronRight className="h-4 w-4 ml-1" />
+            <ChevronRight className="ml-1 h-4 w-4" />
           </>
         )}
       </Button>

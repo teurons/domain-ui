@@ -1,5 +1,5 @@
 import { PostList } from "./post-list";
-import { BlogConfiguration, type BlogPost } from "./types";
+import type { BlogConfiguration, BlogPost } from "./types";
 import { getSortedByDatePosts } from "./utils";
 import { createUrlUtils } from "./url-utils";
 

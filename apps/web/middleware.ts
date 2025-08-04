@@ -1,5 +1,5 @@
 import { updateSession } from "@/lib/supabase/middleware";
-import { type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/shadcn/registry/utils";
 

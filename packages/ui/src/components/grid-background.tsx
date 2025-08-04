@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@workspace/shadverse/lib/utils";
-import { FC } from "react";
+import type { FC } from "react";
 
 interface GridBackgroundProps {
   columns?: number;
@@ -19,7 +19,7 @@ export const GridBackground: FC<GridBackgroundProps> = ({
   // Create array based on column count
   const columnElements = Array.from({ length: columns }, (_, i) => (
     <div
-      key={i}
+      key={`column-${i}`}
       className="h-full w-px"
       style={{
         backgroundColor: i === 0 ? "var(--grid-base-color)" : "transparent",
@@ -34,7 +34,7 @@ export const GridBackground: FC<GridBackgroundProps> = ({
 
   return (
     <div
-      className={`stripe-grid absolute -z-50 inset-0 h-full w-full ${className}`}
+      className={`stripe-grid -z-50 absolute inset-0 h-full w-full ${className}`}
     >
       <div className="relative h-full w-full overflow-hidden">
         <div

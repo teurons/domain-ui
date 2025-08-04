@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${fontSans.variable} ${fontMono.variable} bg-background overscroll-none font-sans antialiased`}
+        className={`${fontSans.variable} ${fontMono.variable} overscroll-none bg-background font-sans antialiased`}
       >
         <RootProvider
           search={{

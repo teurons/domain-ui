@@ -1,8 +1,7 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
-import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react";
+import type * as React from "react";
 
 import {
   NavigationMenu,
@@ -54,11 +53,11 @@ const components: { title: string; href: string; description: string }[] = [
 
 export function NavigationMenuDemo() {
   return (
-    <div className="hidden w-full flex-col items-center justify-center gap-6 @xl:flex">
+    <div className="@xl:flex hidden w-full flex-col items-center justify-center gap-6">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-transparent hover:bg-transparent  focus:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent data-[state=open]:bg-transparent/50">
+            <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent/50 data-[state=open]:focus:bg-transparent data-[state=open]:hover:bg-transparent">
               Getting started
             </NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -66,10 +65,10 @@ export function NavigationMenuDemo() {
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <a
-                      className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
+                      className="flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-6 no-underline outline-hidden focus:shadow-md"
                       href="/"
                     >
-                      <div className="mt-4 mb-2 text-lg font-medium">
+                      <div className="mt-4 mb-2 font-medium text-lg">
                         shadcn/ui
                       </div>
                       <p className="text-muted-foreground text-sm leading-tight">
@@ -91,7 +90,7 @@ export function NavigationMenuDemo() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-transparent hover:bg-transparent  focus:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent data-[state=open]:bg-transparent/50">
+            <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent/50 data-[state=open]:focus:bg-transparent data-[state=open]:hover:bg-transparent">
               Components
             </NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -113,7 +112,7 @@ export function NavigationMenuDemo() {
               asChild
               className={navigationMenuTriggerStyle({
                 className:
-                  "bg-transparent hover:bg-transparent  focus:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent data-[state=open]:bg-transparent/50",
+                  "bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent/50 data-[state=open]:focus:bg-transparent data-[state=open]:hover:bg-transparent",
               })}
             >
               <Link href="/docs">Documentation</Link>
@@ -225,8 +224,8 @@ function ListItem({
     <li {...props}>
       <NavigationMenuLink asChild>
         <Link href={href}>
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+          <div className="font-medium text-sm leading-none">{title}</div>
+          <p className="line-clamp-2 text-muted-foreground text-sm leading-snug">
             {children}
           </p>
         </Link>

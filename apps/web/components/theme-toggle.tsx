@@ -112,7 +112,7 @@ export function ThemeToggle({
     >
       {themes.map(({ key, icon: Icon, label }) => {
         const isActive = value === key;
-        if (mode === "light-dark" && key === "system") return;
+        if (mode === "light-dark" && key === "system") return null;
 
         return (
           <button

@@ -1,10 +1,10 @@
-import {
-  type GradientLayer,
-  type OhImgBaseTemplateProps,
-  type PatternLayer,
-} from "./types";
-import { getGradientStyle, getPatternStyle } from "./helpers";
 import { cn } from "@workspace/shadverse/lib/utils";
+import { getGradientStyle, getPatternStyle } from "./helpers";
+import type {
+  GradientLayer,
+  OhImgBaseTemplateProps,
+  PatternLayer,
+} from "./types";
 
 export const ohimgConfig: OhImgBaseTemplateProps = {
   content: {
@@ -65,7 +65,7 @@ export function OhImgBaseTemplate({
   return (
     <div
       tw={cn(
-        "relative flex w-full h-full",
+        "relative flex h-full w-full",
         "flex flex-col",
         mergedLayout?.layoutContainer
       )}

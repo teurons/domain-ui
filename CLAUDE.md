@@ -17,6 +17,25 @@ This project uses **Biome** (not ESLint) for linting and formatting. Biome confi
 - **Ensure there are 0 linting issues before completing any task**
 - **NEVER run build commands (`pnpm build`, `pnpm web:build`, etc.) unless explicitly asked by the user**
 
+### Managing Imports
+
+To clean up and organize imports across the codebase:
+
+```bash
+# Organize imports in packages/ui
+pnpm organize-imports
+
+# Or run directly with npx
+npx organize-imports-cli packages/ui/src/**/*.{ts,tsx}
+```
+
+This command:
+- Removes unused imports (using TypeScript's language service - more accurate than Biome)
+- Sorts and organizes imports according to convention
+- Works across entire directories
+
+**Note**: After running organize-imports, you may need to run `pnpm format` to fix any indentation issues.
+
 ## Logging
 
 This project uses a custom logger utility instead of `console.log` statements. Always use the logger from `@/lib/logger`:

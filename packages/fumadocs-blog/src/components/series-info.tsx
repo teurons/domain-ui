@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { getSeriesInfo } from "./utils";
 import { cn } from "./utils";
-import { BlogConfiguration } from "./types";
+import type { BlogConfiguration } from "./types";
 import { createUrlUtils } from "./url-utils";
 
 interface SeriesComponentProps {
@@ -34,7 +34,7 @@ export function SeriesPopoverContent({
               ? createUrlUtils(configuration.config).getSeriesUrl(seriesName)
               : `/blog/series/${seriesName}`
           }
-          className="text-blue-600 dark:text-blue-400 hover:underline"
+          className="text-blue-600 hover:underline dark:text-blue-400"
         >
           {title}
         </Link>
@@ -85,7 +85,7 @@ export function SeriesInfo({
   const { title, posts: seriesPosts, totalParts } = seriesInfo;
 
   return (
-    <div className="my-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+    <div className="my-6 rounded-lg border border-gray-200 bg-gray-100 p-4 dark:border-gray-700 dark:bg-gray-800">
       <div className="mb-2 font-medium text-gray-900 dark:text-white">
         Part {currentPart} of {totalParts} in series:{" "}
         <Link
@@ -94,7 +94,7 @@ export function SeriesInfo({
               ? createUrlUtils(configuration.config).getSeriesUrl(seriesName)
               : `/blog/series/${seriesName}`
           }
-          className="text-blue-600 dark:text-blue-400 hover:underline"
+          className="text-blue-600 hover:underline dark:text-blue-400"
         >
           {title}
         </Link>

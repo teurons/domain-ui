@@ -1,10 +1,9 @@
 "use client";
 import { ContextMode } from "glsl-canvas-js/dist/esm/context/context";
 import { Canvas, type ICanvasOptions } from "glsl-canvas-js/dist/esm/glsl";
-import { type FC, useLayoutEffect, useRef } from "react";
-import React from "react";
+import { useLayoutEffect, useRef, type FC } from "react";
 
-const glsl = (x: any) => x;
+const glsl = (x: TemplateStringsArray) => x.join("");
 
 const vertexShader = glsl`
   attribute vec4 a_position;
@@ -96,7 +95,9 @@ const StripeCanvas: FC = () => {
   const canvas = useRef<HTMLCanvasElement>(null);
 
   useLayoutEffect(() => {
-    if (!canvas.current) return;
+    if (!canvas.current) {
+      return;
+    }
     // https://actarian.github.io/glsl-canvas/api/
     const options: ICanvasOptions = {
       vertexString: vertexShader,
@@ -106,15 +107,15 @@ const StripeCanvas: FC = () => {
       antialias: true,
       mode: ContextMode.Flat,
     };
-    const glsl = new Canvas(canvas.current, options);
-  }, [canvas]);
+    new Canvas(canvas.current, options);
+  }, []);
 
   return (
     <canvas
       ref={canvas}
       width={1200}
       height={640}
-      className="absolute left-0 right-0 top-0 h-[640px] w-full overflow-hidden"
+      className="absolute top-0 right-0 left-0 h-[640px] w-full overflow-hidden"
       style={{ transform: "translateY(-33%) skewY(-12deg)" }}
     />
   );

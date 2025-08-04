@@ -17,18 +17,18 @@ export function PostCard({ post, configuration = {} }: PostCardProps) {
     <div className="grid gap-y-6 sm:grid-cols-10 sm:gap-x-5 sm:gap-y-0 md:items-center md:gap-x-8 lg:gap-x-12">
       <div className="sm:col-span-5">
         <div className="mb-4 md:mb-6">
-          <div className="flex flex-wrap gap-3 text-xs uppercase tracking-wider text-muted-foreground md:gap-5 lg:gap-6">
+          <div className="flex flex-wrap gap-3 text-muted-foreground text-xs uppercase tracking-wider md:gap-5 lg:gap-6">
             {post.data.tags?.map((tag) => (
               <span key={tag}>{tag}</span>
             ))}
           </div>
         </div>
-        <h3 className="text-xl font-semibold md:text-2xl lg:text-3xl text-left">
-          <Link href={post.url} className="hover:underline cursor-pointer">
+        <h3 className="text-left font-semibold text-xl md:text-2xl lg:text-3xl">
+          <Link href={post.url} className="cursor-pointer hover:underline">
             {post.data.title}
           </Link>
         </h3>
-        <p className="mt-4 text-muted-foreground md:mt-5 text-left">
+        <p className="mt-4 text-left text-muted-foreground md:mt-5">
           {post.data.description}
         </p>
         <div className="mt-6 flex items-center space-x-4 text-sm md:mt-8">
@@ -56,7 +56,7 @@ export function PostCard({ post, configuration = {} }: PostCardProps) {
             <img
               src={`https://picsum.photos/400/225?grayscale&title=${post.data.title}`}
               alt={post.data.title}
-              className="h-full w-full object-cover transition-opacity duration-200 fade-in hover:opacity-70"
+              className="fade-in h-full w-full object-cover transition-opacity duration-200 hover:opacity-70"
             />
           </div>
         </Link>

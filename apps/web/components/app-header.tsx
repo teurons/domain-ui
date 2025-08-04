@@ -14,21 +14,21 @@ export default function AppHeader() {
       return (
         <div className="flex items-center space-x-2">
           <Loader2 className="h-4 w-4 animate-spin" />
-          <span className="text-sm text-muted-foreground">Loading...</span>
+          <span className="text-muted-foreground text-sm">Loading...</span>
         </div>
       );
     }
 
     if (error) {
-      return <div className="text-sm text-destructive">Error: {error}</div>;
+      return <div className="text-destructive text-sm">Error: {error}</div>;
     }
 
     if (user) {
       return (
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
-              <span className="text-sm font-medium">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
+              <span className="font-medium text-sm">
                 {user.user_metadata?.name?.charAt(0) || user.email?.charAt(0)}
               </span>
             </div>
@@ -67,12 +67,12 @@ export default function AppHeader() {
   };
 
   return (
-    <div className="p-4 border-b bg-background">
-      <div className="max-w-7xl mx-auto">
+    <div className="border-b bg-background p-4">
+      <div className="mx-auto max-w-7xl">
         <div className="flex items-center justify-between">
           {/* Logo/Brand */}
           <div className="flex items-center space-x-4">
-            <Link href="/" className="text-xl font-bold">
+            <Link href="/" className="font-bold text-xl">
               Your App
             </Link>
           </div>

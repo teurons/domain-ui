@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 type StickyContent = {
   title?: string;
   details?: string;
@@ -10,29 +10,29 @@ type Props = {
 };
 const CustomStickyScroller = ({ children, stickyContent }: Props) => {
   return (
-    <div className="flex flex-col lg:flex-row py-8 mobile:ml-2 gap-6  w-full">
+    <div className="mobile:ml-2 flex w-full flex-col gap-6 py-8 lg:flex-row">
       {/* Main Content */}
-      <div className="right flex flex-col items-start rounded-2xl border border-slate-200 dark:border-neutral-700   w-full lg:w-[50%] shadow-lg">
+      <div className="right flex w-full flex-col items-start rounded-2xl border border-slate-200 shadow-lg lg:w-[50%] dark:border-neutral-700">
         {children}
       </div>
       {/* Sidebar Container */}
-      <div className="relative right w-full lg:w-[50%]">
+      <div className="right relative w-full lg:w-[50%]">
         <div className="flex flex-col items-start gap-3">
           {stickyContent.title && (
-            <span className="text-[#101828] dark:text-gray-100 font-inter text-5xl font-semibold leading-[45px] tracking-[-0.96px]">
+            <span className="font-inter font-semibold text-5xl text-[#101828] leading-[45px] tracking-[-0.96px] dark:text-gray-100">
               {stickyContent.title}
             </span>
           )}
           {stickyContent.details && (
-            <span className="text-[#475467] dark:text-gray-300 font-inter text-xl font-normal leading-[30px]">
+            <span className="font-inter font-normal text-[#475467] text-xl leading-[30px] dark:text-gray-300">
               {stickyContent.details}
             </span>
           )}
         </div>
         <div className="sticky top-8 hidden lg:block">
-          <div className=" p-4 flex flex-col items-start gap-4">
+          <div className=" flex flex-col items-start gap-4 p-4">
             <img
-              className="max-w-60 hidden lg:block"
+              className="hidden max-w-60 lg:block"
               src={stickyContent.image_url}
               alt=""
             />

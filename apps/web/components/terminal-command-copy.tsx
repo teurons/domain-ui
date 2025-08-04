@@ -65,7 +65,7 @@ interface TerminalCommandCopyProps {
 
 export function TerminalCommandCopy({
   logo = (
-    <Logo className="w-8 h-8 rounded opacity-80 group-hover:opacity-100 transition" />
+    <Logo className="h-8 w-8 rounded opacity-80 transition group-hover:opacity-100" />
   ),
   className,
   token,
@@ -97,16 +97,16 @@ export function TerminalCommandCopy({
 
   return (
     <div
-      className={cn("flex items-center justify-center min-h-[40vh]", className)}
+      className={cn("flex min-h-[40vh] items-center justify-center", className)}
     >
-      <Card className="w-full border-none shadow-xl bg-background/90 dark:bg-background/80 backdrop-blur rounded-2xl">
+      <Card className="w-full rounded-2xl border-none bg-background/90 shadow-xl backdrop-blur dark:bg-background/80">
         <CardHeader className="flex flex-col items-center gap-2 pb-0">
           {logo && (
-            <span className="rounded-full bg-primary/10 p-3 shadow mb-2">
+            <span className="mb-2 rounded-full bg-primary/10 p-3 shadow">
               {logo}
             </span>
           )}
-          <CardTitle className="text-xl font-semibold text-center tracking-tight">
+          <CardTitle className="text-center font-semibold text-xl tracking-tight">
             Install with your access token
           </CardTitle>
           <CardDescription className="text-center text-muted-foreground text-sm">
@@ -115,8 +115,8 @@ export function TerminalCommandCopy({
           </CardDescription>
         </CardHeader>
         <CardContent className="pt-4">
-          <div className="flex items-center gap-2 bg-muted rounded-lg px-3 py-2 border border-border font-mono overflow-x-auto">
-            <span className="flex-1 text-xs md:text-sm select-all break-all">
+          <div className="flex items-center gap-2 overflow-x-auto rounded-lg border border-border bg-muted px-3 py-2 font-mono">
+            <span className="flex-1 select-all break-all text-xs md:text-sm">
               {command}
             </span>
             <Button

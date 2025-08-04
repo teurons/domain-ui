@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import FeatureCard from "./feature-card";
 
 const features = [
@@ -9,7 +9,7 @@ const features = [
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8"
+        className="h-8 w-8"
       >
         <path d="M4 9L9 4L14 9" fill="#6366F1" />
         <path d="M9 4L14 9L19 4" fill="#8B5CF6" />
@@ -32,7 +32,7 @@ const features = [
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8"
+        className="h-8 w-8"
       >
         <path d="M4 9L9 4L14 9" fill="#10B981" />
         <path d="M9 4L14 9L19 4" fill="#0EA5E9" />
@@ -55,7 +55,7 @@ const features = [
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8"
+        className="h-8 w-8"
       >
         <path d="M4 9L9 4L14 9" fill="#F59E0B" />
         <path d="M9 4L14 9L19 4" fill="#EF4444" />
@@ -78,7 +78,7 @@ const features = [
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8"
+        className="h-8 w-8"
       >
         <path d="M4 9L9 4L14 9" fill="#A855F7" />
         <path d="M9 4L14 9L19 4" fill="#EC4899" />
@@ -114,7 +114,8 @@ const PaymentFeaturesUI = () => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const id = Number.parseInt(
-                entry.target.id.replace("section-", "")
+                entry.target.id.replace("section-", ""),
+                10
               );
               setActiveFeature(id);
             }
@@ -124,12 +125,16 @@ const PaymentFeaturesUI = () => {
       );
 
       sectionRefs.current.forEach((section) => {
-        if (section) observer.observe(section);
+        if (section) {
+          observer.observe(section);
+        }
       });
 
       return () => {
         sectionRefs.current.forEach((section) => {
-          if (section) observer.unobserve(section);
+          if (section) {
+            observer.unobserve(section);
+          }
         });
       };
     }
@@ -139,7 +144,7 @@ const PaymentFeaturesUI = () => {
   }, [isMobile]);
 
   return (
-    <main className="relative flex min-h-screen flex-col justify-center overflow-hidden supports-[overflow:clip]:overflow-clip rounded-md">
+    <main className="relative flex min-h-screen flex-col justify-center overflow-hidden rounded-md supports-[overflow:clip]:overflow-clip">
       <div className="mx-auto w-full max-w-6xl">
         {/* Desktop Layout */}
         {!isMobile && (
@@ -184,14 +189,14 @@ const PaymentFeaturesUI = () => {
             {features.map((feature) => (
               <div key={feature.id} className="space-y-6">
                 <div className="space-y-4">
-                  <div className="flex items-center mb-2">
+                  <div className="mb-2 flex items-center">
                     <div className="mr-3">{feature.icon}</div>
-                    <h3 className="text-lg font-medium text-slate-800">
+                    <h3 className="font-medium text-lg text-slate-800">
                       {feature.badge}
                     </h3>
                   </div>
 
-                  <h2 className="text-3xl font-bold text-slate-900">
+                  <h2 className="font-bold text-3xl text-slate-900">
                     {feature.title}
                   </h2>
 
@@ -201,11 +206,11 @@ const PaymentFeaturesUI = () => {
 
                   <a
                     href="#"
-                    className="inline-flex items-center px-5 py-2 mt-4 bg-indigo-500 hover:bg-indigo-600 text-white font-medium rounded-full"
+                    className="mt-4 inline-flex items-center rounded-full bg-indigo-500 px-5 py-2 font-medium text-white hover:bg-indigo-600"
                   >
                     {feature.buttonText}
                     <svg
-                      className="ml-2 w-4 h-4"
+                      className="ml-2 h-4 w-4"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

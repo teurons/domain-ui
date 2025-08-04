@@ -61,16 +61,16 @@ export function ValidateLicenseForm({
 
   return (
     <div
-      className={cn("flex items-center justify-center min-h-[60vh]", className)}
+      className={cn("flex min-h-[60vh] items-center justify-center", className)}
     >
-      <Card className="w-full border-none shadow-xl bg-background/90 dark:bg-background/80 backdrop-blur rounded-2xl">
+      <Card className="w-full rounded-2xl border-none bg-background/90 shadow-xl backdrop-blur dark:bg-background/80">
         <CardHeader className="flex flex-col items-center gap-2 pb-0">
           {logo && (
-            <span className="rounded-full bg-primary/10 p-3 shadow mb-2">
+            <span className="mb-2 rounded-full bg-primary/10 p-3 shadow">
               {logo}
             </span>
           )}
-          <CardTitle className="text-xl font-semibold text-center tracking-tight">
+          <CardTitle className="text-center font-semibold text-xl tracking-tight">
             Enter your key
           </CardTitle>
           <CardDescription className="text-center text-muted-foreground text-sm">
@@ -94,18 +94,18 @@ export function ValidateLicenseForm({
                     <FormLabel>License Key</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                        <KeyRound className="-translate-y-1/2 absolute top-1/2 left-3 size-4 text-muted-foreground" />
                         <Input
                           type={showKey ? "text" : "password"}
                           autoComplete="off"
                           placeholder="Enter your key"
-                          className="pl-10 pr-10 text-base bg-background/80 border border-border focus:ring-2 focus:ring-primary/30 transition"
+                          className="border border-border bg-background/80 pr-10 pl-10 text-base transition focus:ring-2 focus:ring-primary/30"
                           {...field}
                         />
                         <button
                           type="button"
                           tabIndex={-1}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition"
+                          className="-translate-y-1/2 absolute top-1/2 right-3 text-muted-foreground transition hover:text-primary"
                           onClick={() => setShowKey((v) => !v)}
                           aria-label={
                             showKey ? "Hide product key" : "Show product key"
@@ -135,7 +135,7 @@ export function ValidateLicenseForm({
           </Form>
         </CardContent>
         <CardFooter className="flex justify-center pt-2">
-          <span className="text-xs text-muted-foreground">
+          <span className="text-muted-foreground text-xs">
             Powered by <span className="font-semibold">Polar</span>
           </span>
         </CardFooter>
