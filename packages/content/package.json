@@ -17,6 +17,7 @@
     "@workspace/typescript-config": "workspace:*",
     "@workspace/domain-ui-pro-registry": "workspace:*",
     "@workspace/domain-ui-registry": "workspace:*",
+    "@workspace/shadverse": "workspace:*",
     "eslint": "^9.22.0",
     "typescript": "5.8.2"
   },

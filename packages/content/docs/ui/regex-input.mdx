@@ -1,0 +1,305 @@
+---
+title: Regex Input
+description: Smart input component with real-time position-based character validation using regexp-tree AST parsing
+---
+
+import { RegexInput } from "@workspace/domain-ui-registry/components/domain-ui/regex-input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@workspace/shadverse/components/card";
+import { Button } from "@workspace/shadverse/components/button";
+import { Badge } from "@workspace/shadverse/components/badge";
+import React, { useState } from "react";
+
+# Regex Input
+
+A smart input component with real-time position-based character validation using regexp-tree AST parsing. It validates characters as you type, preventing invalid inputs and providing immediate feedback.
+
+## Features
+
+- **Position-based validation** - Characters are validated based on their position in the pattern
+- **Real-time feedback** - Invalid characters are rejected immediately
+- **Format on display** - Display value can be formatted (e.g., phone numbers with dashes)
+- **Transform input** - Transform input values (e.g., uppercase conversion)
+- **Clear button** - Built-in clear functionality
+- **Accessible** - Full keyboard and screen reader support
+
+## Demo
+
+export function RegexInputDemo() {
+  const [values, setValues] = useState({});
+  const [validations, setValidations] = useState({});
+
+const examples = [
+{
+id: "pan",
+name: "PAN Number",
+description: "Indian PAN card format with position-specific validation",
+config: {
+pattern: /^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/,
+        maxLength: 10,
+        transform: (value) => value.toUpperCase().replace(/[^A-Z0-9]/g, ""),
+      },
+      label: "PAN Number",
+      placeholder: "ABCDE1234F",
+      helperText: "Position 3 only allows: P,C,F,T,A,B,G,H,L,J,E",
+      errorMessage: "Please enter a valid PAN number",
+    },
+    {
+      id: "phone",
+      name: "Phone Number",
+      description: "10-digit phone number with formatting",
+      config: {
+        pattern: /^[0-9]{10}$/,
+maxLength: 10,
+transform: (value) => value.replace(/[^0-9]/g, ""),
+formatDisplay: (value) => {
+if (value.length <= 3) return value;
+if (value.length <= 6) return `${value.slice(0, 3)}-${value.slice(3)}`;
+return `${value.slice(0, 3)}-${value.slice(3, 6)}-${value.slice(6)}`;
+},
+},
+label: "Phone Number",
+placeholder: "123-456-7890",
+helperText: "Only digits allowed, formatted automatically",
+errorMessage: "Please enter a valid 10-digit phone number",
+},
+{
+id: "ssn",
+name: "SSN",
+description: "US Social Security Number with formatting",
+config: {
+pattern: /^[0-9]{9}$/,
+        maxLength: 9,
+        transform: (value) => value.replace(/[^0-9]/g, ""),
+        formatDisplay: (value) => {
+          if (value.length <= 3) return value;
+          if (value.length <= 5) return `${value.slice(0, 3)}-${value.slice(3)}`;
+          return `${value.slice(0, 3)}-${value.slice(3, 5)}-${value.slice(5)}`;
+},
+},
+label: "Social Security Number",
+placeholder: "123-45-6789",
+helperText: "Format: XXX-XX-XXXX (digits only)",
+errorMessage: "Please enter a valid SSN",
+},
+{
+id: "code",
+name: "Product Code",
+description: "Custom product code format",
+config: {
+pattern: /^[A-Z]{2}[0-9]{3}[A-Z]{1}$/,
+maxLength: 6,
+transform: (value) => value.toUpperCase().replace(/[^A-Z0-9]/g, ""),
+},
+label: "Product Code",
+placeholder: "AB123C",
+helperText: "Positions 0-1: Letters, 2-4: Digits, 5: Letter",
+errorMessage: "Please enter a valid product code",
+},
+];
+
+const handleValueChange = (id) => (value) => {
+setValues(prev => ({ ...prev, [id]: value }));
+};
+
+const handleValidationChange = (id) => (isValid) => {
+setValidations(prev => ({ ...prev, [id]: isValid }));
+};
+
+const handleSubmit = () => {
+console.log("Form values:", values);
+console.log("Validations:", validations);
+alert("Check console for values and validation states");
+};
+
+return (
+<div className="max-w-6xl mx-auto p-6 space-y-6">
+<div className="text-center space-y-2">
+<p className="text-muted-foreground">
+Smart regex-based input with automatic position-based character validation using regexp-tree AST parsing
+</p>
+<div className="text-sm text-muted-foreground">
+Try typing invalid characters at specific positions - they'll be rejected immediately!
+</div>
+</div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {examples.map((example) => (
+          <Card key={example.id}>
+            <CardHeader>
+              <CardTitle className="flex items-center justify-between">
+                {example.name}
+                {validations[example.id] && (
+                  <Badge variant="default">✓ Valid</Badge>
+                )}
+              </CardTitle>
+              <CardDescription>
+                {example.description}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <RegexInput
+                config={example.config}
+                label={example.label}
+                placeholder={example.placeholder}
+                helperText={example.helperText}
+                errorMessage={example.errorMessage}
+                onValueChange={handleValueChange(example.id)}
+                onValidationChange={handleValidationChange(example.id)}
+              />
+              <div className="mt-2 text-xs text-muted-foreground">
+                Raw value: <code className="bg-muted px-1 rounded">{values[example.id] || "Empty"}</code>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="flex justify-center">
+        <Button onClick={handleSubmit} className="w-full max-w-xs">
+          Submit All Forms
+        </Button>
+      </div>
+    </div>
+
+);
+}
+
+<RegexInputDemo />
+
+## Installation
+
+First install the required dependency:
+
+```bash
+npm install regexp-tree
+```
+
+Then copy the following files:
+
+<div className="bg-muted p-4 rounded-lg mt-4">
+  <h3 className="font-semibold mb-2">Required Files:</h3>
+  <div className="text-sm text-muted-foreground space-y-1">
+    <div>
+      <code className="bg-background px-1 rounded">
+        hooks/use-regex-input.ts
+      </code>{" "}
+      - Hook with regexp-tree parsing logic
+    </div>
+    <div>
+      <code className="bg-background px-1 rounded">
+        components/regex-input.tsx
+      </code>{" "}
+      - React component with shadcn styling
+    </div>
+  </div>
+</div>
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { RegexInput } from "@/components/regex-input";
+
+function MyForm() {
+  const panConfig = {
+    pattern: /^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/,
+    maxLength: 10,
+    transform: (value) => value.toUpperCase().replace(/[^A-Z0-9]/g, ""),
+  };
+
+  return (
+    <RegexInput
+      config={panConfig}
+      label="PAN Number"
+      placeholder="ABCDE1234F"
+      helperText="Enter your 10-character PAN"
+      errorMessage="Invalid PAN format"
+    />
+  );
+}
+```
+
+### With Formatting
+
+```tsx
+const phoneConfig = {
+  pattern: /^[0-9]{10}$/,
+  maxLength: 10,
+  transform: (value) => value.replace(/[^0-9]/g, ""),
+  formatDisplay: (value) => {
+    if (value.length <= 3) return value;
+    if (value.length <= 6) return `${value.slice(0, 3)}-${value.slice(3)}`;
+    return `${value.slice(0, 3)}-${value.slice(3, 6)}-${value.slice(6)}`;
+  },
+};
+```
+
+### With Validation Callbacks
+
+```tsx
+function MyForm() {
+  const [isValid, setIsValid] = useState(false);
+  const [value, setValue] = useState("");
+
+  return (
+    <RegexInput
+      config={config}
+      onValidationChange={setIsValid}
+      onValueChange={setValue}
+      showClearButton={true}
+    />
+  );
+}
+```
+
+## API Reference
+
+### RegexInput Props
+
+| Prop               | Type                         | Default | Description                                             |
+| ------------------ | ---------------------------- | ------- | ------------------------------------------------------- |
+| config             | `RegexInputConfig`           | -       | **Required**. Configuration object for regex validation |
+| label              | `string`                     | -       | Label text for the input                                |
+| helperText         | `string`                     | -       | Helper text shown below the input                       |
+| errorMessage       | `string`                     | -       | Error message shown when validation fails               |
+| onValidationChange | `(isValid: boolean) => void` | -       | Callback when validation state changes                  |
+| onValueChange      | `(value: string) => void`    | -       | Callback when input value changes                       |
+| showClearButton    | `boolean`                    | `true`  | Show/hide the clear button                              |
+
+### RegexInputConfig
+
+| Property      | Type                        | Description                                                  |
+| ------------- | --------------------------- | ------------------------------------------------------------ |
+| pattern       | `RegExp`                    | **Required**. Regular expression pattern to validate against |
+| maxLength     | `number`                    | **Required**. Maximum length of the input                    |
+| transform     | `(value: string) => string` | Optional function to transform input value (e.g., uppercase) |
+| formatDisplay | `(value: string) => string` | Optional function to format display value (e.g., add dashes) |
+
+## How it Works
+
+The component uses `regexp-tree` to parse your regular expression into an Abstract Syntax Tree (AST). It then analyzes the AST to determine which characters are allowed at each position in the input. This enables real-time validation as users type, preventing invalid characters from being entered.
+
+### Supported Regex Features
+
+- Character classes: `[A-Z]`, `[0-9]`, `[ABCD]`
+- Character ranges: `[A-Z]`, `[a-z]`, `[0-9]`
+- Quantifiers: `{3}`, `{1,5}`
+- Meta characters: `\d`, `\w`, `\s`
+- Specific character sets: `[PCFTABGHLJE]`
+
+### Example Pattern Analysis
+
+For the PAN pattern `/^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/`:
+
+- Positions 0-2: Only uppercase letters A-Z
+- Position 3: Only specific letters P,C,F,T,A,B,G,H,L,J,E
+- Position 4: Only uppercase letters A-Z
+- Positions 5-8: Only digits 0-9
+- Position 9: Only uppercase letters A-Z
