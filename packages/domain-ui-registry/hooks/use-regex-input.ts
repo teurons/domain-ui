@@ -1,230 +1,365 @@
 import { useState, useCallback, useMemo } from "react";
-import regexpTree from 'regexp-tree';
-const { parse } = regexpTree;
 
 /**
- * REGEX INPUT VALIDATION ALGORITHM
- * 
- * This hook implements real-time, position-based character validation using regex AST parsing.
- * 
- * ## How it works:
- * 
- * 1. **AST Parsing Phase**:
- *    - Parse the regex pattern into an Abstract Syntax Tree using regexp-tree
- *    - Walk through the AST to generate position-based rules
- *    - Each rule defines: { position: number, allowedChars: string }
- *    - Example: /^[A-Z]{3}$/ → rules for positions 0,1,2 allowing A-Z
- * 
- * 2. **Real-time Validation Phase**:
- *    - On each keystroke, validate character-by-character
- *    - For each character at position i: check if it's in allowedChars for position i
- *    - If character is invalid: reject it and stop processing further characters
- *    - If no rule exists for position: reject (natural length limiting)
- * 
- * 3. **Final Validation**:
- *    - Use regex.test(value) to determine if input is complete and valid
- *    - No artificial length calculations needed
- * 
- * ## Supported Regex Features:
- * 
- * - **Character Classes**: [A-Z], [0-9], [ABC] → Generates specific allowed characters
- * - **Character Ranges**: [A-Z] → Expands to ABCDEFG...XYZ
- * - **Quantifiers**: {3}, {1,5} → Repeats rules for multiple positions
- * - **Meta Characters**: \d (digits), \w (word chars), \s (whitespace)
- * - **Literal Characters**: Specific chars like 'A' or '5'
- * 
- * ## Edge Cases Handled:
- * 
- * 1. **Complex Nested Patterns**: 
- *    - Alternative expressions in AST body
- *    - Nested groups and repetitions
- * 
- * 2. **Parsing Failures**:
- *    - If regexp-tree fails to parse: return empty rules
- *    - Falls back to basic regex validation only
- * 
- * 3. **Empty or Missing Rules**:
- *    - No rule for position → character rejected (natural length limit)
- *    - Rule with empty allowedChars → allow any character (fallback)
- * 
- * 4. **Position Beyond Pattern**:
- *    - User tries to type past the pattern length
- *    - No rule exists → ALL SUBSEQUENT INPUT REJECTED
- *    - Prevents infinite input length naturally
- *    - Example: Pattern /^[A-Z]{3}$/ → positions 3+ have no rules → rejected
- * 
- * 5. **Invalid Characters**:
- *    - Character not in allowedChars for that position
- *    - Character rejected, input stops processing at that point
- * 
- * 6. **Smart Case Conversion**:
- *    - Pattern expects [A-Z] only → auto-convert lowercase to uppercase
- *    - Pattern expects [a-z] only → auto-convert uppercase to lowercase
- *    - Mixed case patterns [A-Za-z] → no conversion (both allowed)
+ * REGEX INPUT VALIDATION FOR IDENTITY INPUTS
+ *
+ * A lightweight, library-free approach for identity inputs (PAN, SSN, passport, email, etc.)
+ *
+ * ## Algorithm:
+ *
+ * 1. **Pattern Analysis** (one-time):
+ *    - Parse regex source string to identify character requirements per position
+ *    - Extract character classes [A-Z], [0-9], literal chars, and quantifiers {n}
+ *    - Detect case-sensitivity requirements for smart conversion
+ *
+ * 2. **Real-time Validation**:
+ *    - For each character: lookup expected type at that position
+ *    - Apply smart case conversion if needed (lowercase → uppercase)
+ *    - Validate transformed character against allowed set
+ *    - Stop processing on first invalid character
+ *
+ * 3. **Position Beyond Pattern**:
+ *    - Once input reaches pattern end → REJECT ALL SUBSEQUENT INPUT
+ *    - Natural length limiting without artificial constraints
+ *    - Example: PAN has 10 positions → position 11+ rejected completely
+ *
+ * 4. **Smart Case Conversion**:
+ *    - [A-Z] only → auto-convert lowercase to uppercase
+ *    - [a-z] only → auto-convert uppercase to lowercase
+ *    - [A-Za-z] mixed → no conversion (both allowed)
  *    - Algorithm:
- *      a) Analyze character set: isOnlyUppercase / isOnlyLowercase
- *      b) If user types wrong case: transform before validation
- *      c) If pattern allows both cases: no transformation
- *      d) Example: [A-Z] + input 'a' → convert to 'A' → validate
- * 
+ *      a) Analyze if position expects only upper/lower case
+ *      b) If wrong case provided: convert before validation
+ *      c) Validate transformed character against allowed set
+ *
  * ## Examples:
- * 
- * **Pattern: /^[A-Z]{3}[0-9]{2}$/
- * - Position 0,1,2: Allow A-Z
- * - Position 3,4: Allow 0-9
- * - Position 5+: No rules → reject
- * 
- * **User Input: "AB3CD"**
- * - A at pos 0: ✅ A-Z allowed
- * - B at pos 1: ✅ A-Z allowed  
- * - 3 at pos 2: ❌ A-Z required, got digit → reject, stop
- * - Result: "AB"
- * 
- * **Pattern: /^[PCFTABGHLJE]{1}$/
- * - Position 0: Allow only P,C,F,T,A,B,G,H,L,J,E
- * - Position 1+: No rules → reject
- * 
- * ## Algorithm Complexity:
- * - AST parsing: O(n) where n = regex complexity
- * - Per-character validation: O(1) lookup in allowedChars string
- * - Overall: Very fast real-time validation
+ *
+ * **PAN: /^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/
+ * - Positions 0-2: Uppercase letters (convert lowercase)
+ * - Position 3: Specific letters P,C,F,T,A,B,G,H,L,J,E (convert lowercase)
+ * - Position 4: Uppercase letters (convert lowercase)
+ * - Positions 5-8: Digits only
+ * - Position 9: Uppercase letters (convert lowercase)
+ * - Position 10+: NO RULES → ALL INPUT REJECTED
+ *
+ * **Input "abcp1234f":**
+ * - 'a' → 'A', 'b' → 'B', 'c' → 'C', 'p' → 'P', '1234', 'f' → 'F'
+ * - Result: "ABCP1234F" ✅
+ *
+ * **Input "abcp1234fx" (11th character):**
+ * - First 10 chars processed normally
+ * - 'x' at position 10: NO RULE → REJECTED
+ * - Result: "ABCP1234F" (stops at 10 chars)
+ *
+ * ## Performance: O(1) per character, zero dependencies
  */
 
-interface RegexAST {
-  type: string;
-  expressions?: RegexAST[];
-  expression?: RegexAST;
-  quantifier?: { from: number; to?: number };
-  kind?: string;
-  symbol?: string;
-  value?: string;
-  from?: { symbol: string };
-  to?: { symbol: string };
+// Character set constants for efficiency and clarity
+const UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const LOWERCASE_LETTERS = "abcdefghijklmnopqrstuvwxyz";
+const DIGITS = "0123456789";
+const WHITESPACE = " \t\n\r\f\v";
+
+// Regex constants for performance
+const UPPERCASE_REGEX = /[A-Z]/;
+const LOWERCASE_REGEX = /[a-z]/;
+
+type CharacterType = "uppercase" | "lowercase" | "digits" | "mixed" | "custom";
+
+interface PositionRule {
+  type: CharacterType;
+  allowedChars: string; // Only used for 'custom' type like [PCFTABGHLJE]
 }
 
-// Helper function to expand character ranges like A-Z, 0-9
-const expandCharacterRange = (from: string, to: string): string => {
-  const start = from.charCodeAt(0);
-  const end = to.charCodeAt(0);
-  let result = '';
-  
-  for (let i = start; i <= end; i++) {
-    result += String.fromCharCode(i);
+// Get character set for a given type
+const getCharacterSet = (type: CharacterType, customChars?: string): string => {
+  switch (type) {
+    case "uppercase":
+      return UPPERCASE_LETTERS;
+    case "lowercase":
+      return LOWERCASE_LETTERS;
+    case "digits":
+      return DIGITS;
+    case "mixed":
+      return UPPERCASE_LETTERS + LOWERCASE_LETTERS + DIGITS;
+    case "custom":
+      return customChars || "";
+    default:
+      return ""; // Unknown types → empty string → no characters allowed → reject all input
   }
-  
+};
+
+// Check if character is valid for the rule type
+const isCharacterValid = (char: string, rule: PositionRule): boolean => {
+  const allowedSet = getCharacterSet(rule.type, rule.allowedChars);
+  return allowedSet.includes(char);
+};
+
+// Apply smart case conversion based on rule type
+const transformCharacter = (char: string, rule: PositionRule): string => {
+  switch (rule.type) {
+    case "uppercase":
+      // Convert lowercase to uppercase
+      return char >= "a" && char <= "z" ? char.toUpperCase() : char;
+    case "lowercase":
+      // Convert uppercase to lowercase
+      return char >= "A" && char <= "Z" ? char.toLowerCase() : char;
+    case "custom": {
+      // For custom sets like [PCFTABGHLJE], check if it's uppercase-only
+      const isUppercaseSet =
+        rule.allowedChars === rule.allowedChars.toUpperCase() &&
+        UPPERCASE_REGEX.test(rule.allowedChars) &&
+        !LOWERCASE_REGEX.test(rule.allowedChars);
+      return isUppercaseSet && char >= "a" && char <= "z"
+        ? char.toUpperCase()
+        : char;
+    }
+    default:
+      return char; // No transformation for mixed, digits, or unknown types
+  }
+};
+
+// Helper to process character class patterns
+const processCharacterClass = (
+  pattern: string,
+  i: number,
+  position: number,
+  rules: Map<number, PositionRule>
+): { newPosition: number; newIndex: number } => {
+  const endBracket = pattern.indexOf("]", i);
+  if (endBracket === -1) {
+    return { newPosition: position, newIndex: i + 1 };
+  }
+
+  const charClass = pattern.slice(i + 1, endBracket);
+  const rule = parseCharacterClass(charClass);
+  const quantifier = parseQuantifier(pattern, endBracket + 1);
+  const repeatCount = quantifier.count;
+
+  // Apply rule to multiple positions
+  let currentPosition = position;
+  for (let j = 0; j < repeatCount; j++) {
+    rules.set(currentPosition, rule);
+    currentPosition++;
+  }
+
+  return {
+    newPosition: currentPosition,
+    newIndex: endBracket + 1 + quantifier.consumed,
+  };
+};
+
+// Helper to process meta character patterns
+const processMetaCharacter = (
+  pattern: string,
+  i: number,
+  position: number,
+  rules: Map<number, PositionRule>
+): { newPosition: number; newIndex: number } => {
+  const metaChar = pattern[i + 1];
+  if (!metaChar) {
+    return { newPosition: position, newIndex: i + 2 };
+  }
+
+  const rule = parseMetaCharacter(metaChar);
+  const quantifier = parseQuantifier(pattern, i + 2);
+  const repeatCount = quantifier.count;
+
+  // Apply rule to multiple positions
+  let currentPosition = position;
+  for (let j = 0; j < repeatCount; j++) {
+    rules.set(currentPosition, rule);
+    currentPosition++;
+  }
+
+  return {
+    newPosition: currentPosition,
+    newIndex: i + 2 + quantifier.consumed,
+  };
+};
+
+// Helper to process literal characters
+const processLiteralCharacter = (
+  pattern: string,
+  i: number,
+  position: number,
+  rules: Map<number, PositionRule>
+): { newPosition: number; newIndex: number } => {
+  const literalChar = pattern[i];
+  if (!literalChar) {
+    return { newPosition: position, newIndex: i + 1 };
+  }
+
+  const rule: PositionRule = {
+    type: "custom",
+    allowedChars: literalChar,
+  };
+
+  rules.set(position, rule);
+  return { newPosition: position + 1, newIndex: i + 1 };
+};
+
+// Simple pattern analysis for common identity input patterns
+const analyzeSimplePattern = (regex: RegExp): Map<number, PositionRule> => {
+  const source = regex.source;
+  const rules = new Map<number, PositionRule>();
+  const pattern = source.replace(/^\^|\$$/g, "");
+
+  let position = 0;
+  let i = 0;
+
+  while (i < pattern.length) {
+    if (pattern[i] === "[") {
+      const result = processCharacterClass(pattern, i, position, rules);
+      position = result.newPosition;
+      i = result.newIndex;
+    } else if (pattern[i] === "\\" && i + 1 < pattern.length) {
+      const result = processMetaCharacter(pattern, i, position, rules);
+      position = result.newPosition;
+      i = result.newIndex;
+    } else {
+      const result = processLiteralCharacter(pattern, i, position, rules);
+      position = result.newPosition;
+      i = result.newIndex;
+    }
+  }
+
+  return rules;
+};
+
+// Helper to check common character class patterns
+const parseCommonPatterns = (charClass: string): PositionRule | null => {
+  if (charClass === "A-Z") {
+    return { type: "uppercase", allowedChars: "" };
+  }
+  if (charClass === "a-z") {
+    return { type: "lowercase", allowedChars: "" };
+  }
+  if (charClass === "0-9") {
+    return { type: "digits", allowedChars: "" };
+  }
+  if (charClass === "A-Za-z") {
+    return { type: "mixed", allowedChars: "" };
+  }
+  if (charClass === "A-Z0-9") {
+    return { type: "mixed", allowedChars: "" };
+  }
+  return null;
+};
+
+// Helper to expand character ranges like A-Z, a-z, 0-9
+const expandCharacterRanges = (charClass: string): string => {
+  let expandedChars = "";
+  const ranges = charClass.match(/.-./g) || [];
+
+  for (const range of ranges) {
+    const start = range.charCodeAt(0);
+    const end = range.charCodeAt(2);
+    for (let code = start; code <= end; code++) {
+      expandedChars += String.fromCharCode(code);
+    }
+  }
+
+  return expandedChars;
+};
+
+// Helper to add individual characters from character class
+const addIndividualChars = (
+  charClass: string,
+  expandedChars: string
+): string => {
+  const individuals = charClass.replace(/.-./g, "");
+  let result = expandedChars;
+
+  for (const individualChar of individuals) {
+    if (!result.includes(individualChar)) {
+      result += individualChar;
+    }
+  }
+
   return result;
 };
 
-// Helper function to extract allowed characters from character class
-const extractAllowedChars = (expressions: RegexAST[]): string => {
-  let allowed = '';
-  
-  for (const expr of expressions) {
-    if (expr.type === 'ClassRange' && expr.from && expr.to) {
-      allowed += expandCharacterRange(expr.from.symbol || '', expr.to.symbol || '');
-    } else if (expr.type === 'Char') {
-      allowed += expr.symbol || expr.value || '';
+// Helper to determine character type based on content
+const determineCharType = (chars: string): CharacterType => {
+  let hasUppercase = false;
+  let hasLowercase = false;
+
+  for (const char of chars) {
+    if (char >= "A" && char <= "Z") {
+      hasUppercase = true;
+    }
+    if (char >= "a" && char <= "z") {
+      hasLowercase = true;
     }
   }
-  
-  return allowed;
+
+  if (hasUppercase && !hasLowercase) {
+    return "uppercase";
+  }
+  if (hasLowercase && !hasUppercase) {
+    return "lowercase";
+  }
+  return "custom";
 };
 
-// Parse regex AST to get position-based rules using regexp-tree
-const parseRegexForPositionRules = (pattern: RegExp) => {
-  const rules = new Map<number, { allowedChars: string; isUppercase: boolean; isLowercase: boolean }>();
-  
-  try {
-    const ast = parse(pattern) as RegexAST;
-    
-    const analyzeCharacterSet = (chars: string) => {
-      const hasUppercase = /[A-Z]/.test(chars);
-      const hasLowercase = /[a-z]/.test(chars);
-      const isOnlyUppercase = hasUppercase && !hasLowercase && !/[0-9]/.test(chars);
-      const isOnlyLowercase = hasLowercase && !hasUppercase && !/[0-9]/.test(chars);
-      
-      return {
-        allowedChars: chars,
-        isUppercase: isOnlyUppercase,
-        isLowercase: isOnlyLowercase
-      };
-    };
-    
-    const processExpression = (expr: RegexAST, currentPosition: number): number => {
-      let position = currentPosition;
-      
-      if (expr.type === 'Repetition' && expr.expression) {
-        const repetitions = expr.quantifier?.from || 1;
-        let ruleInfo = { allowedChars: '', isUppercase: false, isLowercase: false };
-        
-        if (expr.expression.type === 'CharacterClass' && expr.expression.expressions) {
-          const chars = extractAllowedChars(expr.expression.expressions);
-          ruleInfo = analyzeCharacterSet(chars);
-        } else if (expr.expression.type === 'Char') {
-          const chars = expr.expression.symbol || expr.expression.value || '';
-          ruleInfo = analyzeCharacterSet(chars);
-        } else if (expr.expression.type === 'Meta' && expr.expression.kind === 'd') {
-          ruleInfo = analyzeCharacterSet('0123456789');
-        } else if (expr.expression.type === 'Meta' && expr.expression.kind === 'w') {
-          ruleInfo = analyzeCharacterSet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_');
-        }
-        
-        // Apply the rule to multiple positions based on quantifier
-        for (let i = 0; i < repetitions; i++) {
-          rules.set(position, ruleInfo);
-          position++;
-        }
-        
-        return position;
-      }
-      
-      if (expr.type === 'CharacterClass' && expr.expressions) {
-        const chars = extractAllowedChars(expr.expressions);
-        rules.set(position, analyzeCharacterSet(chars));
-        return position + 1;
-      }
-      
-      if (expr.type === 'Char') {
-        const chars = expr.symbol || expr.value || '';
-        rules.set(position, analyzeCharacterSet(chars));
-        return position + 1;
-      }
-      
-      if (expr.type === 'Meta') {
-        let chars = '';
-        if (expr.kind === 'd') {
-          chars = '0123456789';
-        } else if (expr.kind === 'w') {
-          chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_';
-        } else if (expr.kind === 's') {
-          chars = ' \t\n\r\f\v';
-        }
-        
-        rules.set(position, analyzeCharacterSet(chars));
-        return position + 1;
-      }
-      
-      return position;
-    };
-    
-    const body = (ast as any).body;
-    if (body?.type === 'Alternative' && body.expressions) {
-      let currentPosition = 0;
-      for (const expr of body.expressions) {
-        currentPosition = processExpression(expr, currentPosition);
-      }
-    } else if (body?.expressions) {
-      let currentPosition = 0;
-      for (const expr of body.expressions) {
-        currentPosition = processExpression(expr, currentPosition);
-      }
-    }
-  } catch {
-    // If parsing fails, return empty rules array
-    // This will fall back to basic regex validation
+// Parse character class like "A-Z", "0-9", "A-Za-z", "PCFTABGHLJE"
+const parseCharacterClass = (charClass: string): PositionRule => {
+  // Check common patterns first
+  const commonPattern = parseCommonPatterns(charClass);
+  if (commonPattern) {
+    return commonPattern;
   }
-  
-  return rules;
+
+  // Handle ranges
+  if (charClass.includes("-")) {
+    let expandedChars = expandCharacterRanges(charClass);
+    expandedChars = addIndividualChars(charClass, expandedChars);
+
+    const charType = determineCharType(expandedChars);
+
+    return {
+      type: charType === "custom" ? "custom" : charType,
+      allowedChars: charType === "custom" ? expandedChars : "",
+    };
+  }
+
+  // Custom character set like "PCFTABGHLJE"
+  return { type: "custom", allowedChars: charClass };
+};
+
+// Parse meta characters like \d, \w, \s
+const parseMetaCharacter = (metaChar: string): PositionRule => {
+  switch (metaChar) {
+    case "d":
+      return { type: "digits", allowedChars: "" };
+    case "w":
+      return { type: "mixed", allowedChars: "" }; // \w includes letters, digits, underscore
+    case "s":
+      return { type: "custom", allowedChars: WHITESPACE };
+    default:
+      return { type: "custom", allowedChars: "" };
+  }
+};
+
+// Parse quantifiers like {3}, {1,5}
+const parseQuantifier = (
+  pattern: string,
+  startIndex: number
+): { count: number; consumed: number } => {
+  if (startIndex >= pattern.length || pattern[startIndex] !== "{") {
+    return { count: 1, consumed: 0 };
+  }
+
+  const endBrace = pattern.indexOf("}", startIndex);
+  if (endBrace === -1) {
+    return { count: 1, consumed: 0 };
+  }
+
+  const quantifierContent = pattern.slice(startIndex + 1, endBrace);
+  const count = Number.parseInt(quantifierContent.split(",")[0] || "1", 10);
+
+  return { count, consumed: endBrace - startIndex + 1 };
 };
 
 export interface UseRegexInputProps {
@@ -239,11 +374,12 @@ export const useRegexInput = ({
   onChange,
 }: UseRegexInputProps) => {
   const [uncontrolledValue, setUncontrolledValue] = useState("");
-  const value = controlledValue !== undefined ? controlledValue : uncontrolledValue;
-  
-  // Parse regex to get position-based rules using regexp-tree
+  const value =
+    controlledValue !== undefined ? controlledValue : uncontrolledValue;
+
+  // Parse regex to get position-based rules (memoized)
   const positionRules = useMemo(() => {
-    return parseRegexForPositionRules(regex);
+    return analyzeSimplePattern(regex);
   }, [regex]);
 
   const isValid = useMemo(() => {
@@ -251,35 +387,25 @@ export const useRegexInput = ({
   }, [value, regex]);
 
   const validateAndTransformChar = useCallback(
-    (char: string, position: number): { isValid: boolean; transformedChar: string } => {
+    (
+      inputChar: string,
+      position: number
+    ): { isValid: boolean; transformedChar: string } => {
       const rule = positionRules.get(position);
-      
+
       // If no rule found, this position is beyond the pattern length
+      // REJECT ALL SUBSEQUENT INPUT
       if (!rule) {
-        return { isValid: false, transformedChar: char };
+        return { isValid: false, transformedChar: inputChar };
       }
-      
-      // If rule has empty allowedChars, fall back to basic validation
-      if (!rule.allowedChars) {
-        return { isValid: true, transformedChar: char };
-      }
-      
-      // Smart case conversion
-      let transformedChar = char;
-      
-      // If pattern expects uppercase and we get lowercase, convert it
-      if (rule.isUppercase && char >= 'a' && char <= 'z') {
-        transformedChar = char.toUpperCase();
-      }
-      // If pattern expects lowercase and we get uppercase, convert it  
-      else if (rule.isLowercase && char >= 'A' && char <= 'Z') {
-        transformedChar = char.toLowerCase();
-      }
-      
-      // Check if the (possibly transformed) character is allowed
-      const isValid = rule.allowedChars.includes(transformedChar);
-      
-      return { isValid, transformedChar };
+
+      // Apply smart case conversion
+      const transformedChar = transformCharacter(inputChar, rule);
+
+      // Check if the transformed character is valid
+      const isCharValid = isCharacterValid(transformedChar, rule);
+
+      return { isValid: isCharValid, transformedChar };
     },
     [positionRules]
   );
@@ -291,13 +417,18 @@ export const useRegexInput = ({
       // Validate and transform each character at its position
       let validatedValue = "";
       for (let i = 0; i < newValue.length; i++) {
-        const inputChar = newValue[i];
-        const { isValid, transformedChar } = validateAndTransformChar(inputChar ?? '', i);
-        
-        if (isValid) {
+        const currentChar = newValue[i];
+        if (!currentChar) {
+          continue;
+        }
+
+        const { isValid: isCharValid, transformedChar } =
+          validateAndTransformChar(currentChar, i);
+
+        if (isCharValid) {
           validatedValue += transformedChar;
         } else {
-          // Reject invalid character - don't add it and stop processing
+          // Reject invalid character - ALL SUBSEQUENT INPUT REJECTED
           break;
         }
       }

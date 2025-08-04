@@ -45,7 +45,11 @@
       "Bash(pnpm biome:lint:*)",
       "Bash(npx ultracite@latest lint)",
       "Bash(pnpm add:*)",
-      "Bash(npx ultracite@latest lint --max-diagnostics=1000)"
+      "Bash(npx ultracite@latest lint --max-diagnostics=1000)",
+      "Bash(pnpm remove:*)",
+      "Bash(npx ultracite@latest lint packages/domain-ui-registry/hooks/use-regex-input.ts packages/domain-ui-registry/components/domain-ui/regex-input.tsx packages/content/docs/ui/regex-input.mdx)",
+      "Bash(npx ultracite@latest lint --max-diagnostics=50 packages/domain-ui-registry/hooks/use-regex-input.ts packages/domain-ui-registry/components/domain-ui/regex-input.tsx)",
+      "Bash(npx @biomejs/biome lint:*)"
     ],
     "deny": []
   }
