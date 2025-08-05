@@ -49,8 +49,8 @@
       "name": "page-title",
       "type": "registry:block",
       "registryDependencies": [
-        "http://localhost:3000/r/domain-ui/heading.json",
-        "http://localhost:3000/r/domain-ui/sub-heading.json"
+        "http://localhost:3000/r/heading.json",
+        "http://localhost:3000/r/sub-heading.json"
       ],
       "files": [
         {

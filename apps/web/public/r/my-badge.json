@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "my-badge",
+  "type": "registry:component",
+  "registryDependencies": [
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "components/domain-ui/my-badge.tsx",
+      "content": "import { Badge } from \"@/registry/default/components/ui/badge\";\n\ninterface ComponentProps {\n  className?: string;\n}\n\nexport default function Component({ className }: ComponentProps) {\n  return (\n    <Badge variant={\"default\"} className={className}>\n      My Domain UI Free Badge\n    </Badge>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "tailwind": {
+    "config": {}
+  }
+}
