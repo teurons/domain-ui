@@ -21,10 +21,8 @@ export const env = createEnv({
     // Supabase variables are now available in production
     NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
-    // Only Polar product ID remains optional in production
-    NEXT_PUBLIC_POLAR_PRODUCT_ID: isProduction
-      ? z.string().optional()
-      : z.string(),
+    // Polar product ID is optional (not available in production yet)
+    NEXT_PUBLIC_POLAR_PRODUCT_ID: z.string().optional(),
   },
   runtimeEnv: {
     POLAR_ACCESS_TOKEN: process.env.POLAR_ACCESS_TOKEN,
