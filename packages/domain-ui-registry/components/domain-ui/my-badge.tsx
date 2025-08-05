@@ -5,5 +5,9 @@ interface ComponentProps {
 }
 
 export default function Component({ className }: ComponentProps) {
-  return <Badge variant={"default"} className={className}>My Domain UI Free Badge</Badge>;
+  return (
+    <Badge variant={"default"} className={className}>
+      My Domain UI Free Badge
+    </Badge>
+  );
 }

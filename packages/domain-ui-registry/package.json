@@ -10,6 +10,7 @@
   },
   "exports": {
     "./lib/*": "./lib/*.ts",
+    "./hooks/*": "./hooks/*.ts",
     "./components/*": "./components/*.tsx"
   },
   "keywords": [],
