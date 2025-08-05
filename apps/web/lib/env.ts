@@ -1,7 +1,7 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
-// Check if we're in production environment
+// Check if we're in production environment (only works server-side)
 const isProduction = process.env.VERCEL_ENV === "production";
 
 export const env = createEnv({
@@ -18,13 +18,10 @@ export const env = createEnv({
       : z.string().transform((val) => val === "true"),
   },
   client: {
-    // Make Supabase variables optional in production until auth is deployed
-    NEXT_PUBLIC_SUPABASE_URL: isProduction
-      ? z.string().url().optional()
-      : z.string().url(),
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: isProduction
-      ? z.string().optional()
-      : z.string(),
+    // Supabase variables are now available in production
+    NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
+    // Only Polar product ID remains optional in production
     NEXT_PUBLIC_POLAR_PRODUCT_ID: isProduction
       ? z.string().optional()
       : z.string(),
