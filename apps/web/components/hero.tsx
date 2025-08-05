@@ -75,7 +75,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="max-w-2xl text-center text-foreground/90 text-xl leading-relaxed tracking-tight md:text-xl">
+            <p className="max-w-3xl text-center text-foreground/90 text-xl leading-relaxed tracking-tight md:text-xl">
               Use-case driven components you can copy-paste for fintech,
               finance, KYC, trading, and more.
             </p>
