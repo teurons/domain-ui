@@ -38,22 +38,18 @@ export default function Hero() {
         <div className="flex flex-col items-center justify-center gap-8 py-20 lg:py-40">
           <div>
             <Announcement>
-              <AnnouncementTag>Latest</AnnouncementTag>
-              <Link href="blog/solution/setup-blog-with-fuma-docs">
-                <AnnouncementTitle>
-                  Setup a Blog using FumaDocs
-                  <ArrowUpRightIcon
-                    size={16}
-                    className="shrink-0 text-muted-foreground"
-                  />
-                </AnnouncementTitle>
-              </Link>
+              <AnnouncementTag>domain-ui</AnnouncementTag>
+              <AnnouncementTitle>
+                use with shadcn/cli or copy paste
+              </AnnouncementTitle>
             </Announcement>
           </div>
           <div className="flex flex-col gap-4">
             <h1 className="max-w-2xl text-center font-regular text-5xl tracking-tighter md:text-7xl">
-              <span className="text-spektr-cyan-50">I am Rajiv</span>
-              <span className="relative flex w-full justify-center overflow-hidden text-center md:pt-1 md:pb-4">
+              <span className="text-spektr-cyan-50">
+                Domain-Specific React Components
+              </span>
+              <span className="relative flex hidden w-full justify-center overflow-hidden text-center md:pt-1 md:pb-4">
                 &nbsp;
                 {titles.map((title, index) => (
                   <motion.span
@@ -80,8 +76,8 @@ export default function Hero() {
             </h1>
 
             <p className="max-w-2xl text-center text-lg text-muted-foreground leading-relaxed tracking-tight md:text-xl">
-              Welcome to domain-ui - This is where I document my work on open
-              source projects, company and articulate thoughts and ideas.
+              Use-case driven components you can copy-paste for fintech,
+              finance, KYC, trading, and more.
             </p>
           </div>
           <div className="flex flex-row gap-3">
