@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf node_modules",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "registry:build": "shadcn build -o ../../apps/web/public/r/domain-ui && sed -i '' 's/@workspace\\/domain-ui-registry/@\\/registry\\/default/g' ../../apps/web/public/r/domain-ui/*.json"
+    "registry:build": "shadcn build -o ../../apps/web/public/r && sed -i '' 's/@workspace\\/domain-ui-registry/@\\/registry\\/default/g' ../../apps/web/public/r/*.json"
   },
   "exports": {
     "./lib/*": "./lib/*.ts",

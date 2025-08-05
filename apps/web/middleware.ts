@@ -78,13 +78,8 @@ async function handleRegistryRoute(request: NextRequest) {
 async function handleStaticRegistryFiles(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Free components - allow public access
-  if (pathname.startsWith("/r/domain-ui/")) {
-    return NextResponse.next();
-  }
-
   // Pro components - require token validation
-  if (pathname.startsWith("/r/domain-ui-pro/")) {
+  if (pathname.startsWith("/r-pro/")) {
     const token = request.nextUrl.searchParams.get("token");
 
     if (!token) {
@@ -103,6 +98,11 @@ async function handleStaticRegistryFiles(request: NextRequest) {
       );
     }
 
+    return NextResponse.next();
+  }
+
+  // Free components (/r/) - allow public access
+  if (pathname.startsWith("/r/")) {
     return NextResponse.next();
   }
 
@@ -113,13 +113,8 @@ async function handleStaticRegistryFiles(request: NextRequest) {
 async function handleApiRegistryRoutes(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Free components API - allow public access
-  if (pathname.startsWith("/api/registry/domain-ui/")) {
-    return NextResponse.next();
-  }
-
   // Pro components API - require token validation
-  if (pathname.startsWith("/api/registry/domain-ui-pro/")) {
+  if (pathname.startsWith("/api/registry/pro/")) {
     const token = request.nextUrl.searchParams.get("token");
 
     if (!token) {
@@ -138,6 +133,11 @@ async function handleApiRegistryRoutes(request: NextRequest) {
       );
     }
 
+    return NextResponse.next();
+  }
+
+  // Free components API - allow public access
+  if (pathname.startsWith("/api/registry/")) {
     return NextResponse.next();
   }
 
@@ -149,16 +149,17 @@ export const config = {
   matcher: [
     "/registry/:path*",
     "/r/:path*",
+    "/r-pro/:path*",
     "/api/registry/:path*",
     /*
      * Match all request paths except for the ones starting with:
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - r/ (registry static files - handled separately)
+     * - r/ and r-pro/ (registry static files - handled separately)
      * - api/registry/ (registry API routes - handled separately)
      * Feel free to modify this pattern to include more paths.
      */
-    "/((?!_next/static|_next/image|favicon.ico|r/|api/registry/|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|r/|r-pro/|api/registry/|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

@@ -5,7 +5,7 @@ import type { CodeBlockProps as BaseCodeBlockProps } from "fumadocs-ui/component
 
 interface DynamicRegistryCodeBlockProps {
   name: string;
-  registry?: "domain-ui" | "domain-ui-pro";
+  registry?: "free" | "pro";
   filePath?: string;
   fileType?: string;
   wrapper?: BaseCodeBlockProps;
@@ -43,13 +43,14 @@ function getRegistryBaseUrl(): string {
 
 export default function DynamicRegistryCodeBlock({
   name,
-  registry = "domain-ui",
+  registry = "free",
   filePath,
   fileType,
   wrapper,
 }: DynamicRegistryCodeBlockProps) {
   const baseUrl = getRegistryBaseUrl();
-  const url = `${baseUrl}/r/${registry}/${name}.json`;
+  const registryPath = registry === "pro" ? "/r-pro" : "/r";
+  const url = `${baseUrl}${registryPath}/${name}.json`;
 
   return (
     <RegistryCodeBlock
