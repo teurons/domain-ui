@@ -3,23 +3,13 @@ title: Regex Input
 description: An input component with real-time regex validation and smart character conversion.
 ---
 
-import { RegexInput } from "@workspace/domain-ui-registry/components/domain-ui/regex-input";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@workspace/shadverse/components/card";
-import { Badge } from "@workspace/shadverse/components/badge";
-import { Label } from "@workspace/shadverse/components/label";
+import { PanInput } from "@workspace/domain-ui-registry/components/domain-ui/pan-input";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@workspace/shadverse/components/tabs";
-import React, { useState } from "react";
 
 # Regex Input
 
@@ -27,48 +17,7 @@ An input component with real-time regex validation and smart character conversio
 
 ## Demo
 
-export function RegexInputDemo() {
-  const [pan, setPan] = useState("");
-  const regex = /^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/;
-  const isValid = regex.test(pan);
-  const hasValue = pan.length > 0;
-
-return (
-
-<Card className="w-full max-w-md">
-  <CardHeader>
-    <CardTitle className="flex items-center justify-between">
-      PAN Number
-      {hasValue && (
-        <Badge variant={isValid ? "default" : "secondary"}>
-          {isValid ? "✓ Valid" : "Invalid"}
-        </Badge>
-      )}
-    </CardTitle>
-    <CardDescription>
-      Indian PAN format: 3 letters, specific 4th letter, 1 letter, 4 digits, 1
-      letter
-    </CardDescription>
-  </CardHeader>
-  <CardContent>
-    <div className="space-y-2">
-      <Label htmlFor="pan">PAN Number</Label>
-      <RegexInput
-        id="pan"
-        regex={regex}
-        placeholder="ABCDE1234F"
-        value={pan}
-        onChange={(e) => setPan(e.target.value)}
-      />
-      <p className="text-sm text-muted-foreground">
-        Try typing: abcp1234f (lowercase will auto-convert to uppercase)
-      </p>
-    </div>
-  </CardContent>
-</Card>
-); }
-
-<RegexInputDemo />
+<PanInput />
 
 ## Installation
 

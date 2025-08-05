@@ -13,11 +13,12 @@
     "docs:dev": "turbo dev --filter=docs",
     "docs:build": "turbo build --filter=docs",
     "web:dev": "turbo dev --filter=web",
-    "web:build": "turbo build --filter=web",
+    "web:build": "pnpm replace-registry-urls && turbo build --filter=web",
     "web:start": "pnpm --filter web start",
     "domain:build": "pnpm --filter @workspace/domain-ui-registry registry:build",
     "domain-pro:build": "pnpm --filter @workspace/domain-ui-pro-registry registry:build",
     "registry:build": "pnpm domain:build && pnpm domain-pro:build",
+    "replace-registry-urls": "if [ \"$VERCEL_URL\" ]; then sed -i '' 's|http://localhost:3000|https://'$VERCEL_URL'|g' packages/domain-ui-registry/registry.json apps/web/public/r/domain-ui/*.json apps/web/public/r/domain-ui-pro/*.json 2>/dev/null || true; fi",
     "update-common-packages": "pnpm update fumadocs-core fumadocs-mdx fumadocs-ui next tailwindcss tw-animate-css react react-dom lucide-react better-auth @tailwindcss/postcss @types/mdx postcss kysely @types/react @types/react-dom zod tailwind-merge --recursive --latest",
     "organize-imports": "organize-imports-cli packages/ui/src/**/*.{ts,tsx}"
   },

@@ -1,3 +1,5 @@
+"use client";
+
 import type * as React from "react";
 import { Input } from "@workspace/domain-ui-registry/components/ui/input";
 import { useRegexInput } from "@workspace/domain-ui-registry/hooks/use-regex-input";
