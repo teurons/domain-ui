@@ -3,15 +3,18 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    POLAR_ACCESS_TOKEN: z.string(),
-    POLAR_ORG_ID: z.string(),
-    POLAR_PRODUCT_ID: z.string(),
-    POLAR_IS_SANDBOX: z.string().transform((val) => val === "true"),
+    POLAR_ACCESS_TOKEN: z.string().optional(),
+    POLAR_ORG_ID: z.string().optional(),
+    POLAR_PRODUCT_ID: z.string().optional(),
+    POLAR_IS_SANDBOX: z
+      .string()
+      .optional()
+      .transform((val) => val === "true"),
   },
   client: {
-    NEXT_PUBLIC_SUPABASE_URL: z.string().url(),
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
-    NEXT_PUBLIC_POLAR_PRODUCT_ID: z.string(),
+    NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional(),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().optional(),
+    NEXT_PUBLIC_POLAR_PRODUCT_ID: z.string().optional(),
   },
   runtimeEnv: {
     POLAR_ACCESS_TOKEN: process.env.POLAR_ACCESS_TOKEN,

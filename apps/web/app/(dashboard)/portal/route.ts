@@ -5,7 +5,7 @@ import { log } from "@/lib/logger";
 import { findCustomerIdByExternalId } from "@/lib/polar-client";
 
 export const GET = CustomerPortal({
-  accessToken: env.POLAR_ACCESS_TOKEN,
+  accessToken: env.POLAR_ACCESS_TOKEN || "",
   server: env.POLAR_IS_SANDBOX ? "sandbox" : "production",
   getCustomerId: async () => {
     try {
