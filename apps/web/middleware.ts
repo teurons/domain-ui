@@ -3,6 +3,9 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/shadcn/registry/utils";
 
+// Routes that require authentication
+const AUTHENTICATED_ROUTES = ["/dashboard", "/portal", "/checkout", "/subscription"];
+
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
@@ -21,8 +24,13 @@ export async function middleware(request: NextRequest) {
     return handleApiRegistryRoutes(request);
   }
 
-  // For all other routes, just update session if needed
-  return await updateSession(request);
+  // Only require authentication for specific routes
+  if (AUTHENTICATED_ROUTES.some(route => pathname.startsWith(route))) {
+    return await updateSession(request);
+  }
+
+  // For all other routes (homepage, docs, etc.), just continue without authentication
+  return NextResponse.next();
 }
 
 async function handleRegistryRoute(request: NextRequest) {

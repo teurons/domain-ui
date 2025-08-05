@@ -11,7 +11,7 @@
     "lint:fix": "next lint --fix",
     "typecheck": "tsc --noEmit",
     "postinstall": "fumadocs-mdx",
-    "replace-registry-urls": "if [ \"$VERCEL_URL\" ]; then sed -i '' 's|http://localhost:3000|https://'$VERCEL_URL'|g' ../../packages/domain-ui-registry/registry.json public/r/domain-ui/*.json public/r/domain-ui-pro/*.json 2>/dev/null || true; fi"
+    "replace-registry-urls": "if [ \"$VERCEL_URL\" ]; then sed -i '' 's|http://localhost:3000|https://'$VERCEL_URL'|g' public/r/domain-ui/*.json public/r/domain-ui-pro/*.json 2>/dev/null || true; fi"
   },
   "dependencies": {
     "@foundations/cms": "workspace:*",
