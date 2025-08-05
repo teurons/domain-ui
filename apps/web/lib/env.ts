@@ -1,20 +1,33 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
+// Check if we're in production environment
+const isProduction = process.env.VERCEL_ENV === "production";
+
 export const env = createEnv({
   server: {
-    POLAR_ACCESS_TOKEN: z.string().optional(),
-    POLAR_ORG_ID: z.string().optional(),
-    POLAR_PRODUCT_ID: z.string().optional(),
-    POLAR_IS_SANDBOX: z
-      .string()
-      .optional()
-      .transform((val) => val === "true"),
+    // Make Polar variables optional in production until auth/payments are deployed
+    POLAR_ACCESS_TOKEN: isProduction ? z.string().optional() : z.string(),
+    POLAR_ORG_ID: isProduction ? z.string().optional() : z.string(),
+    POLAR_PRODUCT_ID: isProduction ? z.string().optional() : z.string(),
+    POLAR_IS_SANDBOX: isProduction
+      ? z
+          .string()
+          .optional()
+          .transform((val) => val === "true")
+      : z.string().transform((val) => val === "true"),
   },
   client: {
-    NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional(),
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().optional(),
-    NEXT_PUBLIC_POLAR_PRODUCT_ID: z.string().optional(),
+    // Make Supabase variables optional in production until auth is deployed
+    NEXT_PUBLIC_SUPABASE_URL: isProduction
+      ? z.string().url().optional()
+      : z.string().url(),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: isProduction
+      ? z.string().optional()
+      : z.string(),
+    NEXT_PUBLIC_POLAR_PRODUCT_ID: isProduction
+      ? z.string().optional()
+      : z.string(),
   },
   runtimeEnv: {
     POLAR_ACCESS_TOKEN: process.env.POLAR_ACCESS_TOKEN,
