@@ -65,12 +65,12 @@ export default function HomePage() {
           </div>
         </div>
 
-        <RecentPosts
+        {/* <RecentPosts
           configuration={getBlogConfiguration()}
           posts={getBlogPosts()}
           heading="Recent Posts"
           description="The recently published"
-        />
+        /> */}
       </div>
     </div>
   );

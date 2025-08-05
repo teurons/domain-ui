@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useMemo, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { MoveRight, PuzzleIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@workspace/shadverse/components/button";
@@ -20,6 +20,8 @@ export default function Hero() {
     () => ["learner", "developer", "hacker", "builder", "entrepreneur"],
     []
   );
+  const titleRef = useRef(null);
+  const isInView = useInView(titleRef, { once: false, amount: 0.3 });
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -45,9 +47,55 @@ export default function Hero() {
             </Announcement>
           </div>
           <div className="flex flex-col gap-4">
-            <h1 className="max-w-3xl text-center font-regular text-5xl tracking-tighter md:text-8xl">
+            <h1
+              ref={titleRef}
+              className="max-w-3xl text-center font-regular text-5xl tracking-tighter md:text-8xl"
+            >
               <span className="text-spektr-cyan-50">
-                Domain First UI Components
+                <span className="relative inline-block">
+                  {["D", "o", "m", "a", "i", "n"].map((letter, index) => (
+                    <motion.span
+                      key={index}
+                      initial={{ opacity: 0.7 }}
+                      animate={{ opacity: isInView ? 1 : 0.7 }}
+                      transition={{
+                        duration: 0.1,
+                        delay: isInView ? 1 + index * 0.15 : 0,
+                      }}
+                    >
+                      {letter}
+                    </motion.span>
+                  ))}
+                  <motion.span
+                    className="absolute bottom-0 left-0 h-1 bg-current opacity-70 md:h-1"
+                    initial={{ width: 0 }}
+                    animate={{ width: isInView ? "100%" : 0 }}
+                    transition={{ duration: 1.5, delay: isInView ? 1 : 0 }}
+                  />
+                </span>{" "}
+                <span className="opacity-80">First</span>{" "}
+                <span className="relative inline-block">
+                  {["U", "I"].map((letter, index) => (
+                    <motion.span
+                      key={index}
+                      initial={{ opacity: 0.7 }}
+                      animate={{ opacity: isInView ? 1 : 0.7 }}
+                      transition={{
+                        duration: 0.1,
+                        delay: isInView ? 3.5 + index * 0.15 : 0,
+                      }}
+                    >
+                      {letter}
+                    </motion.span>
+                  ))}
+                  <motion.span
+                    className="absolute bottom-0 left-0 h-1 bg-current opacity-70 md:h-1"
+                    initial={{ width: 0 }}
+                    animate={{ width: isInView ? "100%" : 0 }}
+                    transition={{ duration: 1.5, delay: isInView ? 3.5 : 0 }}
+                  />
+                </span>{" "}
+                <span className="opacity-80">Components</span>
               </span>
               <span className="relative flex hidden w-full justify-center overflow-hidden text-center md:pt-1 md:pb-4">
                 &nbsp;
