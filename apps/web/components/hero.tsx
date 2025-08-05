@@ -49,7 +49,7 @@ export default function Hero() {
           <div className="flex flex-col gap-4">
             <h1
               ref={titleRef}
-              className="max-w-3xl text-center font-regular text-5xl tracking-tighter md:text-8xl"
+              className="max-w-3xl p-1 text-center font-regular text-6xl tracking-tighter md:text-8xl"
             >
               <span className="text-spektr-cyan-50">
                 <span className="relative inline-block">
@@ -123,9 +123,9 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="max-w-3xl text-center text-foreground/90 text-xl leading-relaxed tracking-tight md:text-xl">
-              Use-case driven components you can copy-paste for fintech,
-              finance, KYC, trading, and more.
+            <p className="max-w-2xl text-center text-foreground/90 text-lg leading-relaxed tracking-tight md:text-xl">
+              Production-ready React components for fintech, trading, KYC, and
+              financial applications. Copy, paste, and ship faster.
             </p>
           </div>
           <div className="flex flex-row gap-3">
