@@ -1,9 +1,7 @@
-import type { TableOfContents, TOCItemType } from "fumadocs-core/server";
-import { InlineTOC } from "fumadocs-ui/components/inline-toc";
+import type { TableOfContents } from "fumadocs-core/server";
 import type { ReactNode } from "react";
 import { cn } from "@workspace/shadverse/lib/utils";
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
-import { sortedByDatePageTree } from "@foundations/cms/source";
 import { DocsBody, DocsPage, DocsTitle } from "fumadocs-ui/page";
 import { GridBackground } from "@workspace/ui/grid-background";
 

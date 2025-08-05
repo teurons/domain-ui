@@ -1,0 +1,14 @@
+{
+  "title": "UI",
+  "description": "UI components and patterns",
+  "pages": [
+    "---Introduction---",
+    "index",
+    "---Components---",
+    "page-title",
+    "button",
+    "accordion",
+    "tabs",
+    "regex-input"
+  ]
+}
