@@ -52,7 +52,9 @@
       "Bash(npx @biomejs/biome lint:*)",
       "Bash(npx ultracite@latest lint packages/domain-ui-registry/registry.json)",
       "Bash(npx ultracite@latest lint packages/ui/src/components/registry-code-block.tsx)",
-      "Bash(npx ultracite@latest lint packages/ui/src/components/registry-code-block-dynamic.tsx)"
+      "Bash(npx ultracite@latest lint packages/ui/src/components/registry-code-block-dynamic.tsx)",
+      "WebFetch(domain:domain-iarlsmbuk-betalectic.vercel.app)",
+      "Bash(git add:*)"
     ],
     "deny": []
   }

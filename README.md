@@ -35,7 +35,7 @@ pnpm dlx shadcn add "http://localhost:3000/?token=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiO
 
 
 
-pnpm dlx shadcn@latest add "http://localhost:3000/r/domain-ui-pro/page-title.json?token=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJzUl9LN1pndkw5Y2FFdnRPLTFLemMiLCJpYXQiOjE3NTQwNDAyMjIsImV4cCI6MTc1NDEyNjYyMn0.2Nbpo3d6xcqFMxRt49aznh_YTDd1tp7BInsTUkXYgcw" --overwrite
+pnpm dlx shadcn@latest add "http://localhost:3000/r-pro/page-title.json?token=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJzUl9LN1pndkw5Y2FFdnRPLTFLemMiLCJpYXQiOjE3NTQwNDAyMjIsImV4cCI6MTc1NDEyNjYyMn0.2Nbpo3d6xcqFMxRt49aznh_YTDd1tp7BInsTUkXYgcw" --overwrite
 
 
 DOMAINUI_SANDBOX_-FD97539B-298F-417D-B7EF-F677BB8DE60C
