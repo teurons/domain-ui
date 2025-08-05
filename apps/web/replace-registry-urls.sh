@@ -2,14 +2,24 @@
 
 echo "🔄 Starting registry URL replacement script..."
 echo "📍 Current directory: $(pwd)"
+echo "🌐 VERCEL_ENV: ${VERCEL_ENV:-'not set'}"
 echo "🌐 VERCEL_URL: ${VERCEL_URL:-'not set'}"
+echo "🌐 VERCEL_PROJECT_PRODUCTION_URL: ${VERCEL_PROJECT_PRODUCTION_URL:-'not set'}"
 
-if [ -z "$VERCEL_URL" ]; then
-    echo "⚠️  VERCEL_URL not set, skipping URL replacement"
+# Determine the appropriate URL based on environment
+if [ "$VERCEL_ENV" = "production" ] && [ -n "$VERCEL_PROJECT_PRODUCTION_URL" ]; then
+    REPLACEMENT_URL="https://$VERCEL_PROJECT_PRODUCTION_URL"
+    echo "✅ Using production URL: $REPLACEMENT_URL"
+elif [ "$VERCEL_ENV" = "preview" ] && [ -n "$VERCEL_URL" ]; then
+    REPLACEMENT_URL="https://$VERCEL_URL"
+    echo "✅ Using preview URL: $REPLACEMENT_URL"
+elif [ -n "$VERCEL_URL" ]; then
+    REPLACEMENT_URL="https://$VERCEL_URL"
+    echo "✅ Using fallback URL: $REPLACEMENT_URL"
+else
+    echo "⚠️  No Vercel URL found, skipping URL replacement"
     exit 0
 fi
-
-REPLACEMENT_URL="https://$VERCEL_URL"
 echo "🔀 Replacing 'http://localhost:3000' with '$REPLACEMENT_URL'"
 
 # Check if public directory exists

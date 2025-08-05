@@ -2,9 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "regex-input",
   "type": "registry:component",
-  "registryDependencies": [
-    "input"
-  ],
+  "registryDependencies": ["input"],
   "files": [
     {
       "path": "components/domain-ui/regex-input.tsx",
@@ -18,11 +16,6 @@
     }
   ],
   "meta": {
-    "tags": [
-      "input",
-      "regex",
-      "validation",
-      "form"
-    ]
+    "tags": ["input", "regex", "validation", "form"]
   }
 }

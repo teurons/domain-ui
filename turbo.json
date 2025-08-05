@@ -9,7 +9,9 @@
     "POLAR_ORG_ID",
     "POLAR_PRODUCT_ID",
     "POLAR_IS_SANDBOX",
-    "VERCEL_URL"
+    "VERCEL_URL",
+    "VERCEL_ENV",
+    "VERCEL_PROJECT_PRODUCTION_URL"
   ],
   "tasks": {
     "clean": {

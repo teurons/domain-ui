@@ -2,7 +2,13 @@
 
 import { useState, type ChangeEvent } from "react";
 import { RegexInput } from "@workspace/domain-ui-registry/components/domain-ui/regex-input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/domain-ui-registry/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@workspace/domain-ui-registry/components/ui/card";
 import { Badge } from "@workspace/domain-ui-registry/components/ui/badge";
 import { Label } from "@workspace/domain-ui-registry/components/ui/label";
 
@@ -30,8 +36,8 @@ export function PanInput() {
           )}
         </CardTitle>
         <CardDescription>
-          Indian PAN format: 3 letters, specific 4th letter, 1 letter, 4 digits, 1
-          letter
+          Indian PAN format: 3 letters, specific 4th letter, 1 letter, 4 digits,
+          1 letter
         </CardDescription>
       </CardHeader>
       <CardContent>

@@ -4,7 +4,12 @@ import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/shadcn/registry/utils";
 
 // Routes that require authentication
-const AUTHENTICATED_ROUTES = ["/dashboard", "/portal", "/checkout", "/subscription"];
+const AUTHENTICATED_ROUTES = [
+  "/dashboard",
+  "/portal",
+  "/checkout",
+  "/subscription",
+];
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -25,7 +30,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Only require authentication for specific routes
-  if (AUTHENTICATED_ROUTES.some(route => pathname.startsWith(route))) {
+  if (AUTHENTICATED_ROUTES.some((route) => pathname.startsWith(route))) {
     return await updateSession(request);
   }
 

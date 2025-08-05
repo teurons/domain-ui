@@ -27,7 +27,19 @@ function getRegistryBaseUrl(): string {
     return window.location.origin;
   }
 
-  // Server-side: Check for Vercel deployment first
+  // Server-side: Use appropriate URL based on Vercel environment
+  if (
+    process.env.VERCEL_ENV === "production" &&
+    process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+
+  if (process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  // Fallback for older Vercel deployments or when VERCEL_ENV is not set
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }

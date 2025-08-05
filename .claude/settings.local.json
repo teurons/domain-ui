@@ -54,7 +54,9 @@
       "Bash(npx ultracite@latest lint packages/ui/src/components/registry-code-block.tsx)",
       "Bash(npx ultracite@latest lint packages/ui/src/components/registry-code-block-dynamic.tsx)",
       "WebFetch(domain:domain-iarlsmbuk-betalectic.vercel.app)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(npx ultracite@latest lint apps/web/lib/get-base-url.ts packages/ui/src/components/registry-code-block-dynamic.tsx apps/web/replace-registry-urls.sh package.json turbo.json .env.example)",
+      "Bash(npx ultracite@latest lint apps/web/lib/get-base-url.ts packages/ui/src/components/registry-code-block-dynamic.tsx)"
     ],
     "deny": []
   }
