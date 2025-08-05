@@ -4,10 +4,21 @@ description: An input component with real-time regex validation and smart charac
 ---
 
 import { RegexInput } from "@workspace/domain-ui-registry/components/domain-ui/regex-input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/shadverse/components/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@workspace/shadverse/components/card";
 import { Badge } from "@workspace/shadverse/components/badge";
 import { Label } from "@workspace/shadverse/components/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/shadverse/components/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/shadverse/components/tabs";
 import React, { useState } from "react";
 
 # Regex Input
@@ -22,39 +33,40 @@ export function RegexInputDemo() {
   const isValid = regex.test(pan);
   const hasValue = pan.length > 0;
 
-  return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between">
-          PAN Number
-          {hasValue && (
-            <Badge variant={isValid ? "default" : "secondary"}>
-              {isValid ? "✓ Valid" : "Invalid"}
-            </Badge>
-          )}
-        </CardTitle>
-        <CardDescription>
-          Indian PAN format: 3 letters, specific 4th letter, 1 letter, 4 digits, 1 letter
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-2">
-          <Label htmlFor="pan">PAN Number</Label>
-          <RegexInput
-            id="pan"
-            regex={regex}
-            placeholder="ABCDE1234F"
-            value={pan}
-            onChange={(e) => setPan(e.target.value)}
-          />
-          <p className="text-sm text-muted-foreground">
-            Try typing: abcp1234f (lowercase will auto-convert to uppercase)
-          </p>
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
+return (
+
+<Card className="w-full max-w-md">
+  <CardHeader>
+    <CardTitle className="flex items-center justify-between">
+      PAN Number
+      {hasValue && (
+        <Badge variant={isValid ? "default" : "secondary"}>
+          {isValid ? "✓ Valid" : "Invalid"}
+        </Badge>
+      )}
+    </CardTitle>
+    <CardDescription>
+      Indian PAN format: 3 letters, specific 4th letter, 1 letter, 4 digits, 1
+      letter
+    </CardDescription>
+  </CardHeader>
+  <CardContent>
+    <div className="space-y-2">
+      <Label htmlFor="pan">PAN Number</Label>
+      <RegexInput
+        id="pan"
+        regex={regex}
+        placeholder="ABCDE1234F"
+        value={pan}
+        onChange={(e) => setPan(e.target.value)}
+      />
+      <p className="text-sm text-muted-foreground">
+        Try typing: abcp1234f (lowercase will auto-convert to uppercase)
+      </p>
+    </div>
+  </CardContent>
+</Card>
+); }
 
 <RegexInputDemo />
 
@@ -77,55 +89,19 @@ pnpm dlx shadcn@latest add domain-ui.dev/r/domain-ui/regex-input.json
 
 <TabsContent value="manual">
 
-1. Install dependencies:
-
-```bash
-pnpm add @workspace/domain-ui-registry
-```
-
 2. Copy and paste the following code into your project:
 
 **components/ui/regex-input.tsx**
 
-```tsx
-import type * as React from "react";
-import { Input } from "@/components/ui/input";
-import { useRegexInput } from "@/hooks/use-regex-input";
-
-export interface RegexInputProps extends React.ComponentProps<"input"> {
-  regex: RegExp;
-}
-
-export function RegexInput({
-  regex,
-  value,
-  onChange,
-  ...props
-}: RegexInputProps) {
-  const { value: displayValue, onChange: handleChange } = useRegexInput({
-    regex,
-    value: value as string | undefined,
-    onChange: onChange
-      ? (newValue: string) => {
-          const syntheticEvent = {
-            target: { value: newValue },
-            currentTarget: { value: newValue },
-          } as React.ChangeEvent<HTMLInputElement>;
-          onChange(syntheticEvent);
-        }
-      : undefined,
-  });
-
-  return <Input {...props} value={displayValue} onChange={handleChange} />;
-}
-```
+<include lang="tsx" meta='title="lib.ts"'>
+  ../../../domain-ui-registry/components/domain-ui/regex-input.tsx
+</include>
 
 **hooks/use-regex-input.ts**
 
-```tsx
-// Copy the hook implementation from:
-// https://github.com/domain-ui/domain-ui/blob/main/packages/domain-ui-registry/hooks/use-regex-input.ts
-```
+<include lang="tsx" meta='title="lib.ts"'>
+  ../../../domain-ui-registry/hooks/use-regex-input.ts
+</include>
 
 </TabsContent>
 
@@ -134,11 +110,11 @@ export function RegexInput({
 ## Usage
 
 ```tsx
-import { RegexInput } from "@/components/ui/regex-input"
+import { RegexInput } from "@/components/ui/regex-input";
 ```
 
 ```tsx
-<RegexInput 
+<RegexInput
   regex={/^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/}
   placeholder="ABCDE1234F"
 />
@@ -146,9 +122,9 @@ import { RegexInput } from "@/components/ui/regex-input"
 
 ## Props
 
-| Prop | Type | Description |
-|------|------|-------------|
-| regex* | `RegExp` | Regular expression pattern for validation |
-| ...props | `React.ComponentProps<"input">` | All standard input props |
+| Prop     | Type                            | Description                               |
+| -------- | ------------------------------- | ----------------------------------------- |
+| regex\*  | `RegExp`                        | Regular expression pattern for validation |
+| ...props | `React.ComponentProps<"input">` | All standard input props                  |
 
 The component extends all standard HTML input element props.
