@@ -50,7 +50,8 @@
       "Bash(npx ultracite@latest lint packages/domain-ui-registry/hooks/use-regex-input.ts packages/domain-ui-registry/components/domain-ui/regex-input.tsx packages/content/docs/ui/regex-input.mdx)",
       "Bash(npx ultracite@latest lint --max-diagnostics=50 packages/domain-ui-registry/hooks/use-regex-input.ts packages/domain-ui-registry/components/domain-ui/regex-input.tsx)",
       "Bash(npx @biomejs/biome lint:*)",
-      "Bash(npx ultracite@latest lint packages/domain-ui-registry/registry.json)"
+      "Bash(npx ultracite@latest lint packages/domain-ui-registry/registry.json)",
+      "Bash(npx ultracite@latest lint packages/ui/src/components/registry-code-block.tsx)"
     ],
     "deny": []
   }

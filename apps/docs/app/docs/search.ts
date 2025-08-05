@@ -1,9 +1,9 @@
-import type { Route } from './+types/search';
-import { createFromSource } from 'fumadocs-core/search/server';
-import { source } from '@/source';
+import type { Route } from "./+types/search";
+import { createFromSource } from "fumadocs-core/search/server";
+import { source } from "@/source";
 
 const server = createFromSource(source, {
-  language: 'english',
+  language: "english",
 });
 
 export async function loader({ request }: Route.LoaderArgs) {

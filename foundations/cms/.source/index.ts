@@ -1,20 +1,154 @@
 // @ts-nocheck -- skip type checking
-import * as docs_4 from "../../../packages/content/docs/ui/tabs.mdx?collection=docs&hash=1754289232054"
-import * as docs_3 from "../../../packages/content/docs/ui/button.mdx?collection=docs&hash=1754289232054"
-import * as docs_2 from "../../../packages/content/docs/ui/accordion.mdx?collection=docs&hash=1754289232054"
-import * as docs_1 from "../../../packages/content/docs/test.mdx?collection=docs&hash=1754289232054"
-import * as docs_0 from "../../../packages/content/docs/index.mdx?collection=docs&hash=1754289232054"
-import * as blog_9 from "../../../packages/content/blog/zero-trust-security.mdx?collection=blog&hash=1754289232054"
-import * as blog_8 from "../../../packages/content/blog/understanding-llm-development.mdx?collection=blog&hash=1754289232054"
-import * as blog_7 from "../../../packages/content/blog/open-source-sustainability.mdx?collection=blog&hash=1754289232054"
-import * as blog_6 from "../../../packages/content/blog/microservices-trade-offs.mdx?collection=blog&hash=1754289232054"
-import * as blog_5 from "../../../packages/content/blog/jamstack-evolution.mdx?collection=blog&hash=1754289232054"
-import * as blog_4 from "../../../packages/content/blog/ethical-ai-development.mdx?collection=blog&hash=1754289232054"
-import * as blog_3 from "../../../packages/content/blog/embracing-devops-culture.mdx?collection=blog&hash=1754289232054"
-import * as blog_2 from "../../../packages/content/blog/edge-computing-revolution.mdx?collection=blog&hash=1754289232054"
-import * as blog_1 from "../../../packages/content/blog/data-mesh-architecture.mdx?collection=blog&hash=1754289232054"
-import * as blog_0 from "../../../packages/content/blog/api-first-design.mdx?collection=blog&hash=1754289232054"
-import { _runtime } from "fumadocs-mdx"
-import * as _source from "../source.config"
-export const blog = _runtime.doc<typeof _source.blog>([{ info: {"path":"api-first-design.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/api-first-design.mdx"}, data: blog_0 }, { info: {"path":"data-mesh-architecture.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/data-mesh-architecture.mdx"}, data: blog_1 }, { info: {"path":"edge-computing-revolution.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/edge-computing-revolution.mdx"}, data: blog_2 }, { info: {"path":"embracing-devops-culture.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/embracing-devops-culture.mdx"}, data: blog_3 }, { info: {"path":"ethical-ai-development.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/ethical-ai-development.mdx"}, data: blog_4 }, { info: {"path":"jamstack-evolution.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/jamstack-evolution.mdx"}, data: blog_5 }, { info: {"path":"microservices-trade-offs.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/microservices-trade-offs.mdx"}, data: blog_6 }, { info: {"path":"open-source-sustainability.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/open-source-sustainability.mdx"}, data: blog_7 }, { info: {"path":"understanding-llm-development.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/understanding-llm-development.mdx"}, data: blog_8 }, { info: {"path":"zero-trust-security.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/zero-trust-security.mdx"}, data: blog_9 }]);
-export const docs = _runtime.docs<typeof _source.docs>([{ info: {"path":"index.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/index.mdx"}, data: docs_0 }, { info: {"path":"test.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/test.mdx"}, data: docs_1 }, { info: {"path":"ui/accordion.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/ui/accordion.mdx"}, data: docs_2 }, { info: {"path":"ui/button.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/ui/button.mdx"}, data: docs_3 }, { info: {"path":"ui/tabs.mdx","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/ui/tabs.mdx"}, data: docs_4 }], [{"info":{"path":"ui/meta.json","absolutePath":"/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/ui/meta.json"},"data":{"title":"UI","pages":["button","accordion","tabs"]}}])
+import * as docs_4 from "../../../packages/content/docs/ui/tabs.mdx?collection=docs&hash=1754289232054";
+import * as docs_3 from "../../../packages/content/docs/ui/button.mdx?collection=docs&hash=1754289232054";
+import * as docs_2 from "../../../packages/content/docs/ui/accordion.mdx?collection=docs&hash=1754289232054";
+import * as docs_1 from "../../../packages/content/docs/test.mdx?collection=docs&hash=1754289232054";
+import * as docs_0 from "../../../packages/content/docs/index.mdx?collection=docs&hash=1754289232054";
+import * as blog_9 from "../../../packages/content/blog/zero-trust-security.mdx?collection=blog&hash=1754289232054";
+import * as blog_8 from "../../../packages/content/blog/understanding-llm-development.mdx?collection=blog&hash=1754289232054";
+import * as blog_7 from "../../../packages/content/blog/open-source-sustainability.mdx?collection=blog&hash=1754289232054";
+import * as blog_6 from "../../../packages/content/blog/microservices-trade-offs.mdx?collection=blog&hash=1754289232054";
+import * as blog_5 from "../../../packages/content/blog/jamstack-evolution.mdx?collection=blog&hash=1754289232054";
+import * as blog_4 from "../../../packages/content/blog/ethical-ai-development.mdx?collection=blog&hash=1754289232054";
+import * as blog_3 from "../../../packages/content/blog/embracing-devops-culture.mdx?collection=blog&hash=1754289232054";
+import * as blog_2 from "../../../packages/content/blog/edge-computing-revolution.mdx?collection=blog&hash=1754289232054";
+import * as blog_1 from "../../../packages/content/blog/data-mesh-architecture.mdx?collection=blog&hash=1754289232054";
+import * as blog_0 from "../../../packages/content/blog/api-first-design.mdx?collection=blog&hash=1754289232054";
+import { _runtime } from "fumadocs-mdx";
+import type * as _source from "../source.config";
+export const blog = _runtime.doc<typeof _source.blog>([
+  {
+    info: {
+      path: "api-first-design.mdx",
+      absolutePath:
+        "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/api-first-design.mdx",
+    },
+    data: blog_0,
+  },
+  {
+    info: {
+      path: "data-mesh-architecture.mdx",
+      absolutePath:
+        "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/data-mesh-architecture.mdx",
+    },
+    data: blog_1,
+  },
+  {
+    info: {
+      path: "edge-computing-revolution.mdx",
+      absolutePath:
+        "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/edge-computing-revolution.mdx",
+    },
+    data: blog_2,
+  },
+  {
+    info: {
+      path: "embracing-devops-culture.mdx",
+      absolutePath:
+        "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/embracing-devops-culture.mdx",
+    },
+    data: blog_3,
+  },
+  {
+    info: {
+      path: "ethical-ai-development.mdx",
+      absolutePath:
+        "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/ethical-ai-development.mdx",
+    },
+    data: blog_4,
+  },
+  {
+    info: {
+      path: "jamstack-evolution.mdx",
+      absolutePath:
+        "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/jamstack-evolution.mdx",
+    },
+    data: blog_5,
+  },
+  {
+    info: {
+      path: "microservices-trade-offs.mdx",
+      absolutePath:
+        "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/microservices-trade-offs.mdx",
+    },
+    data: blog_6,
+  },
+  {
+    info: {
+      path: "open-source-sustainability.mdx",
+      absolutePath:
+        "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/open-source-sustainability.mdx",
+    },
+    data: blog_7,
+  },
+  {
+    info: {
+      path: "understanding-llm-development.mdx",
+      absolutePath:
+        "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/understanding-llm-development.mdx",
+    },
+    data: blog_8,
+  },
+  {
+    info: {
+      path: "zero-trust-security.mdx",
+      absolutePath:
+        "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/blog/zero-trust-security.mdx",
+    },
+    data: blog_9,
+  },
+]);
+export const docs = _runtime.docs<typeof _source.docs>(
+  [
+    {
+      info: {
+        path: "index.mdx",
+        absolutePath:
+          "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/index.mdx",
+      },
+      data: docs_0,
+    },
+    {
+      info: {
+        path: "test.mdx",
+        absolutePath:
+          "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/test.mdx",
+      },
+      data: docs_1,
+    },
+    {
+      info: {
+        path: "ui/accordion.mdx",
+        absolutePath:
+          "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/ui/accordion.mdx",
+      },
+      data: docs_2,
+    },
+    {
+      info: {
+        path: "ui/button.mdx",
+        absolutePath:
+          "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/ui/button.mdx",
+      },
+      data: docs_3,
+    },
+    {
+      info: {
+        path: "ui/tabs.mdx",
+        absolutePath:
+          "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/ui/tabs.mdx",
+      },
+      data: docs_4,
+    },
+  ],
+  [
+    {
+      info: {
+        path: "ui/meta.json",
+        absolutePath:
+          "/Users/rajiv/Projects/Rjvim/domain-ui/packages/content/docs/ui/meta.json",
+      },
+      data: { title: "UI", pages: ["button", "accordion", "tabs"] },
+    },
+  ]
+);

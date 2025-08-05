@@ -2,6 +2,7 @@ import defaultMdxComponents from "fumadocs-ui/mdx";
 import type { MDXComponents } from "mdx/types";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import GithubCodeBlock from "@/components/blog/github-code-block";
+import RegistryCodeBlock from "@workspace/ui/components/registry-code-block";
 import { XEmbedClient } from "@/components/blog/XEmbedClient";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { Step, Steps } from "fumadocs-ui/components/steps";
@@ -24,6 +25,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Steps,
     XEmbed: XEmbedClient,
     GithubCodeBlock,
+    RegistryCodeBlock,
     CodeDisplay,
     ...components,
   };

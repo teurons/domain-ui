@@ -28,8 +28,11 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
+    "@shikijs/transformers": "^3.2.1",
     "@workspace/shadverse": "workspace:*",
     "framer-motion": "^12.5.0",
+    "fumadocs-core": "^15.6.9",
+    "fumadocs-ui": "^15.6.9",
     "glsl-canvas-js": "^0.2.9",
     "lucide-react": "^0.536.0",
     "motion": "^12.5.0",

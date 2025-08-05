@@ -122,19 +122,22 @@ export const PPScrollerSection = () => {
                 See Also
               </p>
               <div>
-                {item?.features?.map((feature: { title: string; content: string }, featureIndex) => (
-                  <p
-                    key={`feature-${featureIndex}`}
-                    className="my-0 font-normal font-sans text-black text-sm dark:text-white"
-                  >
-                    <span
-                      className="mr-2 font-sans font-semibold text-mf-stack-purple-primary text-sm dark:text-mf-stack-purple-light"
+                {item?.features?.map(
+                  (
+                    feature: { title: string; content: string },
+                    featureIndex
+                  ) => (
+                    <p
+                      key={`feature-${featureIndex}`}
+                      className="my-0 font-normal font-sans text-black text-sm dark:text-white"
                     >
-                      {feature?.title}
-                    </span>
-                    {feature?.content}
-                  </p>
-                ))}
+                      <span className="mr-2 font-sans font-semibold text-mf-stack-purple-primary text-sm dark:text-mf-stack-purple-light">
+                        {feature?.title}
+                      </span>
+                      {feature?.content}
+                    </p>
+                  )
+                )}
               </div>
             </div>
           );
