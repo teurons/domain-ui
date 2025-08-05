@@ -1,113 +1,58 @@
 ---
 title: Regex Input
-description: Input component with regex-based validation
+description: An input component with real-time regex validation and smart character conversion.
 ---
 
 import { RegexInput } from "@workspace/domain-ui-registry/components/domain-ui/regex-input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/shadverse/components/card";
-import { Button } from "@workspace/shadverse/components/button";
 import { Badge } from "@workspace/shadverse/components/badge";
 import { Label } from "@workspace/shadverse/components/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/shadverse/components/tabs";
 import React, { useState } from "react";
 
 # Regex Input
 
-An input component that validates characters in real-time based on regex patterns. It extends the standard Input component with just one additional prop: `regex`.
+An input component with real-time regex validation and smart character conversion.
 
 ## Demo
 
 export function RegexInputDemo() {
-  const [values, setValues] = useState({
-    pan: "",
-    phone: "",
-    ssn: "",
-    code: ""
-  });
-
-  const examples = [
-    {
-      id: "pan",
-      name: "PAN Number",
-      regex: /^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/,
-      placeholder: "ABCDE1234F",
-      helperText: "Indian PAN format: 3 letters, specific 4th letter, 1 letter, 4 digits, 1 letter"
-    },
-    {
-      id: "phone",
-      name: "Phone Number",
-      regex: /^[0-9]{10}$/,
-      placeholder: "1234567890",
-      helperText: "10-digit phone number"
-    },
-    {
-      id: "ssn",
-      name: "SSN",
-      regex: /^[0-9]{9}$/,
-      placeholder: "123456789",
-      helperText: "9-digit SSN"
-    },
-    {
-      id: "code",
-      name: "Product Code",
-      regex: /^[A-Z]{2}[0-9]{3}[A-Z]{1}$/,
-      placeholder: "AB123C",
-      helperText: "2 letters, 3 digits, 1 letter"
-    }
-  ];
-
-  const handleSubmit = () => {
-    console.log("Form values:", values);
-    examples.forEach(({ id, regex }) => {
-      const isValid = regex.test(values[id]);
-      console.log(`${id}: ${isValid ? "✓ Valid" : "✗ Invalid"}`);
-    });
-  };
+  const [pan, setPan] = useState("");
+  const regex = /^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/;
+  const isValid = regex.test(pan);
+  const hasValue = pan.length > 0;
 
   return (
-    <div className="space-y-6">
-      <div className="grid gap-6 md:grid-cols-2">
-        {examples.map((example) => {
-          const isValid = example.regex.test(values[example.id]);
-          const hasValue = values[example.id].length > 0;
-          
-          return (
-            <Card key={example.id}>
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  {example.name}
-                  {hasValue && (
-                    <Badge variant={isValid ? "default" : "secondary"}>
-                      {isValid ? "✓ Valid" : "Invalid"}
-                    </Badge>
-                  )}
-                </CardTitle>
-                <CardDescription>{example.helperText}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <Label htmlFor={example.id}>{example.name}</Label>
-                  <RegexInput
-                    id={example.id}
-                    regex={example.regex}
-                    placeholder={example.placeholder}
-                    value={values[example.id]}
-                    onChange={(e) => 
-                      setValues(prev => ({ ...prev, [example.id]: e.target.value }))
-                    }
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
-
-      <div className="flex justify-center">
-        <Button onClick={handleSubmit} className="w-full max-w-xs">
-          Validate All
-        </Button>
-      </div>
-    </div>
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle className="flex items-center justify-between">
+          PAN Number
+          {hasValue && (
+            <Badge variant={isValid ? "default" : "secondary"}>
+              {isValid ? "✓ Valid" : "Invalid"}
+            </Badge>
+          )}
+        </CardTitle>
+        <CardDescription>
+          Indian PAN format: 3 letters, specific 4th letter, 1 letter, 4 digits, 1 letter
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-2">
+          <Label htmlFor="pan">PAN Number</Label>
+          <RegexInput
+            id="pan"
+            regex={regex}
+            placeholder="ABCDE1234F"
+            value={pan}
+            onChange={(e) => setPan(e.target.value)}
+          />
+          <p className="text-sm text-muted-foreground">
+            Try typing: abcp1234f (lowercase will auto-convert to uppercase)
+          </p>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -115,82 +60,83 @@ export function RegexInputDemo() {
 
 ## Installation
 
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
 ```bash
-npm install regexp-tree
+pnpm dlx shadcn@latest add domain-ui.dev/r/domain-ui/regex-input.json
 ```
 
-Then copy the component and hook files from the registry.
+</TabsContent>
+
+<TabsContent value="manual">
+
+1. Install dependencies:
+
+```bash
+pnpm add @workspace/domain-ui-registry
+```
+
+2. Copy and paste the following code into your project:
+
+**components/ui/regex-input.tsx**
+
+```tsx
+import type * as React from "react";
+import { Input } from "@/components/ui/input";
+import { useRegexInput } from "@/hooks/use-regex-input";
+
+export interface RegexInputProps extends React.ComponentProps<"input"> {
+  regex: RegExp;
+}
+
+export function RegexInput({
+  regex,
+  value,
+  onChange,
+  ...props
+}: RegexInputProps) {
+  const { value: displayValue, onChange: handleChange } = useRegexInput({
+    regex,
+    value: value as string | undefined,
+    onChange: onChange
+      ? (newValue: string) => {
+          const syntheticEvent = {
+            target: { value: newValue },
+            currentTarget: { value: newValue },
+          } as React.ChangeEvent<HTMLInputElement>;
+          onChange(syntheticEvent);
+        }
+      : undefined,
+  });
+
+  return <Input {...props} value={displayValue} onChange={handleChange} />;
+}
+```
+
+**hooks/use-regex-input.ts**
+
+```tsx
+// Copy the hook implementation from:
+// https://github.com/domain-ui/domain-ui/blob/main/packages/domain-ui-registry/hooks/use-regex-input.ts
+```
+
+</TabsContent>
+
+</Tabs>
 
 ## Usage
 
-The `RegexInput` component works exactly like a standard input, but with regex validation:
-
 ```tsx
-import { RegexInput } from "@/components/domain-ui/regex-input";
-
-// Basic usage
-<RegexInput 
-  regex={/^[A-Z]{3}[0-9]{3}$/}
-  placeholder="ABC123"
-/>
-
-// With all standard input props
-<RegexInput 
-  regex={/^[0-9]{10}$/}
-  placeholder="Phone number"
-  value={phone}
-  onChange={(e) => setPhone(e.target.value)}
-  disabled={isLoading}
-  className="w-full"
-/>
-
-// Controlled component
-const [pan, setPan] = useState("");
-<RegexInput 
-  regex={/^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/}
-  value={pan}
-  onChange={(e) => setPan(e.target.value)}
-  placeholder="ABCDE1234F"
-/>
+import { RegexInput } from "@/components/ui/regex-input"
 ```
 
-## API
-
-### Props
-
-The component extends all standard HTML input props with one additional required prop:
-
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| regex | `RegExp` | Yes | Regular expression pattern to validate against |
-
-All other props work exactly like the standard Input component:
-- `value`, `defaultValue`
-- `onChange`, `onBlur`, `onFocus`
-- `placeholder`, `disabled`, `readOnly`
-- `className`, `id`, `name`
-- And all other standard input attributes
-
-## Features
-
-- **Real-time validation** - Characters are validated at each position as you type
-- **Smart character blocking** - Invalid characters are prevented from being entered
-- **Automatic max length** - Detects maximum length from regex pattern
-- **Position-based rules** - Different character sets allowed at different positions
-- **Full Input compatibility** - Works exactly like the standard Input component
-
-## How it Works
-
-The component uses `regexp-tree` to parse your regex into an AST (Abstract Syntax Tree). It analyzes the pattern to:
-
-1. Determine which characters are allowed at each position
-2. Calculate the maximum input length
-3. Block invalid characters in real-time
-4. Support complex patterns with character classes, quantifiers, and more
-
-## Examples
-
-### PAN Number Input
 ```tsx
 <RegexInput 
   regex={/^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/}
@@ -198,43 +144,11 @@ The component uses `regexp-tree` to parse your regex into an AST (Abstract Synta
 />
 ```
 
-### Phone Number Input
-```tsx
-<RegexInput 
-  regex={/^[0-9]{10}$/}
-  placeholder="1234567890"
-/>
-```
+## Props
 
-### Custom Product Code
-```tsx
-<RegexInput 
-  regex={/^[A-Z]{2}[0-9]{3}[A-Z]{1}$/}
-  placeholder="AB123C"
-/>
-```
+| Prop | Type | Description |
+|------|------|-------------|
+| regex* | `RegExp` | Regular expression pattern for validation |
+| ...props | `React.ComponentProps<"input">` | All standard input props |
 
-### With Form Validation
-```tsx
-const [value, setValue] = useState("");
-const [error, setError] = useState("");
-
-const handleChange = (e) => {
-  const newValue = e.target.value;
-  setValue(newValue);
-  
-  // Validate on change
-  const isValid = /^[A-Z]{10}$/.test(newValue);
-  setError(isValid || newValue.length === 0 ? "" : "Invalid format");
-};
-
-<div>
-  <RegexInput 
-    regex={/^[A-Z]{10}$/}
-    value={value}
-    onChange={handleChange}
-    className={error ? "border-red-500" : ""}
-  />
-  {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
-</div>
-```
+The component extends all standard HTML input element props.

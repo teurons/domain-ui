@@ -61,6 +61,24 @@
       "meta": {
         "tags": ["typography", "page-title", "heading", "subtitle"]
       }
+    },
+    {
+      "name": "regex-input",
+      "type": "registry:component",
+      "registryDependencies": ["input"],
+      "files": [
+        {
+          "path": "components/domain-ui/regex-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "hooks/use-regex-input.ts",
+          "type": "registry:hook"
+        }
+      ],
+      "meta": {
+        "tags": ["input", "regex", "validation", "form"]
+      }
     }
   ]
 }
