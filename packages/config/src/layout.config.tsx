@@ -1,7 +1,7 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import { Icons } from "@workspace/ui/icons";
 
-export const title = "SaaS Foundations";
+export const title = "Domain UI";
 export const description = "NextJS Template to build SaaS applications";
 export const owner = "Rajiv I'm";
 

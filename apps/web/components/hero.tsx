@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { MoveRight } from "lucide-react";
+import { MoveRight, PuzzleIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@workspace/shadverse/components/button";
 import { Icons } from "./icons";
@@ -45,7 +45,7 @@ export default function Hero() {
             </Announcement>
           </div>
           <div className="flex flex-col gap-4">
-            <h1 className="max-w-2xl text-center font-regular text-5xl tracking-tighter md:text-7xl">
+            <h1 className="max-w-3xl text-center font-regular text-5xl tracking-tighter md:text-8xl">
               <span className="text-spektr-cyan-50">
                 Domain-Specific React Components
               </span>
@@ -75,20 +75,22 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="max-w-2xl text-center text-lg text-muted-foreground leading-relaxed tracking-tight md:text-xl">
+            <p className="max-w-2xl text-center text-foreground/90 text-xl leading-relaxed tracking-tight md:text-xl">
               Use-case driven components you can copy-paste for fintech,
               finance, KYC, trading, and more.
             </p>
           </div>
           <div className="flex flex-row gap-3">
-            <Link href="https://x.com/rjv_im" target="_blank">
-              <Button size="lg" className="cursor-grab gap-4" variant="outline">
-                Let's Connect <SocialIcons.x className="h-4 w-4" />
+            <Link href="/docs" target="_blank">
+              <Button size="lg" className="cursor-grab gap-4">
+                <PuzzleIcon className="h-4 w-4" />
+                Browse Components <ArrowUpRightIcon className="h-4 w-4" />
               </Button>
             </Link>
-            <Link href="blog" target="_blank">
-              <Button size="lg" className="gap-4">
-                View Posts <MoveRight className="h-4 w-4" />
+            <Link href="https://github.com/rjvim/domain-ui" target="_blank">
+              <Button size="lg" className="gap-4" variant={"outline"}>
+                <SocialIcons.github className="h-4 w-4" />
+                Github <MoveRight className="h-4 w-4" />
               </Button>
             </Link>
           </div>

@@ -19,8 +19,8 @@ const fontMono = Geist_Mono({
 
 export const metadata = createMetadata({
   title: {
-    template: "%s | SaaS Foundations",
-    default: "SaaS Foundations",
+    template: "%s | Domain UI",
+    default: "Domain UI",
   },
   description,
   metadataBase: baseUrl,

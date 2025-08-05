@@ -10,7 +10,7 @@ export const ohimgConfig: OhImgBaseTemplateProps = {
   content: {
     title: "NextJS Template for OSS Projects",
     description:
-      "All templates are not made same. SaaS Foundations templates are built beautifully and you can upgrade them.",
+      "All templates are not made same. Domain UI templates are built beautifully and you can upgrade them.",
     website: "github.com/rjvim/saas-foundations",
     tags: ["open graph", "image", "generator"],
   },

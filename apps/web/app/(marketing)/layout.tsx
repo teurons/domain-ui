@@ -20,7 +20,7 @@ import { Header } from "@/components/header";
 //         >
 //           <circle cx={12} cy={12} r={12} fill="currentColor" />
 //         </svg>
-//         SaaS Foundations
+//         Domain UI
 //       </>
 //     ),
 //   },

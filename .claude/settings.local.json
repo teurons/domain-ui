@@ -60,7 +60,8 @@
       "WebFetch(domain:flags-sdk.dev)",
       "Bash(npx ultracite@latest lint:*)",
       "Bash(npx ultracite@latest format lib/env.ts)",
-      "Bash(npx ultracite@latest format apps/web/lib/env.ts)"
+      "Bash(npx ultracite@latest format apps/web/lib/env.ts)",
+      "Bash(npx ultracite@latest format apps/web/components/hero.tsx)"
     ],
     "deny": []
   }
