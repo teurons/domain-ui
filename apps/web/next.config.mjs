@@ -27,8 +27,8 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Apply CORS headers to registry API routes
-        source: "/r/:path*",
+        // Apply CORS headers to registry API routes (both domain-ui and domain-ui-pro)
+        source: "/r/:registry/:component*",
         headers: [
           {
             key: "Access-Control-Allow-Origin",
