@@ -24,6 +24,28 @@ const nextConfig = {
     "oxc-transform",
     "twoslash",
   ],
+  async headers() {
+    return [
+      {
+        // Apply CORS headers to registry API routes
+        source: "/r/:path*",
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "http://localhost:5173",
+          },
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET, OPTIONS",
+          },
+          {
+            key: "Access-Control-Allow-Headers",
+            value: "Content-Type",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default withMDX(nextConfig);
