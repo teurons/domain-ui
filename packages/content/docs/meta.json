@@ -1,6 +1,7 @@
 {
   "title": "UI",
   "description": "UI components and patterns",
+  "root": true,
   "pages": [
     "---Introduction---",
     "index",
