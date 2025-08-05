@@ -47,7 +47,7 @@ export default function Hero() {
           <div className="flex flex-col gap-4">
             <h1 className="max-w-3xl text-center font-regular text-5xl tracking-tighter md:text-8xl">
               <span className="text-spektr-cyan-50">
-                Domain-Specific React Components
+                Domain First UI Components
               </span>
               <span className="relative flex hidden w-full justify-center overflow-hidden text-center md:pt-1 md:pb-4">
                 &nbsp;
