@@ -1,5 +1,5 @@
 import type { BaseLayoutProps, LinkItemType } from "fumadocs-ui/layouts/shared";
-import Image from "next/image";
+import { Logo } from "@/components/logo";
 import { Icons } from "@/components/icons";
 
 export const title = "domain-ui";
@@ -11,14 +11,8 @@ export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
       <>
-        <Image
-          src="/avatar.png"
-          width={28}
-          height={28}
-          alt="domain-ui avatar"
-          className="rounded-full"
-        />{" "}
-        domain-ui
+        <Logo width={28} height={28} />
+        <span>Domain UI</span>
       </>
     ),
   },
