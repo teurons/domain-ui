@@ -265,8 +265,8 @@ importers:
         specifier: 2.9.3-canary.0
         version: 2.9.3-canary.0(@types/node@20.17.19)(typescript@5.7.3)
       shiki:
-        specifier: ^3.2.1
-        version: 3.9.1
+        specifier: ^3.9.2
+        version: 3.9.2
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.3.1
@@ -11350,7 +11350,7 @@ snapshots:
       remark-gfm: 4.0.1
       remark-rehype: 11.1.2
       scroll-into-view-if-needed: 3.1.0
-      shiki: 3.9.1
+      shiki: 3.9.2
       unist-util-visit: 5.0.0
     optionalDependencies:
       '@types/react': 19.1.9
@@ -11377,7 +11377,7 @@ snapshots:
       remark-gfm: 4.0.1
       remark-rehype: 11.1.2
       scroll-into-view-if-needed: 3.1.0
-      shiki: 3.9.1
+      shiki: 3.9.2
       unist-util-visit: 5.0.0
     optionalDependencies:
       '@types/react': 19.1.9
@@ -11503,7 +11503,7 @@ snapshots:
       mdast-util-gfm: 3.1.0
       mdast-util-to-hast: 13.2.0
       react: 19.1.1
-      shiki: 3.9.1
+      shiki: 3.9.2
       tailwind-merge: 3.3.1
       twoslash: 0.3.3(typescript@5.7.3)
     optionalDependencies:
@@ -11523,7 +11523,7 @@ snapshots:
       mdast-util-gfm: 3.1.0
       mdast-util-to-hast: 13.2.0
       react: 19.1.1
-      shiki: 3.9.1
+      shiki: 3.9.2
       tailwind-merge: 3.3.1
       twoslash: 0.3.3(typescript@5.9.2)
     optionalDependencies:
