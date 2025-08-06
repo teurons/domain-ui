@@ -17,7 +17,7 @@ import { ArrowUpRightIcon } from "lucide-react";
 export default function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["learner", "developer", "hacker", "builder", "entrepreneur"],
+    () => ["fintech", "trading", "banking", "payments", "compliance"],
     []
   );
   const titleRef = useRef(null);

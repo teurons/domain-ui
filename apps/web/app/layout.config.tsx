@@ -2,16 +2,16 @@ import type { BaseLayoutProps, LinkItemType } from "fumadocs-ui/layouts/shared";
 import { Logo } from "@/components/logo";
 import { Icons } from "@/components/icons";
 
-export const title = "domain-ui";
+export const title = "Domain UI";
 export const description =
-  "Personal website of domain-ui. This is where I articulate my work, open source projects, thoughts, ideas, work, commentary and opinions.";
+  "Domain-first UI components for fintech, trading, KYC, and more. Copy-paste ready components and blocks built specifically for industry use-cases, installable via shadcn CLI.";
 export const owner = "domain-ui";
 
 export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
       <>
-        <Logo width={40} height={40} />
+        <Logo width={36} height={36} />
         <span>Domain UI</span>
       </>
     ),
