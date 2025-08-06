@@ -13,8 +13,6 @@ export function Logo({ width = 28, height = 28, className }: LogoProps) {
   const { resolvedTheme, theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  console.log("Theme data:", { resolvedTheme, theme, systemTheme });
-
   useEffect(() => {
     setMounted(true);
   }, []);

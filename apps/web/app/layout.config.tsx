@@ -11,7 +11,7 @@ export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
       <>
-        <Logo width={28} height={28} />
+        <Logo width={40} height={40} />
         <span>Domain UI</span>
       </>
     ),
