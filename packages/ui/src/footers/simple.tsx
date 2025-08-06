@@ -13,24 +13,34 @@ export default function SimpleFooter({
 }) {
   return (
     <footer>
-      <div className="relative isolate mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
+      <div className="relative isolate mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <GridBackground maxWidthClass="max-w-7xl" />
-
-        <div className="flex justify-center gap-x-6 md:order-2">
-          {navigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-gray-600 hover:text-gray-800"
-            >
-              <span className="sr-only">{item.name}</span>
-              <item.icon aria-hidden="true" className="size-6" />
+        
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+          <p className="text-center text-gray-600 text-sm md:text-left">
+            &copy; 2024 Domain UI. Built by{" "}
+            <a href="https://twitter.com/rjv_im" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">
+              @rjv_im
             </a>
-          ))}
+            {" "}under{" "}
+            <a href="https://twitter.com/teurons" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">
+              @teurons
+            </a>
+          </p>
+          
+          <div className="flex gap-x-6">
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+              >
+                <span className="sr-only">{item.name}</span>
+                <item.icon aria-hidden="true" className="h-5 w-5" />
+              </a>
+            ))}
+          </div>
         </div>
-        <p className="mt-8 text-center text-gray-600 text-sm/6 md:order-1 md:mt-0">
-          &copy; 2024 Your Company, Inc. All rights reserved.
-        </p>
       </div>
     </footer>
   );

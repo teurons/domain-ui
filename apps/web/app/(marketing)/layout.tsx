@@ -46,18 +46,13 @@ export default function Layout({ children }: { children: ReactNode }) {
   const footerNavigation = [
     {
       name: "Twitter",
-      href: "https://twitter.com/company",
+      href: "https://twitter.com/rjv_im",
       icon: Icons.x,
     },
     {
       name: "GitHub",
-      href: "https://github.com/company",
+      href: "https://github.com/teurons/domain-ui",
       icon: Icons.github,
-    },
-    {
-      name: "YouTube",
-      href: "https://youtube.com/company",
-      icon: Icons.youtube,
     },
   ];
 

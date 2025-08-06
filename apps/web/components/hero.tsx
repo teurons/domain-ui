@@ -129,13 +129,13 @@ export default function Hero() {
             </p>
           </div>
           <div className="flex flex-row gap-3">
-            <Link href="/docs" target="_blank">
+            <Link href="/docs">
               <Button size="lg" className="cursor-grab gap-4">
                 <PuzzleIcon className="h-4 w-4" />
                 Browse Components <ArrowUpRightIcon className="h-4 w-4" />
               </Button>
             </Link>
-            <Link href="https://github.com/rjvim/domain-ui" target="_blank">
+            <Link href="https://github.com/teurons/domain-ui" target="_blank">
               <Button size="lg" className="gap-4" variant={"outline"}>
                 <SocialIcons.github className="h-4 w-4" />
                 Github <MoveRight className="h-4 w-4" />
