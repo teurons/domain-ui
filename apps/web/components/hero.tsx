@@ -60,7 +60,7 @@ export default function Hero() {
                       animate={{ opacity: isInView ? 1 : 0.7 }}
                       transition={{
                         duration: 0.1,
-                        delay: isInView ? 1 + index * 0.15 : 0,
+                        delay: isInView ? index * 0.15 : 0,
                       }}
                     >
                       {letter}
@@ -70,7 +70,7 @@ export default function Hero() {
                     className="absolute bottom-0 left-0 h-1 bg-current opacity-70 md:h-1"
                     initial={{ width: 0 }}
                     animate={{ width: isInView ? "100%" : 0 }}
-                    transition={{ duration: 1.5, delay: isInView ? 1 : 0 }}
+                    transition={{ duration: 1.5, delay: isInView ? 0 : 0 }}
                   />
                 </span>{" "}
                 <span className="opacity-80">First</span>{" "}
@@ -82,7 +82,7 @@ export default function Hero() {
                       animate={{ opacity: isInView ? 1 : 0.7 }}
                       transition={{
                         duration: 0.1,
-                        delay: isInView ? 3.5 + index * 0.15 : 0,
+                        delay: isInView ? 1.5 + index * 0.15 : 0,
                       }}
                     >
                       {letter}
@@ -92,7 +92,7 @@ export default function Hero() {
                     className="absolute bottom-0 left-0 h-1 bg-current opacity-70 md:h-1"
                     initial={{ width: 0 }}
                     animate={{ width: isInView ? "100%" : 0 }}
-                    transition={{ duration: 1.5, delay: isInView ? 3.5 : 0 }}
+                    transition={{ duration: 0.5, delay: isInView ? 1.5 : 0 }}
                   />
                 </span>{" "}
                 <span className="opacity-80">Components</span>

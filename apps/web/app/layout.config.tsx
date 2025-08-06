@@ -22,12 +22,7 @@ export const baseOptions: BaseLayoutProps = {
       </>
     ),
   },
-  links: [
-    {
-      text: "Docs",
-      url: "/docs",
-    },
-  ],
+  links: [],
 };
 
 export const linkItems: LinkItemType[] = [
