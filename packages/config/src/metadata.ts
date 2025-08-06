@@ -8,7 +8,7 @@ export const baseUrl =
 
 export function createMetadata(override: Metadata): Metadata {
   const ogUrl = `${baseUrl}/api/og`;
-  
+
   return {
     ...override,
     keywords: [

@@ -15,19 +15,29 @@ export default function SimpleFooter({
     <footer>
       <div className="relative isolate mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <GridBackground maxWidthClass="max-w-7xl" />
-        
+
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <p className="text-center text-gray-600 text-sm md:text-left">
-            &copy; 2024 Domain UI. Built by{" "}
-            <a href="https://twitter.com/rjv_im" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">
+            &copy; 2025 Domain UI. Built by{" "}
+            <a
+              href="https://twitter.com/rjv_im"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
               @rjv_im
-            </a>
-            {" "}under{" "}
-            <a href="https://twitter.com/teurons" target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">
+            </a>{" "}
+            under{" "}
+            <a
+              href="https://twitter.com/teurons"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
               @teurons
             </a>
           </p>
-          
+
           <div className="flex gap-x-6">
             {navigation.map((item) => (
               <a
