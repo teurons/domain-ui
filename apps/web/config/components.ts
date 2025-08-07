@@ -19,7 +19,6 @@ export const categories: ComponentCategory[] = [
     slug: "forms",
     name: "Forms",
     components: [
-      { name: "regex-input", type: "free" },
       { name: "pan-input", type: "pro" },
     ],
   },
