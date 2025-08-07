@@ -63,7 +63,9 @@
       "Bash(npx ultracite@latest format apps/web/lib/env.ts)",
       "Bash(npx ultracite@latest format apps/web/components/hero.tsx)",
       "Bash(pnpm list:*)",
-      "Bash(pnpm why:*)"
+      "Bash(pnpm why:*)",
+      "Bash(npx ultracite@latest format \"/Users/rajiv/Projects/Rjvim/domain-ui/apps/web/app/(marketing)/[category]/page.tsx\")",
+      "Bash(npx ultracite@latest format \"apps/web/lib/registry-utils.ts\" \"apps/web/components/\")"
     ],
     "deny": []
   }
