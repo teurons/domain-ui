@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { categories } from "@/config/components";
 import { getComponentsByNames, getComponentType } from "@/lib/registry-utils";
 import ComponentCard from "@/components/component-card";
-import ComponentDetails from "@/components/component-details";
+import ComponentToolbar from "@/components/component-toolbar";
 import ComponentLoader from "@/components/component-loader";
 import PageHeader from "@/components/page-header";
 import PageGrid from "@/components/page-grid";
@@ -98,21 +98,24 @@ export default async function AllComponentsPage({ searchParams }: Props) {
             return (
               <ComponentCard
                 key={component.name}
-                component={component}
-                className="relative"
+                className="col-span-12 border sm:col-span-6 lg:col-span-4"
+                toolbar={
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-1">
+                      {componentType === "pro" && (
+                        <Badge variant="default" className="text-xs">
+                          PRO
+                        </Badge>
+                      )}
+                      <Badge variant="outline" className="text-xs">
+                        {component.categoryName}
+                      </Badge>
+                    </div>
+                    <ComponentToolbar component={component} />
+                  </div>
+                }
               >
-                <div className="absolute top-2 left-2 z-10 flex gap-1">
-                  {componentType === "pro" && (
-                    <Badge variant="default" className="text-xs">
-                      PRO
-                    </Badge>
-                  )}
-                  <Badge variant="outline" className="text-xs">
-                    {component.categoryName}
-                  </Badge>
-                </div>
                 <ComponentLoader component={component} />
-                <ComponentDetails component={component} />
               </ComponentCard>
             );
           })}

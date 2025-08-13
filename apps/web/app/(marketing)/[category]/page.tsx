@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { categories, getCategory } from "@/config/components";
 import { getComponentsByNames } from "@/lib/registry-utils";
 import ComponentCard from "@/components/component-card";
-import ComponentDetails from "@/components/component-details";
+import ComponentToolbar from "@/components/component-toolbar";
 import ComponentLoader from "@/components/component-loader-server";
 import Cta from "@/components/cta";
 import PageGrid from "@/components/page-grid";
@@ -81,11 +81,14 @@ export default async function CategoryPage({ params }: Props) {
         {components.map((component) => (
           <ComponentCard
             key={component.name}
-            component={component}
-            className="data-[slot=comp-542]:px-0"
+            className="col-span-12 border sm:col-span-6 lg:col-span-4"
+            toolbar={
+              <div className="flex justify-end">
+                <ComponentToolbar component={component} />
+              </div>
+            }
           >
             <ComponentLoader component={component} />
-            <ComponentDetails component={component} />
           </ComponentCard>
         ))}
       </PageGrid>

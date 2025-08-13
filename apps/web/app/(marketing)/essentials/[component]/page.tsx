@@ -8,7 +8,7 @@ import {
 } from "@/config/components";
 import { getComponentsByNames } from "@/lib/registry-utils";
 import ComponentCard from "@/components/component-card";
-import ComponentDetails from "@/components/component-details";
+import ComponentToolbar from "@/components/component-toolbar";
 import ComponentLoader from "@/components/component-loader-server";
 
 type Props = {
@@ -82,15 +82,15 @@ export default async function EssentialComponentPage({ params }: Props) {
         <p className="mt-2 text-muted-foreground">{meta.description}</p>
       </div>
 
-      <div className="grid grid-cols-12 gap-6">
-        <ComponentCard
-          component={component}
-          className="col-span-12 lg:col-span-8 lg:col-start-3"
-        >
-          <ComponentLoader component={component} />
-          <ComponentDetails component={component} />
-        </ComponentCard>
-      </div>
+      <ComponentCard
+        toolbar={
+          <div className="flex justify-end">
+            <ComponentToolbar component={component} />
+          </div>
+        }
+      >
+        <ComponentLoader component={component} />
+      </ComponentCard>
     </div>
   );
 }
