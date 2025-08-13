@@ -2,7 +2,7 @@
 
 import { CodeIcon } from "lucide-react";
 import type { RegistryItem } from "shadcn/registry";
-import { getComponentType } from "@/lib/registry-utils";
+import { getComponentType, getRegistryBaseUrl } from "@/lib/registry-utils";
 
 import { Button } from "@workspace/shadverse/components/button";
 import {
@@ -31,6 +31,7 @@ export default function ComponentToolbar({
   component: RegistryItem;
 }) {
   const componentType = getComponentType(component.name);
+  const baseUrl = getRegistryBaseUrl();
 
   return (
     <Dialog>
@@ -68,6 +69,7 @@ export default function ComponentToolbar({
             <div className="relative">
               <DynamicRegistryCodeBlock
                 name={component.name}
+                baseUrl={baseUrl}
                 registry={componentType}
                 fileType="registry:component"
               />
