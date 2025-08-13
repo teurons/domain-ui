@@ -64,3 +64,41 @@ export function getProComponents(): { name: string; category: string }[] {
   }
   return proComponents;
 }
+
+export interface ComponentMetadata {
+  name: string;
+  description: string;
+}
+
+export const componentMetadata: Record<string, ComponentMetadata> = {
+  "indian-passport": {
+    name: "Indian Passport",
+    description:
+      "Identity verification component with built-in validation pattern for Indian passports. Perfect for KYC and onboarding flows.",
+  },
+  "uk-passport": {
+    name: "UK Passport",
+    description:
+      "Identity verification component with built-in validation pattern for UK passports. Perfect for KYC and onboarding flows.",
+  },
+  "usa-passport": {
+    name: "USA Passport",
+    description:
+      "Identity verification component with built-in validation pattern for USA passports. Perfect for KYC and onboarding flows.",
+  },
+  "pan-input": {
+    name: "PAN Input",
+    description:
+      "Form input component with built-in validation pattern for Indian PAN (Permanent Account Number). Perfect for financial forms and tax applications.",
+  },
+};
+
+export function getComponentMetadata(
+  componentName: string
+): ComponentMetadata | undefined {
+  return componentMetadata[componentName];
+}
+
+export function isValidComponent(componentName: string): boolean {
+  return componentName in componentMetadata;
+}

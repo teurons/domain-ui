@@ -68,7 +68,8 @@
       "Bash(npx ultracite@latest format \"apps/web/lib/registry-utils.ts\" \"apps/web/components/\")",
       "Bash(npx ultracite@latest format \"apps/web/components/component-loader.tsx\" \"apps/web/app/(marketing)/all/page.tsx\")",
       "Bash(true)",
-      "Bash(npx ultracite@latest format)"
+      "Bash(npx ultracite@latest format)",
+      "Bash(npx:*)"
     ],
     "deny": []
   }
