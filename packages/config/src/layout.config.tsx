@@ -25,7 +25,7 @@ export const baseOptions: BaseLayoutProps = {
   links: [
     {
       text: "Documentation",
-      url: "/primitives",
+      url: "/primitives/docs",
       active: "nested-url",
     },
     {

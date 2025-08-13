@@ -3,5 +3,5 @@ import { create, docs } from "../source.generated";
 
 export const source = loader({
   source: await create.sourceAsync(docs.doc, docs.meta),
-  baseUrl: "/primitives",
+  baseUrl: "/primitives/docs",
 });

@@ -27,7 +27,7 @@ import { Header } from "@/components/header";
 //   links: [
 //     {
 //       text: "Documentation",
-//       url: "/primitives",
+//       url: "/primitives/docs",
 //       active: "nested-url",
 //     },
 //     {

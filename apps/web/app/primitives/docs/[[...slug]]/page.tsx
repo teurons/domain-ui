@@ -1,4 +1,4 @@
-import { docsSource } from "@/lib/source";
+import { primitivesDocsSource } from "@/lib/source";
 import {
   DocsBody,
   DocsDescription,
@@ -12,7 +12,7 @@ export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  const page = docsSource.getPage(params.slug);
+  const page = primitivesDocsSource.getPage(params.slug);
   if (!page) {
     notFound();
   }
@@ -31,14 +31,14 @@ export default async function Page(props: {
 }
 
 export async function generateStaticParams() {
-  return docsSource.generateParams();
+  return primitivesDocsSource.generateParams();
 }
 
 export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  const page = docsSource.getPage(params.slug);
+  const page = primitivesDocsSource.getPage(params.slug);
   if (!page) notFound();
 
   return {

@@ -23,7 +23,7 @@ export default function Home() {
         </p>
         <Link
           className="rounded-full bg-fd-primary px-4 py-2.5 font-medium text-fd-primary-foreground text-sm"
-          to="/primitives"
+          to="/primitives/docs"
         >
           Open Docs
         </Link>

@@ -3,8 +3,8 @@ import { docs, blog } from "@/.source";
 import { loader } from "fumadocs-core/source";
 import { createMDXSource } from "fumadocs-mdx";
 
-export const docsSource = loader({
-  baseUrl: "/primitives",
+export const primitivesDocsSource = loader({
+  baseUrl: "/primitives/docs",
   source: docs.toFumadocsSource(),
 });
 
