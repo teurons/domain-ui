@@ -15,7 +15,7 @@ import { UsaPassport } from "@workspace/domain-ui-registry/components/domain-ui/
 // Component mapping
 const componentMap: Record<string, ComponentType<any>> = {
   "my-badge": MyBadge,
-  "heading": Heading,
+  heading: Heading,
   "sub-heading": SubHeading,
   "page-title": PageTitle,
   "regex-input": RegexInput,
@@ -47,7 +47,9 @@ export default function ComponentLoader<TProps extends object>({
     return (
       <div className="flex h-32 items-center justify-center rounded-md border border-muted-foreground/25 border-dashed">
         <div className="text-center">
-          <p className="text-muted-foreground text-sm">Component not registered</p>
+          <p className="text-muted-foreground text-sm">
+            Component not registered
+          </p>
           <p className="text-muted-foreground/60 text-xs">{component.name}</p>
         </div>
       </div>

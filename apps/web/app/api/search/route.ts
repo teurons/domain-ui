@@ -12,7 +12,7 @@ export const { staticGET: GET } = createSearchAPI("advanced", {
         url: page.url,
         id: page.url,
         structuredData: page.data.structuredData,
-        tag: "docs",
+        tag: "primitives",
       };
     }),
   ],

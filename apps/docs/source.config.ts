@@ -12,7 +12,7 @@ import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins";
 import { z } from "zod";
 
 export const docs = defineDocs({
-  dir: "../../packages/content/docs",
+  dir: "../../packages/content/primitives",
 });
 
 export default defineConfig({

@@ -1,8 +1,8 @@
 export interface ComponentCategory {
-  slug: string
-  name: string
-  components: { name: string; type?: "free" | "pro" }[]
-  isNew?: boolean
+  slug: string;
+  name: string;
+  components: { name: string; type?: "free" | "pro" }[];
+  isNew?: boolean;
 }
 
 export const categories: ComponentCategory[] = [
@@ -18,9 +18,7 @@ export const categories: ComponentCategory[] = [
   {
     slug: "forms",
     name: "Forms",
-    components: [
-      { name: "pan-input", type: "pro" },
-    ],
+    components: [{ name: "pan-input", type: "pro" }],
   },
   {
     slug: "identity",
@@ -35,36 +33,34 @@ export const categories: ComponentCategory[] = [
   {
     slug: "display",
     name: "Display",
-    components: [
-      { name: "my-badge", type: "free" },
-    ],
+    components: [{ name: "my-badge", type: "free" }],
   },
-]
+];
 
 export function getCategory(slug: string): ComponentCategory | undefined {
-  return categories.find((category) => category.slug === slug)
+  return categories.find((category) => category.slug === slug);
 }
 
 export function getFreeComponents(): { name: string; category: string }[] {
-  const freeComponents: { name: string; category: string }[] = []
+  const freeComponents: { name: string; category: string }[] = [];
   for (const category of categories) {
     for (const component of category.components) {
       if (!component.type || component.type === "free") {
-        freeComponents.push({ name: component.name, category: category.slug })
+        freeComponents.push({ name: component.name, category: category.slug });
       }
     }
   }
-  return freeComponents
+  return freeComponents;
 }
 
 export function getProComponents(): { name: string; category: string }[] {
-  const proComponents: { name: string; category: string }[] = []
+  const proComponents: { name: string; category: string }[] = [];
   for (const category of categories) {
     for (const component of category.components) {
       if (component.type === "pro") {
-        proComponents.push({ name: component.name, category: category.slug })
+        proComponents.push({ name: component.name, category: category.slug });
       }
     }
   }
-  return proComponents
+  return proComponents;
 }

@@ -66,7 +66,9 @@
       "Bash(pnpm why:*)",
       "Bash(npx ultracite@latest format \"/Users/rajiv/Projects/Rjvim/domain-ui/apps/web/app/(marketing)/[category]/page.tsx\")",
       "Bash(npx ultracite@latest format \"apps/web/lib/registry-utils.ts\" \"apps/web/components/\")",
-      "Bash(npx ultracite@latest format \"apps/web/components/component-loader.tsx\" \"apps/web/app/(marketing)/all/page.tsx\")"
+      "Bash(npx ultracite@latest format \"apps/web/components/component-loader.tsx\" \"apps/web/app/(marketing)/all/page.tsx\")",
+      "Bash(true)",
+      "Bash(npx ultracite@latest format)"
     ],
     "deny": []
   }

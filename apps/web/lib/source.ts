@@ -4,7 +4,7 @@ import { loader } from "fumadocs-core/source";
 import { createMDXSource } from "fumadocs-mdx";
 
 export const docsSource = loader({
-  baseUrl: "/docs",
+  baseUrl: "/primitives",
   source: docs.toFumadocsSource(),
 });
 
