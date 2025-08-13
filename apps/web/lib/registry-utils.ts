@@ -23,11 +23,16 @@ const components = registry.items as unknown as RegistryItem[];
 //   };
 // }
 
+// Create a map once for efficient lookups
+const componentsMap = new Map<string, RegistryItem>(
+  components.map((comp) => [comp.name, comp])
+);
+
+export const getComponentByName = (name: string): RegistryItem | undefined => {
+  return componentsMap.get(name);
+};
+
 export const getComponentsByNames = (names: string[]): RegistryItem[] => {
-  const componentsMap = new Map(components.map((comp) => [comp.name, comp]));
-
-  // console.log("componentsMap", components, componentsMap);
-
   return names
     .map((name) => componentsMap.get(name))
     .filter((comp): comp is RegistryItem => comp !== undefined);

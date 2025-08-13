@@ -6,7 +6,7 @@ import {
   getComponentLoader,
   componentExists,
 } from "@/config/components";
-import { getComponentsByNames } from "@/lib/registry-utils";
+import { getComponentByName } from "@/lib/registry-utils";
 import ComponentCard from "@/components/component-card";
 import ComponentToolbar from "@/components/component-toolbar";
 
@@ -49,8 +49,7 @@ export default async function EssentialComponentPage({ params }: Props) {
     notFound();
   }
 
-  const components = getComponentsByNames([componentName]);
-  const component = components[0];
+  const component = getComponentByName(componentName);
 
   if (!component) {
     notFound();
@@ -62,8 +61,6 @@ export default async function EssentialComponentPage({ params }: Props) {
   if (!(meta && ComponentLoader)) {
     notFound();
   }
-
-  console.log(`Loading component: ${componentName}`, component);
 
   return (
     <div className="container mx-auto py-10">
