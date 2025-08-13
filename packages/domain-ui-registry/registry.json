@@ -79,6 +79,36 @@
       "meta": {
         "tags": ["input", "regex", "validation", "form"]
       }
+    },
+    {
+      "name": "indian-passport",
+      "type": "registry:component",
+      "registryDependencies": ["input", "label"],
+      "files": [
+        {
+          "path": "components/domain-ui/regex-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "hooks/use-regex-input.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "components/domain-ui/indian-passport.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "india",
+          "validation",
+          "identity",
+          "kyc",
+          "form"
+        ]
+      }
     }
   ]
 }

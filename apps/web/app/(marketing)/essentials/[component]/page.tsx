@@ -4,12 +4,12 @@ import {
   categories,
   componentMetadata,
   getComponentMetadata,
+  getComponentLoader,
   isValidComponent,
 } from "@/config/components";
 import { getComponentsByNames } from "@/lib/registry-utils";
 import ComponentCard from "@/components/component-card";
 import ComponentToolbar from "@/components/component-toolbar";
-import ComponentLoader from "@/components/component-loader";
 
 type Props = {
   params: Promise<{ component: string }>;
@@ -71,9 +71,13 @@ export default async function EssentialComponentPage({ params }: Props) {
   }
 
   const meta = getComponentMetadata(componentName);
-  if (!meta) {
+  const ComponentLoader = getComponentLoader(componentName);
+
+  if (!(meta && ComponentLoader)) {
     notFound();
   }
+
+  console.log(`Loading component: ${componentName}`, component);
 
   return (
     <div className="container mx-auto py-10">
@@ -89,7 +93,7 @@ export default async function EssentialComponentPage({ params }: Props) {
           </div>
         }
       >
-        <ComponentLoader component={component} />
+        <ComponentLoader />
       </ComponentCard>
     </div>
   );
