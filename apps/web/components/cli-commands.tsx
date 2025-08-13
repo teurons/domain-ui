@@ -9,7 +9,7 @@ import {
   TabsTrigger,
 } from "@workspace/shadverse/components/tabs";
 
-export default function CliCommands({ name }: { name: string }) {
+export default function CliCommands({ name, type }: { name: string; type: "free" | "pro" }) {
   const [config, setConfig] = useConfig();
   const packageManager = config.packageManager || "pnpm";
 
