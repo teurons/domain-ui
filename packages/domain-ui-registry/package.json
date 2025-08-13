@@ -9,6 +9,7 @@
     "registry:build": "shadcn build -o ../../apps/web/public/r && sed -i '' 's/@workspace\\/domain-ui-registry/@\\/registry\\/default/g' ../../apps/web/public/r/*.json"
   },
   "exports": {
+    "./registry.json": "./registry.json",
     "./lib/*": "./lib/*.ts",
     "./hooks/*": "./hooks/*.ts",
     "./components/*": "./components/*.tsx"

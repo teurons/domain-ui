@@ -83,16 +83,12 @@
     {
       "name": "indian-passport",
       "type": "registry:component",
-      "registryDependencies": ["input", "label"],
+      "registryDependencies": [
+        "input",
+        "label",
+        "http://localhost:3000/r/regex-input.json"
+      ],
       "files": [
-        {
-          "path": "components/domain-ui/regex-input.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "hooks/use-regex-input.ts",
-          "type": "registry:hook"
-        },
         {
           "path": "components/domain-ui/indian-passport.tsx",
           "type": "registry:component"

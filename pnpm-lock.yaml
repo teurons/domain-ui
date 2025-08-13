@@ -222,6 +222,9 @@ importers:
       jose:
         specifier: ^6.0.12
         version: 6.0.12
+      jotai:
+        specifier: ^2.13.1
+        version: 2.13.1(@babel/core@7.28.0)(@babel/template@7.27.2)(@types/react@19.1.9)(react@19.1.1)
       lucide-react:
         specifier: ^0.536.0
         version: 0.536.0(react@19.1.1)
@@ -5087,6 +5090,24 @@ packages:
 
   jose@6.0.12:
     resolution: {integrity: sha512-T8xypXs8CpmiIi78k0E+Lk7T2zlK4zDyg+o1CZ4AkOHgDg98ogdP2BeZ61lTFKFyoEwJ9RgAgN+SdM3iPgNonQ==}
+
+  jotai@2.13.1:
+    resolution: {integrity: sha512-cRsw6kFeGC9Z/D3egVKrTXRweycZ4z/k7i2MrfCzPYsL9SIWcPXTyqv258/+Ay8VUEcihNiE/coBLE6Kic6b8A==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@babel/core': '>=7.0.0'
+      '@babel/template': '>=7.0.0'
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@babel/template':
+        optional: true
+      '@types/react':
+        optional: true
+      react:
+        optional: true
 
   js-beautify@1.15.4:
     resolution: {integrity: sha512-9/KXeZUKKJwqCXUdBxFJ3vPh467OCckSBmYDwSK/EtV090K+iMJ7zx2S3HLVDIWFQdqMIsZWbnaGiba18aWhaA==}
@@ -12249,6 +12270,13 @@ snapshots:
   jiti@2.5.1: {}
 
   jose@6.0.12: {}
+
+  jotai@2.13.1(@babel/core@7.28.0)(@babel/template@7.27.2)(@types/react@19.1.9)(react@19.1.1):
+    optionalDependencies:
+      '@babel/core': 7.28.0
+      '@babel/template': 7.27.2
+      '@types/react': 19.1.9
+      react: 19.1.1
 
   js-beautify@1.15.4:
     dependencies:

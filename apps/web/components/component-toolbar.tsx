@@ -1,7 +1,7 @@
 "use client";
 
 import { CodeIcon } from "lucide-react";
-import type { RegistryItem } from "@/lib/registry-utils";
+import type { RegistryItem } from "shadcn/registry";
 import { getComponentType } from "@/lib/registry-utils";
 
 import { Button } from "@workspace/shadverse/components/button";
