@@ -9,7 +9,7 @@ import {
 import { getComponentsByNames } from "@/lib/registry-utils";
 import ComponentCard from "@/components/component-card";
 import ComponentToolbar from "@/components/component-toolbar";
-import ComponentLoader from "@/components/component-loader-server";
+import ComponentLoader from "@/components/component-loader";
 
 type Props = {
   params: Promise<{ component: string }>;

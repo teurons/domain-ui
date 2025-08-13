@@ -80,7 +80,10 @@ export function NavigationMenuDemo() {
                 <ListItem href="/primitives/docs" title="Introduction">
                   Re-usable components built using Radix UI and Tailwind CSS.
                 </ListItem>
-                <ListItem href="/primitives/docs/installation" title="Installation">
+                <ListItem
+                  href="/primitives/docs/installation"
+                  title="Installation"
+                >
                   How to install dependencies and structure your app.
                 </ListItem>
                 <ListItem href="/primitives/docs/typography" title="Typography">
