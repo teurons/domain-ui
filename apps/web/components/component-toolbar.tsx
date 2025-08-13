@@ -50,7 +50,7 @@ export default function ComponentToolbar({
               </DialogTrigger>
             </span>
           </TooltipTrigger>
-          <TooltipContent className="px-2 py-1 text-muted-foreground text-xs">
+          <TooltipContent className="px-2 py-1 text-xs">
             View code
           </TooltipContent>
         </Tooltip>

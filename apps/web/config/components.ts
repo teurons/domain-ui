@@ -1,7 +1,7 @@
 export interface ComponentCategory {
   slug: string;
   name: string;
-  components: { name: string; type?: "free" | "pro" }[];
+  components: string[];
   isNew?: boolean;
 }
 
@@ -9,31 +9,23 @@ export const categories: ComponentCategory[] = [
   {
     slug: "typography",
     name: "Typography",
-    components: [
-      { name: "heading", type: "free" },
-      { name: "sub-heading", type: "free" },
-      { name: "page-title", type: "pro" },
-    ],
+    components: ["heading", "sub-heading", "page-title"],
   },
   {
     slug: "forms",
     name: "Forms",
-    components: [{ name: "pan-input", type: "pro" }],
+    components: ["pan-input"],
   },
   {
     slug: "identity",
     name: "Identity Verification",
-    components: [
-      { name: "indian-passport", type: "free" },
-      { name: "uk-passport", type: "free" },
-      { name: "usa-passport", type: "free" },
-    ],
+    components: ["indian-passport", "uk-passport", "usa-passport"],
     isNew: true,
   },
   {
     slug: "display",
     name: "Display",
-    components: [{ name: "my-badge", type: "free" }],
+    components: ["my-badge"],
   },
 ];
 
@@ -41,28 +33,16 @@ export function getCategory(slug: string): ComponentCategory | undefined {
   return categories.find((category) => category.slug === slug);
 }
 
-export function getFreeComponents(): { name: string; category: string }[] {
-  const freeComponents: { name: string; category: string }[] = [];
-  for (const category of categories) {
-    for (const component of category.components) {
-      if (!component.type || component.type === "free") {
-        freeComponents.push({ name: component.name, category: category.slug });
-      }
-    }
-  }
-  return freeComponents;
+export function getFreeComponents(): string[] {
+  return Object.keys(componentMetadata).filter(
+    (name) => componentMetadata[name]?.type === "free"
+  );
 }
 
-export function getProComponents(): { name: string; category: string }[] {
-  const proComponents: { name: string; category: string }[] = [];
-  for (const category of categories) {
-    for (const component of category.components) {
-      if (component.type === "pro") {
-        proComponents.push({ name: component.name, category: category.slug });
-      }
-    }
-  }
-  return proComponents;
+export function getProComponents(): string[] {
+  return Object.keys(componentMetadata).filter(
+    (name) => componentMetadata[name]?.type === "pro"
+  );
 }
 
 import dynamic from "next/dynamic";
@@ -72,6 +52,7 @@ export interface ComponentMetadata {
   name: string;
   description: string;
   type: "free" | "pro";
+  // biome-ignore lint/suspicious/noExplicitAny: Components have varying prop types
   loader: ComponentType<any>;
 }
 
@@ -80,7 +61,7 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
     name: "Indian Passport",
     description:
       "Identity verification component with built-in validation pattern for Indian passports. Perfect for KYC and onboarding flows.",
-    type: "pro",
+    type: "free",
     loader: dynamic(
       () =>
         import(
@@ -93,7 +74,7 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
     name: "UK Passport",
     description:
       "Identity verification component with built-in validation pattern for UK passports. Perfect for KYC and onboarding flows.",
-    type: "pro",
+    type: "free",
     loader: dynamic(
       () =>
         import(
@@ -106,7 +87,7 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
     name: "USA Passport",
     description:
       "Identity verification component with built-in validation pattern for USA passports. Perfect for KYC and onboarding flows.",
-    type: "pro",
+    type: "free",
     loader: dynamic(
       () =>
         import(
@@ -181,10 +162,11 @@ export function getComponentMetadata(
 
 export function getComponentLoader(
   componentName: string
+  // biome-ignore lint/suspicious/noExplicitAny: Components have varying prop types
 ): ComponentType<any> | undefined {
   return componentMetadata[componentName]?.loader;
 }
 
-export function isValidComponent(componentName: string): boolean {
+export function componentExists(componentName: string): boolean {
   return componentName in componentMetadata;
 }

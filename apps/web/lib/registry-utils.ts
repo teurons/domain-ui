@@ -35,8 +35,7 @@ export const getComponentsByNames = (names: string[]): RegistryItem[] => {
 
 function _getComponentTags(componentName: string): string[] {
   for (const category of categories) {
-    const component = category.components.find((c) => c.name === componentName);
-    if (component) {
+    if (category.components.includes(componentName)) {
       return [category.slug];
     }
   }
@@ -45,8 +44,8 @@ function _getComponentTags(componentName: string): string[] {
 
 export const getComponentType = (componentName: string): "free" | "pro" => {
   const freeComponents = getFreeComponents();
-  const isFreComponent = freeComponents.some((c) => c.name === componentName);
-  return isFreComponent ? "free" : "pro";
+  const isFreeComponent = freeComponents.includes(componentName);
+  return isFreeComponent ? "free" : "pro";
 };
 
 export function getRegistryBaseUrl(): string {

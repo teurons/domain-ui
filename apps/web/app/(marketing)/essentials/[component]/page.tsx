@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
-  categories,
   componentMetadata,
   getComponentMetadata,
   getComponentLoader,
-  isValidComponent,
+  componentExists,
 } from "@/config/components";
 import { getComponentsByNames } from "@/lib/registry-utils";
 import ComponentCard from "@/components/component-card";
@@ -15,19 +14,10 @@ type Props = {
   params: Promise<{ component: string }>;
 };
 
-function isComponentAvailable(componentName: string): boolean {
-  for (const category of categories) {
-    if (category.components.some((comp) => comp.name === componentName)) {
-      return true;
-    }
-  }
-  return false;
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const componentName = (await params).component;
 
-  if (!isValidComponent(componentName)) {
+  if (!componentExists(componentName)) {
     return {
       title: "Component Not Found - Domain UI",
     };
@@ -55,11 +45,7 @@ export async function generateStaticParams() {
 export default async function EssentialComponentPage({ params }: Props) {
   const componentName = (await params).component;
 
-  if (!isValidComponent(componentName)) {
-    notFound();
-  }
-
-  if (!isComponentAvailable(componentName)) {
+  if (!componentExists(componentName)) {
     notFound();
   }
 
