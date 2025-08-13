@@ -2,14 +2,5 @@
   "title": "UI",
   "description": "UI components and patterns",
   "root": true,
-  "pages": [
-    "---Introduction---",
-    "index",
-    "---Components---",
-    "page-title",
-    "button",
-    "accordion",
-    "tabs",
-    "regex-input"
-  ]
+  "pages": ["---Introduction---", "index", "---Components---", "regex-input"]
 }
