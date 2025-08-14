@@ -13,7 +13,7 @@ import {
 import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins";
 import { z } from "zod";
 var docs = defineDocs({
-  dir: "../../packages/content/primitives"
+  dir: "../../packages/content/docs"
 });
 var blog = defineCollections({
   type: "doc",

@@ -1,0 +1,50 @@
+---
+title: UK Passport Input
+description: Identity verification component for UK passport numbers with built-in validation and formatting
+---
+
+import { UkPassportDemo } from "@workspace/domain-ui-registry/demos/uk-passport-demo";
+
+# UK Passport Input
+
+A specialized input component for UK passport numbers that provides automatic validation and user feedback.
+
+## Features
+
+- **Format Validation**: Ensures input matches UK passport number format (9 digits)
+- **Real-time Feedback**: Visual indicators for valid/invalid input
+- **Accessibility**: Proper labeling and ARIA attributes
+- **TypeScript Support**: Full type safety with React component props
+
+## Demo
+
+<UkPassportDemo />
+
+## Usage
+
+```tsx
+import { UkPassport } from "@workspace/domain-ui-registry/components/domain-ui/uk-passport";
+
+export function MyComponent() {
+  return (
+    <UkPassport
+      placeholder="Enter passport number (e.g., 123456789)"
+      onChange={(e) => console.log("UK Passport:", e.target.value)}
+    />
+  );
+}
+```
+
+## Props
+
+The component accepts all standard HTML input props plus:
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `placeholder` | `string` | Placeholder text for the input |
+| `onChange` | `(e: ChangeEvent<HTMLInputElement>) => void` | Change event handler |
+| `id` | `string` | Optional ID for the input element |
+
+## Validation
+
+UK passport numbers must be exactly 9 digits. The component uses the regex pattern: `/^[0-9]{9}$/`
