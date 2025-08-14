@@ -12,7 +12,8 @@
     "./registry.json": "./registry.json",
     "./lib/*": "./lib/*.ts",
     "./hooks/*": "./hooks/*.ts",
-    "./components/*": "./components/*.tsx"
+    "./components/*": "./components/*.tsx",
+    "./demos/*": "./demos/*.tsx"
   },
   "keywords": [],
   "author": "",

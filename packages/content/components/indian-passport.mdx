@@ -1,10 +1,13 @@
 ## Overview
 
-The Indian Passport Input component provides a specialized input field with built-in validation for Indian passport numbers. It ensures that the entered passport number follows the correct format and provides real-time feedback to users.
+The Indian Passport Input component provides a specialized input field with built-in validation for Indian passport numbers.
 
-## Usage
+### Code Example
 
 ```tsx
+"use client";
+
+import { useState } from "react";
 import { IndianPassport } from "@workspace/domain-ui-registry/components/domain-ui/indian-passport";
 
 function PassportForm() {
@@ -24,8 +27,8 @@ function PassportForm() {
 
 Indian passport numbers follow this format:
 
-- **First Character**: Letter (A-Z)
-- **Next 7 Characters**: Digits (0-9)
-- **Total Length**: 8 characters
+- First character: Letter (A-Z)
+- Next 7 characters: Digits (0-9)
+- Total length: 8 characters
 
 Example: `A1234567`
