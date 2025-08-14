@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${meta.name} Component - Domain UI`,
-    description: `A beautiful and accessible ${meta.name.toLowerCase()} component for React and Next.js applications. ${meta.description}`,
+    title: `${meta.name} Component`,
+    description: `A beautiful and accessible ${meta.name.toLowerCase()} component for React, shadcn registry. ${meta.description}`,
   };
 }
 
