@@ -2,14 +2,6 @@
 
 The Indian Passport Input component provides a specialized input field with built-in validation for Indian passport numbers. It ensures that the entered passport number follows the correct format and provides real-time feedback to users.
 
-## Features
-
-- **Real-time Validation**: Validates passport format as the user types
-- **Format Enforcement**: Automatically formats the input to match Indian passport standards
-- **Visual Feedback**: Clear error states and success indicators
-- **Accessibility**: Full keyboard navigation and screen reader support
-- **Copy/Paste Support**: Handles pasted content gracefully
-
 ## Usage
 
 ```tsx
@@ -31,74 +23,9 @@ function PassportForm() {
 ## Validation Rules
 
 Indian passport numbers follow this format:
+
 - **First Character**: Letter (A-Z)
 - **Next 7 Characters**: Digits (0-9)
 - **Total Length**: 8 characters
 
 Example: `A1234567`
-
-## Props
-
-The component accepts all standard input props plus:
-
-- `value`: The passport number value
-- `onChange`: Callback when value changes
-- `onValidate`: Optional callback that receives validation status
-- `placeholder`: Placeholder text
-- `disabled`: Disable the input
-- `required`: Mark as required field
-
-## Examples
-
-### Basic Usage
-
-```tsx
-<IndianPassport placeholder="A1234567" />
-```
-
-### With Form Integration
-
-```tsx
-<form onSubmit={handleSubmit}>
-  <IndianPassport
-    value={formData.passport}
-    onChange={(e) => updateFormData({ passport: e.target.value })}
-    required
-  />
-  <button type="submit">Submit</button>
-</form>
-```
-
-### With Custom Validation Callback
-
-```tsx
-<IndianPassport
-  onValidate={(isValid) => {
-    if (isValid) {
-      console.log("Valid passport number");
-    }
-  }}
-/>
-```
-
-## Best Practices
-
-1. **Clear Labels**: Always provide a clear label for the passport input field
-2. **Error Messages**: Display helpful error messages when validation fails
-3. **Progressive Enhancement**: The component works without JavaScript but provides enhanced features when available
-4. **Form Integration**: Integrate with your form validation library for consistent validation across your application
-
-## Accessibility
-
-- The component includes proper ARIA attributes for screen readers
-- Supports keyboard navigation (Tab, Shift+Tab)
-- Error states are announced to screen readers
-- Follows WCAG 2.1 guidelines for form inputs
-
-## Browser Support
-
-Works in all modern browsers including:
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- Mobile browsers

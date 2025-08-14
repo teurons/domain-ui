@@ -32,6 +32,7 @@ This project uses **Biome** (not ESLint) for linting and formatting. Biome confi
 - **ALWAYS run `pnpm lint` from the root of the monorepo after making code changes**
 - **Ensure there are 0 linting issues before completing any task**
 - **NEVER run build commands (`pnpm build`, `pnpm web:build`, etc.) unless explicitly asked by the user**
+- **NEVER run dev server commands (`pnpm dev`, `next dev`, etc.) unless explicitly asked by the user**
 
 ### Managing Imports
 
