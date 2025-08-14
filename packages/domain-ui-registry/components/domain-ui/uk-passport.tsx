@@ -5,7 +5,7 @@ import type * as React from "react";
 import { RegexInput } from "@workspace/domain-ui-registry/components/domain-ui/regex-input";
 import { Label } from "@workspace/domain-ui-registry/components/ui/label";
 
-const UK_PASSPORT_REGEX = /^[0-9]{9}$/;
+const UK_PASSPORT_REGEX = /^[A-Z0-9]{9}$/;
 
 export function UkPassport(props: React.ComponentProps<"input">) {
   const generatedId = useId();

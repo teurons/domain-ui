@@ -9,10 +9,11 @@ import { UsaPassportDemo } from "@workspace/domain-ui-registry/demos/usa-passpor
 
 ## Validation Rules
 
-**Regex:** `/^[A-Z0-9]{9}$/`
+**Regex:** `/^[A-Z]?[0-9]{7,9}$/`
 
 **Format:**
-- 9 characters total
-- Alphanumeric characters (A-Z, 0-9)
+- Optional letter (A-Z) at the start
+- 7 to 9 digits (0-9)
+- Covers current, older, and rare formats
 
-**Valid examples:** 123456789, A12345678, 123B56789
+**Valid examples:** A12345678, 123456789, X1234567
