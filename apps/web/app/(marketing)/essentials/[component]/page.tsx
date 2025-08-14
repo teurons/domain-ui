@@ -64,7 +64,7 @@ export default async function EssentialComponentPage({ params }: Props) {
   }
 
   return (
-    <div className="mx-auto min-h-screen max-w-7xl px-6 py-10 py-12 lg:px-8">
+    <div className="mx-auto min-h-[90vh] max-w-7xl px-6 py-10 py-12 lg:px-8">
       <GridBackground maxWidthClass="max-w-7xl" />
       <div className="mb-8">
         <h1 className="font-bold text-3xl">{meta.name}</h1>
