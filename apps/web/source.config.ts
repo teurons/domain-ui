@@ -43,10 +43,6 @@ export const blog = defineCollections({
   }),
 });
 
-export const essentialsDocs = defineCollections({
-  type: "doc",
-  dir: "../../packages/domain-ui-registry/demos",
-});
 
 export default defineConfig({
   lastModifiedTime: "git",

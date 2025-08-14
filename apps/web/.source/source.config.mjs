@@ -38,10 +38,6 @@ var blog = defineCollections({
     seriesPart: z.number().optional()
   })
 });
-var essentialsDocs = defineCollections({
-  type: "doc",
-  dir: "../../packages/domain-ui-registry/demos"
-});
 var source_config_default = defineConfig({
   lastModifiedTime: "git",
   mdxOptions: {
@@ -67,6 +63,5 @@ var source_config_default = defineConfig({
 export {
   blog,
   source_config_default as default,
-  docs,
-  essentialsDocs
+  docs
 };

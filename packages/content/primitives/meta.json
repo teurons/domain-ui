@@ -2,5 +2,5 @@
   "title": "UI",
   "description": "UI components and patterns",
   "root": true,
-  "pages": ["---Introduction---", "index", "---Components---", "regex-input"]
+  "pages": ["---Introduction---", "index", "---Components---", "indian-passport", "regex-input"]
 }

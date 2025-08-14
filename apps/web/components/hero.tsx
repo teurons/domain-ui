@@ -129,7 +129,7 @@ export default function Hero() {
             </p>
           </div>
           <div className="flex flex-row gap-3">
-            <Link href="/primitives/docs">
+            <Link href="/docs">
               <Button size="lg" className="cursor-grab gap-4">
                 <PuzzleIcon className="h-4 w-4" />
                 Browse Components <ArrowUpRightIcon className="h-4 w-4" />
