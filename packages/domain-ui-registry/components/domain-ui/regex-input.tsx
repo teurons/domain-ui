@@ -2,7 +2,7 @@
 
 import type * as React from "react";
 import { Input } from "@workspace/domain-ui-registry/components/ui/input";
-import { useRegexInput } from "@workspace/domain-ui-registry/hooks/use-regex-input";
+import { useIncrementalRegex } from "@workspace/domain-ui-registry/hooks/use-incremental-regex";
 
 export interface RegexInputProps extends React.ComponentProps<"input"> {
   regex: RegExp;
@@ -14,7 +14,7 @@ export function RegexInput({
   onChange,
   ...props
 }: RegexInputProps) {
-  const { value: displayValue, onChange: handleChange } = useRegexInput({
+  const { value: displayValue, onChange: handleChange } = useIncrementalRegex({
     regex,
     value: value as string | undefined,
     onChange: onChange

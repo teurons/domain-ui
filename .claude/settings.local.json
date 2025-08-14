@@ -69,7 +69,12 @@
       "Bash(npx ultracite@latest format \"apps/web/components/component-loader.tsx\" \"apps/web/app/(marketing)/all/page.tsx\")",
       "Bash(true)",
       "Bash(npx ultracite@latest format)",
-      "Bash(npx:*)"
+      "Bash(npx:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm info:*)",
+      "Bash(pnpm search:*)",
+      "Bash(node:*)",
+      "WebSearch"
     ],
     "deny": []
   }
