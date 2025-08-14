@@ -1,3 +1,4 @@
+// source.config.ts
 import { defineDocs } from "fumadocs-mdx/config";
 import { defineConfig } from "fumadocs-mdx/config";
 import { transformerTwoslash } from "fumadocs-twoslash";
@@ -7,48 +8,41 @@ import remarkMath from "remark-math";
 import {
   transformerRemoveNotationEscape,
   transformerNotationFocus,
-  transformerMetaHighlight,
+  transformerMetaHighlight
 } from "@shikijs/transformers";
 import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins";
 import { z } from "zod";
-
-export const docs = defineDocs({
-  dir: "../../packages/content/primitives",
+var docs = defineDocs({
+  dir: "../../packages/content/primitives"
 });
-
-export const blog = defineCollections({
+var blog = defineCollections({
   type: "doc",
   dir: "content/blog",
   schema: frontmatterSchema.extend({
     author: z.string(),
-    date: z
-      .string()
-      .or(z.date())
-      .transform((value, context) => {
-        try {
-          return new Date(value);
-        } catch {
-          context.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: "Invalid date",
-          });
-          return z.NEVER;
-        }
-      }),
+    date: z.string().or(z.date()).transform((value, context) => {
+      try {
+        return new Date(value);
+      } catch {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Invalid date"
+        });
+        return z.NEVER;
+      }
+    }),
     tags: z.array(z.string()).optional(),
     image: z.string().optional(),
     draft: z.boolean().optional().default(false),
     series: z.string().optional(),
-    seriesPart: z.number().optional(),
-  }),
+    seriesPart: z.number().optional()
+  })
 });
-
-export const essentialsDocs = defineCollections({
+var essentialsDocs = defineCollections({
   type: "doc",
-  dir: "../../packages/content/components",
+  dir: "../../packages/content/components"
 });
-
-export default defineConfig({
+var source_config_default = defineConfig({
   lastModifiedTime: "git",
   mdxOptions: {
     providerImportSource: "@/mdx-components",
@@ -56,17 +50,23 @@ export default defineConfig({
       inline: "tailing-curly-colon",
       themes: {
         light: "github-light",
-        dark: "github-dark",
+        dark: "github-dark"
       },
       transformers: [
-        ...(rehypeCodeDefaultOptions.transformers ?? []),
+        ...rehypeCodeDefaultOptions.transformers ?? [],
         transformerTwoslash(),
         transformerRemoveNotationEscape(),
         transformerNotationFocus(),
-        transformerMetaHighlight(),
-      ],
+        transformerMetaHighlight()
+      ]
     },
     remarkPlugins: [remarkMath],
-    rehypePlugins: (v) => [rehypeKatex, ...v],
-  },
+    rehypePlugins: (v) => [rehypeKatex, ...v]
+  }
 });
+export {
+  blog,
+  source_config_default as default,
+  docs,
+  essentialsDocs
+};

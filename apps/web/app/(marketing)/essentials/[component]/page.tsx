@@ -10,6 +10,8 @@ import { getComponentByName } from "@/lib/registry-utils";
 import ComponentCard from "@/components/component-card";
 import ComponentToolbar from "@/components/component-toolbar";
 import { GridBackground } from "@workspace/ui/grid-background";
+import { essentialsDocsSource, getEssentialsDoc } from "@/lib/source";
+import { getMDXComponents } from "@/mdx-components";
 
 type Props = {
   params: Promise<{ component: string }>;
@@ -63,6 +65,10 @@ export default async function EssentialComponentPage({ params }: Props) {
     notFound();
   }
 
+  // Try to get the MDX documentation for this component
+  const essentialsDoc = essentialsDocsSource.getPage([componentName]);
+  const MDXContent = essentialsDoc?.data.body;
+
   return (
     <div className="mx-auto min-h-[90vh] max-w-7xl px-6 py-10 py-12 lg:px-8">
       <GridBackground maxWidthClass="max-w-7xl" />
@@ -80,6 +86,13 @@ export default async function EssentialComponentPage({ params }: Props) {
       >
         <ComponentLoader />
       </ComponentCard>
+
+      {/* Render MDX documentation if it exists */}
+      {MDXContent && (
+        <div className="prose prose-neutral dark:prose-invert mt-12 max-w-none">
+          <MDXContent components={getMDXComponents()} />
+        </div>
+      )}
     </div>
   );
 }
