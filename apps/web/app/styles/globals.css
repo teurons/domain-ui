@@ -11,6 +11,7 @@
 
 @import "@workspace/shadverse/globals.css";
 @import "@workspace/ui/globals.css";
+@import "@workspace/domain-ui-registry/globals.css";
 
 @source '../../node_modules/fumadocs-ui/dist/**/*.js';
 
