@@ -58,7 +58,7 @@ export interface ComponentMetadata {
 
 export const componentMetadata: Record<string, ComponentMetadata> = {
   "indian-passport": {
-    name: "Indian Passport",
+    name: "Indian Passport Input",
     description:
       "Identity verification component with built-in validation pattern for Indian passports. Perfect for KYC and onboarding flows.",
     type: "free",
