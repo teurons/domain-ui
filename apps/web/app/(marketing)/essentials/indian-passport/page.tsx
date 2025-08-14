@@ -17,7 +17,7 @@ export default async function IndianPassportPage() {
   const component = getComponentByName("indian-passport");
   
   // Try to get the MDX documentation
-  const essentialsDoc = getEssentialsDoc(["indian-passport"]);
+  const essentialsDoc = getEssentialsDoc(["indian-passport-demo"]);
   const MDXContent = essentialsDoc?.data.body;
 
   return (

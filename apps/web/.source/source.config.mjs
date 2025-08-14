@@ -40,7 +40,7 @@ var blog = defineCollections({
 });
 var essentialsDocs = defineCollections({
   type: "doc",
-  dir: "../../packages/content/components"
+  dir: "../../packages/domain-ui-registry/demos"
 });
 var source_config_default = defineConfig({
   lastModifiedTime: "git",

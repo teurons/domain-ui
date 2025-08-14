@@ -45,7 +45,7 @@ export const blog = defineCollections({
 
 export const essentialsDocs = defineCollections({
   type: "doc",
-  dir: "../../packages/content/components",
+  dir: "../../packages/domain-ui-registry/demos",
 });
 
 export default defineConfig({
