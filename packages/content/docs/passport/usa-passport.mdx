@@ -1,50 +1,18 @@
 ---
-title: USA Passport Input
-description: Identity verification component for USA passport numbers with built-in validation and formatting
+title: USA Passport
+description: Validation rules for USA passport numbers
 ---
 
 import { UsaPassportDemo } from "@workspace/domain-ui-registry/demos/usa-passport-demo";
 
-# USA Passport Input
-
-A specialized input component for USA passport numbers that provides automatic validation and user feedback.
-
-## Features
-
-- **Format Validation**: Ensures input matches USA passport number format (9 digits)
-- **Real-time Feedback**: Visual indicators for valid/invalid input
-- **Accessibility**: Proper labeling and ARIA attributes
-- **TypeScript Support**: Full type safety with React component props
-
-## Demo
-
 <UsaPassportDemo />
 
-## Usage
+## Validation Rules
 
-```tsx
-import { UsaPassport } from "@workspace/domain-ui-registry/components/domain-ui/usa-passport";
+**Regex:** `/^[A-Z0-9]{9}$/`
 
-export function MyComponent() {
-  return (
-    <UsaPassport
-      placeholder="Enter passport number (e.g., 123456789)"
-      onChange={(e) => console.log("USA Passport:", e.target.value)}
-    />
-  );
-}
-```
+**Format:**
+- 9 characters total
+- Alphanumeric characters (A-Z, 0-9)
 
-## Props
-
-The component accepts all standard HTML input props plus:
-
-| Prop | Type | Description |
-|------|------|-------------|
-| `placeholder` | `string` | Placeholder text for the input |
-| `onChange` | `(e: ChangeEvent<HTMLInputElement>) => void` | Change event handler |
-| `id` | `string` | Optional ID for the input element |
-
-## Validation
-
-USA passport numbers must be exactly 9 digits. The component uses the regex pattern: `/^[A-Z0-9]{9}$/`
+**Valid examples:** 123456789, A12345678, 123B56789

@@ -1,45 +1,19 @@
 ---
-title: Indian Passport Input
-description: Identity verification component with built-in validation pattern for Indian passports. Perfect for KYC and onboarding flows.
+title: Indian Passport
+description: Validation rules for Indian passport numbers
 ---
-
-## Overview
-
-The Indian Passport Input component provides a specialized input field with built-in validation for Indian passport numbers.
 
 import { IndianPassportDemo } from "@workspace/domain-ui-registry/demos/indian-passport-demo";
 
-### Live Demo
-
 <IndianPassportDemo />
-
-### Code Example
-
-```tsx
-"use client";
-
-import { useState } from "react";
-import { IndianPassport } from "@workspace/domain-ui-registry/components/domain-ui/indian-passport";
-
-function PassportForm() {
-  const [passport, setPassport] = useState("");
-
-  return (
-    <IndianPassport
-      value={passport}
-      onChange={(e) => setPassport(e.target.value)}
-      placeholder="Enter passport number"
-    />
-  );
-}
-```
 
 ## Validation Rules
 
-Indian passport numbers follow this format:
+**Regex:** `/^[A-Z][0-9]{7}$/`
 
+**Format:**
 - First character: Letter (A-Z)
-- Next 7 characters: Digits (0-9)
+- Next 7 characters: Digits (0-9)  
 - Total length: 8 characters
 
-Example: `A1234567`
+**Valid examples:** A1234567, B9876543, Z0000001
