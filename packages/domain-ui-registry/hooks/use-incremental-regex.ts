@@ -20,18 +20,19 @@ import {
  * Uses NFA-based incremental matching for proper regex support.
  */
 
-export type ValidationState = "valid" | "potentially-valid" | "invalid";
-export type ErrorType =
-  | "incomplete"
-  | "invalid-format"
-  | "incorrect-input"
-  | null;
+export enum ValidationStatus {
+  Valid = "valid",
+  Incomplete = "incomplete",
+  Invalid = "invalid",
+}
+
+export type ValidationStatusType = `${ValidationStatus}`;
 
 export interface UseIncrementalRegexProps {
   regex: RegExp;
   value?: string;
   onChange?: (value: string) => void;
-  onValidationChange?: (state: ValidationState, errorType: ErrorType) => void;
+  onValidation?: (status: ValidationStatusType) => void;
   defaultValue?: string;
 }
 
@@ -40,15 +41,14 @@ export interface UseIncrementalRegexReturn {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onPaste: () => void;
   isValid: boolean;
-  validationState: ValidationState;
-  errorType: ErrorType;
+  validationStatus: ValidationStatusType;
 }
 
 export const useIncrementalRegex = ({
   regex,
   value: controlledValue,
   onChange,
-  onValidationChange,
+  onValidation,
   defaultValue,
 }: UseIncrementalRegexProps): UseIncrementalRegexReturn => {
   // Internal configuration - skip validation for defaults
@@ -77,37 +77,32 @@ export const useIncrementalRegex = ({
     controlledValue !== undefined ? controlledValue : uncontrolledValue;
 
   // Validation state computation
-  const { isValid, validationState, errorType } = useMemo(() => {
+  const { isValid, validationStatus } = useMemo(() => {
     const isFullMatch = matches(value, regex);
     const canPartialMatch =
       value.length > 0 ? canPartiallyMatch(value, regex) : true;
 
-    let state: ValidationState;
-    let error: ErrorType = null;
-
+    let status: ValidationStatusType;
     if (isFullMatch) {
-      state = "valid";
+      status = ValidationStatus.Valid;
     } else if (canPartialMatch) {
-      state = "potentially-valid";
-      error = "incomplete";
+      status = ValidationStatus.Incomplete;
     } else {
-      state = "invalid";
-      error = "invalid-format";
+      status = ValidationStatus.Invalid;
     }
 
     return {
       isValid: isFullMatch,
-      validationState: state,
-      errorType: error,
+      validationStatus: status,
     };
   }, [value, regex]);
 
   // Notify validation changes
   useEffect(() => {
-    if (onValidationChange) {
-      onValidationChange(validationState, errorType);
+    if (onValidation) {
+      onValidation(validationStatus);
     }
-  }, [validationState, errorType, onValidationChange]);
+  }, [validationStatus, onValidation]);
 
   // Track if we're in a paste operation
   const isPasteRef = useRef(false);
@@ -157,7 +152,6 @@ export const useIncrementalRegex = ({
     onChange: handleChange,
     onPaste: handlePaste,
     isValid,
-    validationState,
-    errorType,
+    validationStatus,
   };
 };

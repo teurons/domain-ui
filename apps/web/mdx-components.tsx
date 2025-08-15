@@ -9,8 +9,6 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { Step, Steps } from "fumadocs-ui/components/steps";
 import CodeDisplay from "@/components/blog/code-display";
 import * as Twoslash from "fumadocs-twoslash/ui";
-// Import components directly
-import { IndianPassport } from "@workspace/domain-ui-registry/components/domain-ui/indian-passport";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -31,7 +29,6 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     RegistryCodeBlock,
     DynamicRegistryCodeBlock,
     CodeDisplay,
-    IndianPassport,
     ...components,
   };
 }
