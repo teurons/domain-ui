@@ -26,7 +26,7 @@ interface ToolbarProps {
   breakpointTitle?: string;
   availableBreakpoints: Breakpoint[];
   onBreakpointChange: (value: string) => void;
-  panelRef: React.RefObject<HTMLDivElement>;
+  panelRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export function Toolbar({
@@ -51,8 +51,8 @@ export function Toolbar({
         link.download = `preview-${width}px.png`;
         link.href = dataUrl;
         link.click();
-      } catch {
-        // Silent catch
+      } catch (err) {
+        console.error("Screenshot failed:", err);
       }
     }
   };
@@ -113,7 +113,7 @@ export function Toolbar({
   useEffect(() => {
     return () => {
       if (intervalRef.current) {
-        window.clearInterval(intervalRef.current);
+        clearInterval(intervalRef.current);
       }
     };
   }, []);

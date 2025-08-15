@@ -49,19 +49,6 @@ function Marker({
   );
 }
 
-function Sign({ position, isCurrent, isDull = false }: SignProps) {
-  return (
-    <div
-      className={cn(
-        "absolute h-2 w-px translate-x-[-50%] bg-gray-300 dark:bg-gray-600",
-        isCurrent && "bg-blue-500 dark:bg-blue-400",
-        isDull && "opacity-50"
-      )}
-      style={position !== undefined ? { left: `${position}px` } : undefined}
-    />
-  );
-}
-
 function MarkerScale({
   width,
   maxWidth,
@@ -69,50 +56,66 @@ function MarkerScale({
   breakpoints,
 }: ScaleBarProps) {
   return (
-    <div className="relative h-8">
-      {breakpoints.map((breakpoint) => {
-        const position = (breakpoint.minWidthPx / maxWidth) * width;
-        const isCurrent = breakpoint.title === currentBreakpoint;
-        const isValid = breakpoint.show;
+    <div className="relative h-8 w-full">
+      <Marker label="0" sublabel="0px" isDull />
 
-        return (
+      {breakpoints
+        .filter((breakpoint) => breakpoint.show)
+        .map((breakpoint: Breakpoint) => (
           <Marker
             key={breakpoint.title}
             label={breakpoint.title}
             sublabel={`${breakpoint.minWidthPx}px`}
-            position={position}
-            isCurrent={isCurrent}
-            isValid={isValid}
-            isDull={!isValid}
+            position={breakpoint.minWidthPx}
+            isCurrent={currentBreakpoint === breakpoint.title}
+            isValid={width > breakpoint.minWidthPx}
           />
-        );
-      })}
+        ))}
+
+      <Marker
+        label="max"
+        sublabel={`${maxWidth}px`}
+        position={maxWidth}
+        isDull
+      />
     </div>
   );
 }
 
+function Sign({ position, isCurrent, isDull = false }: SignProps) {
+  return (
+    <div
+      className={cn(
+        "absolute h-full border-gray-300 border-l",
+        isCurrent && "font-bold",
+        isDull && "opacity-50"
+      )}
+      style={position !== undefined ? { left: `${position}px` } : undefined}
+    />
+  );
+}
+
 function SignScale({
-  width,
   maxWidth,
   currentBreakpoint,
   breakpoints,
 }: ScaleBarProps) {
   return (
-    <div className="relative h-2">
-      {breakpoints.map((breakpoint) => {
-        const position = (breakpoint.minWidthPx / maxWidth) * width;
-        const isCurrent = breakpoint.title === currentBreakpoint;
-        const isDull = !breakpoint.show;
+    <div className="relative h-4 w-full">
+      <div className="absolute top-1/2 w-full border-gray-300 border-t" />
+      <Sign isDull />
 
-        return (
+      {breakpoints
+        .filter((breakpoint) => breakpoint.show)
+        .map((breakpoint: Breakpoint) => (
           <Sign
-            key={`sign-${breakpoint.title}`}
-            position={position}
-            isCurrent={isCurrent}
-            isDull={isDull}
+            key={breakpoint.title}
+            position={breakpoint.minWidthPx}
+            isCurrent={currentBreakpoint === breakpoint.title}
           />
-        );
-      })}
+        ))}
+
+      <Sign position={maxWidth} isDull />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -6,6 +5,7 @@ import {
 } from "@workspace/domain-ui-registry/components/ui/resizable";
 import type { ImperativePanelHandle } from "react-resizable-panels";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
+import { useState } from "react";
 
 interface PreviewPanelProps {
   children: React.ReactNode;
@@ -36,22 +36,18 @@ export function PreviewPanel({
           `border ${className}`,
           !isHandleResizing && "transition-all duration-200 ease-in-out"
         )}
+        defaultSize={100}
+        minSize={20}
       >
-        <div
-          ref={contentRef}
-          className="relative h-full w-full overflow-auto bg-white dark:bg-gray-900"
-        >
-          {children}
-        </div>
+        <div ref={contentRef}>{children}</div>
       </ResizablePanel>
-
       <ResizableHandle
         withHandle
-        onDragging={setIsHandleResizing}
         className="z-50 w-0"
+        onDragging={(e) => setIsHandleResizing(e)}
       />
-
-      <ResizablePanel defaultSize={0} minSize={0} className="bg-transparent" />
+      {/* <ResizableHandle className="relative hidden w-3 bg-transparent p-0 after:absolute after:right-0 after:top-1/2 after:h-8 after:w-[6px] after:-translate-y-1/2 after:translate-x-[-1px] after:rounded-full after:bg-border after:transition-all after:hover:h-10 md:block" /> */}
+      <ResizablePanel defaultSize={0} minSize={0} />
     </ResizablePanelGroup>
   );
 }

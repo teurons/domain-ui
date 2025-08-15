@@ -57,8 +57,10 @@ export function PreviewWrapper({
     }
 
     const observer = new ResizeObserver((entries) => {
-      const entryWidth = entries[0].contentRect.width;
-      setWidth(Math.round(entryWidth));
+      if (entries[0]) {
+        const entryWidth = entries[0].contentRect.width;
+        setWidth(Math.round(entryWidth));
+      }
     });
 
     observer.observe(panelContentRef.current);
@@ -69,7 +71,7 @@ export function PreviewWrapper({
     setConfig(initialConfig);
   }, [initialConfig]);
 
-  // React.useEffect(() => {
+  // useEffect(() => {
   //   console.log(JSON.stringify(config), JSON.stringify(initialConfig));
   //   if (JSON.stringify(config) !== JSON.stringify(initialConfig)) {
   //     setConfig(initialConfig);
@@ -97,7 +99,7 @@ export function PreviewWrapper({
   const currentBreakpoint = getBreakpoint(width, breakpoints);
 
   return (
-    <div className="twp">
+    <div>
       <div
         className={cn(darkMode && "dark dark")}
         data-theme={darkMode ? "dark" : "light"}
@@ -132,6 +134,7 @@ export function PreviewWrapper({
                 onChange={(newConfig) => {
                   setConfig(newConfig);
                 }}
+                rprRef={rprRef}
               />
             </div>
           </div>

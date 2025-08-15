@@ -6,7 +6,6 @@ import {
 } from "lucide-react";
 import {
   Popover,
-  PopoverContent,
   PopoverTrigger,
 } from "@workspace/domain-ui-registry/components/ui/popover";
 import {
@@ -14,13 +13,41 @@ import {
   ToggleGroupItem,
 } from "@workspace/domain-ui-registry/components/ui/toggle-group";
 import type { PreviewConfig } from "../types";
+import { Popover as PopoverPrimitive } from "radix-ui";
+import { cn } from "@workspace/domain-ui-registry/lib/utils";
 
 interface SettingsProps {
   config: PreviewConfig;
   onChange: (config: PreviewConfig) => void;
+  rprRef: React.RefObject<HTMLDivElement | null>;
 }
 
-export function Settings({ config, onChange }: SettingsProps) {
+function PopoverContent({
+  className,
+  align = "center",
+  sideOffset = 4,
+  portalRef,
+  ...props
+}: React.ComponentProps<typeof PopoverPrimitive.Content> & {
+  portalRef?: React.RefObject<HTMLDivElement | null>;
+}) {
+  return (
+    <PopoverPrimitive.Portal container={portalRef?.current}>
+      <PopoverPrimitive.Content
+        data-slot="popover-content"
+        align={align}
+        sideOffset={sideOffset}
+        className={cn(
+          "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-72 origin-(--radix-popover-content-transform-origin) rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-hidden data-[state=closed]:animate-out data-[state=open]:animate-in",
+          className
+        )}
+        {...props}
+      />
+    </PopoverPrimitive.Portal>
+  );
+}
+
+export function Settings({ config, onChange, rprRef }: SettingsProps) {
   const {
     // darkMode = false,
     showToolbar = true,
@@ -41,7 +68,7 @@ export function Settings({ config, onChange }: SettingsProps) {
           <SettingsIcon className="h-3.5 w-3.5" />
         </button>
       </PopoverTrigger>
-      <PopoverContent className="w-fit" data-side="top">
+      <PopoverContent portalRef={rprRef} className="w-fit" data-side="top">
         <ToggleGroup type="multiple" variant="outline" className="flex gap-1">
           {/* <ToggleGroupItem
             value="darkMode"
