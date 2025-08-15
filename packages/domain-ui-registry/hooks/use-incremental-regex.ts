@@ -20,13 +20,13 @@ import {
  * Uses NFA-based incremental matching for proper regex support.
  */
 
-export enum ValidationStatus {
-  Valid = "valid",
-  Incomplete = "incomplete",
-  Invalid = "invalid",
-}
+export const ValidationStatus = {
+  Valid: "valid",
+  Incomplete: "incomplete",
+  Invalid: "invalid",
+} as const;
 
-export type ValidationStatusType = `${ValidationStatus}`;
+export type ValidationStatusType = typeof ValidationStatus[keyof typeof ValidationStatus];
 
 export interface UseIncrementalRegexProps {
   regex: RegExp;
