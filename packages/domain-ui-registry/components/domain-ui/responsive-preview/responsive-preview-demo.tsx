@@ -55,8 +55,6 @@ const StatCard = () => (
 export default function ResponsivePreviewDemo() {
   return (
     <div className="not-prose space-y-8">
-      <StackCard />
-
       <div className="space-y-4">
         <h2 className="font-bold text-xl tracking-tight">Stack Card Preview</h2>
         <p className="text-muted-foreground text-sm">
