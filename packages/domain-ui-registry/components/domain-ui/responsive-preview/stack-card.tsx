@@ -55,7 +55,7 @@ const people = [
 
 const StackCard = () => {
   return (
-    <div className="@container bg-red-200 px-4 py-12 sm:px-6 lg:px-8 dark:bg-gray-900">
+    <div className="@container bg-white px-4 py-12 sm:px-6 lg:px-8 dark:bg-gray-900">
       <div className="mx-auto max-w-4xl">
         <ul
           role="list"
