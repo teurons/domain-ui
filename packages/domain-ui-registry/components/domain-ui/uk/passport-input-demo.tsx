@@ -1,8 +1,8 @@
 "use client";
 
-import { PassportInput } from "../components/domain-ui/uk/passport-input";
+import { PassportInput } from "./passport-input";
 
-export function UkPassportDemo() {
+export function PassportInputDemo() {
   return (
     <PassportInput
       placeholder="Enter passport number (e.g., 123456789)"

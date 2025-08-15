@@ -1,8 +1,8 @@
 "use client";
 
-import { PassportInput } from "../components/domain-ui/india/passport-input";
+import { PassportInput } from "./passport-input";
 
-export function IndianPassportDemo() {
+export function PassportInputDemo() {
   return (
     <PassportInput
       placeholder="Enter passport number (e.g., A1234567)"

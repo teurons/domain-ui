@@ -21,8 +21,7 @@
     "./components/domain-ui/*": "./components/domain-ui/*.tsx",
     "./components/domain-ui/india/*": "./components/domain-ui/india/*.tsx",
     "./components/domain-ui/usa/*": "./components/domain-ui/usa/*.tsx",
-    "./components/domain-ui/uk/*": "./components/domain-ui/uk/*.tsx",
-    "./demos/*": "./demos/*.tsx"
+    "./components/domain-ui/uk/*": "./components/domain-ui/uk/*.tsx"
   },
   "keywords": [],
   "author": "",
