@@ -72,12 +72,171 @@
           "type": "registry:component"
         },
         {
-          "path": "hooks/use-regex-input.ts",
+          "path": "hooks/use-simple-regex.ts",
           "type": "registry:hook"
         }
       ],
       "meta": {
-        "tags": ["input", "regex", "validation", "form"]
+        "tags": ["input", "regex", "validation", "form", "simple"]
+      }
+    },
+    {
+      "name": "regex-input-incremental",
+      "type": "registry:component",
+      "registryDependencies": ["input"],
+      "files": [
+        {
+          "path": "components/domain-ui/regex-input-incremental.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "hooks/use-incremental-regex.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "lib/incremental-regex.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/nfa.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/nfa-builder.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "tags": ["input", "regex", "validation", "form", "incremental", "nfa"]
+      }
+    },
+    {
+      "name": "pan-input",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/pan-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "pan",
+          "india",
+          "validation",
+          "identity",
+          "kyc",
+          "form"
+        ]
+      }
+    },
+    {
+      "name": "usa-passport",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/usa-passport.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "usa",
+          "validation",
+          "identity",
+          "kyc",
+          "form"
+        ]
+      }
+    },
+    {
+      "name": "usa-passport-incremental",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input-incremental.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/usa-passport-incremental.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "usa",
+          "validation",
+          "identity",
+          "kyc",
+          "form",
+          "incremental"
+        ]
+      }
+    },
+    {
+      "name": "uk-passport",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "label",
+        "http://localhost:3000/r/regex-input.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/uk-passport.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "uk",
+          "validation",
+          "identity",
+          "kyc",
+          "form"
+        ]
+      }
+    },
+    {
+      "name": "uk-passport-incremental",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "label",
+        "http://localhost:3000/r/regex-input-incremental.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/uk-passport-incremental.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "uk",
+          "validation",
+          "identity",
+          "kyc",
+          "form",
+          "incremental"
+        ]
       }
     },
     {
@@ -103,6 +262,33 @@
           "identity",
           "kyc",
           "form"
+        ]
+      }
+    },
+    {
+      "name": "indian-passport-incremental",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "label",
+        "http://localhost:3000/r/regex-input-incremental.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/indian-passport-incremental.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "india",
+          "validation",
+          "identity",
+          "kyc",
+          "form",
+          "incremental"
         ]
       }
     }
