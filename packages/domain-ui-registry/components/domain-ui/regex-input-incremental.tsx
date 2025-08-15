@@ -4,7 +4,7 @@ import type * as React from "react";
 import { Input } from "@workspace/domain-ui-registry/components/ui/input";
 import { useIncrementalRegex } from "@workspace/domain-ui-registry/hooks/use-incremental-regex";
 
-export interface RegexInputProps
+export interface RegexInputIncrementalProps
   extends Omit<React.ComponentProps<"input">, "defaultValue"> {
   regex: RegExp;
   defaultValue?: string;
@@ -14,14 +14,14 @@ export interface RegexInputProps
   ) => void;
 }
 
-export function RegexInput({
+export function RegexInputIncremental({
   regex,
   value,
   onChange,
   onValidationChange,
   defaultValue,
   ...props
-}: RegexInputProps) {
+}: RegexInputIncrementalProps) {
   const {
     value: displayValue,
     onChange: handleChange,

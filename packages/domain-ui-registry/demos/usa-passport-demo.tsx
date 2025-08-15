@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
-import { UsaPassport } from "../components/domain-ui/usa-passport";
+import { UsaPassportIncremental } from "../components/domain-ui/usa-passport-incremental";
 import { Label } from "@workspace/domain-ui-registry/components/ui/label";
 
 export function UsaPassportDemo() {
@@ -47,7 +47,7 @@ export function UsaPassportDemo() {
             validationState === "invalid" && "border-red-500"
           )}
         >
-          <UsaPassport
+          <UsaPassportIncremental
             id={generatedId}
             placeholder="Enter USA passport number (e.g., A12345678 or 123456789)"
             onValidationChange={handleValidationChange}
