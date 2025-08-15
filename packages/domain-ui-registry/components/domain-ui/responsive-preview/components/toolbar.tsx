@@ -205,7 +205,7 @@ export function Toolbar({
           </span>
 
           {breakpointTitle && (
-            <span className="rounded bg-primary/10 px-1.5 py-0.5 font-medium text-[10px] text-primary">
+            <span className="rounded bg-primary/10 px-1.5 py-0.5 font-medium text-[10px] text-primary leading-[16.5px]">
               {breakpointTitle}
             </span>
           )}

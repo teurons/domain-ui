@@ -19,3 +19,46 @@ import {
 ## Demo
 
 <ResponsivePreviewDemo />
+
+## Configuration
+
+### PreviewConfig Interface
+
+The `config` prop accepts a `PreviewConfig` object with the following properties:
+
+```typescript
+interface PreviewConfig {
+  darkMode?: boolean; // Enable dark mode
+  showToolbar?: boolean; // Show/hide the toolbar
+  showScale?: boolean; // Show/hide scaling information
+  showLabels?: boolean; // Show/hide breakpoint labels
+}
+```
+
+### Custom Breakpoints
+
+You can provide custom breakpoints using the `breakpoints` prop:
+
+```tsx
+<ChildPreview
+  config={{
+    darkMode: colorMode === "dark" ? true : false,
+  }}
+  breakpoints={[
+    {
+      title: "xxs",
+      minWidthRem: 5,
+      minWidthPx: 80,
+      icon: DoorClosedIcon,
+    },
+    {
+      title: "md",
+      minWidthRem: 28,
+      minWidthPx: 448,
+      icon: Tablet,
+    },
+  ]}
+>
+  <Child />
+</ChildPreview>
+```

@@ -108,9 +108,9 @@ export function PreviewWrapper({
           className="relative grid w-full gap-4 rounded-md bg-transparent p-0 text-gray-800 dark:bg-transparent dark:text-white"
           ref={rprRef}
         >
-          <div className="flex min-h-9 items-center justify-between space-x-2">
-            <div className="flex-grow">
-              {showToolbar && (
+          {showToolbar && (
+            <div className="flex min-h-9 items-center justify-between space-x-2">
+              <div className="flex-grow">
                 <Toolbar
                   width={width}
                   maxWidth={maxWidth}
@@ -125,19 +125,19 @@ export function PreviewWrapper({
                   }}
                   panelRef={panelContentRef} // Add this line
                 />
-              )}
-            </div>
+              </div>
 
-            <div className="h-7 justify-end p-[2px]">
-              <Settings
-                config={config}
-                onChange={(newConfig) => {
-                  setConfig(newConfig);
-                }}
-                rprRef={rprRef}
-              />
+              <div className="h-7 justify-end p-[2px]">
+                <Settings
+                  config={config}
+                  onChange={(newConfig) => {
+                    setConfig(newConfig);
+                  }}
+                  rprRef={rprRef}
+                />
+              </div>
             </div>
-          </div>
+          )}
 
           <ScaleBar
             width={width}
