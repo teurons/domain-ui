@@ -291,6 +291,47 @@
           "incremental"
         ]
       }
+    },
+    {
+      "name": "responsive-preview",
+      "type": "registry:component",
+      "registryDependencies": [
+        "button",
+        "badge", 
+        "resizable"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/responsive-preview/child-preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/domain-ui/responsive-preview/iframe-preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/domain-ui/responsive-preview/preview-wrapper.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/domain-ui/responsive-preview/breakpoints.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "components/domain-ui/responsive-preview/types.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "preview",
+          "responsive", 
+          "breakpoint",
+          "testing",
+          "development",
+          "layout"
+        ]
+      }
     }
   ]
 }
