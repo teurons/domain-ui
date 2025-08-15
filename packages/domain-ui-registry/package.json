@@ -18,6 +18,10 @@
     "./lib/*": "./lib/*.ts",
     "./hooks/*": "./hooks/*.ts",
     "./components/*": "./components/*.tsx",
+    "./components/domain-ui/*": "./components/domain-ui/*.tsx",
+    "./components/domain-ui/india/*": "./components/domain-ui/india/*.tsx",
+    "./components/domain-ui/usa/*": "./components/domain-ui/usa/*.tsx",
+    "./components/domain-ui/uk/*": "./components/domain-ui/uk/*.tsx",
     "./demos/*": "./demos/*.tsx"
   },
   "keywords": [],

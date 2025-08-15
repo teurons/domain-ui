@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "usa-passport-input",
+  "type": "registry:component",
+  "registryDependencies": [
+    "input",
+    "http://localhost:3000/r/regex-input.json"
+  ],
+  "files": [
+    {
+      "path": "components/domain-ui/usa/passport-input.tsx",
+      "content": "\"use client\";\n\nimport {\n  RegexInput,\n  type RegexInputProps,\n} from \"@/registry/default/components/domain-ui/regex-input\";\n\nconst USA_PASSPORT_REGEX = /^(?:[A-Z][0-9]{8}|[0-9]{9}|[A-Z][0-9]{7})$/;\n\nexport interface PassportInputProps extends Omit<RegexInputProps, \"regex\"> {}\n\nexport function PassportInput({ ...props }: PassportInputProps) {\n  return <RegexInput regex={USA_PASSPORT_REGEX} {...props} />;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "input",
+      "passport",
+      "usa",
+      "validation",
+      "identity",
+      "kyc",
+      "form"
+    ]
+  }
+}

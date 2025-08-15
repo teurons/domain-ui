@@ -1,10 +1,10 @@
 "use client";
 
-import { UkPassportIncremental } from "../components/domain-ui/uk-passport-incremental";
+import { PassportInput } from "../components/domain-ui/uk/passport-input";
 
 export function UkPassportDemo() {
   return (
-    <UkPassportIncremental
+    <PassportInput
       placeholder="Enter passport number (e.g., 123456789)"
       onChange={(e) => console.log("UK Passport:", e.target.value)}
     />

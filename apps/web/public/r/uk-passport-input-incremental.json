@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "uk-passport-input-incremental",
+  "type": "registry:component",
+  "registryDependencies": [
+    "input",
+    "label",
+    "http://localhost:3000/r/regex-input-incremental.json"
+  ],
+  "files": [
+    {
+      "path": "components/domain-ui/uk/passport-input-incremental.tsx",
+      "content": "\"use client\";\n\nimport { useId } from \"react\";\nimport type * as React from \"react\";\nimport { RegexInputIncremental } from \"@/registry/default/components/domain-ui/regex-input-incremental\";\nimport { Label } from \"@/registry/default/components/ui/label\";\n\nconst UK_PASSPORT_REGEX = /^[A-Z0-9]{9}$/;\n\nexport function PassportInputIncremental(props: React.ComponentProps<\"input\">) {\n  const generatedId = useId();\n  const id = props.id || generatedId;\n\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>UK Passport</Label>\n      <RegexInputIncremental regex={UK_PASSPORT_REGEX} {...props} id={id} />\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "input",
+      "passport",
+      "uk",
+      "validation",
+      "identity",
+      "kyc",
+      "form",
+      "incremental"
+    ]
+  }
+}

@@ -119,7 +119,7 @@
       ],
       "files": [
         {
-          "path": "components/domain-ui/pan-input.tsx",
+          "path": "components/domain-ui/india/pan-input.tsx",
           "type": "registry:component"
         }
       ],
@@ -136,7 +136,7 @@
       }
     },
     {
-      "name": "usa-passport",
+      "name": "usa-passport-input",
       "type": "registry:component",
       "registryDependencies": [
         "input",
@@ -144,7 +144,7 @@
       ],
       "files": [
         {
-          "path": "components/domain-ui/usa-passport.tsx",
+          "path": "components/domain-ui/usa/passport-input.tsx",
           "type": "registry:component"
         }
       ],
@@ -161,7 +161,7 @@
       }
     },
     {
-      "name": "usa-passport-incremental",
+      "name": "usa-passport-input-incremental",
       "type": "registry:component",
       "registryDependencies": [
         "input",
@@ -169,7 +169,7 @@
       ],
       "files": [
         {
-          "path": "components/domain-ui/usa-passport-incremental.tsx",
+          "path": "components/domain-ui/usa/passport-input-incremental.tsx",
           "type": "registry:component"
         }
       ],
@@ -187,7 +187,7 @@
       }
     },
     {
-      "name": "uk-passport",
+      "name": "uk-passport-input",
       "type": "registry:component",
       "registryDependencies": [
         "input",
@@ -196,7 +196,7 @@
       ],
       "files": [
         {
-          "path": "components/domain-ui/uk-passport.tsx",
+          "path": "components/domain-ui/uk/passport-input.tsx",
           "type": "registry:component"
         }
       ],
@@ -213,7 +213,7 @@
       }
     },
     {
-      "name": "uk-passport-incremental",
+      "name": "uk-passport-input-incremental",
       "type": "registry:component",
       "registryDependencies": [
         "input",
@@ -222,7 +222,7 @@
       ],
       "files": [
         {
-          "path": "components/domain-ui/uk-passport-incremental.tsx",
+          "path": "components/domain-ui/uk/passport-input-incremental.tsx",
           "type": "registry:component"
         }
       ],
@@ -240,7 +240,7 @@
       }
     },
     {
-      "name": "indian-passport",
+      "name": "indian-passport-input",
       "type": "registry:component",
       "registryDependencies": [
         "input",
@@ -249,7 +249,7 @@
       ],
       "files": [
         {
-          "path": "components/domain-ui/indian-passport.tsx",
+          "path": "components/domain-ui/india/passport-input.tsx",
           "type": "registry:component"
         }
       ],
@@ -266,7 +266,7 @@
       }
     },
     {
-      "name": "indian-passport-incremental",
+      "name": "indian-passport-input-incremental",
       "type": "registry:component",
       "registryDependencies": [
         "input",
@@ -275,7 +275,7 @@
       ],
       "files": [
         {
-          "path": "components/domain-ui/indian-passport-incremental.tsx",
+          "path": "components/domain-ui/india/passport-input-incremental.tsx",
           "type": "registry:component"
         }
       ],

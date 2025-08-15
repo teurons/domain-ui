@@ -7,7 +7,7 @@ import { Label } from "@workspace/domain-ui-registry/components/ui/label";
 
 const INDIAN_PASSPORT_REGEX = /^[A-Z][0-9]{7}$/;
 
-export function IndianPassportIncremental(props: React.ComponentProps<"input">) {
+export function PassportInputIncremental(props: React.ComponentProps<"input">) {
   const generatedId = useId();
   const id = props.id || generatedId;
 

@@ -19,13 +19,13 @@ export const categories: ComponentCategory[] = [
   {
     slug: "identity",
     name: "Identity Verification",
-    components: ["indian-passport", "uk-passport", "usa-passport"],
+    components: ["indian-passport-input", "uk-passport-input", "usa-passport-input"],
     isNew: true,
   },
   {
     slug: "identity-advanced",
     name: "Identity Verification (Advanced)",
-    components: ["indian-passport-incremental", "uk-passport-incremental", "usa-passport-incremental"],
+    components: ["indian-passport-input-incremental", "uk-passport-input-incremental", "usa-passport-input-incremental"],
     isNew: true,
   },
   {
@@ -76,7 +76,7 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
       { ssr: true }
     ),
   },
-  "indian-passport": {
+  "indian-passport-input": {
     name: "Indian Passport Input",
     description:
       "Identity verification component with built-in validation pattern for Indian passports. Perfect for KYC and onboarding flows.",
@@ -84,12 +84,12 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
     loader: dynamic(
       () =>
         import(
-          "@workspace/domain-ui-registry/components/domain-ui/indian-passport"
-        ).then((m) => ({ default: m.IndianPassport })),
+          "@workspace/domain-ui-registry/components/domain-ui/india/passport-input"
+        ).then((m) => ({ default: m.PassportInput })),
       { ssr: true }
     ),
   },
-  "indian-passport-incremental": {
+  "indian-passport-input-incremental": {
     name: "Indian Passport Input (Advanced)",
     description:
       "Advanced identity verification component with real-time incremental validation. Prevents invalid characters while typing.",
@@ -97,12 +97,12 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
     loader: dynamic(
       () =>
         import(
-          "@workspace/domain-ui-registry/components/domain-ui/indian-passport-incremental"
-        ).then((m) => ({ default: m.IndianPassportIncremental })),
+          "@workspace/domain-ui-registry/components/domain-ui/india/passport-input-incremental"
+        ).then((m) => ({ default: m.PassportInputIncremental })),
       { ssr: true }
     ),
   },
-  "uk-passport": {
+  "uk-passport-input": {
     name: "UK Passport",
     description:
       "Identity verification component with built-in validation pattern for UK passports. Perfect for KYC and onboarding flows.",
@@ -110,12 +110,12 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
     loader: dynamic(
       () =>
         import(
-          "@workspace/domain-ui-registry/components/domain-ui/uk-passport"
-        ).then((m) => ({ default: m.UkPassport })),
+          "@workspace/domain-ui-registry/components/domain-ui/uk/passport-input"
+        ).then((m) => ({ default: m.PassportInput })),
       { ssr: true }
     ),
   },
-  "uk-passport-incremental": {
+  "uk-passport-input-incremental": {
     name: "UK Passport (Advanced)",
     description:
       "Advanced identity verification component with real-time incremental validation. Prevents invalid characters while typing.",
@@ -123,12 +123,12 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
     loader: dynamic(
       () =>
         import(
-          "@workspace/domain-ui-registry/components/domain-ui/uk-passport-incremental"
-        ).then((m) => ({ default: m.UkPassportIncremental })),
+          "@workspace/domain-ui-registry/components/domain-ui/uk/passport-input-incremental"
+        ).then((m) => ({ default: m.PassportInputIncremental })),
       { ssr: true }
     ),
   },
-  "usa-passport": {
+  "usa-passport-input": {
     name: "USA Passport",
     description:
       "Identity verification component with built-in validation pattern for USA passports. Perfect for KYC and onboarding flows.",
@@ -136,12 +136,12 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
     loader: dynamic(
       () =>
         import(
-          "@workspace/domain-ui-registry/components/domain-ui/usa-passport"
-        ).then((m) => ({ default: m.UsaPassport })),
+          "@workspace/domain-ui-registry/components/domain-ui/usa/passport-input"
+        ).then((m) => ({ default: m.PassportInput })),
       { ssr: true }
     ),
   },
-  "usa-passport-incremental": {
+  "usa-passport-input-incremental": {
     name: "USA Passport (Advanced)",
     description:
       "Advanced identity verification component with real-time incremental validation. Prevents invalid characters while typing.",
@@ -149,8 +149,8 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
     loader: dynamic(
       () =>
         import(
-          "@workspace/domain-ui-registry/components/domain-ui/usa-passport-incremental"
-        ).then((m) => ({ default: m.UsaPassportIncremental })),
+          "@workspace/domain-ui-registry/components/domain-ui/usa/passport-input-incremental"
+        ).then((m) => ({ default: m.PassportInputIncremental })),
       { ssr: true }
     ),
   },
@@ -162,7 +162,7 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
     loader: dynamic(
       () =>
         import(
-          "@workspace/domain-ui-registry/components/domain-ui/pan-input"
+          "@workspace/domain-ui-registry/components/domain-ui/india/pan-input"
         ).then((m) => ({ default: m.PanInput })),
       { ssr: true }
     ),

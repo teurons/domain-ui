@@ -1,10 +1,10 @@
 "use client";
 
-import { IndianPassportIncremental } from "../components/domain-ui/indian-passport-incremental";
+import { PassportInput } from "../components/domain-ui/india/passport-input";
 
 export function IndianPassportDemo() {
   return (
-    <IndianPassportIncremental
+    <PassportInput
       placeholder="Enter passport number (e.g., A1234567)"
       onChange={(e) => console.log("Passport:", e.target.value)}
     />

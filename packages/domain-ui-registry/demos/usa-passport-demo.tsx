@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
-import { UsaPassportIncremental } from "../components/domain-ui/usa-passport-incremental";
+import { PassportInput } from "../components/domain-ui/usa/passport-input";
 import { Label } from "@workspace/domain-ui-registry/components/ui/label";
 import { 
   ValidationStatus,
@@ -36,7 +36,7 @@ export function UsaPassportDemo() {
     <div className="space-y-2">
       <Label htmlFor={generatedId}>USA Passport</Label>
       <div className="space-y-1">
-        <UsaPassportIncremental
+        <PassportInput
           id={generatedId}
           placeholder="Enter USA passport number (e.g., A12345678 or 123456789)"
           className={cn(

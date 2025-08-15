@@ -7,8 +7,8 @@ import {
 
 const USA_PASSPORT_REGEX = /^(?:[A-Z][0-9]{8}|[0-9]{9}|[A-Z][0-9]{7})$/;
 
-export interface UsaPassportProps extends Omit<RegexInputProps, "regex"> {}
+export interface PassportInputProps extends Omit<RegexInputProps, "regex"> {}
 
-export function UsaPassport({ ...props }: UsaPassportProps) {
+export function PassportInput({ ...props }: PassportInputProps) {
   return <RegexInput regex={USA_PASSPORT_REGEX} {...props} />;
 }
