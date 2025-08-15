@@ -1,5 +1,0 @@
-{
-  "title": "Passport",
-  "description": "Identity verification passport components",
-  "pages": ["indian-passport", "usa-passport", "uk-passport"]
-}
