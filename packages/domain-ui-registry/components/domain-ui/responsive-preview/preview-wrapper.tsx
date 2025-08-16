@@ -10,11 +10,23 @@ import type { PreviewConfig } from "./types";
 import { Settings } from "./components/settings";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
 
-interface PreviewWrapperProps {
-  children?: React.ReactNode;
+interface BasePreviewProps {
   className?: string;
   breakpoints?: BreakpointConfig[];
   config?: PreviewConfig;
+}
+
+interface PreviewWrapperProps extends BasePreviewProps {
+  children?: React.ReactNode;
+}
+
+interface ChildPreviewProps extends BasePreviewProps {
+  children?: React.ReactNode;
+}
+
+interface IFramePreviewProps extends BasePreviewProps {
+  srcUrl: string;
+  height?: number;
 }
 
 const defaultConfig = {
@@ -158,5 +170,48 @@ export function PreviewWrapper({
         </div>
       </div>
     </div>
+  );
+}
+
+// ChildPreview component - renders children directly
+export function ChildPreview({
+  children,
+  breakpoints,
+  config,
+  className,
+}: ChildPreviewProps) {
+  return (
+    <PreviewWrapper
+      breakpoints={breakpoints}
+      config={config}
+      className={className}
+    >
+      {children}
+    </PreviewWrapper>
+  );
+}
+
+// IFramePreview component - renders content in an iframe
+export function IFramePreview({
+  srcUrl,
+  height,
+  breakpoints,
+  config,
+  className,
+}: IFramePreviewProps) {
+  return (
+    <PreviewWrapper
+      breakpoints={breakpoints}
+      config={config}
+      className={className}
+    >
+      <iframe
+        allow="cross-origin-isolated"
+        src={srcUrl}
+        height={height || 930}
+        className="relative z-20 hidden w-full bg-gray-50 md:block"
+        title={`Preview of ${srcUrl}`}
+      />
+    </PreviewWrapper>
   );
 }

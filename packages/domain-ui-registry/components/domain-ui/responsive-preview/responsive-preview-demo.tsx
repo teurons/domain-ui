@@ -1,7 +1,6 @@
 "use client";
 
-import { ChildPreview } from "./child-preview";
-import { IFramePreview } from "./iframe-preview";
+import { ChildPreview, IFramePreview } from "./preview-wrapper";
 import StackCard from "./stack-card";
 
 const ContainerQueryCard = () => {
