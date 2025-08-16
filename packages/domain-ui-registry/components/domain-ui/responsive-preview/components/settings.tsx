@@ -12,7 +12,7 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@workspace/domain-ui-registry/components/ui/toggle-group";
-import type { PreviewConfig } from "../types";
+import type { PreviewConfig } from "../preview-wrapper";
 import { Popover as PopoverPrimitive } from "radix-ui";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
 

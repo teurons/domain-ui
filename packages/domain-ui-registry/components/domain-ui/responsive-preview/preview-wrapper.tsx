@@ -6,9 +6,16 @@ import type { Breakpoint, BreakpointConfig } from "./breakpoints";
 import { Toolbar } from "./components/toolbar";
 import { ScaleBar } from "./components/scale-bar";
 import { PreviewPanel } from "./components/preview-panel";
-import type { PreviewConfig } from "./types";
 import { Settings } from "./components/settings";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
+
+// Types
+export interface PreviewConfig {
+  darkMode?: boolean;
+  showToolbar?: boolean;
+  showScale?: boolean;
+  showLabels?: boolean;
+}
 
 interface BasePreviewProps {
   className?: string;

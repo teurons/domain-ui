@@ -1,6 +1,10 @@
-// Export all preview components from preview-wrapper
-export { ChildPreview, IFramePreview, PreviewWrapper } from "./preview-wrapper";
+// Export all preview components and types from preview-wrapper
+export {
+  ChildPreview,
+  IFramePreview,
+  PreviewWrapper,
+  type PreviewConfig,
+} from "./preview-wrapper";
 
-// Export types and utilities
-export * from "./types";
+// Export utilities
 export * from "./breakpoints";
