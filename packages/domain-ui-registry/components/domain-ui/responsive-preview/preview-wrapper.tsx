@@ -1,11 +1,15 @@
 "use client";
 import { useState, useEffect, useRef, useMemo } from "react";
 import type { ImperativePanelHandle } from "react-resizable-panels";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@workspace/domain-ui-registry/components/ui/resizable";
 import { defaultBreakpoints, getBreakpoint } from "./breakpoints";
 import type { Breakpoint, BreakpointConfig } from "./breakpoints";
 import { Toolbar } from "./components/toolbar";
 import { ScaleBar } from "./components/scale-bar";
-import { PreviewPanel } from "./components/preview-panel";
 import { Settings } from "./components/settings";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
 
@@ -42,6 +46,51 @@ const defaultConfig = {
   showScale: true,
   showLabels: true,
 };
+
+// PreviewPanel component - the core resizable container
+interface PreviewPanelProps {
+  children: React.ReactNode;
+  className?: string;
+  panelRef: React.RefObject<ImperativePanelHandle | null>;
+  contentRef: React.RefObject<HTMLDivElement | null>;
+}
+
+function PreviewPanel({
+  children,
+  className,
+  panelRef,
+  contentRef,
+}: PreviewPanelProps) {
+  const [isHandleResizing, setIsHandleResizing] = useState(false);
+
+  const bgPattern = `url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E")`;
+
+  return (
+    <ResizablePanelGroup
+      direction="horizontal"
+      className="!overflow-visible relative z-10 rounded-sm border-0 border-[#0000001f] bg-gray-300 bg-clip-padding dark:bg-gray-600"
+      style={{ backgroundImage: bgPattern }}
+    >
+      <ResizablePanel
+        ref={panelRef}
+        className={cn(
+          `border ${className}`,
+          !isHandleResizing && "transition-all duration-200 ease-in-out"
+        )}
+        defaultSize={100}
+        minSize={20}
+      >
+        <div ref={contentRef}>{children}</div>
+      </ResizablePanel>
+      <ResizableHandle
+        withHandle
+        className="z-50 w-0"
+        onDragging={(e) => setIsHandleResizing(e)}
+      />
+      <ResizablePanel defaultSize={0} minSize={0} />
+    </ResizablePanelGroup>
+  );
+}
 
 export function PreviewWrapper({
   children,
