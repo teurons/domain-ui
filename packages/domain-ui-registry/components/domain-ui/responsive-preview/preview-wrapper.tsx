@@ -83,19 +83,8 @@ export function PreviewWrapper({
     setConfig(initialConfig);
   }, [initialConfig]);
 
-  // useEffect(() => {
-  //   console.log(JSON.stringify(config), JSON.stringify(initialConfig));
-  //   if (JSON.stringify(config) !== JSON.stringify(initialConfig)) {
-  //     setConfig(initialConfig);
-  //   }
-  // }, [initialConfig]);
-
   const availableBreakpoints = useMemo(() => {
     return breakpoints.map((breakpoint: Breakpoint) => {
-      // breakpoint.percentage = Math.ceil(
-      //   (breakpoint.minWidthPx * 100) / maxWidth
-      // );
-
       breakpoint.percentage = (breakpoint.minWidthPx * 100) / maxWidth;
 
       if (breakpoint.percentage > 100) {
