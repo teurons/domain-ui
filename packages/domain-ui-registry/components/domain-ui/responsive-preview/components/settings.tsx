@@ -1,17 +1,6 @@
-import {
-  LayoutPanelTop,
-  RulerIcon,
-  TextIcon,
-  SettingsIcon,
-} from "lucide-react";
-import {
-  Popover,
-  PopoverTrigger,
-} from "@workspace/domain-ui-registry/components/ui/popover";
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@workspace/domain-ui-registry/components/ui/toggle-group";
+import { LayoutPanelTop, RulerIcon, TextIcon, SettingsIcon } from "lucide-react";
+import { Popover, PopoverTrigger } from "@workspace/domain-ui-registry/components/ui/popover";
+import { ToggleGroup, ToggleGroupItem } from "@workspace/domain-ui-registry/components/ui/toggle-group";
 import type { PreviewConfig } from "../preview-wrapper";
 import { Popover as PopoverPrimitive } from "radix-ui";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
@@ -48,18 +37,11 @@ function PopoverContent({
 }
 
 export function Settings({ config, onChange, rprRef }: SettingsProps) {
-  const {
-    // darkMode = false,
-    showToolbar = true,
-    showLabels = true,
-    showScale = true,
-  } = config;
-
-  // console.log("showToolbar", showToolbar);
-
-  const handleConfigChange = (key: string, value: boolean) => {
-    onChange({ ...config, [key]: value });
-  };
+  const toggleItems = [
+    { key: "showToolbar", icon: LayoutPanelTop },
+    { key: "showLabels", icon: TextIcon },
+    { key: "showScale", icon: RulerIcon },
+  ] as const;
 
   return (
     <Popover>
@@ -70,38 +52,17 @@ export function Settings({ config, onChange, rprRef }: SettingsProps) {
       </PopoverTrigger>
       <PopoverContent portalRef={rprRef} className="w-fit" data-side="top">
         <ToggleGroup type="multiple" variant="outline" className="flex gap-1">
-          {/* <ToggleGroupItem
-            value="darkMode"
-            data-state={darkMode ? "on" : "off"}
-            onClick={() => handleConfigChange("darkMode", !darkMode)}
-            className="p-2"
-          >
-            <MoonIcon className="h-4 w-4" />
-          </ToggleGroupItem> */}
-          <ToggleGroupItem
-            value="showToolbar"
-            data-state={showToolbar ? "on" : "off"}
-            onClick={() => handleConfigChange("showToolbar", !showToolbar)}
-            className="p-2"
-          >
-            <LayoutPanelTop className="h-4 w-4" />
-          </ToggleGroupItem>
-          <ToggleGroupItem
-            value="showLabels"
-            data-state={showLabels ? "on" : "off"}
-            onClick={() => handleConfigChange("showLabels", !showLabels)}
-            className="p-2"
-          >
-            <TextIcon className="h-4 w-4" />
-          </ToggleGroupItem>
-          <ToggleGroupItem
-            value="showScale"
-            data-state={showScale ? "on" : "off"}
-            onClick={() => handleConfigChange("showScale", !showScale)}
-            className="p-2"
-          >
-            <RulerIcon className="h-4 w-4" />
-          </ToggleGroupItem>
+          {toggleItems.map(({ key, icon: Icon }) => (
+            <ToggleGroupItem
+              key={key}
+              value={key}
+              data-state={config[key] ? "on" : "off"}
+              onClick={() => onChange({ ...config, [key]: !config[key] })}
+              className="p-2"
+            >
+              <Icon className="h-4 w-4" />
+            </ToggleGroupItem>
+          ))}
         </ToggleGroup>
       </PopoverContent>
     </Popover>
