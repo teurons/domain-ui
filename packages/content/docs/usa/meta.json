@@ -1,4 +1,4 @@
 {
   "title": "USA",
-  "pages": ["passport-input"]
+  "pages": ["passport-input", "passport-input-incremental"]
 }

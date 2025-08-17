@@ -1,0 +1,49 @@
+---
+title: Regex Input Incremental
+description: Input component with real-time incremental regex validation that prevents invalid characters
+---
+
+import { RegexInputIncrementalDemo } from "@workspace/domain-ui-registry/components/domain-ui/regex-input-incremental-demo";
+
+<RegexInputIncrementalDemo />
+
+## Features
+
+The Regex Input Incremental component provides:
+
+- **Real-time validation** - Validates input character by character as you type
+- **Invalid character prevention** - Blocks characters that would make the pattern unmatchable
+- **Three validation states**:
+  - `valid` - Input completely matches the pattern
+  - `incomplete` - Input is valid so far but not complete
+  - `invalid` - Input contains characters that can't match the pattern
+- **Paste support** - Validates pasted content against the pattern
+- **NFA-based matching** - Supports complex regex patterns with alternation
+
+## Usage
+
+```tsx
+import { RegexInputIncremental } from "@workspace/domain-ui-registry/components/domain-ui/regex-input-incremental";
+
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+export function EmailInput() {
+  return (
+    <RegexInputIncremental
+      regex={EMAIL_REGEX}
+      placeholder="Enter email address"
+      onValidation={(status) => console.log("Validation status:", status)}
+    />
+  );
+}
+```
+
+## API
+
+### Props
+
+| Prop | Type | Description |
+| --- | --- | --- |
+| `regex` | `RegExp` | The regular expression pattern to validate against |
+| `onValidation` | `(status: ValidationStatusType) => void` | Callback when validation status changes |
+| All standard input props | | Inherits all HTML input element props |

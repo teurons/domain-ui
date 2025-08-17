@@ -1,0 +1,40 @@
+---
+title: Passport Input Incremental
+description: Input component for Indian passport numbers with real-time incremental validation
+---
+
+import { PassportInputIncrementalDemo } from "@workspace/domain-ui-registry/components/domain-ui/india/passport-input-incremental-demo";
+
+<PassportInputIncrementalDemo />
+
+## Features
+
+The Passport Input Incremental component provides real-time validation for Indian passport numbers:
+
+- **Format enforcement**: `A1234567` (1 letter + 7 digits)
+- **Character-by-character validation** - Validates as you type
+- **Invalid character prevention** - Only allows valid characters
+- **Visual feedback** - Color-coded validation states
+
+## Usage
+
+```tsx
+import { PassportInputIncremental } from "@workspace/domain-ui-registry/components/domain-ui/india/passport-input-incremental";
+
+export function PassportForm() {
+  return (
+    <PassportInputIncremental
+      placeholder="Enter passport number"
+      onValidation={(status) => {
+        console.log("Validation status:", status);
+      }}
+    />
+  );
+}
+```
+
+## Validation States
+
+- **Green border**: Valid 8-character passport number
+- **Amber border**: Incomplete but following correct format
+- **Red border**: Invalid character that doesn't match pattern

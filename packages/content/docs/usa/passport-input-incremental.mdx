@@ -1,0 +1,45 @@
+---
+title: Passport Input Incremental
+description: Input component for USA passport numbers with real-time incremental validation
+---
+
+import { PassportInputIncrementalDemo } from "@workspace/domain-ui-registry/components/domain-ui/usa/passport-input-incremental-demo";
+
+<PassportInputIncrementalDemo />
+
+## Features
+
+The USA Passport Input Incremental component supports multiple passport formats with real-time validation:
+
+- **Multiple format support**:
+  - `A12345678` - 1 letter + 8 digits (newer format)
+  - `123456789` - 9 digits only
+  - `A1234567` - 1 letter + 7 digits (older format)
+- **Smart validation** - Automatically detects which format is being entered
+- **Character prevention** - Blocks invalid characters based on position
+- **Visual feedback** - Real-time validation state indicators
+
+## Usage
+
+```tsx
+import { PassportInputIncremental } from "@workspace/domain-ui-registry/components/domain-ui/usa/passport-input-incremental";
+
+export function PassportForm() {
+  return (
+    <PassportInputIncremental
+      placeholder="Enter USA passport number"
+      onValidation={(status) => {
+        if (status === "valid") {
+          console.log("Valid USA passport entered");
+        }
+      }}
+    />
+  );
+}
+```
+
+## Validation States
+
+- **Green border**: Valid complete passport (7-9 characters depending on format)
+- **Amber border**: Incomplete but matches one of the valid formats
+- **Red border**: Character that doesn't match any valid format
