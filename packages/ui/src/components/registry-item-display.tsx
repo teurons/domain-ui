@@ -75,8 +75,29 @@ interface FileContentProps {
   files: FileData[];
 }
 
+function pre(props: ComponentProps<"pre">) {
+  return (
+    <CodeBlock {...props} className={cn("my-0 rounded-none", props.className)}>
+      <Pre>{props.children}</Pre>
+    </CodeBlock>
+  );
+}
+
 function FileContent({ files }: FileContentProps) {
   const { selectedFilePath } = useFileSelection();
+
+  const options = useMemo(
+    () => ({
+      components: {
+        pre,
+      },
+      themes: {
+        light: "github-light",
+        dark: "github-dark",
+      },
+    }),
+    []
+  );
 
   const selectedFile = files.find((file) => file.path === selectedFilePath);
 
@@ -91,8 +112,12 @@ function FileContent({ files }: FileContentProps) {
   const language = selectedFile.path.split(".").pop()?.toLowerCase() || "text";
 
   return (
-    <div className="flex-1 overflow-auto bg-card p-4">
-      <DynamicCodeBlock lang={language} code={selectedFile.content || ""} />
+    <div className="flex-1 overflow-auto bg-card">
+      <DynamicCodeBlock
+        lang={language}
+        code={selectedFile.content || ""}
+        options={options}
+      />
     </div>
   );
 }
