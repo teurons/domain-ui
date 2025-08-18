@@ -13,6 +13,7 @@ import RegistryCodeBlock from "@workspace/ui/components/registry-code-block";
 import DynamicRegistryCodeBlock from "@workspace/ui/components/registry-code-block-dynamic";
 
 import * as Twoslash from "fumadocs-twoslash/ui";
+import { ComponentPreview } from "@workspace/ui/components/component-preview";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -33,6 +34,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Steps,
     RegistryCodeBlock,
     DynamicRegistryCodeBlock,
+    ComponentPreview,
     ...components,
   };
 }

@@ -29,6 +29,7 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@shikijs/transformers": "^3.2.1",
+    "@workspace/domain-ui-registry": "workspace:*",
     "@workspace/shadverse": "workspace:*",
     "framer-motion": "^12.5.0",
     "fumadocs-core": "^15.6.9",
