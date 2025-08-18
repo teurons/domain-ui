@@ -273,7 +273,7 @@ function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
 
   return (
     <div className="flex w-[280px] flex-col">
-      <div className="flex items-center justify-between border-b bg-muted/30 px-3 py-2">
+      <div className="flex h-10 items-center justify-between border-b border-r bg-muted/30 px-3">
         <span className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">
           Files ({files.length})
         </span>
