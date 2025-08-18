@@ -58,8 +58,8 @@ function FilePath({ filePath }: FilePathProps) {
   }
 
   return (
-    <div className="border-b bg-muted/10 px-3 py-3">
-      <div className="flex items-center gap-2">
+    <div className="bg-muted/10">
+      <div className="flex h-10 items-center gap-2 border-b px-3">
         <FileText className="h-3 w-3" />
         <span className="text-muted-foreground text-sm">{filePath}</span>
       </div>
@@ -253,8 +253,8 @@ interface FileTreeProps {
 function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
   if (collapsed) {
     return (
-      <div className="flex flex-col border-r border-b bg-muted/20">
-        <div className="border-b px-3 py-2">
+      <div className="flex flex-col border-r bg-muted/20">
+        <div className="flex h-10 items-center justify-center border-b px-3">
           <Button
             variant="ghost"
             size="sm"
