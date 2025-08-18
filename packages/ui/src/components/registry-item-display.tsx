@@ -210,10 +210,13 @@ function TreeNodes({
               level={level}
               isLast={isLast}
             >
-              <TreeNodeTrigger onClick={() => setSelectedFilePath(node.path)}>
-                <TreeExpander />
-                <TreeIcon />
-                <TreeLabel>{fileName}</TreeLabel>
+              <TreeNodeTrigger
+                className="px-2 py-1"
+                onClick={() => setSelectedFilePath(node.path)}
+              >
+                <TreeExpander className="mr-1 h-3 w-3" />
+                <TreeIcon className="mr-2 h-3 w-3" />
+                <TreeLabel className="text-xs">{fileName}</TreeLabel>
               </TreeNodeTrigger>
             </TreeNode>
           );
@@ -226,10 +229,10 @@ function TreeNodes({
             level={level}
             isLast={isLast}
           >
-            <TreeNodeTrigger>
-              <TreeExpander hasChildren />
-              <TreeIcon hasChildren />
-              <TreeLabel>{fileName}</TreeLabel>
+            <TreeNodeTrigger className="px-2 py-1">
+              <TreeExpander hasChildren className="mr-1 h-3 w-3" />
+              <TreeIcon hasChildren className="mr-2 h-3 w-3" />
+              <TreeLabel className="text-xs">{fileName}</TreeLabel>
             </TreeNodeTrigger>
             <TreeNodeContent hasChildren>
               {node.children && (
@@ -273,7 +276,7 @@ function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
 
   return (
     <div className="flex w-[280px] flex-col">
-      <div className="flex h-10 items-center justify-between border-b border-r bg-muted/30 px-3">
+      <div className="flex h-10 items-center justify-between border-r border-b bg-muted/30 px-3">
         <span className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">
           Files ({files.length})
         </span>
@@ -288,7 +291,7 @@ function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
       </div>
       <div className="flex-1 overflow-auto border-r bg-muted/20 py-1">
         <TreeProvider defaultExpandedIds={defaultExpandedIds}>
-          <TreeView>
+          <TreeView className="p-1">
             <TreeNodes nodes={treeNodes} />
           </TreeView>
         </TreeProvider>

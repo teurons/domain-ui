@@ -25,6 +25,7 @@ Ultracite enforces strict type safety, accessibility standards, and consistent c
 - **NEVER run dev server commands (`pnpm dev`, `next dev`, etc.) unless explicitly asked by the user**
 - **ALWAYS run `pnpm lint` after making code changes**
 - **NEVER use `console.log`, `console.error`, etc. - ALWAYS use the logger from `@/lib/logger`**
+- **NEVER modify shadverse components directly - pass custom styles through className props instead**
 
 ## Logging
 

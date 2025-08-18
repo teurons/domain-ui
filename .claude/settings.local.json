@@ -1,6 +1,5 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "hooks": {},
   "permissions": {
     "allow": [
       "Bash(npx ultracite lint:*)",
@@ -80,8 +79,10 @@
       "Bash(npm test:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "mcp__ide__getDiagnostics",
-      "WebFetch(domain:docs.anthropic.com)"
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(git checkout:*)"
     ],
     "deny": []
-  }
+  },
+  "hooks": {}
 }
