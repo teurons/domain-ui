@@ -15,6 +15,7 @@ import {
   TreeView,
 } from "@workspace/shadverse/components/ui/kibo-ui/tree";
 import { PanelLeftClose, PanelLeft, FileText } from "lucide-react";
+import { FileCode, FileJson, FileType } from "lucide-react";
 
 interface FileData {
   path: string;
@@ -293,7 +294,7 @@ function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
       </div>
       <div className="flex-1 overflow-auto border-r bg-muted/20 py-1">
         <TreeProvider defaultExpandedIds={defaultExpandedIds}>
-          <TreeView className="px-2">
+          <TreeView>
             <TreeNodes nodes={treeNodes} />
           </TreeView>
         </TreeProvider>
@@ -407,6 +408,7 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
   return (
     <FileSelectionContext.Provider value={fileSelectionValue}>
       <div className="my-4 flex h-[600px] overflow-hidden rounded-lg border bg-background shadow-sm">
+        {/* <TreeExample /> */}
         <FileTree
           files={files}
           collapsed={isTreeCollapsed}
