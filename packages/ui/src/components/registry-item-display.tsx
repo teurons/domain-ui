@@ -1,15 +1,202 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { ReactElement } from "react";
 import type { RegistryItem } from "shadcn/registry";
 import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { Button } from "@workspace/domain-ui-registry/components/ui/button";
-import { PanelLeftClose, PanelLeft, FileText } from "lucide-react";
-import { transformRegistryFilesToTree } from "../lib/registry-utils";
-import { RegistryFileTree, type FileNode } from "./registry-file-tree";
+import {
+  TreeExpander,
+  TreeIcon,
+  TreeLabel,
+  TreeNode,
+  TreeNodeContent,
+  TreeNodeTrigger,
+  TreeProvider,
+  TreeView,
+} from "@workspace/shadverse/components/ui/kibo-ui/tree";
+import {
+  PanelLeftClose,
+  PanelLeft,
+  FileText,
+  FileCode,
+  FileJson,
+  FileType,
+  File as FileIcon,
+} from "lucide-react";
+import { cn } from "@workspace/shadverse/lib/utils";
+
+export interface FileNode {
+  name: string;
+  path: string;
+  type: "file" | "directory";
+  children?: FileNode[];
+  content?: string;
+  registryType?: string;
+}
+
+// Helper to create a new file node
+function createFileNode(
+  part: string,
+  currentPath: string,
+  isLastPart: boolean,
+  file: { path: string; content?: string; type: string }
+): FileNode {
+  return {
+    name: part,
+    path: currentPath,
+    type: isLastPart ? "file" : "directory",
+    children: isLastPart ? undefined : [],
+    content: isLastPart ? (file.content ?? "") : undefined,
+    registryType: isLastPart ? file.type : undefined,
+  };
+}
+
+// Helper to process a single path part
+function processPathPart(
+  part: string,
+  currentPath: string,
+  isLastPart: boolean,
+  file: { path: string; content?: string; type: string },
+  pathMap: Map<string, FileNode>,
+  currentLevel: FileNode[]
+): FileNode {
+  let existingNode = pathMap.get(currentPath);
+
+  if (!existingNode) {
+    const newNode = createFileNode(part, currentPath, isLastPart, file);
+    pathMap.set(currentPath, newNode);
+    currentLevel.push(newNode);
+    existingNode = newNode;
+  }
+
+  return existingNode;
+}
+
+// Transform registry files into tree structure
+function transformRegistryFilesToTree(
+  files: { path: string; content?: string; type: string }[]
+): FileNode[] {
+  const tree: FileNode[] = [];
+  const pathMap = new Map<string, FileNode>();
+
+  // Sort files by path to ensure proper tree building
+  const sortedFiles = [...files].sort((a, b) => a.path.localeCompare(b.path));
+
+  for (const file of sortedFiles) {
+    const pathParts = file.path.split("/");
+    let currentPath = "";
+    let currentLevel = tree;
+
+    for (let i = 0; i < pathParts.length; i++) {
+      const part = pathParts[i];
+      if (!part) {
+        continue; // Skip empty parts
+      }
+      currentPath = currentPath ? `${currentPath}/${part}` : part;
+      const isLastPart = i === pathParts.length - 1;
+
+      const existingNode = processPathPart(
+        part,
+        currentPath,
+        isLastPart,
+        file,
+        pathMap,
+        currentLevel
+      );
+
+      if (!isLastPart && existingNode.children) {
+        currentLevel = existingNode.children;
+      }
+    }
+  }
+
+  return tree;
+}
 
 function getLanguageFromPath(path: string): string {
   return path.split(".").pop()?.toLowerCase() || "text";
+}
+
+// Get appropriate icon for file type
+function getFileIcon(filename: string) {
+  const extension = filename.split(".").pop()?.toLowerCase();
+
+  switch (extension) {
+    case "tsx":
+    case "ts":
+    case "js":
+    case "jsx":
+      return <FileCode className="h-4 w-4" />;
+    case "json":
+      return <FileJson className="h-4 w-4" />;
+    case "md":
+    case "mdx":
+    case "txt":
+      return <FileText className="h-4 w-4" />;
+    case "css":
+    case "scss":
+    case "sass":
+      return <FileType className="h-4 w-4" />;
+    default:
+      return <FileIcon className="h-4 w-4" />;
+  }
+}
+
+// Recursively render tree nodes
+function renderTreeNodes(
+  nodes: FileNode[],
+  onFileSelect: (path: string) => void,
+  level = 0
+): ReactElement[] {
+  return nodes.map((node, index) => {
+    const isLast = index === nodes.length - 1;
+    const nodeKey = node.path;
+
+    if (node.type === "file") {
+      return (
+        <TreeNode key={nodeKey} nodeId={nodeKey} level={level} isLast={isLast}>
+          <TreeNodeTrigger onClick={() => onFileSelect(node.path)}>
+            <TreeExpander />
+            <TreeIcon icon={getFileIcon(node.name)} />
+            <TreeLabel>{node.name}</TreeLabel>
+          </TreeNodeTrigger>
+        </TreeNode>
+      );
+    }
+
+    // Directory node
+    return (
+      <TreeNode key={nodeKey} nodeId={nodeKey} level={level} isLast={isLast}>
+        <TreeNodeTrigger>
+          <TreeExpander hasChildren />
+          <TreeIcon hasChildren />
+          <TreeLabel>{node.name}</TreeLabel>
+        </TreeNodeTrigger>
+        <TreeNodeContent hasChildren>
+          {node.children &&
+            renderTreeNodes(node.children, onFileSelect, level + 1)}
+        </TreeNodeContent>
+      </TreeNode>
+    );
+  });
+}
+
+// Get all file paths for default expanded state
+function getAllDirectoryIds(nodes: FileNode[]): string[] {
+  const ids: string[] = [];
+
+  function traverse(nodeList: FileNode[]) {
+    for (const node of nodeList) {
+      if (node.type === "directory" && node.children) {
+        ids.push(node.path);
+        traverse(node.children);
+      }
+    }
+  }
+
+  traverse(nodes);
+  return ids;
 }
 
 // Get all files from tree (flattened)
@@ -64,11 +251,63 @@ async function fetchRegistryItem(url: string): Promise<RegistryItem> {
   return registryItem;
 }
 
-interface RegistryItemDisplayProps {
+interface RegistryFileTreeProps extends React.HTMLAttributes<HTMLDivElement> {
+  files: FileNode[];
+  selectedFile?: string;
+  onFileSelect: (path: string) => void;
+}
+
+function RegistryFileTree({
+  files,
+  selectedFile,
+  onFileSelect,
+  className,
+  ...props
+}: RegistryFileTreeProps) {
+  // Get all directory IDs for default expansion
+  const defaultExpandedIds = getAllDirectoryIds(files);
+
+  return (
+    <div
+      data-slot="registry-file-tree"
+      className={cn(
+        "flex-1 overflow-auto border-r bg-muted/20 py-1",
+        className
+      )}
+      {...props}
+    >
+      <TreeProvider
+        defaultExpandedIds={defaultExpandedIds}
+        selectable
+        selectedIds={selectedFile ? [selectedFile] : []}
+        onSelectionChange={(ids: string[]) => {
+          const selectedId = Array.isArray(ids) ? ids[0] : ids;
+          if (selectedId) {
+            onFileSelect(selectedId);
+          }
+        }}
+        showLines
+        showIcons
+        animateExpand
+      >
+        <TreeView data-slot="registry-file-tree-view" className="px-2">
+          {renderTreeNodes(files, onFileSelect)}
+        </TreeView>
+      </TreeProvider>
+    </div>
+  );
+}
+
+interface RegistryItemDisplayProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   url: string;
 }
 
-export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
+export function RegistryItemDisplay({
+  url,
+  className,
+  ...props
+}: RegistryItemDisplayProps) {
   const [files, setFiles] = useState<FileNode[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -114,7 +353,11 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
 
   if (isLoading) {
     return (
-      <div className="rounded-lg border bg-card p-4">
+      <div
+        data-slot="registry-item-display-loading"
+        className={cn("rounded-lg border bg-card p-4", className)}
+        {...props}
+      >
         <p className="text-muted-foreground text-sm">
           Loading registry files...
         </p>
@@ -124,8 +367,14 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
 
   if (error) {
     return (
-      <div className="rounded-lg border bg-card p-4">
-        <p className="text-red-500 text-sm">Error loading registry: {error}</p>
+      <div
+        data-slot="registry-item-display-error"
+        className={cn("rounded-lg border bg-card p-4", className)}
+        {...props}
+      >
+        <p className="text-destructive text-sm">
+          Error loading registry: {error}
+        </p>
       </div>
     );
   }
@@ -138,7 +387,11 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
     const singleFile = allFiles[0];
     if (!singleFile) {
       return (
-        <div className="rounded-lg border bg-card p-4">
+        <div
+          data-slot="registry-item-display-empty"
+          className={cn("rounded-lg border bg-card p-4", className)}
+          {...props}
+        >
           <p className="text-muted-foreground text-sm">No files found</p>
         </div>
       );
@@ -148,14 +401,23 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
     const code = singleFile.content || "";
 
     return (
-      <div className="space-y-2">
-        <div className="rounded-md bg-muted/50 px-3 py-2">
+      <div
+        data-slot="registry-item-display-single"
+        className={cn("space-y-2", className)}
+        {...props}
+      >
+        <div
+          data-slot="registry-item-display-header"
+          className="rounded-md bg-muted/50 px-3 py-2"
+        >
           <h4 className="font-medium font-mono text-sm">{singleFile.path}</h4>
           <p className="text-muted-foreground text-xs">
             {singleFile.registryType}
           </p>
         </div>
-        <DynamicCodeBlock lang={language} code={code} />
+        <div data-slot="registry-item-display-code">
+          <DynamicCodeBlock lang={language} code={code} />
+        </div>
       </div>
     );
   }
@@ -166,10 +428,20 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
     : null;
 
   return (
-    <div className="my-4 flex h-[600px] overflow-hidden rounded-lg border bg-background shadow-sm">
+    <div
+      data-slot="registry-item-display-multi"
+      className={cn(
+        "my-4 flex h-[600px] overflow-hidden rounded-lg border bg-background shadow-sm",
+        className
+      )}
+      {...props}
+    >
       {/* File tree toggle button - only show when collapsed */}
       {isFileTreeCollapsed && (
-        <div className="flex flex-col border-r bg-muted/20">
+        <div
+          data-slot="registry-item-display-toggle"
+          className="flex flex-col border-r bg-muted/20"
+        >
           <div className="border-b p-2">
             <Button
               variant="ghost"
@@ -186,8 +458,14 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
 
       {/* File tree */}
       {!isFileTreeCollapsed && (
-        <div className="flex w-[280px] flex-col">
-          <div className="flex items-center justify-between border-b bg-muted/30 px-3 py-2">
+        <div
+          data-slot="registry-item-display-sidebar"
+          className="flex w-[280px] flex-col"
+        >
+          <div
+            data-slot="registry-item-display-sidebar-header"
+            className="flex items-center justify-between border-b bg-muted/30 px-3 py-2"
+          >
             <h4 className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">
               Files
             </h4>
@@ -216,9 +494,14 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
 
       {/* Code display */}
       {selectedFileNode ? (
-        <div className="flex flex-1 flex-col overflow-hidden">
-          {/* Compact file header */}
-          <div className="flex items-center justify-between border-b bg-muted/10 px-4 py-2.5">
+        <div
+          data-slot="registry-item-display-content"
+          className="flex flex-1 flex-col overflow-hidden"
+        >
+          <div
+            data-slot="registry-item-display-content-header"
+            className="flex items-center justify-between border-b bg-muted/10 px-4 py-2.5"
+          >
             <div className="flex min-w-0 items-center gap-2">
               <FileText className="h-3 w-3" />
               <p className="truncate text-muted-foreground text-sm">
@@ -226,8 +509,10 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
               </p>
             </div>
           </div>
-          {/* Code content with DynamicCodeBlock */}
-          <div className="flex-1 overflow-auto bg-card p-4">
+          <div
+            data-slot="registry-item-display-content-code"
+            className="flex-1 overflow-auto bg-card p-4"
+          >
             <DynamicCodeBlock
               lang={getLanguageFromPath(selectedFileNode.path)}
               code={selectedFileNode.content || ""}
@@ -235,7 +520,10 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
           </div>
         </div>
       ) : (
-        <div className="flex flex-1 items-center justify-center bg-muted/20 text-muted-foreground/60">
+        <div
+          data-slot="registry-item-display-placeholder"
+          className="flex flex-1 items-center justify-center bg-muted/20 text-muted-foreground/60"
+        >
           <div className="flex flex-col items-center gap-2 text-center">
             <FileText className="h-8 w-8 opacity-50" />
             <p className="text-sm">Select a file to view its contents</p>
