@@ -167,35 +167,49 @@ function transformFilesToTree(files: FileData[]): FileTreeNode[] {
 }
 
 // Get all directory paths for default expansion
-function getAllDirectoryPaths(nodes: FileTreeNode[]): string[] {
-  const paths: string[] = [];
+function getAllDirectoryIds(nodes: FileTreeNode[]): string[] {
+  const ids: string[] = [];
 
   function traverse(nodeList: FileTreeNode[]) {
     for (const node of nodeList) {
-      if (node.type === "directory" && node.children) {
-        paths.push(node.path);
-        traverse(node.children);
+      if (node.type === "directory") {
+        ids.push(node.path);
+        if (node.children) {
+          traverse(node.children);
+        }
       }
     }
   }
 
   traverse(nodes);
-  return paths;
+  return ids;
 }
 
 // Tree nodes component
-function TreeNodes({ nodes }: { nodes: FileTreeNode[] }) {
+function TreeNodes({
+  nodes,
+  level = 0,
+}: {
+  nodes: FileTreeNode[];
+  level?: number;
+}) {
   const { setSelectedFilePath } = useFileSelection();
 
   return (
     <>
-      {nodes.map((node) => {
+      {nodes.map((node, index) => {
         const nodeKey = node.path;
         const fileName = node.path.split("/").pop() || "";
+        const isLast = index === nodes.length - 1;
 
         if (node.type === "file") {
           return (
-            <TreeNode key={nodeKey} nodeId={nodeKey}>
+            <TreeNode
+              key={nodeKey}
+              nodeId={nodeKey}
+              level={level}
+              isLast={isLast}
+            >
               <TreeNodeTrigger onClick={() => setSelectedFilePath(node.path)}>
                 <TreeExpander />
                 <TreeIcon />
@@ -206,14 +220,21 @@ function TreeNodes({ nodes }: { nodes: FileTreeNode[] }) {
         }
 
         return (
-          <TreeNode key={nodeKey} nodeId={nodeKey}>
+          <TreeNode
+            key={nodeKey}
+            nodeId={nodeKey}
+            level={level}
+            isLast={isLast}
+          >
             <TreeNodeTrigger>
               <TreeExpander hasChildren />
               <TreeIcon hasChildren />
               <TreeLabel>{fileName}</TreeLabel>
             </TreeNodeTrigger>
             <TreeNodeContent hasChildren>
-              {node.children && <TreeNodes nodes={node.children} />}
+              {node.children && (
+                <TreeNodes nodes={node.children} level={level + 1} />
+              )}
             </TreeNodeContent>
           </TreeNode>
         );
@@ -230,8 +251,6 @@ interface FileTreeProps {
 }
 
 function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
-  const { selectedFilePath } = useFileSelection();
-
   if (collapsed) {
     return (
       <div className="flex flex-col border-r bg-muted/20">
@@ -250,7 +269,7 @@ function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
   }
 
   const treeNodes = transformFilesToTree(files);
-  const defaultExpandedIds = getAllDirectoryPaths(treeNodes);
+  const defaultExpandedIds = getAllDirectoryIds(treeNodes);
 
   return (
     <div className="flex w-[280px] flex-col">
@@ -273,11 +292,7 @@ function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
         </div>
       </div>
       <div className="flex-1 overflow-auto border-r bg-muted/20 py-1">
-        <TreeProvider
-          defaultExpandedIds={defaultExpandedIds}
-          selectable
-          selectedIds={selectedFilePath ? [selectedFilePath] : []}
-        >
+        <TreeProvider defaultExpandedIds={defaultExpandedIds}>
           <TreeView className="px-2">
             <TreeNodes nodes={treeNodes} />
           </TreeView>
