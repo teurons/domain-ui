@@ -18,18 +18,6 @@ interface RegistryAllFilesProps {
   wrapper?: BaseCodeBlockProps;
 }
 
-// interface RegistryFile {
-//   path: string;
-//   content: string;
-//   type: string;
-// }
-
-// interface RegistryItem {
-//   name: string;
-//   type: string;
-//   files: RegistryFile[];
-// }
-
 function getLanguageFromPath(path: string): string {
   const extension = path.split(".").pop()?.toLowerCase();
   switch (extension) {
@@ -89,6 +77,70 @@ async function highlightCode(
   );
 }
 
+async function renderRegistryFile(
+  file: { path: string; content?: string; type: string },
+  index: number,
+  url: string,
+  wrapper?: BaseCodeBlockProps
+): Promise<ReactElement> {
+  if (!file.content) {
+    throw new Error(`File "${file.path}" has no content`);
+  }
+
+  const lang = getLanguageFromPath(file.path);
+  const renderedCode = await highlightCode(file.content, lang, wrapper, {
+    "data-registry-url": url,
+    "data-file": file.path,
+    "data-file-type": file.type,
+  });
+
+  return (
+    <div key={`${file.path}-${index}`} className="space-y-2">
+      <div className="rounded-md bg-muted/50 px-3 py-2">
+        <h4 className="font-medium font-mono text-sm">{file.path}</h4>
+        <p className="text-muted-foreground text-xs">{file.type}</p>
+      </div>
+      {renderedCode}
+    </div>
+  );
+}
+
+function buildRegistryUrl(
+  baseUrl: string,
+  type: "free" | "pro",
+  name: string
+): string {
+  const registryPath = type === "pro" ? "/r-pro" : "/r";
+  return `${baseUrl}${registryPath}/${name}.json`;
+}
+
+async function processRegistryFiles(
+  registryItem: RegistryItem,
+  name: string,
+  url: string,
+  wrapper?: BaseCodeBlockProps
+): Promise<ReactElement[]> {
+  if (!registryItem.files || registryItem.files.length === 0) {
+    throw new Error(`No files found in registry item "${name}"`);
+  }
+
+  return Promise.all(
+    registryItem.files.map((file, index) =>
+      renderRegistryFile(file, index, url, wrapper)
+    )
+  );
+}
+
+async function loadRegistryData(
+  name: string,
+  type: "free" | "pro",
+  wrapper?: BaseCodeBlockProps
+): Promise<ReactElement[]> {
+  const url = buildRegistryUrl(getBaseUrl(), type, name);
+  const registryItem = await fetchRegistryItem(url);
+  return processRegistryFiles(registryItem, name, url, wrapper);
+}
+
 export default function RegistryAllFiles({
   name,
   type,
@@ -101,59 +153,23 @@ export default function RegistryAllFiles({
   useEffect(() => {
     let isMounted = true;
 
-    const loadAllFiles = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        const baseUrl = getBaseUrl();
-        const registryPath = type === "pro" ? "/r-pro" : "/r";
-        const url = `${baseUrl}${registryPath}/${name}.json`;
-
-        const registryItem = await fetchRegistryItem(url);
-
-        const renderedFiles = await Promise.all(
-          registryItem.files.map(async (file, index) => {
-            const lang = getLanguageFromPath(file.path);
-            const renderedCode = await highlightCode(
-              file.content,
-              lang,
-              wrapper,
-              {
-                "data-registry-url": url,
-                "data-file": file.path,
-                "data-file-type": file.type,
-              }
-            );
-
-            return (
-              <div key={`${file.path}-${index}`} className="space-y-2">
-                <div className="rounded-md bg-muted/50 px-3 py-2">
-                  <h4 className="font-medium font-mono text-sm">{file.path}</h4>
-                  <p className="text-muted-foreground text-xs">{file.type}</p>
-                </div>
-                {renderedCode}
-              </div>
-            );
-          })
-        );
-
+    loadRegistryData(name, type, wrapper)
+      .then((renderedFiles) => {
         if (isMounted) {
           setContent(renderedFiles);
         }
-      } catch (err) {
+      })
+      .catch((err) => {
         if (isMounted) {
           const errorMessage = err instanceof Error ? err.message : String(err);
           setError(errorMessage);
         }
-      } finally {
+      })
+      .finally(() => {
         if (isMounted) {
           setIsLoading(false);
         }
-      }
-    };
-
-    loadAllFiles();
+      });
 
     return () => {
       isMounted = false;
