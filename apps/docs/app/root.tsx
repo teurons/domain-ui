@@ -31,6 +31,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        <script
+          crossOrigin="anonymous"
+          src="//cdn.jsdelivr.net/npm/meta-scan@0.15.0/dist/auto.global.js"
+          data-auto-enable="true"
+        />
         <Links />
       </head>
       <body className="flex min-h-screen flex-col">
