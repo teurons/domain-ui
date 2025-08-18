@@ -1,37 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { ReactElement } from "react";
 import {
   CodeBlock as BaseCodeBlock,
   Pre,
   type CodeBlockProps as BaseCodeBlockProps,
 } from "fumadocs-ui/components/codeblock";
-import { highlight } from "fumadocs-core/highlight";
-import { transformerMetaHighlight } from "@shikijs/transformers";
 import { getBaseUrl } from "../lib/get-base-url";
 import type { RegistryItem } from "shadcn/registry";
+import { transformRegistryFilesToTree } from "../lib/registry-utils";
+import {
+  RegistryCodeViewer,
+  getAllFilesFromTree,
+} from "./registry-code-viewer";
+import { RegistrySingleFile } from "./registry-single-file";
+import type { FileNode } from "./registry-file-tree";
 
 interface RegistryAllFilesProps {
   name: string;
   type: "free" | "pro";
   wrapper?: BaseCodeBlockProps;
-}
-
-function getLanguageFromPath(path: string): string {
-  const extension = path.split(".").pop()?.toLowerCase();
-  switch (extension) {
-    case "ts":
-      return "typescript";
-    case "tsx":
-      return "tsx";
-    case "js":
-      return "javascript";
-    case "jsx":
-      return "jsx";
-    default:
-      return extension || "text";
-  }
 }
 
 async function fetchRegistryItem(url: string): Promise<RegistryItem> {
@@ -52,59 +40,6 @@ async function fetchRegistryItem(url: string): Promise<RegistryItem> {
   return registryItem;
 }
 
-async function highlightCode(
-  code: string,
-  lang: string,
-  wrapper?: BaseCodeBlockProps,
-  dataAttributes?: Record<string, string>
-): Promise<ReactElement> {
-  const rendered = await highlight(code, {
-    lang,
-    themes: {
-      light: "github-light",
-      dark: "github-dark",
-    },
-    components: {
-      pre: Pre,
-    },
-    transformers: [transformerMetaHighlight()],
-  });
-
-  return (
-    <BaseCodeBlock {...wrapper} {...dataAttributes}>
-      {rendered}
-    </BaseCodeBlock>
-  );
-}
-
-async function renderRegistryFile(
-  file: { path: string; content?: string; type: string },
-  index: number,
-  url: string,
-  wrapper?: BaseCodeBlockProps
-): Promise<ReactElement> {
-  if (!file.content) {
-    throw new Error(`File "${file.path}" has no content`);
-  }
-
-  const lang = getLanguageFromPath(file.path);
-  const renderedCode = await highlightCode(file.content, lang, wrapper, {
-    "data-registry-url": url,
-    "data-file": file.path,
-    "data-file-type": file.type,
-  });
-
-  return (
-    <div key={`${file.path}-${index}`} className="space-y-2">
-      <div className="rounded-md bg-muted/50 px-3 py-2">
-        <h4 className="font-medium font-mono text-sm">{file.path}</h4>
-        <p className="text-muted-foreground text-xs">{file.type}</p>
-      </div>
-      {renderedCode}
-    </div>
-  );
-}
-
 function buildRegistryUrl(
   baseUrl: string,
   type: "free" | "pro",
@@ -114,31 +49,21 @@ function buildRegistryUrl(
   return `${baseUrl}${registryPath}/${name}.json`;
 }
 
-async function processRegistryFiles(
-  registryItem: RegistryItem,
+// Load registry data and return tree structure
+async function loadRegistryData(
   name: string,
-  url: string,
-  wrapper?: BaseCodeBlockProps
-): Promise<ReactElement[]> {
+  type: "free" | "pro"
+): Promise<{ files: FileNode[]; url: string }> {
+  const url = buildRegistryUrl(getBaseUrl(), type, name);
+  const registryItem = await fetchRegistryItem(url);
+
   if (!registryItem.files || registryItem.files.length === 0) {
     throw new Error(`No files found in registry item "${name}"`);
   }
 
-  return Promise.all(
-    registryItem.files.map((file, index) =>
-      renderRegistryFile(file, index, url, wrapper)
-    )
-  );
-}
+  const files = transformRegistryFilesToTree(registryItem.files);
 
-async function loadRegistryData(
-  name: string,
-  type: "free" | "pro",
-  wrapper?: BaseCodeBlockProps
-): Promise<ReactElement[]> {
-  const url = buildRegistryUrl(getBaseUrl(), type, name);
-  const registryItem = await fetchRegistryItem(url);
-  return processRegistryFiles(registryItem, name, url, wrapper);
+  return { files, url };
 }
 
 export default function RegistryAllFiles({
@@ -146,17 +71,19 @@ export default function RegistryAllFiles({
   type,
   wrapper,
 }: RegistryAllFilesProps) {
-  const [content, setContent] = useState<ReactElement[]>([]);
+  const [files, setFiles] = useState<FileNode[]>([]);
+  const [url, setUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
 
-    loadRegistryData(name, type, wrapper)
-      .then((renderedFiles) => {
+    loadRegistryData(name, type)
+      .then(({ files: treeFiles, url: registryUrl }) => {
         if (isMounted) {
-          setContent(renderedFiles);
+          setFiles(treeFiles);
+          setUrl(registryUrl);
         }
       })
       .catch((err) => {
@@ -174,7 +101,7 @@ export default function RegistryAllFiles({
     return () => {
       isMounted = false;
     };
-  }, [name, type, wrapper]);
+  }, [name, type]);
 
   if (isLoading) {
     return (
@@ -192,5 +119,33 @@ export default function RegistryAllFiles({
     );
   }
 
-  return <div className="space-y-6">{content}</div>;
+  // Dynamic UI based on file count
+  const allFiles = getAllFilesFromTree(files);
+
+  // Single file: use simple approach
+  if (allFiles.length === 1) {
+    const singleFile = allFiles[0];
+    if (!singleFile) {
+      return (
+        <BaseCodeBlock {...wrapper}>
+          <Pre>No files found</Pre>
+        </BaseCodeBlock>
+      );
+    }
+
+    return (
+      <div className="space-y-2">
+        <div className="rounded-md bg-muted/50 px-3 py-2">
+          <h4 className="font-medium font-mono text-sm">{singleFile.path}</h4>
+          <p className="text-muted-foreground text-xs">
+            {singleFile.registryType}
+          </p>
+        </div>
+        <RegistrySingleFile file={singleFile} wrapper={wrapper} url={url} />
+      </div>
+    );
+  }
+
+  // Multiple files: use split-pane interface
+  return <RegistryCodeViewer files={files} url={url} className="my-4" />;
 }

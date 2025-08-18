@@ -19,6 +19,7 @@
     "framer-motion": "^12.5.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.536.0",
+    "motion": "^12.5.0",
     "next-themes": "0.4.6",
     "radix-ui": "^1.4.2",
     "react": "^19.1.1",
@@ -51,6 +52,7 @@
     "./components/*": "./src/components/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",
     "./kanban": "./src/components/ui/kibo-ui/kanban/index.tsx",
-    "./announcement": "./src/components/ui/kibo-ui/announcement/index.tsx"
+    "./announcement": "./src/components/ui/kibo-ui/announcement/index.tsx",
+    "./components/ui/kibo-ui/tree": "./src/components/ui/kibo-ui/tree/index.tsx"
   }
 }
