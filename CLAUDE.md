@@ -7,17 +7,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Ultracite enforces strict type safety, accessibility standards, and consistent code quality for JavaScript/TypeScript projects using Biome's lightning-fast formatter and linter.
 
 ### Key Principles
+
 - Zero configuration required
 - Subsecond performance
 - Maximum type safety
 - AI-friendly code generation
 
 ### Before Writing Code
+
 1. Analyze existing patterns in the codebase
 2. Consider edge cases and error scenarios
 3. Follow the rules below strictly
 4. Validate accessibility requirements
 
+### ⚠️ CRITICAL: Development Rules
+- **NEVER run build commands (`pnpm build`, `pnpm web:build`, etc.) unless explicitly asked by the user**
+- **NEVER run dev server commands (`pnpm dev`, `next dev`, etc.) unless explicitly asked by the user**
+- **ALWAYS run `pnpm lint` after making code changes**
+- **NEVER use `console.log`, `console.error`, etc. - ALWAYS use the logger from `@/lib/logger`**
 
 ## Logging
 
@@ -37,51 +44,14 @@ debug("Debug information", { data });
 - Set `NEXT_PUBLIC_LOG_LEVEL` to control log level (DEBUG, INFO, WARN, ERROR)
 - NEVER use `console.log`, `console.error`, etc. directly - always use the logger
 
-## Development Commands
+## Essential Commands for Coding
 
-### Root Level Commands
+Only run these during regular development:
+- `pnpm lint` - Check for linting issues (ALWAYS run after changes)
+- `pnpm format` - Format code
+- `pnpm dlx shadcn@latest add <component-name> -c apps/web` - Add shadcn components
 
-```bash
-# Install dependencies
-pnpm install
-
-# Run development server (all apps)
-pnpm dev
-
-# Build all apps
-pnpm build
-
-# Lint all packages
-pnpm lint
-
-# Format code
-pnpm format
-
-# Web app specific commands (from root)
-pnpm web:dev    # Run only web app in dev mode
-pnpm web:build  # Build only web app
-pnpm web:start  # Start web app production server
-
-# Type checking (run in web app)
-cd apps/web && pnpm typecheck
-```
-
-### Adding Shadcn UI Components
-
-To add components from shadcn/ui, run at the root of the web app:
-
-```bash
-pnpm dlx shadcn@latest add <component-name> -c apps/web
-```
-
-Components will be placed in `packages/ui/src/components/`
-
-### Running Single App
-
-```bash
-# Run only the web app
-cd apps/web && pnpm dev
-```
+Use `/dev-commands` for complete development command reference.
 
 ## Architecture
 
@@ -115,26 +85,24 @@ This is a monorepo using:
 - `pnpm-workspace.yaml` - Defines workspace structure
 - Each package has its own `package.json` with workspace protocol references
 
-## Common Tasks
-- `npx ultracite init` - Initialize Ultracite in your project
-- `npx ultracite format` - Format and fix code automatically
-- `npx ultracite lint` - Check for issues without fixing
-
 ## Example: Error Handling
+
 ```typescript
+import { error } from "@/lib/logger";
+
 // ✅ Good: Comprehensive error handling
 try {
   const result = await fetchData();
   return { success: true, data: result };
-} catch (error) {
-  console.error('API call failed:', error);
-  return { success: false, error: error.message };
+} catch (err) {
+  error("API call failed:", err);
+  return { success: false, error: err.message };
 }
 
 // ❌ Bad: Swallowing errors
 try {
   return await fetchData();
 } catch (e) {
-  console.log(e);
+  console.log(e); // Never use console directly!
 }
 ```
