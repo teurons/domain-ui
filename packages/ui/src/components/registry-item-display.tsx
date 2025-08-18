@@ -15,6 +15,9 @@ import {
   TreeView,
 } from "@workspace/shadverse/components/ui/kibo-ui/tree";
 import { PanelLeftClose, PanelLeft, FileText } from "lucide-react";
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
+import { type ComponentProps, useMemo } from "react";
+import { cn } from "@workspace/domain-ui-registry/lib/utils";
 
 interface FileData {
   path: string;
@@ -211,12 +214,12 @@ function TreeNodes({
               isLast={isLast}
             >
               <TreeNodeTrigger
-                className="px-2 py-1"
+                className="mx-0"
                 onClick={() => setSelectedFilePath(node.path)}
               >
-                <TreeExpander className="mr-1 h-3 w-3" />
-                <TreeIcon className="mr-2 h-3 w-3" />
-                <TreeLabel className="text-xs">{fileName}</TreeLabel>
+                <TreeExpander />
+                <TreeIcon />
+                <TreeLabel>{fileName}</TreeLabel>
               </TreeNodeTrigger>
             </TreeNode>
           );
@@ -229,10 +232,10 @@ function TreeNodes({
             level={level}
             isLast={isLast}
           >
-            <TreeNodeTrigger className="px-2 py-1">
-              <TreeExpander hasChildren className="mr-1 h-3 w-3" />
-              <TreeIcon hasChildren className="mr-2 h-3 w-3" />
-              <TreeLabel className="text-xs">{fileName}</TreeLabel>
+            <TreeNodeTrigger className="mx-0">
+              <TreeExpander hasChildren />
+              <TreeIcon hasChildren />
+              <TreeLabel>{fileName}</TreeLabel>
             </TreeNodeTrigger>
             <TreeNodeContent hasChildren>
               {node.children && (
@@ -291,7 +294,7 @@ function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
       </div>
       <div className="flex-1 overflow-auto border-r bg-muted/20 py-1">
         <TreeProvider defaultExpandedIds={defaultExpandedIds}>
-          <TreeView className="p-1">
+          <TreeView className="p-0 py-2">
             <TreeNodes nodes={treeNodes} />
           </TreeView>
         </TreeProvider>
