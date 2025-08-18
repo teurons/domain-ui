@@ -77,7 +77,8 @@
       "WebSearch",
       "Bash(npm test)",
       "Bash(npm test:*)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": []
   }
