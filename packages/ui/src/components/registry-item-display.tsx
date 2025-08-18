@@ -15,7 +15,6 @@ import {
   TreeView,
 } from "@workspace/shadverse/components/ui/kibo-ui/tree";
 import { PanelLeftClose, PanelLeft, FileText } from "lucide-react";
-import { FileCode, FileJson, FileType } from "lucide-react";
 
 interface FileData {
   path: string;
@@ -59,10 +58,10 @@ function FilePath({ filePath }: FilePathProps) {
   }
 
   return (
-    <div className="border-b bg-muted/10 px-4 py-2.5">
+    <div className="border-b bg-muted/10 px-3 py-3">
       <div className="flex items-center gap-2">
         <FileText className="h-3 w-3" />
-        <p className="text-muted-foreground text-sm">{filePath}</p>
+        <span className="text-muted-foreground text-sm">{filePath}</span>
       </div>
     </div>
   );
@@ -254,15 +253,15 @@ interface FileTreeProps {
 function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
   if (collapsed) {
     return (
-      <div className="flex flex-col border-r bg-muted/20">
-        <div className="border-b p-2">
+      <div className="flex flex-col border-r border-b bg-muted/20">
+        <div className="border-b px-3 py-2">
           <Button
             variant="ghost"
             size="sm"
             onClick={onToggleCollapse}
-            className="h-8 w-8 p-0 hover:bg-muted"
+            className="h-6 w-6 p-0 hover:bg-muted"
           >
-            <PanelLeft className="h-4 w-4" />
+            <PanelLeft className="h-3 w-3" />
           </Button>
         </div>
       </div>
@@ -275,22 +274,17 @@ function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
   return (
     <div className="flex w-[280px] flex-col">
       <div className="flex items-center justify-between border-b bg-muted/30 px-3 py-2">
-        <h4 className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">
-          Files
-        </h4>
-        <div className="flex items-center gap-1">
-          <span className="text-muted-foreground/60 text-xs">
-            {files.length}
-          </span>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onToggleCollapse}
-            className="h-6 w-6 p-0 hover:bg-muted/60"
-          >
-            <PanelLeftClose className="h-3 w-3" />
-          </Button>
-        </div>
+        <span className="font-semibold text-muted-foreground text-xs uppercase tracking-wide">
+          Files ({files.length})
+        </span>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onToggleCollapse}
+          className="h-6 w-6 p-0 hover:bg-muted/60"
+        >
+          <PanelLeftClose className="h-3 w-3" />
+        </Button>
       </div>
       <div className="flex-1 overflow-auto border-r bg-muted/20 py-1">
         <TreeProvider defaultExpandedIds={defaultExpandedIds}>
