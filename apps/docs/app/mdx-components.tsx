@@ -1,7 +1,13 @@
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import type { MDXComponents } from "mdx/types";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
-import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import {
+  Tab,
+  Tabs,
+  TabsTrigger,
+  TabsList,
+  TabsContent,
+} from "fumadocs-ui/components/tabs";
 import { Step, Steps } from "fumadocs-ui/components/steps";
 import RegistryCodeBlock from "@workspace/ui/components/registry-code-block";
 import DynamicRegistryCodeBlock from "@workspace/ui/components/registry-code-block-dynamic";
@@ -20,6 +26,9 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
 
     Tab,
     Tabs,
+    TabsTrigger,
+    TabsList,
+    TabsContent,
     Step,
     Steps,
     RegistryCodeBlock,

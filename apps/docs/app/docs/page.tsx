@@ -1,5 +1,7 @@
 import type { Route } from "./+types/page";
-import { DocsLayout } from "fumadocs-ui/layouts/docs";
+// import { DocsLayout } from "fumadocs-ui/layouts/docs";
+import { DocsLayout } from "fumadocs-ui/layouts/notebook";
+
 import {
   DocsBody,
   DocsDescription,
