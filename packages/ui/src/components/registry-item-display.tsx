@@ -279,9 +279,15 @@ interface FileTreeProps {
   files: FileData[];
   collapsed: boolean;
   onToggleCollapse: () => void;
+  selectedFilePath: string;
 }
 
-function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
+function FileTree({
+  files,
+  collapsed,
+  onToggleCollapse,
+  selectedFilePath,
+}: FileTreeProps) {
   if (collapsed) {
     return (
       <div className="flex flex-col border-r bg-muted/20">
@@ -318,7 +324,10 @@ function FileTree({ files, collapsed, onToggleCollapse }: FileTreeProps) {
         </Button>
       </div>
       <div className="flex-1 overflow-auto border-r bg-muted/20 py-1">
-        <TreeProvider defaultExpandedIds={defaultExpandedIds}>
+        <TreeProvider
+          defaultExpandedIds={defaultExpandedIds}
+          selectedIds={selectedFilePath ? [selectedFilePath] : []}
+        >
           <TreeView className="p-0 py-2">
             <TreeNodes nodes={treeNodes} />
           </TreeView>
@@ -438,6 +447,7 @@ export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
           files={files}
           collapsed={isTreeCollapsed}
           onToggleCollapse={() => setIsTreeCollapsed(!isTreeCollapsed)}
+          selectedFilePath={selectedFilePath}
         />
         <div className="flex flex-1 flex-col overflow-hidden">
           <FilePath filePath={selectedFilePath} />
