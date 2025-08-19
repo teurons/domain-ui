@@ -10,6 +10,7 @@ import {
 export interface RegexInputProps extends React.ComponentProps<"input"> {
   regex: RegExp;
   onValidation?: (status: ValidationStatusType) => void;
+  transformToUppercase?: boolean;
 }
 
 export function RegexInput({
@@ -18,6 +19,7 @@ export function RegexInput({
   onChange,
   onValidation,
   defaultValue,
+  transformToUppercase,
   ...props
 }: RegexInputProps) {
   const { value: displayValue, onChange: handleChange } = useSimpleRegex({
@@ -34,6 +36,7 @@ export function RegexInput({
       : undefined,
     onValidation,
     defaultValue: defaultValue as string | undefined,
+    transformToUppercase,
   });
 
   return <Input {...props} value={displayValue} onChange={handleChange} />;

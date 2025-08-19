@@ -34,6 +34,7 @@ export interface UseIncrementalRegexProps {
   onChange?: (value: string) => void;
   onValidation?: (status: ValidationStatusType) => void;
   defaultValue?: string;
+  transformToUppercase?: boolean;
 }
 
 export interface UseIncrementalRegexReturn {
@@ -50,6 +51,7 @@ export const useIncrementalRegex = ({
   onChange,
   onValidation,
   defaultValue,
+  transformToUppercase,
 }: UseIncrementalRegexProps): UseIncrementalRegexReturn => {
   // Internal configuration - skip validation for defaults
   const skipLiveValidationForDefaults = true;
@@ -110,7 +112,13 @@ export const useIncrementalRegex = ({
   // Handle regular input changes
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
+      let newValue = e.target.value;
+      
+      // Transform to uppercase if requested
+      if (transformToUppercase) {
+        newValue = newValue.toUpperCase();
+      }
+      
       let processedValue = newValue;
 
       // If this was triggered by a paste event, accept the full value
@@ -139,7 +147,7 @@ export const useIncrementalRegex = ({
         onChange(processedValue);
       }
     },
-    [regex, controlledValue, onChange]
+    [regex, controlledValue, onChange, transformToUppercase]
   );
 
   // Handle paste events - just set a flag
