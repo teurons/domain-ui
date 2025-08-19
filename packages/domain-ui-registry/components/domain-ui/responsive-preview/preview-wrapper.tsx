@@ -66,7 +66,7 @@ function PreviewPanel({
   return (
     <ResizablePanelGroup
       direction="horizontal"
-      className="!overflow-visible relative z-5 rounded-sm border-0 border-[#0000001f] bg-gray-300 bg-clip-padding dark:bg-gray-600"
+      className="!overflow-visible relative z-5 border-0 border-[#0000001f] bg-gray-300 bg-clip-padding dark:bg-gray-600"
       style={{ backgroundImage: bgPattern }}
     >
       <ResizablePanel
@@ -164,44 +164,46 @@ export function PreviewWrapper({
           ref={rprRef}
         >
           {showToolbar && (
-            <div className="flex min-h-9 items-center justify-between space-x-2">
-              <div className="flex-grow">
-                <Toolbar
-                  width={width}
-                  maxWidth={maxWidth}
-                  breakpointTitle={currentBreakpoint?.title}
-                  availableBreakpoints={availableBreakpoints}
-                  onBreakpointChange={(value) => {
-                    if (resizablePanelRef?.current) {
-                      resizablePanelRef.current.resize(
-                        Number.parseFloat(value)
-                      );
-                    }
-                  }}
-                  panelRef={panelContentRef} // Add this line
-                />
+            <>
+              <div className="flex min-h-9 items-center justify-between space-x-2">
+                <div className="flex-grow">
+                  <Toolbar
+                    width={width}
+                    maxWidth={maxWidth}
+                    breakpointTitle={currentBreakpoint?.title}
+                    availableBreakpoints={availableBreakpoints}
+                    onBreakpointChange={(value) => {
+                      if (resizablePanelRef?.current) {
+                        resizablePanelRef.current.resize(
+                          Number.parseFloat(value)
+                        );
+                      }
+                    }}
+                    panelRef={panelContentRef} // Add this line
+                  />
+                </div>
+
+                <div className="h-7 justify-end p-[2px]">
+                  <Settings
+                    config={config}
+                    onChange={(newConfig) => {
+                      setConfig(newConfig);
+                    }}
+                    rprRef={rprRef}
+                  />
+                </div>
               </div>
 
-              <div className="h-7 justify-end p-[2px]">
-                <Settings
-                  config={config}
-                  onChange={(newConfig) => {
-                    setConfig(newConfig);
-                  }}
-                  rprRef={rprRef}
-                />
-              </div>
-            </div>
+              <ScaleBar
+                width={width}
+                maxWidth={maxWidth}
+                currentBreakpoint={currentBreakpoint?.title}
+                breakpoints={availableBreakpoints}
+                showLabels={showLabels}
+                showScale={showScale}
+              />
+            </>
           )}
-
-          <ScaleBar
-            width={width}
-            maxWidth={maxWidth}
-            currentBreakpoint={currentBreakpoint?.title}
-            breakpoints={availableBreakpoints}
-            showLabels={showLabels}
-            showScale={showScale}
-          />
 
           <PreviewPanel
             panelRef={resizablePanelRef}

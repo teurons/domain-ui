@@ -23,7 +23,10 @@ export function ComponentPreview({
   minHeight = "300px",
 }: ComponentPreviewProps) {
   return (
-    <Tabs defaultValue="preview">
+    <Tabs
+      defaultValue="preview"
+      className="not-prose !rounded-t-xl rounded-none"
+    >
       <TabsList>
         <TabsTrigger value="preview">Preview</TabsTrigger>
         <TabsTrigger value="code">Code</TabsTrigger>
