@@ -11,6 +11,7 @@ export interface RegexInputIncrementalProps
   extends React.ComponentProps<"input"> {
   regex: RegExp;
   onValidation?: (status: ValidationStatusType) => void;
+  transformToUppercase?: boolean;
 }
 
 export function RegexInputIncremental({
@@ -19,6 +20,7 @@ export function RegexInputIncremental({
   onChange,
   onValidation,
   defaultValue,
+  transformToUppercase,
   ...props
 }: RegexInputIncrementalProps) {
   const {
@@ -39,6 +41,7 @@ export function RegexInputIncremental({
       : undefined,
     onValidation,
     defaultValue: defaultValue as string | undefined,
+    transformToUppercase,
   });
 
   return (

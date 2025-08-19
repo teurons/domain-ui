@@ -25,6 +25,7 @@ export interface UseSimpleRegexProps {
   onChange?: (value: string) => void;
   onValidation?: (status: ValidationStatusType) => void;
   defaultValue?: string;
+  transformToUppercase?: boolean;
 }
 
 export interface UseSimpleRegexReturn {
@@ -40,6 +41,7 @@ export const useSimpleRegex = ({
   onChange,
   onValidation,
   defaultValue,
+  transformToUppercase,
 }: UseSimpleRegexProps): UseSimpleRegexReturn => {
   const [uncontrolledValue, setUncontrolledValue] = useState(
     defaultValue || ""
@@ -72,7 +74,12 @@ export const useSimpleRegex = ({
   // Handle input changes
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
+      let newValue = e.target.value;
+      
+      // Transform to uppercase if requested
+      if (transformToUppercase) {
+        newValue = newValue.toUpperCase();
+      }
 
       // Update state if uncontrolled
       if (controlledValue === undefined) {
@@ -84,7 +91,7 @@ export const useSimpleRegex = ({
         onChange(newValue);
       }
     },
-    [controlledValue, onChange]
+    [controlledValue, onChange, transformToUppercase]
   );
 
   return {

@@ -11,5 +11,5 @@ export interface PanInputIncrementalProps
   extends Omit<RegexInputIncrementalProps, "regex"> {}
 
 export function PanInputIncremental({ ...props }: PanInputIncrementalProps) {
-  return <RegexInputIncremental regex={PAN_REGEX} {...props} />;
+  return <RegexInputIncremental regex={PAN_REGEX} transformToUppercase {...props} />;
 }
