@@ -13,7 +13,7 @@ import {
   TreeNodeTrigger,
   TreeProvider,
   TreeView,
-} from "@workspace/shadverse/components/ui/kibo-ui/tree";
+} from "@workspace/domain-ui-registry/components/ui/kibo-ui/tree";
 import { PanelLeftClose, PanelLeft, FileText } from "lucide-react";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { type ComponentProps, useMemo } from "react";

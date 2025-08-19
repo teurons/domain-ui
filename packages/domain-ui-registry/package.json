@@ -23,7 +23,8 @@
     "./components/domain-ui/usa/*": "./components/domain-ui/usa/*.tsx",
     "./components/domain-ui/uk/*": "./components/domain-ui/uk/*.tsx",
     "./components/domain-ui/responsive-preview": "./components/domain-ui/responsive-preview/index.tsx",
-    "./components/domain-ui/responsive-preview/*": "./components/domain-ui/responsive-preview/*.tsx"
+    "./components/domain-ui/responsive-preview/*": "./components/domain-ui/responsive-preview/*.tsx",
+    "./components/ui/kibo-ui/tree": "./src/components/ui/kibo-ui/tree/index.tsx"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +38,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
+    "fumadocs-ui": "^15.6.12",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.536.0",
     "modern-screenshot": "^4.6.5",
