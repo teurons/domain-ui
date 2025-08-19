@@ -78,7 +78,7 @@ function PreviewPanel({
         defaultSize={100}
         minSize={20}
       >
-        <div ref={contentRef}>{children}</div>
+        <div ref={contentRef} className="@container">{children}</div>
       </ResizablePanel>
       <ResizableHandle
         withHandle

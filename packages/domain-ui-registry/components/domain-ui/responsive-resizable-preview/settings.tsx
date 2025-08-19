@@ -1,7 +1,29 @@
-import { LayoutPanelTop, RulerIcon, TextIcon, SettingsIcon, Camera, ChevronLeft, ChevronRight, MaximizeIcon, Pause, Play } from "lucide-react";
-import { Popover, PopoverTrigger } from "@workspace/domain-ui-registry/components/ui/popover";
-import { ToggleGroup, ToggleGroupItem } from "@workspace/domain-ui-registry/components/ui/toggle-group";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@workspace/domain-ui-registry/components/ui/tooltip";
+import {
+  LayoutPanelTop,
+  RulerIcon,
+  TextIcon,
+  SettingsIcon,
+  Camera,
+  ChevronLeft,
+  ChevronRight,
+  MaximizeIcon,
+  Pause,
+  Play,
+} from "lucide-react";
+import {
+  Popover,
+  PopoverTrigger,
+} from "@workspace/domain-ui-registry/components/ui/popover";
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@workspace/domain-ui-registry/components/ui/toggle-group";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@workspace/domain-ui-registry/components/ui/tooltip";
 import type { PreviewConfig } from "./index";
 import type { Breakpoint } from "../breakpoints";
 import { Popover as PopoverPrimitive } from "radix-ui";
@@ -52,8 +74,8 @@ function Marker({
       )}
       style={position !== undefined ? { left: `${position}px` } : undefined}
     >
+      <span className="text-[10px]">{sublabel}</span>
       <span>{label}</span>
-      <span>{sublabel}</span>
     </div>
   );
 }
@@ -74,7 +96,7 @@ function MarkerScale({
           <Marker
             key={breakpoint.title}
             label={breakpoint.title}
-            sublabel={`${breakpoint.minWidthPx}px`}
+            sublabel={`${breakpoint.minWidthPx}`}
             position={breakpoint.minWidthPx}
             isCurrent={currentBreakpoint === breakpoint.title}
             isValid={width > breakpoint.minWidthPx}
