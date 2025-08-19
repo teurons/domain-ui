@@ -1,6 +1,6 @@
 import type { Route } from "./+types/page";
-// import { DocsLayout } from "fumadocs-ui/layouts/docs";
-import { DocsLayout } from "fumadocs-ui/layouts/notebook";
+import { DocsLayout } from "fumadocs-ui/layouts/docs";
+// import { DocsLayout } from "fumadocs-ui/layouts/notebook";
 
 import {
   DocsBody,
@@ -30,7 +30,12 @@ const renderer = toClientRenderer(
   docs.doc,
   ({ toc, default: Mdx, frontmatter }) => {
     return (
-      <DocsPage toc={toc}>
+      <DocsPage
+        toc={toc}
+        tableOfContent={{
+          style: "clerk",
+        }}
+      >
         <title>{frontmatter.title}</title>
         <meta name="description" content={frontmatter.description} />
         <DocsTitle>{frontmatter.title}</DocsTitle>
