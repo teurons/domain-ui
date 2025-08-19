@@ -7,28 +7,36 @@
  * For client-side usage, use relative URLs or create a NEXT_PUBLIC_* equivalent.
  */
 export function getBaseUrl() {
-  // In the browser, use relative URL
+  // Check if process is available (server-side) and prioritize Vercel environment
+  if (typeof process !== "undefined" && process.env) {
+    // On Vercel, prioritize environment-specific URLs
+    if (
+      process.env.VERCEL_ENV === "production" &&
+      process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ) {
+      return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+    }
+
+    if (process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL) {
+      return `https://${process.env.VERCEL_URL}`;
+    }
+
+    // Fallback for older Vercel deployments or when VERCEL_ENV is not set
+    if (process.env.VERCEL_URL) {
+      return `https://${process.env.VERCEL_URL}`;
+    }
+
+    // In development, use localhost
+    if (process.env.NODE_ENV === "development") {
+      return "http://localhost:3000";
+    }
+  }
+
+  // In the browser or when process is not available, use localhost
   if (typeof window !== "undefined") {
     return "http://localhost:3000";
   }
 
-  // On Vercel, use appropriate URL based on environment
-  if (
-    process.env.VERCEL_ENV === "production" &&
-    process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ) {
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-  }
-
-  if (process.env.VERCEL_ENV === "preview" && process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-
-  // Fallback for older Vercel deployments or when VERCEL_ENV is not set
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-
-  // In development, use localhost
+  // Final fallback
   return "http://localhost:3000";
 }
