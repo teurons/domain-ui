@@ -1,43 +1,44 @@
 ---
 title: Introduction
-description: A component registry for domain-specific React components that solve real-world application challenges.
+description: Production-ready React components for fintech, trading, KYC, and financial applications.
 ---
-## What is Domain UI?
+## Domain First UI Components
 
-Domain UI is a **component registry** that provides specialized React components for building real-world applications. You copy the components into your project and own them completely.
+Production-ready React components for **fintech**, **trading**, **banking**, **payments**, and **KYC** applications. Copy, paste, and ship faster.
 
-> "Domain-specific components that handle validation, formatting, and compliance out of the box."
-A comprehensive collection of React components designed for real-world applications:
+> "Domain-first components that handle validation and formatting out of the box."
 
-- **Form Input Components** with built-in validation and formatting
-- **Display Components** for presenting data with proper formatting
-- **Blocks** - pre-built sections for common application patterns
-- **Utilities** for handling domain-specific logic and transformations
+A comprehensive collection of React components designed for financial applications:
+
+- **Form Input Components** with built-in validation for government documents and financial data
+- **Display Components** for presenting financial data with proper formatting
+- **Blocks** - pre-built sections for KYC, onboarding, and payment flows
+- **Utilities** for handling domain-specific logic and financial transformations
 
 This is **not a traditional component library**. You don't install a package – you copy the source code directly into your project.
 
 ## How it works
 
-Domain UI uses a **registry approach** similar to shadcn/ui:
+Domain UI uses a **registry approach** similar to shadcn/ui and depends on the shadcn CLI for component installation:
 
 1. **Browse components** in the registry
-2. **Copy the code** into your project using CLI commands
+2. **Copy the code** into your project using shadcn CLI commands
 3. **Customize freely** since you own the source code
 4. **No dependencies** to manage or update
 
 ## Component Categories
 
 ### Form Components
-Input components with built-in validation, formatting, and user guidance for government documents, financial data, and other domain-specific formats.
+Input components with built-in validation for KYC documents, financial data, and regulatory requirements.
 
 ### Display Components
-Components for presenting formatted data with proper styling and accessibility considerations.
+Components for presenting financial data, trading information, and payment details with proper formatting.
 
 ### Blocks
-Pre-built sections that combine multiple components to solve common application patterns and user flows.
+Pre-built sections for KYC onboarding, payment flows, trading interfaces, and banking applications.
 
 ### Utilities
-Helper functions and hooks for handling domain-specific logic, transformations, and validation patterns.
+Helper functions and hooks for financial calculations, currency formatting, and regulatory validation patterns.
 
 ## Installation
 
@@ -45,7 +46,7 @@ Install any component using the registry CLI:
 
 ```bash
 # Install a component
-pnpm dlx shadcn@latest add "http://localhost:3000/r/[component-name].json"
+pnpm dlx shadcn@latest add "https://domain-ui.dev/[component-name].json"
 
 # Use in your application
 import { ComponentName } from "@/components/domain-ui/[component-path]"
@@ -68,7 +69,7 @@ import { ComponentName } from "@/components/domain-ui/[component-path]"
 
 ```bash
 # Install a component
-pnpm dlx shadcn@latest add "http://localhost:3000/r/pan-input.json"
+pnpm dlx shadcn@latest add "https://domain-ui.dev/pan-input.json"
 
 # Use in your app
 import { PanInput } from "@/components/domain-ui/india/pan-input"
