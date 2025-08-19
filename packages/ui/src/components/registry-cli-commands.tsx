@@ -38,7 +38,6 @@ export default function RegistryCliCommands({
         onValueChange={(value) => {
           setPackageManager(value as "pnpm" | "npm" | "yarn" | "bun");
         }}
-        className="rounded-md bg-secondary/50 p-2"
       >
         <TabsList className="rounded-none bg-secondary/50">
           <TabsTrigger value="pnpm">pnpm</TabsTrigger>
@@ -47,8 +46,12 @@ export default function RegistryCliCommands({
           <TabsTrigger value="bun">bun</TabsTrigger>
         </TabsList>
         {Object.entries(commands).map(([pkg, command]) => (
-          <TabsContent className="m-0 border-t" key={pkg} value={pkg}>
-            <pre className="no-scrollbar overflow-auto px-2 py-3 font-mono text-xs">
+          <TabsContent
+            className="m-0 rounded-none border-t bg-background"
+            key={pkg}
+            value={pkg}
+          >
+            <pre className="no-scrollbar overflow-auto px-2 py-3 text-sm">
               {command}
             </pre>
           </TabsContent>

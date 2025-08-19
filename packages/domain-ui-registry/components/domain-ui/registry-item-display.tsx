@@ -18,6 +18,7 @@ import { PanelLeftClose, PanelLeft, FileText } from "lucide-react";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { type ComponentProps, useMemo } from "react";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 
 interface FileData {
   path: string;
@@ -113,9 +114,11 @@ function FileContent({ files }: FileContentProps) {
 
   return (
     <div className="flex-1 overflow-auto bg-card">
-      <CodeBlock>
-        <Pre>{selectedFile.content || ""}</Pre>
-      </CodeBlock>
+      <DynamicCodeBlock
+        lang={language}
+        code={selectedFile.content || ""}
+        options={options}
+      />
     </div>
   );
 }
