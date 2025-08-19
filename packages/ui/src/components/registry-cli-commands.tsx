@@ -57,8 +57,8 @@ export default function RegistryCliCommands({
               code={command}
               options={{
                 themes: {
-                  light: "github-light",
-                  dark: "github-dark",
+                  light: "vitesse-light",
+                  dark: "vitesse-dark",
                 },
               }}
             />
