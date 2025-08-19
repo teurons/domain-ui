@@ -77,6 +77,32 @@
       }
     },
     {
+      "name": "pan-input-incremental",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input-incremental.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/india/pan-input-incremental.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "pan",
+          "india",
+          "validation",
+          "identity",
+          "kyc",
+          "form",
+          "incremental"
+        ]
+      }
+    },
+    {
       "name": "usa-passport-input",
       "type": "registry:component",
       "registryDependencies": [
@@ -181,7 +207,7 @@
       }
     },
     {
-      "name": "indian-passport-input",
+      "name": "passport-input",
       "type": "registry:component",
       "registryDependencies": [
         "input",
@@ -207,7 +233,7 @@
       }
     },
     {
-      "name": "indian-passport-input-incremental",
+      "name": "passport-input-incremental",
       "type": "registry:component",
       "registryDependencies": [
         "input",
@@ -236,11 +262,7 @@
     {
       "name": "responsive-preview",
       "type": "registry:component",
-      "registryDependencies": [
-        "button",
-        "badge", 
-        "resizable"
-      ],
+      "registryDependencies": ["button", "badge", "resizable"],
       "files": [
         {
           "path": "components/domain-ui/responsive-preview/index.tsx",
@@ -262,7 +284,7 @@
       "meta": {
         "tags": [
           "preview",
-          "responsive", 
+          "responsive",
           "breakpoint",
           "testing",
           "development",
