@@ -19,7 +19,7 @@ interface ComponentPreviewProps {
 export function ComponentPreview({
   demo,
   children, // This is the include directive
-  className = "flex min-h-[300px] w-full items-center justify-center rounded-lg border bg-background p-8",
+  className = "flex min-h-[300px] w-full items-center justify-center border bg-background p-8",
   minHeight = "300px",
 }: ComponentPreviewProps) {
   return (

@@ -302,11 +302,7 @@
       ],
       "files": [
         {
-          "path": "components/domain-ui/responsive-preview/child-preview.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/domain-ui/responsive-preview/iframe-preview.tsx",
+          "path": "components/domain-ui/responsive-preview/index.tsx",
           "type": "registry:component"
         },
         {
@@ -318,8 +314,8 @@
           "type": "registry:lib"
         },
         {
-          "path": "components/domain-ui/responsive-preview/types.ts",
-          "type": "registry:lib"
+          "path": "components/domain-ui/responsive-preview/components/settings.tsx",
+          "type": "registry:component"
         }
       ],
       "meta": {
@@ -330,6 +326,30 @@
           "testing",
           "development",
           "layout"
+        ]
+      }
+    },
+    {
+      "name": "registry-item-display",
+      "type": "registry:component",
+      "registryDependencies": [
+        "button",
+        "https://www.kibo-ui.com/registry/tree.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/registry-item-display.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "registry",
+          "display",
+          "file-tree",
+          "code-viewer",
+          "syntax-highlighting",
+          "tree-view"
         ]
       }
     }

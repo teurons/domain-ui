@@ -66,7 +66,7 @@ function PreviewPanel({
   return (
     <ResizablePanelGroup
       direction="horizontal"
-      className="!overflow-visible relative z-10 rounded-sm border-0 border-[#0000001f] bg-gray-300 bg-clip-padding dark:bg-gray-600"
+      className="!overflow-visible relative z-5 rounded-sm border-0 border-[#0000001f] bg-gray-300 bg-clip-padding dark:bg-gray-600"
       style={{ backgroundImage: bgPattern }}
     >
       <ResizablePanel
