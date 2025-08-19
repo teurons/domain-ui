@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "components/domain-ui/india/pan-input.tsx",
-      "content": "\"use client\";\n\nimport {\n  RegexInput,\n  type RegexInputProps,\n} from \"@/registry/default/components/domain-ui/regex-input\";\n\nconst PAN_REGEX = /^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/;\n\nexport interface PanInputProps extends Omit<RegexInputProps, \"regex\"> {}\n\nexport function PanInput({ ...props }: PanInputProps) {\n  return <RegexInput regex={PAN_REGEX} {...props} />;\n}\n",
+      "content": "\"use client\";\n\nimport {\n  RegexInput,\n  type RegexInputProps,\n} from \"@//components/domain-ui/regex-input\";\n\nconst PAN_REGEX = /^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/;\n\nexport interface PanInputProps extends Omit<RegexInputProps, \"regex\"> {}\n\nexport function PanInput({ ...props }: PanInputProps) {\n  return <RegexInput regex={PAN_REGEX} transformToUppercase {...props} />;\n}\n",
       "type": "registry:component"
     }
   ],
