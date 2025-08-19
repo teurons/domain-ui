@@ -3,7 +3,7 @@
   "description": "UI components and patterns",
   "root": true,
   "pages": [
-    "---Introduction---",
+    "---Get Started---",
     "index",
     "---Primitives---",
     "...primitives",

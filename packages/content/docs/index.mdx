@@ -1,107 +1,159 @@
 ---
-title: Hello World
-description: Your first document
+title: Introduction
+description: A component registry for domain-specific, validated input components built with Radix UI and Tailwind CSS.
 ---
+Domain UI is a **component registry** that provides specialized input components with built-in validation for domain-specific use cases. Built with modern React patterns using Radix UI primitives and Tailwind CSS, it offers regex-based validation, country-specific inputs, and development tools.
 
-# API-First Design
+This is **not a traditional component library**. It's a registry of components that you copy into your project and own completely.
 
-In modern software development, APIs have evolved from simple integration points to the fundamental building blocks of applications. API-first design is an approach that prioritizes the definition and design of APIs before implementation, leading to more robust, flexible, and developer-friendly systems.
+> "Domain-specific components that handle validation, formatting, and compliance out of the box."
 
-## Core Principles
+## What Makes Domain UI Different
 
-API-first design follows several key principles that guide the development process:
+### Regex-Powered Validation
 
-### Design Before Implementation
+At the core of Domain UI is a powerful regex validation system that provides:
 
-Rather than treating APIs as an afterthought, API-first approaches start by clearly defining interfaces:
+- **Simple Validation**: Basic regex matching with instant feedback
+- **Incremental Validation**: Advanced NFA-based validation that guides users as they type
+- **Real-time Feedback**: Visual indicators for valid/invalid states
+- **Uppercase Transformation**: Automatic formatting for components that require it
 
-- Define resources, endpoints, and operations
-- Establish data models and response formats
-- Document behavior and error handling
+### Country-Specific Components
 
-### Contract-Driven Development
+Domain UI provides ready-to-use components for different countries' requirements:
 
-APIs establish contracts between systems, teams, and organizations:
+- **India**: PAN input (`ABCDE1234F`) and Passport input (`A1234567`) with optional labels
+- **USA**: Passport input validation (supports multiple formats: `A12345678`, `123456789`, `A1234567`)
+- **UK**: Passport input (`ABC123456`) with built-in label
+- **Global**: Extensible regex patterns for any country or document type
 
-1. API specifications serve as the single source of truth
-2. Implementations must adhere to the defined contract
-3. Changes follow versioning strategies to maintain compatibility
+### Development Tools
 
-## Benefits of API-First
+Built-in tools to enhance your development workflow:
 
-Organizations adopting API-first design experience numerous advantages:
+- **Responsive Preview**: Test components across 13 breakpoints (xxs to 7xl) with resizable panels
+- **Registry Display**: Showcase component code with syntax highlighting and file tree navigation
+- **NFA Engine**: Advanced Non-deterministic Finite Automaton for incremental regex validation
+- **Custom Hooks**: Reusable validation logic with `use-simple-regex` and `use-incremental-regex`
 
-### Parallel Development
+## Core Components
 
-Well-defined APIs enable frontend and backend teams to work simultaneously:
+### RegexInput
 
-- Frontend teams can develop against API contracts using mocks
-- Backend teams can implement to the specification
-- Integration becomes more predictable and less error-prone
+The foundation component that powers all domain-specific inputs:
 
-### Better Developer Experience
+```tsx
+import { RegexInput } from "@/components/domain-ui/regex-input"
 
-APIs designed with consumers in mind lead to improved developer experience:
-
-> "A great API makes the simple easy and the complex possible."
-
-### Future-Proof Architecture
-
-API-first design naturally leads to more modular, maintainable systems:
-
-```yaml
-# Example OpenAPI specification snippet
-paths:
-  /products:
-    get:
-      summary: List all products
-      parameters:
-        - name: category
-          in: query
-          schema:
-            type: string
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            default: 20
-      responses:
-        "200":
-          description: A list of products
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Product"
+// Basic usage
+<RegexInput 
+  regex={/^[A-Z]{3}[0-9]{4}$/}
+  placeholder="Enter code"
+  transformToUppercase
+/>
 ```
 
-## Implementation Methodologies
+### PanInput (India)
 
-Several approaches support API-first design:
+Pre-configured for Indian PAN card validation:
 
-### OpenAPI/Swagger
+```tsx
+import { PanInput } from "@/components/domain-ui/india/pan-input"
 
-The OpenAPI Specification (formerly Swagger) provides a language-agnostic way to define REST APIs. Tools in this ecosystem support:
+<PanInput 
+  placeholder="Enter PAN number"
+  onValidation={(status) => console.log(status)}
+/>
+```
 
-- API documentation generation
-- Server and client code generation
-- Testing and validation
+### Passport Inputs
 
-### GraphQL Schema First
+Country-specific passport validation:
 
-GraphQL's type system enables a schema-first approach:
+```tsx
+// USA Passport (multiple formats supported)
+import { PassportInput as UsaPassportInput } from "@/components/domain-ui/usa/passport-input"
 
-- Define types, queries, and mutations in SDL
-- Implement resolvers against the schema
-- Enable introspection for client tooling
+// UK Passport (with built-in label)
+import { PassportInput as UkPassportInput } from "@/components/domain-ui/uk/passport-input"
 
-## Challenges and Best Practices
+// Indian Passport (configurable label)
+import { PassportInput as IndianPassportInput } from "@/components/domain-ui/india/passport-input"
 
-API-first design isn't without challenges:
+<IndianPassportInput showLabel={false} /> // Without label
+<UkPassportInput /> // Always includes "UK Passport" label
+```
 
-- Resisting the temptation to start coding immediately
-- Managing schema evolution and versioning
-- Balancing flexibility with simplicity
+## Installation
 
-Organizations succeeding with API-first approaches typically establish clear governance, education, and tooling to support their API strategy.
+Install components directly from the registry:
+
+```bash
+# Install a specific component
+pnpm dlx shadcn@latest add "http://localhost:3000/r/pan-input.json"
+
+# Install with incremental validation
+pnpm dlx shadcn@latest add "http://localhost:3000/r/pan-input-incremental.json"
+
+# Install development tools
+pnpm dlx shadcn@latest add "http://localhost:3000/r/responsive-preview.json"
+```
+
+## Validation Types
+
+### Simple Validation
+
+Basic regex matching that validates the entire input:
+
+- **Immediate feedback** when input matches or fails
+- **Boolean validation** (valid/invalid)
+- **Lightweight** and fast
+
+### Incremental Validation
+
+Advanced validation using NFA (Non-deterministic Finite Automaton) with Thompson's construction:
+
+- **Character-by-character guidance** as users type
+- **Partial validation** shows progress toward complete match
+- **Smart rejection** of characters that make matching impossible
+- **Complex regex support** including alternation patterns and quantifiers
+- **Paste detection** with full validation on paste events
+- **Better user experience** for complex patterns like passport formats
+
+## Key Features
+
+### Built on Proven Foundations
+
+- **Radix UI primitives**: Accessible and well-tested base components for complex interactions
+- **Tailwind CSS**: Utility-first styling with consistent design tokens
+- **Class Variance Authority**: Type-safe component variants and styling patterns
+- **TypeScript**: Full type safety and excellent developer experience
+
+### Flexible and Extensible
+
+- **Open source code**: You own and can modify every component
+- **Regex patterns**: Easy to customize for your specific requirements
+- **Country extensions**: Add new countries and document types
+- **Validation hooks**: `use-simple-regex` and `use-incremental-regex` for custom components
+- **NFA utilities**: Complete NFA engine with builder for complex regex patterns
+
+### Developer Experience
+
+- **Copy and paste**: No package dependencies to manage
+- **Full control**: Modify components to fit your exact needs
+- **Documentation**: Built-in examples and usage patterns
+- **Testing tools**: Responsive preview and validation testing
+
+## Available Components
+
+| Component | Description | Regex Pattern | Features |
+|-----------|-------------|---------------|----------|
+| `regex-input` | Base regex validation input | Custom | Simple validation, uppercase transform |
+| `regex-input-incremental` | NFA-based incremental validation | Custom | Character-by-character guidance |
+| `pan-input` | Indian PAN card validation | `^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$` | Auto-uppercase |
+| `usa-passport-input` | USA passport validation | `^(?:[A-Z][0-9]{8}|[0-9]{9}|[A-Z][0-9]{7})$` | Multiple format support |
+| `uk-passport-input` | UK passport validation | `^[A-Z0-9]{9}$` | Built-in label |
+| `indian-passport-input` | Indian passport validation | `^[A-Z][0-9]{7}$` | Optional label |
+| `responsive-preview` | Multi-breakpoint testing | N/A | 13 breakpoints, resizable panels |
+| `registry-item-display` | Component code showcase | N/A | File tree, syntax highlighting |
