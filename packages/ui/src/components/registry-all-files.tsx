@@ -1,7 +1,7 @@
 "use client";
 
 import { getBaseUrl } from "../lib/get-base-url";
-import { RegistryItemDisplay } from "./registry-item-display";
+import { RegistryItemDisplay } from "@workspace/domain-ui-registry/components/domain-ui/registry-item-display";
 
 interface RegistryAllFilesProps {
   name: string;

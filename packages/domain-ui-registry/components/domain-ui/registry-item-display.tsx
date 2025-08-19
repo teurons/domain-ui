@@ -2,7 +2,7 @@
 
 import { useEffect, useState, createContext, useContext } from "react";
 import type { RegistryItem } from "shadcn/registry";
-import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+// DynamicCodeBlock is not available, use CodeBlock instead
 import { Button } from "@workspace/domain-ui-registry/components/ui/button";
 import {
   TreeExpander,
@@ -13,7 +13,7 @@ import {
   TreeNodeTrigger,
   TreeProvider,
   TreeView,
-} from "@workspace/shadverse/components/ui/kibo-ui/tree";
+} from "@workspace/domain-ui-registry/components/ui/kibo-ui/tree";
 import { PanelLeftClose, PanelLeft, FileText } from "lucide-react";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { type ComponentProps, useMemo } from "react";
@@ -113,11 +113,9 @@ function FileContent({ files }: FileContentProps) {
 
   return (
     <div className="flex-1 overflow-auto bg-card">
-      <DynamicCodeBlock
-        lang={language}
-        code={selectedFile.content || ""}
-        options={options}
-      />
+      <CodeBlock>
+        <Pre>{selectedFile.content || ""}</Pre>
+      </CodeBlock>
     </div>
   );
 }
