@@ -32,9 +32,14 @@ export function getBaseUrl() {
     }
   }
 
-  // In the browser or when process is not available, use localhost
+  // In the browser or when process is not available, use the current origin
   if (typeof window !== "undefined") {
-    return "http://localhost:3000";
+    const origin = window.location.origin;
+    // If using Vite dev server (5173), redirect to Next.js dev server (3000)
+    if (origin.includes("localhost:5173")) {
+      return "http://localhost:3000";
+    }
+    return origin;
   }
 
   // Final fallback
