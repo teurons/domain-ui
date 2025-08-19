@@ -8,7 +8,7 @@ import {
 } from "@workspace/domain-ui-registry/components/ui/resizable";
 import { defaultBreakpoints, getBreakpoint } from "./breakpoints";
 import type { Breakpoint, BreakpointConfig } from "./breakpoints";
-import { Toolbar, ScaleBar, Settings } from "./components/settings";
+import { Toolbar, ScaleBar, Settings } from "./settings";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
 
 // Types
@@ -25,15 +25,15 @@ interface BasePreviewProps {
   config?: PreviewConfig;
 }
 
-interface PreviewWrapperProps extends BasePreviewProps {
+interface ResponsiveResizablePreviewProps extends BasePreviewProps {
   children?: React.ReactNode;
 }
 
-interface ChildPreviewProps extends BasePreviewProps {
+interface RRChildPreviewProps extends BasePreviewProps {
   children?: React.ReactNode;
 }
 
-interface IFramePreviewProps extends BasePreviewProps {
+interface RRIFramePreviewProps extends BasePreviewProps {
   srcUrl: string;
   height?: number;
 }
@@ -90,12 +90,12 @@ function PreviewPanel({
   );
 }
 
-export function PreviewWrapper({
+export function ResponsiveResizablePreview({
   children,
   className,
   breakpoints = defaultBreakpoints,
   config: initialConfig = defaultConfig,
-}: PreviewWrapperProps) {
+}: ResponsiveResizablePreviewProps) {
   const [config, setConfig] = useState<PreviewConfig>(initialConfig);
 
   const {
@@ -218,34 +218,34 @@ export function PreviewWrapper({
   );
 }
 
-// ChildPreview component - renders children directly
-export function ChildPreview({
+// RRChildPreview component - renders children directly
+export function RRChildPreview({
   children,
   breakpoints,
   config,
   className,
-}: ChildPreviewProps) {
+}: RRChildPreviewProps) {
   return (
-    <PreviewWrapper
+    <ResponsiveResizablePreview
       breakpoints={breakpoints}
       config={config}
       className={className}
     >
       {children}
-    </PreviewWrapper>
+    </ResponsiveResizablePreview>
   );
 }
 
-// IFramePreview component - renders content in an iframe
-export function IFramePreview({
+// RRIFramePreview component - renders content in an iframe
+export function RRIFramePreview({
   srcUrl,
   height,
   breakpoints,
   config,
   className,
-}: IFramePreviewProps) {
+}: RRIFramePreviewProps) {
   return (
-    <PreviewWrapper
+    <ResponsiveResizablePreview
       breakpoints={breakpoints}
       config={config}
       className={className}
@@ -257,6 +257,10 @@ export function IFramePreview({
         className="relative z-20 hidden w-full bg-gray-50 md:block"
         title={`Preview of ${srcUrl}`}
       />
-    </PreviewWrapper>
+    </ResponsiveResizablePreview>
   );
 }
+
+
+// Export utilities
+export * from "./breakpoints";

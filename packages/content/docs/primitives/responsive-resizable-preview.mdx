@@ -1,18 +1,18 @@
 ---
-title: Responsive Preview
-description: A component for previewing content across different device breakpoints with ChildPreview and IFramePreview.
+title: Responsive Resizable Preview
+description: A responsive and resizable component for previewing content across different device breakpoints with ResponsiveResizableChildPreview and ResponsiveResizableIFramePreview.
 full: true
 ---
 
 import {
-  ChildPreview,
-  IFramePreview,
-} from "@workspace/domain-ui-registry/components/domain-ui/responsive-preview";
-import ResponsivePreviewDemo from "@workspace/domain-ui-registry/demos/responsive-preview/responsive-preview-demo";
+  RRChildPreview,
+  RRIFramePreview,
+} from "@workspace/domain-ui-registry/components/domain-ui/responsive-resizable-preview";
+import ResponsiveResizablePreviewDemo from "@workspace/domain-ui-registry/demos/responsive-resizable-preview/responsive-resizable-preview-demo";
 
 ## Demo
 
-<ResponsivePreviewDemo />
+<ResponsiveResizablePreviewDemo />
 
 ## Configuration
 
@@ -34,7 +34,7 @@ interface PreviewConfig {
 You can provide custom breakpoints using the `breakpoints` prop:
 
 ```tsx
-<ChildPreview
+<RRChildPreview
   config={{
     darkMode: colorMode === "dark" ? true : false,
   }}
@@ -54,5 +54,5 @@ You can provide custom breakpoints using the `breakpoints` prop:
   ]}
 >
   <Child />
-</ChildPreview>
+</RRChildPreview>
 ```

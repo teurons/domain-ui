@@ -258,24 +258,20 @@
       }
     },
     {
-      "name": "responsive-preview",
+      "name": "responsive-resizable-preview",
       "type": "registry:component",
       "registryDependencies": ["button", "badge", "resizable"],
       "files": [
         {
-          "path": "components/domain-ui/responsive-preview/index.tsx",
+          "path": "components/domain-ui/responsive-resizable-preview/index.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/domain-ui/responsive-preview/preview-wrapper.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/domain-ui/responsive-preview/breakpoints.ts",
+          "path": "components/domain-ui/responsive-resizable-preview/breakpoints.ts",
           "type": "registry:lib"
         },
         {
-          "path": "components/domain-ui/responsive-preview/components/settings.tsx",
+          "path": "components/domain-ui/responsive-resizable-preview/settings.tsx",
           "type": "registry:component"
         }
       ],
@@ -283,10 +279,12 @@
         "tags": [
           "preview",
           "responsive",
+          "resizable",
           "breakpoint",
           "testing",
           "development",
-          "layout"
+          "layout",
+          "viewport"
         ]
       }
     },

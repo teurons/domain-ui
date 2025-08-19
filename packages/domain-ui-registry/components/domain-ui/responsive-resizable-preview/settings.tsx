@@ -2,7 +2,7 @@ import { LayoutPanelTop, RulerIcon, TextIcon, SettingsIcon, Camera, ChevronLeft,
 import { Popover, PopoverTrigger } from "@workspace/domain-ui-registry/components/ui/popover";
 import { ToggleGroup, ToggleGroupItem } from "@workspace/domain-ui-registry/components/ui/toggle-group";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@workspace/domain-ui-registry/components/ui/tooltip";
-import type { PreviewConfig } from "../preview-wrapper";
+import type { PreviewConfig } from "./index";
 import type { Breakpoint } from "../breakpoints";
 import { Popover as PopoverPrimitive } from "radix-ui";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
@@ -192,8 +192,8 @@ export function Toolbar({
         link.download = `preview-${width}px.png`;
         link.href = dataUrl;
         link.click();
-      } catch (err) {
-        console.error("Screenshot failed:", err);
+      } catch (_err) {
+        // Screenshot failed - error handled silently
       }
     }
   };
