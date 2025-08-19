@@ -8,7 +8,7 @@ import {
   transformerMetaHighlight,
 } from "@shikijs/transformers";
 import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins";
-import { remarkIncludeTransform } from "@workspace/ui/lib/remark-include-transform";
+import { remarkIncludeTransform } from "./lib/remark-include-transform";
 
 export const docs = defineDocs({
   dir: "../../packages/content/docs",
