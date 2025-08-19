@@ -46,7 +46,7 @@ export function ComponentPreview({
         </ChildPreview>
       </TabsContent>
 
-      <TabsContent value="code" className="m-0 p-0">
+      <TabsContent value="code">
         {children ? (
           children
         ) : (
