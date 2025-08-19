@@ -1,159 +1,75 @@
 ---
 title: Introduction
-description: A component registry for domain-specific, validated input components built with Radix UI and Tailwind CSS.
+description: A component registry for domain-specific React components that solve real-world application challenges.
 ---
-Domain UI is a **component registry** that provides specialized input components with built-in validation for domain-specific use cases. Built with modern React patterns using Radix UI primitives and Tailwind CSS, it offers regex-based validation, country-specific inputs, and development tools.
+## What is Domain UI?
 
-This is **not a traditional component library**. It's a registry of components that you copy into your project and own completely.
+Domain UI is a **component registry** that provides specialized React components for building real-world applications. You copy the components into your project and own them completely.
 
 > "Domain-specific components that handle validation, formatting, and compliance out of the box."
+A comprehensive collection of React components designed for real-world applications:
 
-## What Makes Domain UI Different
+- **Form Input Components** with built-in validation and formatting
+- **Display Components** for presenting data with proper formatting
+- **Blocks** - pre-built sections for common application patterns
+- **Utilities** for handling domain-specific logic and transformations
 
-### Regex-Powered Validation
+This is **not a traditional component library**. You don't install a package – you copy the source code directly into your project.
 
-At the core of Domain UI is a powerful regex validation system that provides:
+## How it works
 
-- **Simple Validation**: Basic regex matching with instant feedback
-- **Incremental Validation**: Advanced NFA-based validation that guides users as they type
-- **Real-time Feedback**: Visual indicators for valid/invalid states
-- **Uppercase Transformation**: Automatic formatting for components that require it
+Domain UI uses a **registry approach** similar to shadcn/ui:
 
-### Country-Specific Components
+1. **Browse components** in the registry
+2. **Copy the code** into your project using CLI commands
+3. **Customize freely** since you own the source code
+4. **No dependencies** to manage or update
 
-Domain UI provides ready-to-use components for different countries' requirements:
+## Component Categories
 
-- **India**: PAN input (`ABCDE1234F`) and Passport input (`A1234567`) with optional labels
-- **USA**: Passport input validation (supports multiple formats: `A12345678`, `123456789`, `A1234567`)
-- **UK**: Passport input (`ABC123456`) with built-in label
-- **Global**: Extensible regex patterns for any country or document type
+### Form Components
+Input components with built-in validation, formatting, and user guidance for government documents, financial data, and other domain-specific formats.
 
-### Development Tools
+### Display Components
+Components for presenting formatted data with proper styling and accessibility considerations.
 
-Built-in tools to enhance your development workflow:
+### Blocks
+Pre-built sections that combine multiple components to solve common application patterns and user flows.
 
-- **Responsive Preview**: Test components across 13 breakpoints (xxs to 7xl) with resizable panels
-- **Registry Display**: Showcase component code with syntax highlighting and file tree navigation
-- **NFA Engine**: Advanced Non-deterministic Finite Automaton for incremental regex validation
-- **Custom Hooks**: Reusable validation logic with `use-simple-regex` and `use-incremental-regex`
-
-## Core Components
-
-### RegexInput
-
-The foundation component that powers all domain-specific inputs:
-
-```tsx
-import { RegexInput } from "@/components/domain-ui/regex-input"
-
-// Basic usage
-<RegexInput 
-  regex={/^[A-Z]{3}[0-9]{4}$/}
-  placeholder="Enter code"
-  transformToUppercase
-/>
-```
-
-### PanInput (India)
-
-Pre-configured for Indian PAN card validation:
-
-```tsx
-import { PanInput } from "@/components/domain-ui/india/pan-input"
-
-<PanInput 
-  placeholder="Enter PAN number"
-  onValidation={(status) => console.log(status)}
-/>
-```
-
-### Passport Inputs
-
-Country-specific passport validation:
-
-```tsx
-// USA Passport (multiple formats supported)
-import { PassportInput as UsaPassportInput } from "@/components/domain-ui/usa/passport-input"
-
-// UK Passport (with built-in label)
-import { PassportInput as UkPassportInput } from "@/components/domain-ui/uk/passport-input"
-
-// Indian Passport (configurable label)
-import { PassportInput as IndianPassportInput } from "@/components/domain-ui/india/passport-input"
-
-<IndianPassportInput showLabel={false} /> // Without label
-<UkPassportInput /> // Always includes "UK Passport" label
-```
+### Utilities
+Helper functions and hooks for handling domain-specific logic, transformations, and validation patterns.
 
 ## Installation
 
-Install components directly from the registry:
+Install any component using the registry CLI:
 
 ```bash
-# Install a specific component
-pnpm dlx shadcn@latest add "http://localhost:3000/r/pan-input.json"
+# Install a component
+pnpm dlx shadcn@latest add "http://localhost:3000/r/[component-name].json"
 
-# Install with incremental validation
-pnpm dlx shadcn@latest add "http://localhost:3000/r/pan-input-incremental.json"
-
-# Install development tools
-pnpm dlx shadcn@latest add "http://localhost:3000/r/responsive-preview.json"
+# Use in your application
+import { ComponentName } from "@/components/domain-ui/[component-path]"
 ```
 
-## Validation Types
+## Technical Architecture
 
-### Simple Validation
+### Validation Approaches
 
-Basic regex matching that validates the entire input:
+**Simple Validation**: Basic regex matching with immediate feedback
+**Incremental Validation**: NFA-based validation that guides users character-by-character
 
-- **Immediate feedback** when input matches or fails
-- **Boolean validation** (valid/invalid)
-- **Lightweight** and fast
+### Built With
 
-### Incremental Validation
+- **Radix UI**: Accessible primitives for complex interactions
+- **Tailwind CSS**: Utility-first styling with design tokens
+- **TypeScript**: Full type safety and developer experience
 
-Advanced validation using NFA (Non-deterministic Finite Automaton) with Thompson's construction:
+## Getting Started
 
-- **Character-by-character guidance** as users type
-- **Partial validation** shows progress toward complete match
-- **Smart rejection** of characters that make matching impossible
-- **Complex regex support** including alternation patterns and quantifiers
-- **Paste detection** with full validation on paste events
-- **Better user experience** for complex patterns like passport formats
+```bash
+# Install a component
+pnpm dlx shadcn@latest add "http://localhost:3000/r/pan-input.json"
 
-## Key Features
-
-### Built on Proven Foundations
-
-- **Radix UI primitives**: Accessible and well-tested base components for complex interactions
-- **Tailwind CSS**: Utility-first styling with consistent design tokens
-- **Class Variance Authority**: Type-safe component variants and styling patterns
-- **TypeScript**: Full type safety and excellent developer experience
-
-### Flexible and Extensible
-
-- **Open source code**: You own and can modify every component
-- **Regex patterns**: Easy to customize for your specific requirements
-- **Country extensions**: Add new countries and document types
-- **Validation hooks**: `use-simple-regex` and `use-incremental-regex` for custom components
-- **NFA utilities**: Complete NFA engine with builder for complex regex patterns
-
-### Developer Experience
-
-- **Copy and paste**: No package dependencies to manage
-- **Full control**: Modify components to fit your exact needs
-- **Documentation**: Built-in examples and usage patterns
-- **Testing tools**: Responsive preview and validation testing
-
-## Available Components
-
-| Component | Description | Regex Pattern | Features |
-|-----------|-------------|---------------|----------|
-| `regex-input` | Base regex validation input | Custom | Simple validation, uppercase transform |
-| `regex-input-incremental` | NFA-based incremental validation | Custom | Character-by-character guidance |
-| `pan-input` | Indian PAN card validation | `^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$` | Auto-uppercase |
-| `usa-passport-input` | USA passport validation | `^(?:[A-Z][0-9]{8}|[0-9]{9}|[A-Z][0-9]{7})$` | Multiple format support |
-| `uk-passport-input` | UK passport validation | `^[A-Z0-9]{9}$` | Built-in label |
-| `indian-passport-input` | Indian passport validation | `^[A-Z][0-9]{7}$` | Optional label |
-| `responsive-preview` | Multi-breakpoint testing | N/A | 13 breakpoints, resizable panels |
-| `registry-item-display` | Component code showcase | N/A | File tree, syntax highlighting |
+# Use in your app
+import { PanInput } from "@/components/domain-ui/india/pan-input"
+```
