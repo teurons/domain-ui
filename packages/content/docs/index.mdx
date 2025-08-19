@@ -1,56 +1,24 @@
 ---
 title: Introduction
-description: Production-ready React components for fintech, trading, KYC, and financial applications.
+description: What is Domain UI and why you should use it.
 ---
 
-## Domain First UI Components
+## What is Domain UI?
 
-Production-ready React components for **fintech**, **trading**, **banking**, **payments**, and **KYC** applications. Copy, paste, and ship faster.
+Domain UI is a component registry for **fintech**, **trading**, **banking**, **payments**, **e-commerce**, and **KYC** applications. It provides components tailored for specific business domains and use cases. Building on shadcn/ui and the React ecosystem, Domain UI offers components designed for domain-specific needs.
 
-A comprehensive collection of React components designed for financial applications:
+## How does it relate to shadcn/ui?
 
-- **Form Input Components** with built-in validation for government documents and financial data
-- **Display Components** for presenting financial data with proper formatting
-- **Blocks** - pre-built sections for KYC, onboarding, and payment flows
-- **Utilities** for handling domain-specific logic and financial transformations
+Domain UI extends shadcn/ui with domain-specific components. It uses the same registry approach and CLI tooling as shadcn/ui. Domain UI components follow shadcn's design patterns and use the same Tailwind CSS and accessibility standards, making them compatible with existing shadcn/ui setups.
 
-This is **not a traditional component library**. You don't install a package – you copy the source code directly into your project.
+## Who is Domain UI for?
 
-## How it works
+Domain UI is for developers building business applications that need domain-specific components. When you need components for financial applications, document processing, or compliance workflows, Domain UI provides ready-to-use solutions instead of building these from scratch.
 
-Domain UI uses a **registry approach** similar to shadcn/ui and depends on the shadcn CLI for component installation:
+## Code Ownership Model
 
-1. **Browse components** in the registry
-2. **Copy the code** into your project using shadcn CLI commands
-3. **Customize freely** since you own the source code
-4. **No dependencies** to manage or update
+You copy Domain UI components directly into your project using the shadcn CLI rather than installing packages. This gives you complete ownership of the code to customize as needed.
 
-## Component Categories
+## Open Source and Community
 
-### Form Components
-
-Input components with built-in validation for KYC documents, financial data, and regulatory requirements.
-
-### Display Components
-
-Components for presenting financial data, trading information, and payment details with proper formatting.
-
-### Blocks
-
-Pre-built sections for KYC onboarding, payment flows, trading interfaces, and banking applications.
-
-### Utilities
-
-Helper functions and hooks for financial calculations, currency formatting, and regulatory validation patterns.
-
-## Installation
-
-Install any component using the registry CLI:
-
-```bash
-# Install a component
-pnpm dlx shadcn@latest add "https://domain-ui.dev/[component-name].json"
-
-# Use in your application
-import { ComponentName } from "@/components/domain-ui/[component-path]"
-```
+Domain UI is open source (MIT licensed) and hosted on GitHub. You can inspect, modify, and contribute to the components. Community contributions are welcome for new domains, improvements, and additional use cases.
