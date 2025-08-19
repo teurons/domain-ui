@@ -31,7 +31,7 @@ export const categories: ComponentCategory[] = [
   {
     slug: "display",
     name: "Display",
-    components: ["my-badge"],
+    components: [],
   },
 ];
 
@@ -164,16 +164,6 @@ export const componentMetadata: Record<string, ComponentMetadata> = {
         import(
           "@workspace/domain-ui-registry/components/domain-ui/india/pan-input"
         ).then((m) => ({ default: m.PanInput })),
-      { ssr: true }
-    ),
-  },
-  "my-badge": {
-    name: "My Badge",
-    description: "Display component for status indicators and labels.",
-    type: "free",
-    loader: dynamic(
-      () =>
-        import("@workspace/domain-ui-registry/components/domain-ui/my-badge"),
       { ssr: true }
     ),
   },
