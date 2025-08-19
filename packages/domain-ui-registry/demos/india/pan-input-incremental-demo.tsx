@@ -1,7 +1,7 @@
 "use client";
 
-import { PanInputIncremental } from "./pan-input-incremental";
-import { ValidationDemoWrapperIncremental } from "../validation-demo-wrapper-incremental";
+import { PanInputIncremental } from "@workspace/domain-ui-registry/components/domain-ui/india/pan-input-incremental";
+import { ValidationDemoWrapperIncremental } from "@workspace/domain-ui-registry/demos/validation-demo-wrapper-incremental";
 
 export function PanInputIncrementalDemo() {
   return (

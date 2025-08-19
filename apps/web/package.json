@@ -27,6 +27,7 @@
     "@t3-oss/env-nextjs": "^0.13.8",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/mdx": "^2.0.13",
+    "@vercel/analytics": "^1.5.0",
     "@workspace/config": "workspace:*",
     "@workspace/domain-ui-pro-registry": "workspace:*",
     "@workspace/domain-ui-registry": "workspace:*",

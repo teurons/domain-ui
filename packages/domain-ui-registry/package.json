@@ -24,7 +24,12 @@
     "./components/domain-ui/uk/*": "./components/domain-ui/uk/*.tsx",
     "./components/domain-ui/responsive-preview": "./components/domain-ui/responsive-preview/index.tsx",
     "./components/domain-ui/responsive-preview/*": "./components/domain-ui/responsive-preview/*.tsx",
-    "./components/ui/kibo-ui/tree": "./src/components/ui/kibo-ui/tree/index.tsx"
+    "./components/ui/kibo-ui/tree": "./src/components/ui/kibo-ui/tree/index.tsx",
+    "./demos/*": "./demos/*.tsx",
+    "./demos/india/*": "./demos/india/*.tsx",
+    "./demos/usa/*": "./demos/usa/*.tsx",
+    "./demos/uk/*": "./demos/uk/*.tsx",
+    "./demos/responsive-preview/*": "./demos/responsive-preview/*.tsx"
   },
   "keywords": [],
   "author": "",

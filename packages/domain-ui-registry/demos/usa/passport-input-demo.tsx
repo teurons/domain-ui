@@ -1,7 +1,7 @@
 "use client";
 
-import { PassportInput } from "./passport-input";
-import { ValidationDemoWrapper } from "../validation-demo-wrapper";
+import { PassportInput } from "@workspace/domain-ui-registry/components/domain-ui/usa/passport-input";
+import { ValidationDemoWrapper } from "@workspace/domain-ui-registry/demos/validation-demo-wrapper";
 
 export function PassportInputDemo() {
   return (

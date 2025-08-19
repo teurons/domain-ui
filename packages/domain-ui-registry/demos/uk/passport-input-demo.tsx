@@ -1,6 +1,6 @@
 "use client";
 
-import { PassportInput } from "./passport-input";
+import { PassportInput } from "@workspace/domain-ui-registry/components/domain-ui/uk/passport-input";
 
 export function PassportInputDemo() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
-import { PanInput } from "./pan-input";
-import { ValidationDemoWrapper } from "../validation-demo-wrapper";
+import { PanInput } from "@workspace/domain-ui-registry/components/domain-ui/india/pan-input";
+import { ValidationDemoWrapper } from "@workspace/domain-ui-registry/demos/validation-demo-wrapper";
 
 export function PanInputDemo() {
   return (

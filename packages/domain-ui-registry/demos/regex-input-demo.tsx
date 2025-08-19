@@ -1,7 +1,7 @@
 "use client";
 
 import { RegexInput } from "@workspace/domain-ui-registry/components/domain-ui/regex-input";
-import { ValidationDemoWrapper } from "@workspace/domain-ui-registry/components/domain-ui/validation-demo-wrapper";
+import { ValidationDemoWrapper } from "@workspace/domain-ui-registry/demos/validation-demo-wrapper";
 
 const alphanumericRegex = /^[A-Z]{3}[0-9]{4}$/;
 

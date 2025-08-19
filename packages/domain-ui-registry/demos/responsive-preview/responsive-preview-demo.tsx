@@ -1,7 +1,7 @@
 "use client";
 
-import { ChildPreview, IFramePreview } from "./preview-wrapper";
-import StackCard from "./stack-card";
+import { ChildPreview, IFramePreview } from "@workspace/domain-ui-registry/components/domain-ui/responsive-preview/preview-wrapper";
+import StackCard from "@workspace/domain-ui-registry/components/domain-ui/responsive-preview/stack-card";
 
 const ContainerQueryCard = () => {
   return (

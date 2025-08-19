@@ -1,7 +1,7 @@
 "use client";
 
-import { PassportInputIncremental } from "./passport-input-incremental";
-import { ValidationDemoWrapperIncremental } from "../validation-demo-wrapper-incremental";
+import { PassportInputIncremental } from "@workspace/domain-ui-registry/components/domain-ui/usa/passport-input-incremental";
+import { ValidationDemoWrapperIncremental } from "@workspace/domain-ui-registry/demos/validation-demo-wrapper-incremental";
 
 export function PassportInputIncrementalDemo() {
   return (
