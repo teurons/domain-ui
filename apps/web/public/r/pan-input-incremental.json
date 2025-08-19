@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pan-input-incremental",
+  "type": "registry:component",
+  "registryDependencies": [
+    "input",
+    "http://localhost:3000/r/regex-input-incremental.json"
+  ],
+  "files": [
+    {
+      "path": "components/domain-ui/india/pan-input-incremental.tsx",
+      "content": "\"use client\";\n\nimport {\n  RegexInputIncremental,\n  type RegexInputIncrementalProps,\n} from \"@/components/domain-ui/regex-input-incremental\";\n\nconst PAN_REGEX = /^[A-Z]{3}[PCFTABGHLJE]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}$/;\n\nexport function PanInputIncremental(\n  props: Omit<RegexInputIncrementalProps, \"regex\">\n) {\n  return (\n    <RegexInputIncremental regex={PAN_REGEX} transformToUppercase {...props} />\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "input",
+      "pan",
+      "india",
+      "validation",
+      "identity",
+      "kyc",
+      "form",
+      "incremental"
+    ]
+  }
+}

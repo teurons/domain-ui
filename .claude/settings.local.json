@@ -82,7 +82,8 @@
       "WebFetch(domain:docs.anthropic.com)",
       "Bash(git checkout:*)",
       "WebFetch(domain:fumadocs.dev)",
-      "WebFetch(domain:shiki.style)"
+      "WebFetch(domain:shiki.style)",
+      "Bash(shadcn build:*)"
     ],
     "deny": []
   },

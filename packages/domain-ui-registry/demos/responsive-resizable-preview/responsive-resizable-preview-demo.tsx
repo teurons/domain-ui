@@ -1,7 +1,7 @@
 "use client";
 
-import { ChildPreview, IFramePreview } from "@workspace/domain-ui-registry/components/domain-ui/responsive-preview/preview-wrapper";
-import StackCard from "@workspace/domain-ui-registry/components/domain-ui/responsive-preview/stack-card";
+import { RRChildPreview, RRIFramePreview } from "@workspace/domain-ui-registry/components/domain-ui/responsive-resizable-preview";
+import StackCard from "./stack-card";
 
 const ContainerQueryCard = () => {
   return (
@@ -51,7 +51,7 @@ const StatCard = () => (
   </div>
 );
 
-export default function ResponsivePreviewDemo() {
+export default function ResponsiveResizablePreviewDemo() {
   return (
     <div className="not-prose space-y-8">
       <div className="space-y-4">
@@ -59,9 +59,9 @@ export default function ResponsivePreviewDemo() {
         <p className="text-muted-foreground text-sm">
           Responsive list view with container queries.
         </p>
-        <ChildPreview>
+        <RRChildPreview>
           <StackCard />
-        </ChildPreview>
+        </RRChildPreview>
       </div>
 
       <div className="space-y-4">
@@ -71,7 +71,7 @@ export default function ResponsivePreviewDemo() {
         <p className="text-muted-foreground text-sm">
           Same Stack Card with all UI elements hidden.
         </p>
-        <ChildPreview
+        <RRChildPreview
           config={{
             showToolbar: false,
             showScale: false,
@@ -79,7 +79,7 @@ export default function ResponsivePreviewDemo() {
           }}
         >
           <StackCard />
-        </ChildPreview>
+        </RRChildPreview>
       </div>
 
       <div className="space-y-4">
@@ -89,9 +89,9 @@ export default function ResponsivePreviewDemo() {
         <p className="text-muted-foreground text-sm">
           Preview your components directly with container queries.
         </p>
-        <ChildPreview>
+        <RRChildPreview>
           <ContainerQueryCard />
-        </ChildPreview>
+        </RRChildPreview>
       </div>
 
       <div className="space-y-4">
@@ -99,8 +99,8 @@ export default function ResponsivePreviewDemo() {
         <p className="text-muted-foreground text-sm">
           Preview external URLs or isolated pages.
         </p>
-        <IFramePreview
-          srcUrl="/demo/responsive-preview"
+        <RRIFramePreview
+          srcUrl="/demo/responsive-resizable-preview"
           height={500}
           config={{
             darkMode: false,

@@ -1,0 +1,324 @@
+---
+title: Responsive Resizable Preview
+description: A responsive and resizable component for previewing content across different device breakpoints with drag-to-resize functionality.
+full: true
+---
+
+import BasicDemo from "@workspace/domain-ui-registry/demos/responsive-resizable-preview/basic-demo";
+import MinimalDemo from "@workspace/domain-ui-registry/demos/responsive-resizable-preview/minimal-demo";
+import ContainerQueryDemo from "@workspace/domain-ui-registry/demos/responsive-resizable-preview/container-query-demo";
+import IFrameDemo from "@workspace/domain-ui-registry/demos/responsive-resizable-preview/iframe-demo";
+
+A powerful component for previewing your responsive designs across different screen sizes with built-in resizable panels, breakpoint indicators, and testing tools.
+
+## Demo
+
+### Basic Usage
+
+<Tabs
+  defaultValue="preview"
+  className="not-prose !rounded-t-xl rounded-none border-none bg-background"
+>
+  <TabsList className="px-0">
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="code">Code</TabsTrigger>
+  </TabsList>
+  <TabsContent value="preview" className="m-0 p-0 py-2 bg-backgrounds">
+    <BasicDemo />
+  </TabsContent>
+  <TabsContent value="code">
+    <include>
+      ../../../domain-ui-registry/demos/responsive-resizable-preview/basic-demo.tsx
+    </include>
+  </TabsContent>
+</Tabs>
+
+### Minimal Configuration
+
+<Tabs
+  defaultValue="preview"
+  className="not-prose !rounded-t-xl rounded-none border-none bg-background"
+>
+  <TabsList className="px-0">
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="code">Code</TabsTrigger>
+  </TabsList>
+  <TabsContent value="preview" className="m-0 p-0 py-2 bg-backgrounds">
+    <MinimalDemo />
+  </TabsContent>
+  <TabsContent value="code">
+    <include>
+      ../../../domain-ui-registry/demos/responsive-resizable-preview/minimal-demo.tsx
+    </include>
+  </TabsContent>
+</Tabs>
+
+### Container Queries
+
+<Tabs
+  defaultValue="preview"
+  className="not-prose !rounded-t-xl rounded-none border-none bg-background"
+>
+  <TabsList className="px-0">
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="code">Code</TabsTrigger>
+  </TabsList>
+  <TabsContent value="preview" className="m-0 p-0 py-2 bg-backgrounds">
+    <ContainerQueryDemo />
+  </TabsContent>
+  <TabsContent value="code">
+    <include>
+      ../../../domain-ui-registry/demos/responsive-resizable-preview/container-query-demo.tsx
+    </include>
+  </TabsContent>
+</Tabs>
+
+### IFrame Preview
+
+<Tabs
+  defaultValue="preview"
+  className="not-prose !rounded-t-xl rounded-none border-none bg-background"
+>
+  <TabsList className="px-0">
+    <TabsTrigger value="preview">Preview</TabsTrigger>
+    <TabsTrigger value="code">Code</TabsTrigger>
+  </TabsList>
+  <TabsContent value="preview" className="m-0 p-0 py-2 bg-backgrounds">
+    <IFrameDemo />
+  </TabsContent>
+  <TabsContent value="code">
+    <include>
+      ../../../domain-ui-registry/demos/responsive-resizable-preview/iframe-demo.tsx
+    </include>
+  </TabsContent>
+</Tabs>
+
+## Installation
+
+### CLI
+
+<RegistryCliCommands name="responsive-resizable-preview" type="free" />
+
+### Manual
+
+Copy and paste the following code into your project:
+
+<RegistryAllFiles name="responsive-resizable-preview" type="free" />
+
+## Usage
+
+### Basic Usage
+
+```tsx
+import { RRChildPreview } from "@/components/ui/responsive-resizable-preview";
+
+export default function MyComponent() {
+  return (
+    <RRChildPreview>
+      <div className="p-4">
+        <h2 className="text-xl font-bold">My Responsive Component</h2>
+        <p>This will be previewed across different breakpoints.</p>
+      </div>
+    </RRChildPreview>
+  );
+}
+```
+
+### With Configuration
+
+```tsx
+import { RRChildPreview } from "@/components/ui/responsive-resizable-preview";
+
+export default function ConfiguredPreview() {
+  return (
+    <RRChildPreview
+      config={{
+        darkMode: false,
+        showToolbar: true,
+        showScale: true,
+        showLabels: true,
+      }}
+    >
+      <YourComponent />
+    </RRChildPreview>
+  );
+}
+```
+
+### IFrame Preview
+
+```tsx
+import { RRIFramePreview } from "@/components/ui/responsive-resizable-preview";
+
+export default function IFrameExample() {
+  return (
+    <RRIFramePreview
+      srcUrl="/your-page"
+      height={600}
+      config={{
+        showToolbar: true,
+        showScale: true,
+        showLabels: true,
+      }}
+    />
+  );
+}
+```
+
+## API Reference
+
+### RRChildPreview
+
+Renders child components directly in the resizable preview.
+
+| Prop          | Type                 | Default              | Description                   |
+| ------------- | -------------------- | -------------------- | ----------------------------- |
+| `children`    | `ReactNode`          | -                    | The content to preview        |
+| `config`      | `PreviewConfig`      | `defaultConfig`      | Configuration options         |
+| `breakpoints` | `BreakpointConfig[]` | `defaultBreakpoints` | Custom breakpoint definitions |
+| `className`   | `string`             | -                    | Additional CSS classes        |
+
+### RRIFramePreview
+
+Renders content in an iframe for isolated preview.
+
+| Prop          | Type                 | Default              | Description                         |
+| ------------- | -------------------- | -------------------- | ----------------------------------- |
+| `srcUrl`      | `string`             | -                    | **Required.** URL to load in iframe |
+| `height`      | `number`             | `930`                | Height of the iframe in pixels      |
+| `config`      | `PreviewConfig`      | `defaultConfig`      | Configuration options               |
+| `breakpoints` | `BreakpointConfig[]` | `defaultBreakpoints` | Custom breakpoint definitions       |
+| `className`   | `string`             | -                    | Additional CSS classes              |
+
+### ResponsiveResizablePreview
+
+The base preview component that others extend.
+
+| Prop          | Type                 | Default              | Description                   |
+| ------------- | -------------------- | -------------------- | ----------------------------- |
+| `children`    | `ReactNode`          | -                    | The content to preview        |
+| `config`      | `PreviewConfig`      | `defaultConfig`      | Configuration options         |
+| `breakpoints` | `BreakpointConfig[]` | `defaultBreakpoints` | Custom breakpoint definitions |
+| `className`   | `string`             | -                    | Additional CSS classes        |
+
+### PreviewConfig
+
+Configuration options for the preview component.
+
+```typescript
+interface PreviewConfig {
+  darkMode?: boolean; // Enable dark mode
+  showToolbar?: boolean; // Show/hide the toolbar
+  showScale?: boolean; // Show/hide scaling information
+  showLabels?: boolean; // Show/hide breakpoint labels
+}
+```
+
+**Default configuration:**
+
+```typescript
+const defaultConfig = {
+  darkMode: false,
+  showToolbar: true,
+  showScale: true,
+  showLabels: true,
+};
+```
+
+### BreakpointConfig
+
+Custom breakpoint definitions.
+
+```typescript
+interface Breakpoint {
+  title: string; // Display name (e.g., "sm", "md", "lg")
+  minWidthRem: number; // Minimum width in rem units
+  minWidthPx: number; // Minimum width in pixels
+  icon: React.ComponentType; // Icon component for the breakpoint
+  show?: boolean; // Whether to show this breakpoint (computed)
+  percentage?: number; // Width as percentage (computed)
+}
+```
+
+## Examples
+
+### Custom Breakpoints
+
+Define your own breakpoints for testing:
+
+```tsx
+import { RRChildPreview } from "@/components/ui/responsive-resizable-preview";
+import { Smartphone, Tablet, Monitor } from "lucide-react";
+
+const customBreakpoints = [
+  {
+    title: "mobile",
+    minWidthRem: 20,
+    minWidthPx: 320,
+    icon: Smartphone,
+  },
+  {
+    title: "tablet",
+    minWidthRem: 48,
+    minWidthPx: 768,
+    icon: Tablet,
+  },
+  {
+    title: "desktop",
+    minWidthRem: 80,
+    minWidthPx: 1280,
+    icon: Monitor,
+  },
+];
+
+export default function CustomBreakpointExample() {
+  return (
+    <RRChildPreview breakpoints={customBreakpoints}>
+      <YourComponent />
+    </RRChildPreview>
+  );
+}
+```
+
+### Minimal Preview
+
+For a clean preview without controls:
+
+```tsx
+<RRChildPreview
+  config={{
+    showToolbar: false,
+    showScale: false,
+    showLabels: false,
+  }}
+>
+  <YourComponent />
+</RRChildPreview>
+```
+
+## Features
+
+- **🎯 Drag-to-resize**: Interactive resizing with smooth transitions
+- **📱 Breakpoint indicators**: Visual feedback for different screen sizes
+- **🎮 Playback controls**: Automatically cycle through breakpoints
+- **📸 Screenshot tool**: Capture preview at current size
+- **🎨 Dark mode support**: Built-in dark/light theme switching
+- **📐 Scale indicators**: Visual measurement tools
+- **🖼️ IFrame support**: Isolated preview for complete pages
+- **⚡ Container queries**: Perfect for testing `@container` CSS
+
+## Keyboard Shortcuts
+
+| Shortcut       | Action                       |
+| -------------- | ---------------------------- |
+| `←` / `→`      | Navigate between breakpoints |
+| `Space`        | Toggle playback              |
+| `Cmd/Ctrl + S` | Take screenshot              |
+
+## Best Practices
+
+1. **Use container queries** when possible for true container-based responsive design
+2. **Test with real content** rather than placeholder text
+3. **Include edge cases** in your breakpoint testing
+4. **Use IFrame preview** for testing complete pages with their own CSS
+5. **Configure minimal view** when you just need the resizing functionality

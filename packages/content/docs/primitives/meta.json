@@ -4,6 +4,6 @@
   "pages": [
     "regex-input",
     "regex-input-incremental",
-    "responsive-preview"
+    "responsive-resizable-preview"
   ]
 }

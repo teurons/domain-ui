@@ -1,20 +1,12 @@
 "use client";
 
-import { useId } from "react";
-import type * as React from "react";
-import { RegexInput } from "@workspace/domain-ui-registry/components/domain-ui/regex-input";
-import { Label } from "@workspace/domain-ui-registry/components/ui/label";
+import {
+  RegexInput,
+  type RegexInputProps,
+} from "@workspace/domain-ui-registry/components/domain-ui/regex-input";
 
 const UK_PASSPORT_REGEX = /^[A-Z0-9]{9}$/;
 
-export function PassportInput(props: React.ComponentProps<"input">) {
-  const generatedId = useId();
-  const id = props.id || generatedId;
-
-  return (
-    <div className="*:not-first:mt-2">
-      <Label htmlFor={id}>UK Passport</Label>
-      <RegexInput regex={UK_PASSPORT_REGEX} {...props} id={id} />
-    </div>
-  );
+export function PassportInput(props: Omit<RegexInputProps, "regex">) {
+  return <RegexInput regex={UK_PASSPORT_REGEX} {...props} />;
 }

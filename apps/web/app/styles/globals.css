@@ -9,13 +9,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
+:root {
+  --fd-page-width: 1400px;
+}
+
 @import "@workspace/shadverse/globals.css";
 @import "@workspace/ui/globals.css";
 @import "@workspace/domain-ui-registry/globals.css";
 
-@source '../../../packages/ui/**/*.tsx';
-
 @source '../../node_modules/fumadocs-ui/dist/**/*.js';
+
+@source '../../../packages/ui/**/*.tsx';
+@source '../../../packages/ui/**/*.ts';
 
 @layer utilities {
   .bg-dashed {

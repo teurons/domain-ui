@@ -1,47 +1,24 @@
 ---
 title: PAN Input Incremental
-description: Input component for Indian PAN numbers with real-time incremental validation
+description: An input component for Indian PAN with real-time incremental validation that prevents invalid characters as you type.
 ---
 
-import { PanInputIncrementalDemo } from "@workspace/domain-ui-registry/demos/india/pan-input-incremental-demo";
+import PanInputIncrementalDemo from "@workspace/domain-ui-registry/demos/india/pan-input-incremental-demo";
 
-<PanInputIncrementalDemo />
+## Demo
 
-## Features
+<ComponentPreview demo={<PanInputIncrementalDemo />}>
+  <include>../../../domain-ui-registry/demos/india/pan-input-incremental-demo.tsx</include>
+</ComponentPreview>
 
-The PAN Input Incremental component provides real-time validation for Indian PAN numbers with:
+## Installation
 
-- **Character-by-character validation** - Ensures each character follows PAN format rules
-- **Invalid character prevention** - Blocks characters that don't match PAN pattern
-- **Visual feedback** - Shows validation state with color-coded borders
-- **PAN format enforcement**: `ABCDE1234F`
-  - First 3 characters: Letters (A-Z)
-  - 4th character: Person type (P, C, F, T, A, B, G, H, J, L, E)
-  - 5th character: First letter of surname (A-Z)
-  - Next 4 characters: Numbers (0-9)
-  - Last character: Check letter (A-Z)
+### CLI
 
-## Usage
+<RegistryCliCommands name="pan-input-incremental" type="free" />
 
-```tsx
-import { PanInputIncremental } from "@workspace/domain-ui-registry/components/domain-ui/india/pan-input-incremental";
+### Manual
 
-export function PanForm() {
-  return (
-    <PanInputIncremental
-      placeholder="Enter PAN number"
-      onValidation={(status) => {
-        if (status === "valid") {
-          console.log("Valid PAN entered");
-        }
-      }}
-    />
-  );
-}
-```
+Copy and paste the following code into your project:
 
-## Validation States
-
-- **Green border**: Valid complete PAN number
-- **Amber border**: Incomplete but valid so far
-- **Red border**: Invalid character entered
+<RegistryAllFiles name="pan-input-incremental" type="free" />

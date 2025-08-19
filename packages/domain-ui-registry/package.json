@@ -10,7 +10,7 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "registry:build": "shadcn build -o ../../apps/web/public/r && sed -i '' 's/@workspace\\/domain-ui-registry/@\\//g' ../../apps/web/public/r/*.json"
+    "registry:build": "shadcn build -o ../../apps/web/public/r && sed -i '' 's|@workspace/domain-ui-registry/|@/|g' ../../apps/web/public/r/*.json"
   },
   "exports": {
     "./globals.css": "./src/styles/globals.css",
@@ -22,14 +22,14 @@
     "./components/domain-ui/india/*": "./components/domain-ui/india/*.tsx",
     "./components/domain-ui/usa/*": "./components/domain-ui/usa/*.tsx",
     "./components/domain-ui/uk/*": "./components/domain-ui/uk/*.tsx",
-    "./components/domain-ui/responsive-preview": "./components/domain-ui/responsive-preview/index.tsx",
-    "./components/domain-ui/responsive-preview/*": "./components/domain-ui/responsive-preview/*.tsx",
+    "./components/domain-ui/responsive-resizable-preview": "./components/domain-ui/responsive-resizable-preview/index.tsx",
+    "./components/domain-ui/responsive-resizable-preview/*": "./components/domain-ui/responsive-resizable-preview/*.tsx",
     "./components/ui/kibo-ui/tree": "./src/components/ui/kibo-ui/tree/index.tsx",
     "./demos/*": "./demos/*.tsx",
     "./demos/india/*": "./demos/india/*.tsx",
     "./demos/usa/*": "./demos/usa/*.tsx",
     "./demos/uk/*": "./demos/uk/*.tsx",
-    "./demos/responsive-preview/*": "./demos/responsive-preview/*.tsx"
+    "./demos/responsive-resizable-preview/*": "./demos/responsive-resizable-preview/*.tsx"
   },
   "keywords": [],
   "author": "",

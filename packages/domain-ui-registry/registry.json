@@ -77,6 +77,32 @@
       }
     },
     {
+      "name": "pan-input-incremental",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input-incremental.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/india/pan-input-incremental.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "pan",
+          "india",
+          "validation",
+          "identity",
+          "kyc",
+          "form",
+          "incremental"
+        ]
+      }
+    },
+    {
       "name": "usa-passport-input",
       "type": "registry:component",
       "registryDependencies": [
@@ -132,7 +158,6 @@
       "type": "registry:component",
       "registryDependencies": [
         "input",
-        "label",
         "http://localhost:3000/r/regex-input.json"
       ],
       "files": [
@@ -158,7 +183,6 @@
       "type": "registry:component",
       "registryDependencies": [
         "input",
-        "label",
         "http://localhost:3000/r/regex-input-incremental.json"
       ],
       "files": [
@@ -181,7 +205,7 @@
       }
     },
     {
-      "name": "indian-passport-input",
+      "name": "passport-input",
       "type": "registry:component",
       "registryDependencies": [
         "input",
@@ -207,7 +231,7 @@
       }
     },
     {
-      "name": "indian-passport-input-incremental",
+      "name": "passport-input-incremental",
       "type": "registry:component",
       "registryDependencies": [
         "input",
@@ -234,39 +258,33 @@
       }
     },
     {
-      "name": "responsive-preview",
+      "name": "responsive-resizable-preview",
       "type": "registry:component",
-      "registryDependencies": [
-        "button",
-        "badge", 
-        "resizable"
-      ],
+      "registryDependencies": ["button", "badge", "resizable"],
       "files": [
         {
-          "path": "components/domain-ui/responsive-preview/index.tsx",
+          "path": "components/domain-ui/responsive-resizable-preview/index.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/domain-ui/responsive-preview/preview-wrapper.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/domain-ui/responsive-preview/breakpoints.ts",
+          "path": "components/domain-ui/responsive-resizable-preview/breakpoints.ts",
           "type": "registry:lib"
         },
         {
-          "path": "components/domain-ui/responsive-preview/components/settings.tsx",
+          "path": "components/domain-ui/responsive-resizable-preview/settings.tsx",
           "type": "registry:component"
         }
       ],
       "meta": {
         "tags": [
           "preview",
-          "responsive", 
+          "responsive",
+          "resizable",
           "breakpoint",
           "testing",
           "development",
-          "layout"
+          "layout",
+          "viewport"
         ]
       }
     },

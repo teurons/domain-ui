@@ -1,49 +1,24 @@
 ---
 title: Regex Input Incremental
-description: Input component with real-time incremental regex validation that prevents invalid characters
+description: An input component with real-time incremental regex validation that prevents invalid characters as you type.
 ---
 
-import { RegexInputIncrementalDemo } from "@workspace/domain-ui-registry/demos/regex-input-incremental-demo";
+import RegexInputIncrementalDemo from "@workspace/domain-ui-registry/demos/regex-input-incremental-demo";
 
-<RegexInputIncrementalDemo />
+## Demo
 
-## Features
+<ComponentPreview demo={<RegexInputIncrementalDemo />}>
+  <include>../../../domain-ui-registry/demos/regex-input-incremental-demo.tsx</include>
+</ComponentPreview>
 
-The Regex Input Incremental component provides:
+## Installation
 
-- **Real-time validation** - Validates input character by character as you type
-- **Invalid character prevention** - Blocks characters that would make the pattern unmatchable
-- **Three validation states**:
-  - `valid` - Input completely matches the pattern
-  - `incomplete` - Input is valid so far but not complete
-  - `invalid` - Input contains characters that can't match the pattern
-- **Paste support** - Validates pasted content against the pattern
-- **NFA-based matching** - Supports complex regex patterns with alternation
+### CLI
 
-## Usage
+<RegistryCliCommands name="regex-input-incremental" type="free" />
 
-```tsx
-import { RegexInputIncremental } from "@workspace/domain-ui-registry/components/domain-ui/regex-input-incremental";
+### Manual
 
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+Copy and paste the following code into your project:
 
-export function EmailInput() {
-  return (
-    <RegexInputIncremental
-      regex={EMAIL_REGEX}
-      placeholder="Enter email address"
-      onValidation={(status) => console.log("Validation status:", status)}
-    />
-  );
-}
-```
-
-## API
-
-### Props
-
-| Prop | Type | Description |
-| --- | --- | --- |
-| `regex` | `RegExp` | The regular expression pattern to validate against |
-| `onValidation` | `(status: ValidationStatusType) => void` | Callback when validation status changes |
-| All standard input props | | Inherits all HTML input element props |
+<RegistryAllFiles name="regex-input-incremental" type="free" />

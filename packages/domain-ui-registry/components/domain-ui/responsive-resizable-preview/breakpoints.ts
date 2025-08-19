@@ -30,10 +30,16 @@ export interface Breakpoint extends BreakpointConfig {
 
 export const defaultBreakpoints: BreakpointConfig[] = [
   {
-    title: "xxs",
-    minWidthRem: 5,
-    minWidthPx: 80,
+    title: "3xs",
+    minWidthRem: 16,
+    minWidthPx: 256,
     icon: DoorClosedIcon,
+  },
+  {
+    title: "2xs",
+    minWidthRem: 18,
+    minWidthPx: 288,
+    icon: Smartphone,
   },
   {
     title: "xs",

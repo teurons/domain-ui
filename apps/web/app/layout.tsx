@@ -49,6 +49,11 @@ export default function RootLayout({
           </Providers>
         </RootProvider>
         <Analytics />
+        <script
+          crossOrigin="anonymous"
+          src="//cdn.jsdelivr.net/npm/meta-scan@0.15.0/dist/auto.global.js"
+          data-auto-enable="true"
+        />
       </body>
     </html>
   );

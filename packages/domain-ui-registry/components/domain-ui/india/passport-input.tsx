@@ -9,14 +9,10 @@ import { Label } from "@workspace/domain-ui-registry/components/ui/label";
 
 const INDIAN_PASSPORT_REGEX = /^[A-Z][0-9]{7}$/;
 
-export interface PassportInputProps extends Omit<RegexInputProps, "regex"> {
-  showLabel?: boolean;
-}
-
 export function PassportInput({
   showLabel = true,
   ...props
-}: PassportInputProps) {
+}: Omit<RegexInputProps, "regex"> & { showLabel?: boolean }) {
   const generatedId = useId();
   const id = props.id || generatedId;
 

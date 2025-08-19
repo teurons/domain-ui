@@ -7,7 +7,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "fumadocs-ui/components/tabs";
-import { ChildPreview } from "@workspace/domain-ui-registry/components/domain-ui/responsive-preview/index";
+import { RRChildPreview } from "@workspace/domain-ui-registry/components/domain-ui/responsive-resizable-preview";
 
 interface ComponentPreviewProps {
   demo: ReactNode;
@@ -25,15 +25,15 @@ export function ComponentPreview({
   return (
     <Tabs
       defaultValue="preview"
-      className="not-prose !rounded-t-xl rounded-none"
+      className="not-prose !rounded-t-xl rounded-none border-none bg-background"
     >
-      <TabsList>
+      <TabsList className="px-0">
         <TabsTrigger value="preview">Preview</TabsTrigger>
         <TabsTrigger value="code">Code</TabsTrigger>
       </TabsList>
 
       <TabsContent value="preview" className="m-0 p-0">
-        <ChildPreview
+        <RRChildPreview
           config={{
             showToolbar: false,
             showScale: false,
@@ -43,7 +43,7 @@ export function ComponentPreview({
           <div className={className} style={{ minHeight }}>
             {demo}
           </div>
-        </ChildPreview>
+        </RRChildPreview>
       </TabsContent>
 
       <TabsContent value="code">

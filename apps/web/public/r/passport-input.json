@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "passport-input",
+  "type": "registry:component",
+  "registryDependencies": [
+    "input",
+    "label",
+    "http://localhost:3000/r/regex-input.json"
+  ],
+  "files": [
+    {
+      "path": "components/domain-ui/india/passport-input.tsx",
+      "content": "\"use client\";\n\nimport { useId } from \"react\";\nimport {\n  RegexInput,\n  type RegexInputProps,\n} from \"@/components/domain-ui/regex-input\";\nimport { Label } from \"@/components/ui/label\";\n\nconst INDIAN_PASSPORT_REGEX = /^[A-Z][0-9]{7}$/;\n\nexport function PassportInput({\n  showLabel = true,\n  ...props\n}: Omit<RegexInputProps, \"regex\"> & { showLabel?: boolean }) {\n  const generatedId = useId();\n  const id = props.id || generatedId;\n\n  if (!showLabel) {\n    return <RegexInput regex={INDIAN_PASSPORT_REGEX} {...props} id={id} />;\n  }\n\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>Indian Passport</Label>\n      <RegexInput regex={INDIAN_PASSPORT_REGEX} {...props} id={id} />\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "meta": {
+    "tags": [
+      "input",
+      "passport",
+      "india",
+      "validation",
+      "identity",
+      "kyc",
+      "form"
+    ]
+  }
+}

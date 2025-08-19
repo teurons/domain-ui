@@ -12,7 +12,7 @@ export default function RegexInputDemo() {
     useState<ValidationStatusType>("invalid");
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="max-w-xs sm:w-full md:max-w-sm">
       <RegexInput
         placeholder="Enter product code (e.g., ABC1234)"
         regex={alphanumericRegex}

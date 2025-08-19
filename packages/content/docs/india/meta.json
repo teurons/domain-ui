@@ -1,4 +1,9 @@
 {
   "title": "India",
-  "pages": ["passport-input", "passport-input-incremental", "pan-input", "pan-input-incremental"]
+  "pages": [
+    "passport-input",
+    "passport-input-incremental",
+    "pan-input",
+    "pan-input-incremental"
+  ]
 }
