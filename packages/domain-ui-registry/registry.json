@@ -158,7 +158,6 @@
       "type": "registry:component",
       "registryDependencies": [
         "input",
-        "label",
         "http://localhost:3000/r/regex-input.json"
       ],
       "files": [
@@ -184,7 +183,6 @@
       "type": "registry:component",
       "registryDependencies": [
         "input",
-        "label",
         "http://localhost:3000/r/regex-input-incremental.json"
       ],
       "files": [
