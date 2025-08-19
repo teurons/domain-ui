@@ -10,7 +10,7 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "registry:build": "shadcn build -o ../../apps/web/public/r && sed -i '' 's/@workspace\\/domain-ui-registry/@/g' ../../apps/web/public/r/*.json"
+    "registry:build": "shadcn build -o ../../apps/web/public/r && sed -i '' 's|@workspace/domain-ui-registry/|@/|g' ../../apps/web/public/r/*.json"
   },
   "exports": {
     "./globals.css": "./src/styles/globals.css",
