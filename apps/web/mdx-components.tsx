@@ -4,6 +4,9 @@ import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import GithubCodeBlock from "@/components/blog/github-code-block";
 import RegistryCodeBlock from "@workspace/ui/components/registry-code-block";
 import DynamicRegistryCodeBlock from "@workspace/ui/components/registry-code-block-dynamic";
+import { ComponentPreview } from "@workspace/ui/components/component-preview";
+import RegistryAllFiles from "@workspace/ui/components/registry-all-files";
+import RegistryCliCommands from "@workspace/ui/components/registry-cli-commands";
 import { XEmbedClient } from "@/components/blog/XEmbedClient";
 import {
   Tab,
@@ -37,6 +40,9 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     GithubCodeBlock,
     RegistryCodeBlock,
     DynamicRegistryCodeBlock,
+    ComponentPreview,
+    RegistryAllFiles,
+    RegistryCliCommands,
     CodeDisplay,
     ...components,
   };
