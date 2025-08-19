@@ -1,25 +1,26 @@
 "use client";
 
+import { useState } from "react";
 import { PanInput } from "@workspace/domain-ui-registry/components/domain-ui/india/pan-input";
-import { ValidationDemoWrapper } from "@workspace/domain-ui-registry/demos/validation-demo-wrapper";
+import { cn } from "@workspace/domain-ui-registry/lib/utils";
+import type { ValidationStatusType } from "@workspace/domain-ui-registry/hooks/use-simple-regex";
 
-export function PanInputDemo() {
+export default function PanInputDemo() {
+  const [validationStatus, setValidationStatus] =
+    useState<ValidationStatusType>("invalid");
+
   return (
-    <ValidationDemoWrapper
-      validMessage="Valid PAN number"
-      invalidMessage="Invalid PAN format. Expected format: ABCDE1234F"
-      incompleteMessage="Enter complete PAN number"
-      expectedLength={10}
-    >
-      {({ value, onChange, onValidation, className }) => (
-        <PanInput
-          placeholder="Enter PAN number (e.g., ABCDE1234F)"
-          value={value}
-          onChange={onChange}
-          onValidation={onValidation}
-          className={className}
-        />
-      )}
-    </ValidationDemoWrapper>
+    <div className="max-w-xs sm:w-full md:max-w-sm">
+      <PanInput
+        placeholder="Enter PAN number (e.g., ABCDE1234F)"
+        onValidation={setValidationStatus}
+        className={cn({
+          "border-green-500 focus-visible:ring-green-500":
+            validationStatus === "valid",
+          "border-destructive focus-visible:ring-destructive":
+            validationStatus === "invalid",
+        })}
+      />
+    </div>
   );
 }

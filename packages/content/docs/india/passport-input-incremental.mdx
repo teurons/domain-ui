@@ -1,40 +1,24 @@
 ---
 title: Passport Input Incremental
-description: Input component for Indian passport numbers with real-time incremental validation
+description: An input component for Indian passport numbers with real-time incremental validation that prevents invalid characters as you type.
 ---
 
-import { PassportInputIncrementalDemo } from "@workspace/domain-ui-registry/demos/india/passport-input-incremental-demo";
+import PassportInputIncrementalDemo from "@workspace/domain-ui-registry/demos/india/passport-input-incremental-demo";
 
-<PassportInputIncrementalDemo />
+## Demo
 
-## Features
+<ComponentPreview demo={<PassportInputIncrementalDemo />}>
+  <include>../../../domain-ui-registry/demos/india/passport-input-incremental-demo.tsx</include>
+</ComponentPreview>
 
-The Passport Input Incremental component provides real-time validation for Indian passport numbers:
+## Installation
 
-- **Format enforcement**: `A1234567` (1 letter + 7 digits)
-- **Character-by-character validation** - Validates as you type
-- **Invalid character prevention** - Only allows valid characters
-- **Visual feedback** - Color-coded validation states
+### CLI
 
-## Usage
+<RegistryCliCommands name="passport-input-incremental" type="free" />
 
-```tsx
-import { PassportInputIncremental } from "@workspace/domain-ui-registry/components/domain-ui/india/passport-input-incremental";
+### Manual
 
-export function PassportForm() {
-  return (
-    <PassportInputIncremental
-      placeholder="Enter passport number"
-      onValidation={(status) => {
-        console.log("Validation status:", status);
-      }}
-    />
-  );
-}
-```
+Copy and paste the following code into your project:
 
-## Validation States
-
-- **Green border**: Valid 8-character passport number
-- **Amber border**: Incomplete but following correct format
-- **Red border**: Invalid character that doesn't match pattern
+<RegistryAllFiles name="passport-input-incremental" type="free" />

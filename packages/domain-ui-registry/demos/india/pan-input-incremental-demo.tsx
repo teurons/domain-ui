@@ -1,24 +1,28 @@
 "use client";
 
+import { useState } from "react";
 import { PanInputIncremental } from "@workspace/domain-ui-registry/components/domain-ui/india/pan-input-incremental";
-import { ValidationDemoWrapperIncremental } from "@workspace/domain-ui-registry/demos/validation-demo-wrapper-incremental";
+import { cn } from "@workspace/domain-ui-registry/lib/utils";
+import type { ValidationStatusType } from "@workspace/domain-ui-registry/hooks/use-incremental-regex";
 
-export function PanInputIncrementalDemo() {
+export default function PanInputIncrementalDemo() {
+  const [validationStatus, setValidationStatus] =
+    useState<ValidationStatusType>("invalid");
+
   return (
-    <ValidationDemoWrapperIncremental
-      validMessage="Valid PAN number"
-      invalidMessage="Invalid character - PAN format: ABCDE1234F"
-      incompleteMessage="Continue entering PAN number (10 characters total)"
-    >
-      {({ value, onChange, onValidation, className }) => (
-        <PanInputIncremental
-          placeholder="Enter PAN number (e.g., ABCDE1234F)"
-          value={value}
-          onChange={onChange}
-          onValidation={onValidation}
-          className={className}
-        />
-      )}
-    </ValidationDemoWrapperIncremental>
+    <div className="max-w-xs sm:w-full md:max-w-sm">
+      <PanInputIncremental
+        placeholder="Enter PAN number (e.g., ABCDE1234F)"
+        onValidation={setValidationStatus}
+        className={cn({
+          "border-green-500 focus-visible:ring-green-500":
+            validationStatus === "valid",
+          "border-yellow-500 focus-visible:ring-yellow-500":
+            validationStatus === "incomplete",
+          "border-destructive focus-visible:ring-destructive":
+            validationStatus === "invalid",
+        })}
+      />
+    </div>
   );
 }
