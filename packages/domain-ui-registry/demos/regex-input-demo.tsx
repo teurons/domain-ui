@@ -21,7 +21,6 @@ export default function RegexInputDemo() {
           onChange={onChange}
           onValidation={onValidation}
           className={className}
-          style={{ textTransform: "uppercase" }}
         />
       )}
     </ValidationDemoWrapper>
