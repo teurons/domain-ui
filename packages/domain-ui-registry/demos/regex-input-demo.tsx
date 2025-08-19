@@ -1,28 +1,29 @@
 "use client";
 
+import { useState } from "react";
 import { RegexInput } from "@workspace/domain-ui-registry/components/domain-ui/regex-input";
-import { ValidationDemoWrapper } from "@workspace/domain-ui-registry/demos/validation-demo-wrapper";
+import { cn } from "@workspace/domain-ui-registry/lib/utils";
+import type { ValidationStatusType } from "@workspace/domain-ui-registry/hooks/use-simple-regex";
 
 const alphanumericRegex = /^[A-Z]{3}[0-9]{4}$/;
 
 export default function RegexInputDemo() {
+  const [validationStatus, setValidationStatus] =
+    useState<ValidationStatusType>("invalid");
+
   return (
-    <ValidationDemoWrapper
-      validMessage="Valid product code"
-      invalidMessage="Invalid format. Expected: 3 letters followed by 4 numbers"
-      incompleteMessage="Enter complete product code (7 characters)"
-      expectedLength={7}
-    >
-      {({ value, onChange, onValidation, className }) => (
-        <RegexInput
-          placeholder="Enter product code (e.g., ABC1234)"
-          regex={alphanumericRegex}
-          value={value}
-          onChange={onChange}
-          onValidation={onValidation}
-          className={className}
-        />
-      )}
-    </ValidationDemoWrapper>
+    <div className="w-full max-w-sm">
+      <RegexInput
+        placeholder="Enter product code (e.g., ABC1234)"
+        regex={alphanumericRegex}
+        onValidation={setValidationStatus}
+        className={cn({
+          "border-green-500 focus-visible:ring-green-500":
+            validationStatus === "valid",
+          "border-destructive focus-visible:ring-destructive":
+            validationStatus === "invalid",
+        })}
+      />
+    </div>
   );
 }
