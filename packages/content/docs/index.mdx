@@ -2,11 +2,10 @@
 title: Introduction
 description: Production-ready React components for fintech, trading, KYC, and financial applications.
 ---
+
 ## Domain First UI Components
 
 Production-ready React components for **fintech**, **trading**, **banking**, **payments**, and **KYC** applications. Copy, paste, and ship faster.
-
-> "Domain-first components that handle validation and formatting out of the box."
 
 A comprehensive collection of React components designed for financial applications:
 
@@ -29,15 +28,19 @@ Domain UI uses a **registry approach** similar to shadcn/ui and depends on the s
 ## Component Categories
 
 ### Form Components
+
 Input components with built-in validation for KYC documents, financial data, and regulatory requirements.
 
 ### Display Components
+
 Components for presenting financial data, trading information, and payment details with proper formatting.
 
 ### Blocks
+
 Pre-built sections for KYC onboarding, payment flows, trading interfaces, and banking applications.
 
 ### Utilities
+
 Helper functions and hooks for financial calculations, currency formatting, and regulatory validation patterns.
 
 ## Installation
@@ -50,27 +53,4 @@ pnpm dlx shadcn@latest add "https://domain-ui.dev/[component-name].json"
 
 # Use in your application
 import { ComponentName } from "@/components/domain-ui/[component-path]"
-```
-
-## Technical Architecture
-
-### Validation Approaches
-
-**Simple Validation**: Basic regex matching with immediate feedback
-**Incremental Validation**: NFA-based validation that guides users character-by-character
-
-### Built With
-
-- **Radix UI**: Accessible primitives for complex interactions
-- **Tailwind CSS**: Utility-first styling with design tokens
-- **TypeScript**: Full type safety and developer experience
-
-## Getting Started
-
-```bash
-# Install a component
-pnpm dlx shadcn@latest add "https://domain-ui.dev/pan-input.json"
-
-# Use in your app
-import { PanInput } from "@/components/domain-ui/india/pan-input"
 ```
