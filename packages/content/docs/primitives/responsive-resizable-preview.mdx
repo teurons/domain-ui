@@ -35,15 +35,16 @@ A powerful component for previewing your responsive designs across different scr
 
 ### Minimal Configuration
 
-<Tabs defaultValue="preview" className="w-full">
-  <TabsList className="grid w-full grid-cols-2">
+<Tabs
+  defaultValue="preview"
+  className="not-prose !rounded-t-xl rounded-none border-none bg-background"
+>
+  <TabsList className="px-0">
     <TabsTrigger value="preview">Preview</TabsTrigger>
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
-  <TabsContent value="preview">
-    <div className="rounded-lg border bg-background p-0">
-      <MinimalDemo />
-    </div>
+  <TabsContent value="preview" className="m-0 p-0 py-2 bg-backgrounds">
+    <MinimalDemo />
   </TabsContent>
   <TabsContent value="code">
     <include>
@@ -54,15 +55,16 @@ A powerful component for previewing your responsive designs across different scr
 
 ### Container Queries
 
-<Tabs defaultValue="preview" className="w-full">
-  <TabsList className="grid w-full grid-cols-2">
+<Tabs
+  defaultValue="preview"
+  className="not-prose !rounded-t-xl rounded-none border-none bg-background"
+>
+  <TabsList className="px-0">
     <TabsTrigger value="preview">Preview</TabsTrigger>
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
-  <TabsContent value="preview">
-    <div className="rounded-lg border bg-background p-0">
-      <ContainerQueryDemo />
-    </div>
+  <TabsContent value="preview" className="m-0 p-0 py-2 bg-backgrounds">
+    <ContainerQueryDemo />
   </TabsContent>
   <TabsContent value="code">
     <include>
@@ -73,15 +75,16 @@ A powerful component for previewing your responsive designs across different scr
 
 ### IFrame Preview
 
-<Tabs defaultValue="preview" className="w-full">
-  <TabsList className="grid w-full grid-cols-2">
+<Tabs
+  defaultValue="preview"
+  className="not-prose !rounded-t-xl rounded-none border-none bg-background"
+>
+  <TabsList className="px-0">
     <TabsTrigger value="preview">Preview</TabsTrigger>
     <TabsTrigger value="code">Code</TabsTrigger>
   </TabsList>
-  <TabsContent value="preview">
-    <div className="rounded-lg border bg-background p-0">
-      <IFrameDemo />
-    </div>
+  <TabsContent value="preview" className="m-0 p-0 py-2 bg-backgrounds">
+    <IFrameDemo />
   </TabsContent>
   <TabsContent value="code">
     <include>
