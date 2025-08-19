@@ -1,6 +1,5 @@
 import { defineConfig, defineDocs } from "fumadocs-mdx/config";
 import { transformerTwoslash } from "fumadocs-twoslash";
-import { defineCollections, frontmatterSchema } from "fumadocs-mdx/config";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import {
@@ -9,7 +8,7 @@ import {
   transformerMetaHighlight,
 } from "@shikijs/transformers";
 import { rehypeCodeDefaultOptions } from "fumadocs-core/mdx-plugins";
-import { z } from "zod";
+import { remarkIncludeTransform } from "@workspace/ui/lib/remark-include-transform";
 
 export const docs = defineDocs({
   dir: "../../packages/content/docs",
@@ -33,7 +32,7 @@ export default defineConfig({
         transformerMetaHighlight(),
       ],
     },
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkMath, remarkIncludeTransform],
     rehypePlugins: (v) => [rehypeKatex, ...v],
   },
 });

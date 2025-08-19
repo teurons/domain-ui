@@ -80,7 +80,8 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "mcp__ide__getDiagnostics",
       "WebFetch(domain:docs.anthropic.com)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "WebFetch(domain:fumadocs.dev)"
     ],
     "deny": []
   },

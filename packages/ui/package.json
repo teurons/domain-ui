@@ -8,7 +8,8 @@
     "./globals.css": "./src/styles/globals.css",
     "./ohimg": "./src/ohimg/index.ts",
     "./components/*": "./src/components/*.tsx",
-    "./mdx-components": "./src/components/mdx/mdx-components.tsx"
+    "./mdx-components": "./src/components/mdx/mdx-components.tsx",
+    "./lib/*": "./src/lib/*.ts"
   },
   "scripts": {
     "clean": "rm -rf node_modules",
@@ -18,13 +19,16 @@
   },
   "devDependencies": {
     "@turbo/gen": "^2.4.4",
+    "@types/mdast": "^4.0.4",
     "@types/node": "^22.13.9",
     "@types/react": "^19.1.9",
     "@types/react-dom": "19.1.7",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.22.0",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",

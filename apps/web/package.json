@@ -65,11 +65,14 @@
     "zod": "^4.0.14"
   },
   "devDependencies": {
+    "@types/mdast": "^4.0.4",
     "@types/node": "^20",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
     "@workspace/eslint-config": "workspace:^",
     "@workspace/typescript-config": "workspace:*",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0"
   }
 }
