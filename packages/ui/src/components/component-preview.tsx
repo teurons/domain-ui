@@ -25,9 +25,9 @@ export function ComponentPreview({
   return (
     <Tabs
       defaultValue="preview"
-      className="not-prose !rounded-t-xl rounded-none"
+      className="not-prose !rounded-t-xl rounded-none border-none bg-background"
     >
-      <TabsList>
+      <TabsList className="px-0">
         <TabsTrigger value="preview">Preview</TabsTrigger>
         <TabsTrigger value="code">Code</TabsTrigger>
       </TabsList>
