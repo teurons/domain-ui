@@ -6,6 +6,7 @@ import { AuthProvider } from "@/lib/auth-context";
 import { RootProvider } from "fumadocs-ui/provider";
 import { baseUrl, createMetadata } from "@workspace/config/metadata";
 import { description } from "@workspace/config/layout.config";
+import { Analytics } from "@vercel/analytics/next";
 
 const fontSans = Geist({
   subsets: ["latin"],
@@ -47,6 +48,7 @@ export default function RootLayout({
             <AuthProvider>{children}</AuthProvider>
           </Providers>
         </RootProvider>
+        <Analytics />
       </body>
     </html>
   );
