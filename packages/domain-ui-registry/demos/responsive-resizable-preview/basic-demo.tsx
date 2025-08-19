@@ -10,6 +10,25 @@ export default function BasicDemo() {
           <h3 className="font-bold @2xl:text-6xl @2xs:text-lg @3xl:text-7xl @3xs:text-base @4xl:text-8xl @5xl:text-9xl @lg:text-4xl @md:text-3xl @sm:text-2xl @xl:text-5xl @xs:text-xl text-sm">
             Basic Preview
           </h3>
+          <p className="mt-4 text-center text-sm @sm:text-base @md:text-lg font-mono">
+            Current size: 
+            <span className="font-semibold ml-1">
+              <span className="@3xs:hidden">Base (&lt; 256px)</span>
+              <span className="hidden @3xs:inline @2xs:hidden">3XS (256px+)</span>
+              <span className="hidden @2xs:inline @xs:hidden">2XS (288px+)</span>
+              <span className="hidden @xs:inline @sm:hidden">XS (320px+)</span>
+              <span className="hidden @sm:inline @md:hidden">SM (384px+)</span>
+              <span className="hidden @md:inline @lg:hidden">MD (448px+)</span>
+              <span className="hidden @lg:inline @xl:hidden">LG (512px+)</span>
+              <span className="hidden @xl:inline @2xl:hidden">XL (576px+)</span>
+              <span className="hidden @2xl:inline @3xl:hidden">2XL (672px+)</span>
+              <span className="hidden @3xl:inline @4xl:hidden">3XL (768px+)</span>
+              <span className="hidden @4xl:inline @5xl:hidden">4XL (896px+)</span>
+              <span className="hidden @5xl:inline @6xl:hidden">5XL (1024px+)</span>
+              <span className="hidden @6xl:inline @7xl:hidden">6XL (1152px+)</span>
+              <span className="hidden @7xl:inline">7XL (1280px+)</span>
+            </span>
+          </p>
         </div>
       </div>
     </RRChildPreview>
