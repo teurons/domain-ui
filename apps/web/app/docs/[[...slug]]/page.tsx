@@ -26,6 +26,9 @@ export default async function Page(props: {
       tableOfContent={{
         style: "clerk",
       }}
+      tableOfContentPopover={{
+        enabled: true,
+      }}
     >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
