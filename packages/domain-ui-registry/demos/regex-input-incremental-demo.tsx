@@ -1,27 +1,31 @@
 "use client";
 
+import { useState } from "react";
 import { RegexInputIncremental } from "@workspace/domain-ui-registry/components/domain-ui/regex-input-incremental";
-import { ValidationDemoWrapperIncremental } from "@workspace/domain-ui-registry/demos/validation-demo-wrapper-incremental";
+import { cn } from "@workspace/domain-ui-registry/lib/utils";
+import type { ValidationStatusType } from "@workspace/domain-ui-registry/hooks/use-incremental-regex";
 
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const alphanumericRegex = /^[A-Z]{3}[0-9]{4}$/;
 
-export function RegexInputIncrementalDemo() {
+export default function RegexInputIncrementalDemo() {
+  const [validationStatus, setValidationStatus] =
+    useState<ValidationStatusType>("invalid");
+
   return (
-    <ValidationDemoWrapperIncremental
-      validMessage="Valid email address"
-      invalidMessage="Invalid character for email format"
-      incompleteMessage="Continue typing email address"
-    >
-      {({ value, onChange, onValidation, className }) => (
-        <RegexInputIncremental
-          regex={EMAIL_REGEX}
-          placeholder="Enter email (e.g., user@example.com)"
-          value={value}
-          onChange={onChange}
-          onValidation={onValidation}
-          className={className}
-        />
-      )}
-    </ValidationDemoWrapperIncremental>
+    <div className="w-full max-w-sm">
+      <RegexInputIncremental
+        placeholder="Enter product code (e.g., ABC1234)"
+        regex={alphanumericRegex}
+        onValidation={setValidationStatus}
+        className={cn({
+          "border-green-500 focus-visible:ring-green-500":
+            validationStatus === "valid",
+          "border-yellow-500 focus-visible:ring-yellow-500":
+            validationStatus === "incomplete",
+          "border-destructive focus-visible:ring-destructive":
+            validationStatus === "invalid",
+        })}
+      />
+    </div>
   );
 }

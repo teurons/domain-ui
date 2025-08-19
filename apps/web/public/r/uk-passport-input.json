@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "components/domain-ui/uk/passport-input.tsx",
-      "content": "\"use client\";\n\nimport { useId } from \"react\";\nimport type * as React from \"react\";\nimport { RegexInput } from \"@//components/domain-ui/regex-input\";\nimport { Label } from \"@//components/ui/label\";\n\nconst UK_PASSPORT_REGEX = /^[A-Z0-9]{9}$/;\n\nexport function PassportInput(props: React.ComponentProps<\"input\">) {\n  const generatedId = useId();\n  const id = props.id || generatedId;\n\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>UK Passport</Label>\n      <RegexInput regex={UK_PASSPORT_REGEX} {...props} id={id} />\n    </div>\n  );\n}",
+      "content": "\"use client\";\n\nimport { useId } from \"react\";\nimport type * as React from \"react\";\nimport { RegexInput } from \"@/components/domain-ui/regex-input\";\nimport { Label } from \"@/components/ui/label\";\n\nconst UK_PASSPORT_REGEX = /^[A-Z0-9]{9}$/;\n\nexport function PassportInput(props: React.ComponentProps<\"input\">) {\n  const generatedId = useId();\n  const id = props.id || generatedId;\n\n  return (\n    <div className=\"*:not-first:mt-2\">\n      <Label htmlFor={id}>UK Passport</Label>\n      <RegexInput regex={UK_PASSPORT_REGEX} {...props} id={id} />\n    </div>\n  );\n}",
       "type": "registry:component"
     }
   ],
