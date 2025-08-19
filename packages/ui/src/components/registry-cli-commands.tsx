@@ -7,6 +7,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "fumadocs-ui/components/tabs";
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
 import { getBaseUrl } from "../lib/get-base-url";
 
 interface RegistryCliCommandsProps {
@@ -47,13 +48,20 @@ export default function RegistryCliCommands({
         </TabsList>
         {Object.entries(commands).map(([pkg, command]) => (
           <TabsContent
-            className="m-0 rounded-none border-t bg-background"
+            className="m-0 rounded-none border-t"
             key={pkg}
             value={pkg}
           >
-            <pre className="no-scrollbar overflow-auto px-2 py-3 text-sm">
-              {command}
-            </pre>
+            <DynamicCodeBlock
+              lang="bash"
+              code={command}
+              options={{
+                themes: {
+                  light: "github-light",
+                  dark: "github-dark",
+                },
+              }}
+            />
           </TabsContent>
         ))}
       </Tabs>
