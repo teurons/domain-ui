@@ -1,7 +1,7 @@
 "use client";
 
 import { getBaseUrl } from "../lib/get-base-url";
-import { RegistryItemDisplay } from "@workspace/domain-ui-registry/components/domain-ui/registry-item-display";
+import { ShadcnRegistryItemCodeBlock } from "@workspace/domain-ui-registry/components/domain-ui/shadcn-registry-item-code-block";
 
 interface RegistryAllFilesProps {
   name: string;
@@ -29,5 +29,5 @@ export default function RegistryAllFiles({
 }: RegistryAllFilesProps) {
   const url = getRegistryUrl(name, type);
 
-  return <RegistryItemDisplay url={url} />;
+  return <ShadcnRegistryItemCodeBlock url={url} />;
 }
