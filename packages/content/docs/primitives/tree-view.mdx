@@ -1,46 +1,138 @@
 ---
-title: Tree View
-description: A flexible tree view component for hierarchical data display with expand/collapse functionality and selection states.
+title: Tree
+description: A flexible tree component for hierarchical data display with expand/collapse functionality and selection states.
 ---
 
-import TreeViewDemo from "@workspace/domain-ui-registry/demos/tree-view-demo";
+import TreeDemo from "@workspace/domain-ui-registry/demos/tree-demo";
 
 ## Demo
 
-<ComponentPreview demo={<TreeViewDemo />}>
-  <include>../../../domain-ui-registry/demos/tree-view-demo.tsx</include>
+<ComponentPreview demo={<TreeDemo />}>
+  <include>../../../domain-ui-registry/demos/tree-demo.tsx</include>
 </ComponentPreview>
 
 ## Installation
 
 ### CLI
 
-<RegistryCliCommands name="tree-view" type="free" />
+<RegistryCliCommands name="tree" type="free" />
 
 ### Manual
 
 Copy and paste the following code into your project:
 
-<RegistryAllFiles name="tree-view" type="free" />
+<RegistryAllFiles name="tree" type="free" />
 
 ## Usage
 
 ```tsx
 import {
+  TreeProvider,
   TreeView,
-  TreeViewBranch,
-  TreeViewLeaf,
-} from "@/components/ui/tree-view";
+  TreeNode,
+  TreeNodeTrigger,
+  TreeNodeContent,
+  TreeExpander,
+  TreeIcon,
+  TreeLabel,
+} from "@/components/ui/tree";
 
 export default function MyComponent() {
   return (
-    <TreeView defaultExpandedItems={["src"]}>
-      <TreeViewBranch id="src" name="src">
-        <TreeViewLeaf id="app.tsx" name="app.tsx" />
-        <TreeViewLeaf id="main.tsx" name="main.tsx" />
-      </TreeViewBranch>
-      <TreeViewLeaf id="package.json" name="package.json" />
-    </TreeView>
+    <TreeProvider defaultExpandedIds={["src"]}>
+      <TreeView>
+        <TreeNode nodeId="src" level={1}>
+          <TreeNodeTrigger>
+            <TreeExpander hasChildren />
+            <TreeIcon hasChildren />
+            <TreeLabel>src</TreeLabel>
+          </TreeNodeTrigger>
+          <TreeNodeContent hasChildren>
+            <TreeNode nodeId="app.tsx" level={2}>
+              <TreeNodeTrigger>
+                <TreeExpander />
+                <TreeIcon />
+                <TreeLabel>app.tsx</TreeLabel>
+              </TreeNodeTrigger>
+            </TreeNode>
+            <TreeNode nodeId="main.tsx" level={2}>
+              <TreeNodeTrigger>
+                <TreeExpander />
+                <TreeIcon />
+                <TreeLabel>main.tsx</TreeLabel>
+              </TreeNodeTrigger>
+            </TreeNode>
+          </TreeNodeContent>
+        </TreeNode>
+        <TreeNode nodeId="package.json" level={1}>
+          <TreeNodeTrigger>
+            <TreeExpander />
+            <TreeIcon />
+            <TreeLabel>package.json</TreeLabel>
+          </TreeNodeTrigger>
+        </TreeNode>
+      </TreeView>
+    </TreeProvider>
   );
 }
+```
+
+## API Reference
+
+### TreeProvider
+
+The root provider that manages tree state.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | - | Tree content |
+| `defaultExpandedIds` | `string[]` | `[]` | Initially expanded nodes |
+| `showLines` | `boolean` | `true` | Show connecting lines |
+| `showIcons` | `boolean` | `true` | Show node icons |
+| `selectable` | `boolean` | `true` | Enable node selection |
+| `multiSelect` | `boolean` | `false` | Allow multiple selections |
+| `selectedIds` | `string[]` | - | Controlled selected nodes |
+| `onSelectionChange` | `(ids: string[]) => void` | - | Selection change handler |
+| `indent` | `number` | `19` | Indentation per level |
+| `animateExpand` | `boolean` | `true` | Animate expand/collapse |
+
+### TreeNode
+
+Individual tree node container.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `nodeId` | `string` | - | Unique node identifier |
+| `level` | `number` | `0` | Node depth level |
+| `isLast` | `boolean` | `false` | Is last child |
+| `children` | `ReactNode` | - | Node content |
+
+### TreeNodeTrigger
+
+Clickable node trigger that handles selection and expansion.
+
+### TreeExpander
+
+Chevron icon that indicates and controls node expansion.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `hasChildren` | `boolean` | `false` | Whether node has children |
+
+### TreeIcon
+
+Node icon that changes based on node type and state.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `icon` | `ReactNode` | - | Custom icon |
+| `hasChildren` | `boolean` | `false` | Whether node has children |
+
+### TreeLabel
+
+Text label for the node.
+
+### TreeNodeContent
+
+Container for child nodes with expand/collapse animation.
 ```

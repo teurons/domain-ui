@@ -289,11 +289,35 @@
       }
     },
     {
+      "name": "tree",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/domain-ui/tree.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "tree",
+          "file-tree",
+          "hierarchy",
+          "navigation",
+          "expand",
+          "collapse",
+          "nested",
+          "folders",
+          "files"
+        ]
+      }
+    },
+    {
       "name": "shadcn-registry-item-code-block",
       "type": "registry:component",
       "registryDependencies": [
         "button",
-        "https://www.kibo-ui.com/registry/tree.json"
+        "tree"
       ],
       "files": [
         {

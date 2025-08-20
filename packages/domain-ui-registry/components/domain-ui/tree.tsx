@@ -345,10 +345,9 @@ export const TreeExpander = ({
   onClick,
   ...props
 }: TreeExpanderProps) => {
-  const { expandedIds, toggleExpanded, selectedIds } = useTree();
+  const { expandedIds, toggleExpanded } = useTree();
   const { nodeId } = useTreeNode();
   const isExpanded = expandedIds.has(nodeId);
-  const isSelected = selectedIds.includes(nodeId);
 
   // For files (no children), don't render anything
   if (!hasChildren) {
@@ -393,10 +392,9 @@ export const TreeIcon = ({
   className,
   ...props
 }: TreeIconProps) => {
-  const { showIcons, expandedIds, selectedIds } = useTree();
+  const { showIcons, expandedIds } = useTree();
   const { nodeId } = useTreeNode();
   const isExpanded = expandedIds.has(nodeId);
-  const isSelected = selectedIds.includes(nodeId);
 
   if (!showIcons) {
     return null;
