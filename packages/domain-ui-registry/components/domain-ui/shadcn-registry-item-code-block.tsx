@@ -355,11 +355,13 @@ async function fetchRegistryItem(url: string): Promise<RegistryItem> {
 }
 
 // Main component
-interface RegistryItemDisplayProps {
+interface ShadcnRegistryItemCodeBlockProps {
   url: string;
 }
 
-export function RegistryItemDisplay({ url }: RegistryItemDisplayProps) {
+export function ShadcnRegistryItemCodeBlock({
+  url,
+}: ShadcnRegistryItemCodeBlockProps) {
   const [files, setFiles] = useState<FileData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

@@ -4,6 +4,7 @@
   "pages": [
     "regex-input",
     "regex-input-incremental",
-    "responsive-resizable-preview"
+    "responsive-resizable-preview",
+    "shadcn-registry-item-code-block"
   ]
 }

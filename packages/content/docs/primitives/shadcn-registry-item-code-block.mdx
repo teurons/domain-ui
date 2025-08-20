@@ -1,0 +1,99 @@
+---
+title: Shadcn Registry Item Code Block
+description: A component for displaying shadcn registry items with syntax-highlighted code blocks and an interactive file tree navigator.
+---
+
+import ShadcnRegistryItemCodeBlockDemo from "@workspace/domain-ui-registry/demos/shadcn-registry-item-code-block-demo";
+
+## Demo
+
+<ComponentPreview demo={<ShadcnRegistryItemCodeBlockDemo />}>
+  <include>../../../domain-ui-registry/demos/shadcn-registry-item-code-block-demo.tsx</include>
+</ComponentPreview>
+
+## Installation
+
+### CLI
+
+<RegistryCliCommands name="shadcn-registry-item-code-block" type="free" />
+
+### Manual
+
+Copy and paste the following code into your project:
+
+<RegistryAllFiles name="shadcn-registry-item-code-block" type="free" />
+
+## Usage
+
+```tsx
+import { ShadcnRegistryItemCodeBlock } from "@/components/ui/shadcn-registry-item-code-block";
+
+export default function MyComponent() {
+  return (
+    <ShadcnRegistryItemCodeBlock url="https://supabase.com/ui/r/password-based-auth-nextjs.json" />
+  );
+}
+```
+
+## API Reference
+
+### Props
+
+| Prop  | Type     | Required | Description                                          |
+| ----- | -------- | -------- | ---------------------------------------------------- |
+| `url` | `string` | Yes      | The URL to a shadcn registry JSON file to display   |
+
+## Features
+
+- **File Tree Navigation**: Interactive file tree for browsing multiple files
+- **Syntax Highlighting**: Automatic language detection and syntax highlighting
+- **Collapsible Sidebar**: Toggle the file tree to maximize code viewing area
+- **Dark Mode Support**: Seamlessly adapts to light and dark themes
+- **Loading States**: Graceful loading and error handling
+- **Single/Multi File Support**: Optimized layouts for single or multiple files
+
+## Examples
+
+### Display a Supabase UI Component
+
+```tsx
+<ShadcnRegistryItemCodeBlock url="https://supabase.com/ui/r/password-based-auth-nextjs.json" />
+```
+
+### Display a shadcn/ui Component
+
+```tsx
+<ShadcnRegistryItemCodeBlock url="https://ui.shadcn.com/registry/styles/default/button.json" />
+```
+
+### Display Custom Registry Items
+
+```tsx
+<ShadcnRegistryItemCodeBlock url="https://your-domain.com/registry/your-component.json" />
+```
+
+## Registry Format
+
+The component expects a JSON file in the shadcn registry format:
+
+```json
+{
+  "name": "component-name",
+  "files": [
+    {
+      "path": "components/ui/component.tsx",
+      "content": "// Component code here",
+      "type": "registry:component"
+    }
+  ]
+}
+```
+
+## Dependencies
+
+This component requires:
+- `fumadocs-ui` for the code block component
+- `lucide-react` for icons
+- Tree component from `kibo-ui`
+
+These will be automatically installed when using the CLI installation method.

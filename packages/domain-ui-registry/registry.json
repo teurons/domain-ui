@@ -289,7 +289,7 @@
       }
     },
     {
-      "name": "registry-item-display",
+      "name": "shadcn-registry-item-code-block",
       "type": "registry:component",
       "registryDependencies": [
         "button",
@@ -297,14 +297,15 @@
       ],
       "files": [
         {
-          "path": "components/domain-ui/registry-item-display.tsx",
+          "path": "components/domain-ui/shadcn-registry-item-code-block.tsx",
           "type": "registry:component"
         }
       ],
       "meta": {
         "tags": [
+          "shadcn",
           "registry",
-          "display",
+          "code-block",
           "file-tree",
           "code-viewer",
           "syntax-highlighting",

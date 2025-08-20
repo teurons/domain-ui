@@ -235,8 +235,6 @@ interface Breakpoint {
   minWidthRem: number; // Minimum width in rem units
   minWidthPx: number; // Minimum width in pixels
   icon: React.ComponentType; // Icon component for the breakpoint
-  show?: boolean; // Whether to show this breakpoint (computed)
-  percentage?: number; // Width as percentage (computed)
 }
 ```
 
@@ -306,14 +304,6 @@ For a clean preview without controls:
 - **📐 Scale indicators**: Visual measurement tools
 - **🖼️ IFrame support**: Isolated preview for complete pages
 - **⚡ Container queries**: Perfect for testing `@container` CSS
-
-## Keyboard Shortcuts
-
-| Shortcut       | Action                       |
-| -------------- | ---------------------------- |
-| `←` / `→`      | Navigate between breakpoints |
-| `Space`        | Toggle playback              |
-| `Cmd/Ctrl + S` | Take screenshot              |
 
 ## Best Practices
 
