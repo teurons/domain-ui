@@ -217,7 +217,7 @@ function getAllDirectoryIds(nodes: FileTreeNode[]): string[] {
 // Tree nodes component
 function TreeNodes({
   nodes,
-  level = 0,
+  level = 1,
 }: {
   nodes: FileTreeNode[];
   level?: number;
@@ -241,9 +241,11 @@ function TreeNodes({
             >
               <TreeNodeTrigger onClick={() => setSelectedFilePath(node.path)}>
                 <TreeExpander hasChildren={false} />
-                <TreeIcon 
+                <TreeIcon
                   hasChildren={false}
-                  icon={<File strokeWidth={1.5} size={16} className="shrink-0" />}
+                  icon={
+                    <File strokeWidth={1.5} size={16} className="shrink-0" />
+                  }
                 />
                 <TreeLabel>{fileName}</TreeLabel>
               </TreeNodeTrigger>
