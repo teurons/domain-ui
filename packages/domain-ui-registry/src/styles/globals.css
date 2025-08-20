@@ -1,2 +1,29 @@
 @source "../../components/**/*.{ts,tsx}";
 @source "../../demos/**/*.{ts,tsx}";
+
+:root {
+  /* Tree component variables */
+  --border-strong: hsl(0 0% 83.1%);
+  --foreground-light: hsl(0 0% 32.2%);
+  --foreground-muted: hsl(0 0% 69.8%);
+  --control: hsl(0 0% 92.9%);
+  --selection: hsl(0 0% 87.5%);
+}
+
+.dark {
+  /* Tree component variables */
+  --border-strong: hsl(0 0% 21.2%);
+  --foreground-light: hsl(0 0% 70.6%);
+  --foreground-muted: hsl(0 0% 30.2%);
+  --control: hsl(0 0% 14.1%);
+  --selection: hsl(0 0% 19.2%);
+}
+
+@theme inline {
+  /* Tree component colors for Tailwind */
+  --color-border-strong: var(--border-strong);
+  --color-foreground-light: var(--foreground-light);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-control: var(--control);
+  --color-selection: var(--selection);
+}

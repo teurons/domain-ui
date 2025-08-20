@@ -13,7 +13,7 @@ import {
   TreeNodeTrigger,
   TreeProvider,
   TreeView,
-} from "@workspace/domain-ui-registry/components/ui/kibo-ui/tree";
+} from "@workspace/domain-ui-registry/components/domain-ui/tree-vanilla";
 import { PanelLeftClose, PanelLeft, FileText } from "lucide-react";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { type ComponentProps, useMemo } from "react";
@@ -239,10 +239,7 @@ function TreeNodes({
               level={level}
               isLast={isLast}
             >
-              <TreeNodeTrigger
-                className="mx-0"
-                onClick={() => setSelectedFilePath(node.path)}
-              >
+              <TreeNodeTrigger onClick={() => setSelectedFilePath(node.path)}>
                 <TreeExpander />
                 <TreeIcon />
                 <TreeLabel>{fileName}</TreeLabel>
@@ -258,7 +255,7 @@ function TreeNodes({
             level={level}
             isLast={isLast}
           >
-            <TreeNodeTrigger className="mx-0">
+            <TreeNodeTrigger>
               <TreeExpander hasChildren />
               <TreeIcon hasChildren />
               <TreeLabel>{fileName}</TreeLabel>
@@ -329,7 +326,7 @@ function FileTree({
           defaultExpandedIds={defaultExpandedIds}
           selectedIds={selectedFilePath ? [selectedFilePath] : []}
         >
-          <TreeView className="p-0 py-2">
+          <TreeView>
             <TreeNodes nodes={treeNodes} />
           </TreeView>
         </TreeProvider>

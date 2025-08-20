@@ -44,5 +44,8 @@
       "msw",
       "sharp"
     ]
+  },
+  "dependencies": {
+    "react-accessible-treeview": "^2.11.2"
   }
 }

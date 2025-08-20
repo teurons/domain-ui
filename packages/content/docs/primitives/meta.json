@@ -1,10 +1,11 @@
 {
   "title": "Primitives",
-  "description": "Low-level building blocks and utilities", 
+  "description": "Low-level building blocks and utilities",
   "pages": [
     "regex-input",
     "regex-input-incremental",
     "responsive-resizable-preview",
-    "shadcn-registry-item-code-block"
+    "shadcn-registry-item-code-block",
+    "tree-view"
   ]
 }

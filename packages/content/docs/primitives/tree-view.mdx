@@ -1,0 +1,46 @@
+---
+title: Tree View
+description: A flexible tree view component for hierarchical data display with expand/collapse functionality and selection states.
+---
+
+import TreeViewDemo from "@workspace/domain-ui-registry/demos/tree-view-demo";
+
+## Demo
+
+<ComponentPreview demo={<TreeViewDemo />}>
+  <include>../../../domain-ui-registry/demos/tree-view-demo.tsx</include>
+</ComponentPreview>
+
+## Installation
+
+### CLI
+
+<RegistryCliCommands name="tree-view" type="free" />
+
+### Manual
+
+Copy and paste the following code into your project:
+
+<RegistryAllFiles name="tree-view" type="free" />
+
+## Usage
+
+```tsx
+import {
+  TreeView,
+  TreeViewBranch,
+  TreeViewLeaf,
+} from "@/components/ui/tree-view";
+
+export default function MyComponent() {
+  return (
+    <TreeView defaultExpandedItems={["src"]}>
+      <TreeViewBranch id="src" name="src">
+        <TreeViewLeaf id="app.tsx" name="app.tsx" />
+        <TreeViewLeaf id="main.tsx" name="main.tsx" />
+      </TreeViewBranch>
+      <TreeViewLeaf id="package.json" name="package.json" />
+    </TreeView>
+  );
+}
+```
