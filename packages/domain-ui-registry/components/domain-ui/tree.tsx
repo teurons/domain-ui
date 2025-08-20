@@ -251,7 +251,7 @@ export const TreeNodeTrigger = ({
         onClick?.(e);
       }}
       style={{
-        paddingLeft: 16 + ((level - 1) * 38) / 2, // Matching tree-view padding calculation exactly
+        paddingLeft: 24 + ((level - 1) * 38) / 2, // Increased base padding to match tree-view visual spacing
       }}
       whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
       {...props}
@@ -277,7 +277,7 @@ export const TreeLines = () => {
           <div
             key={i}
             style={{
-              left: 16 + (i * 38) / 2 + CHEVRON_ICON_SIZE / 2,
+              left: 24 + (i * 38) / 2 + CHEVRON_ICON_SIZE / 2,
             }}
             className={"absolute h-full w-px bg-border-strong"}
           />

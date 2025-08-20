@@ -224,14 +224,14 @@ export default function TreeDemo() {
     <div className="space-y-4">
       <h3 className="text-sm font-medium">File Tree</h3>
 
-      <div className="w-64 h-[400px] py-2 border rounded-lg bg-muted/30 overflow-y-auto">
+      <div className="w-64 h-[400px] py-2 border rounded-lg bg-muted/30 overflow-auto">
         <TreeProvider
           selectedIds={selectedIds}
           onSelectionChange={handleSelectionChange}
           defaultExpandedIds={["src", "components", "lib", "public"]}
           indent={38}
         >
-          <TreeView>{renderTreeNode(treeData)}</TreeView>
+          <TreeView className="min-w-fit">{renderTreeNode(treeData)}</TreeView>
         </TreeProvider>
       </div>
 

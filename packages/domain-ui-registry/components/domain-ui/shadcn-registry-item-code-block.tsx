@@ -14,7 +14,7 @@ import {
   TreeProvider,
   TreeView,
 } from "@workspace/domain-ui-registry/components/domain-ui/tree";
-import { PanelLeftClose, PanelLeft, FileText } from "lucide-react";
+import { PanelLeftClose, PanelLeft, FileText, File } from "lucide-react";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { type ComponentProps, useMemo } from "react";
 import { cn } from "@workspace/domain-ui-registry/lib/utils";
@@ -240,8 +240,11 @@ function TreeNodes({
               isLast={isLast}
             >
               <TreeNodeTrigger onClick={() => setSelectedFilePath(node.path)}>
-                <TreeExpander />
-                <TreeIcon />
+                <TreeExpander hasChildren={false} />
+                <TreeIcon 
+                  hasChildren={false}
+                  icon={<File strokeWidth={1.5} size={16} className="shrink-0" />}
+                />
                 <TreeLabel>{fileName}</TreeLabel>
               </TreeNodeTrigger>
             </TreeNode>
@@ -256,8 +259,8 @@ function TreeNodes({
             isLast={isLast}
           >
             <TreeNodeTrigger>
-              <TreeExpander hasChildren />
-              <TreeIcon hasChildren />
+              <TreeExpander hasChildren={true} />
+              <TreeIcon hasChildren={true} />
               <TreeLabel>{fileName}</TreeLabel>
             </TreeNodeTrigger>
             <TreeNodeContent hasChildren>
@@ -325,8 +328,9 @@ function FileTree({
         <TreeProvider
           defaultExpandedIds={defaultExpandedIds}
           selectedIds={selectedFilePath ? [selectedFilePath] : []}
+          indent={38}
         >
-          <TreeView>
+          <TreeView className="min-w-fit">
             <TreeNodes nodes={treeNodes} />
           </TreeView>
         </TreeProvider>
