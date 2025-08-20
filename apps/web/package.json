@@ -11,7 +11,9 @@
     "lint:fix": "next lint --fix",
     "typecheck": "tsc --noEmit",
     "postinstall": "fumadocs-mdx",
-    "replace-registry-urls": "./replace-registry-urls.sh"
+    "replace-registry-urls": "./replace-registry-urls.sh",
+    "sitemap": "next-sitemap --config next-sitemap.config.cjs",
+    "postbuild": "pnpm sitemap"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
