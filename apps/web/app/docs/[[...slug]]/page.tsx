@@ -29,6 +29,7 @@ export default async function Page(props: {
       tableOfContentPopover={{
         enabled: true,
       }}
+      lastUpdate={new Date(page.data.lastModified ?? 0)}
     >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
