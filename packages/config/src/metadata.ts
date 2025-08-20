@@ -10,6 +10,7 @@ export function createMetadata(override: Metadata): Metadata {
   const ogUrl = `${baseUrl}/api/og`;
 
   return {
+    robots: "index, follow",
     ...override,
     keywords: [
       "Domain UI",
@@ -22,7 +23,6 @@ export function createMetadata(override: Metadata): Metadata {
       "shadcn",
       "Copy paste components",
       "React components",
-      "Next.js",
       "Tailwind CSS",
       "Industry-specific UI",
       "Business components",
@@ -30,11 +30,11 @@ export function createMetadata(override: Metadata): Metadata {
     ],
     authors: [
       {
-        name: "domain-ui",
+        name: "@rjv_im",
         url: "https://domain-ui.dev",
       },
     ],
-    creator: "domain-ui",
+    creator: "@rjv_im",
     openGraph: {
       type: "website",
       locale: "en_US",
@@ -53,6 +53,7 @@ export function createMetadata(override: Metadata): Metadata {
       ...override.openGraph,
     },
     twitter: {
+      site: "@rjv_im",
       card: "summary_large_image",
       creator: "@rjv_im",
       title: override.title ?? undefined,
