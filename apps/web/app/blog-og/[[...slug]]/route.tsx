@@ -19,7 +19,7 @@ export async function GET(
 ) {
   const resolvedParams = await params;
 
-  console.log("resolvedParams", resolvedParams);
+  // console.log("resolvedParams", resolvedParams);
 
   const metadata = generateOGImageMetadata(resolvedParams, {
     blogConstants,
@@ -40,7 +40,7 @@ export async function generateStaticParams() {
 
   const imageRoutes = await generateOgImageStaticParams(blogSource, posts);
 
-  console.log("imageRoutes", imageRoutes);
+  // console.log("imageRoutes", imageRoutes);
 
   return imageRoutes;
 }
