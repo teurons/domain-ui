@@ -258,6 +258,32 @@
       }
     },
     {
+      "name": "usa-ssn-input",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/usa/ssn-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "ssn",
+          "social-security",
+          "usa",
+          "validation",
+          "identity",
+          "kyc",
+          "form"
+        ]
+      }
+    },
+    {
       "name": "responsive-resizable-preview",
       "type": "registry:component",
       "registryDependencies": ["button", "badge", "resizable"],
