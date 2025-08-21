@@ -272,6 +272,7 @@ export const TreeLines = () => {
       {showLines &&
         Array.from({ length: level - 1 }).map((_, i) => (
           <div
+            // biome-ignore lint/suspicious/noArrayIndexKey: These are purely positional decorative lines
             key={i}
             style={{
               left: 24 + (i * 38) / 2 + CHEVRON_ICON_SIZE / 2,
@@ -436,12 +437,12 @@ export const TreeIcon = ({
     );
 
   return (
-    <div
+    <motion.div
       className={cn("flex items-center justify-center", className)}
       {...props}
     >
       {getDefaultIcon()}
-    </div>
+    </motion.div>
   );
 };
 
