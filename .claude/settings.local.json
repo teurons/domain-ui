@@ -83,7 +83,17 @@
       "Bash(git checkout:*)",
       "WebFetch(domain:fumadocs.dev)",
       "WebFetch(domain:shiki.style)",
-      "Bash(shadcn build:*)"
+      "Bash(shadcn build:*)",
+      "Bash(pnpm --filter @workspace/domain-ui-registry test:run)",
+      "Bash(pnpm --filter @workspace/domain-ui-registry test:run __tests__/usa-ssn-regex.test.ts -t \"Debug Simple Patterns First\")",
+      "Bash(pnpm --filter @workspace/domain-ui-registry test:run __tests__/incremental-regex.test.ts -t \"should handle basic character patterns\")",
+      "Bash(pnpm --filter @workspace/domain-ui-registry test:run __tests__/usa-ssn-regex.test.ts)",
+      "Bash(pnpm --filter @workspace/domain-ui-registry test:run __tests__/usa-ssn-regex.test.ts -t \"should match valid SSN formats\")",
+      "Bash(pnpm --filter @workspace/domain-ui-registry test:run __tests__/usa-ssn-regex.test.ts -t \"should handle incremental SSN input with validation\")",
+      "Bash(pnpm --filter @workspace/domain-ui-registry test:run __tests__/government-id-regex.test.ts)",
+      "Bash(pnpm --filter @workspace/domain-ui-registry test:run __tests__/ssn-failure-analysis.test.ts)",
+      "Bash(npm install:*)",
+      "Bash(npm run test:*)"
     ],
     "deny": []
   },
