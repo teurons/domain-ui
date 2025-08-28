@@ -339,6 +339,30 @@
       }
     },
     {
+      "name": "phone-input",
+      "type": "registry:component",
+      "registryDependencies": ["input", "card", "badge"],
+      "files": [
+        {
+          "path": "components/domain-ui/experimental/phone-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "phone",
+          "international",
+          "country",
+          "validation",
+          "formatting",
+          "experimental",
+          "form",
+          "contact"
+        ]
+      }
+    },
+    {
       "name": "shadcn-registry-item-code-block",
       "type": "registry:component",
       "registryDependencies": [
