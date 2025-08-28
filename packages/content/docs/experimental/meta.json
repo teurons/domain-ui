@@ -8,6 +8,7 @@
     "passport-input-incremental-usa",
     "passport-input-incremental-uk",
     "passport-input-incremental-india",
-    "phone-input"
+    "phone-input",
+    "portfolio-chart"
   ]
 }

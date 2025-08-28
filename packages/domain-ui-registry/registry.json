@@ -363,6 +363,31 @@
       }
     },
     {
+      "name": "portfolio-chart",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/domain-ui/experimental/portfolio-chart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "chart",
+          "portfolio",
+          "timeline",
+          "finance",
+          "visualization",
+          "interactive",
+          "svg",
+          "experimental",
+          "robinhood",
+          "investment"
+        ]
+      }
+    },
+    {
       "name": "shadcn-registry-item-code-block",
       "type": "registry:component",
       "registryDependencies": [
