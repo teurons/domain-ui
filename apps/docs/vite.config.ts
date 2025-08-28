@@ -7,4 +7,17 @@ import * as MdxConfig from "./source.config";
 
 export default defineConfig({
   plugins: [mdx(MdxConfig), tailwindcss(), reactRouter(), tsconfigPaths()],
+  build: {
+    sourcemap: false,
+    rollupOptions: {
+      onwarn(warning, warn) {
+        // Suppress sourcemap warnings
+        if (warning.code === 'SOURCEMAP_ERROR') return;
+        warn(warning);
+      },
+    },
+  },
+  optimizeDeps: {
+    force: true,
+  },
 });

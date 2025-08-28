@@ -5,7 +5,7 @@ import { PortfolioChart, PortfolioDataPoint } from "@workspace/domain-ui-registr
 
 // Seeded random function for deterministic data generation
 const seededRandom = (seed: number) => {
-  let x = Math.sin(seed) * 10000
+  const x = Math.sin(seed) * 10_000
   return x - Math.floor(x)
 }
 
@@ -44,7 +44,7 @@ const portfolioDatasets = {
   "1M": generatePortfolioData(30, 10_000),
   "3M": generatePortfolioData(90, 10_000),
   "1Y": generatePortfolioData(365, 10_000),
-  "ALL": generatePortfolioData(1095, 8_000) // 3 years of data
+  "ALL": generatePortfolioData(1095, 8000) // 3 years of data
 }
 
 export default function PortfolioChartDemo() {
@@ -164,9 +164,9 @@ export default function PortfolioChartDemo() {
         <h3 className="text-xl font-semibold">Usage Examples</h3>
         <div className="bg-muted rounded-lg p-4 text-sm font-mono">
           <div className="text-muted-foreground mb-2">// Basic usage</div>
-          <div>{`<PortfolioChart data={portfolioData} />`}</div>
+          <div>{"<PortfolioChart data={portfolioData} />"}</div>
           
-          <div className="text-muted-foreground mb-2 mt-4">// With custom dimensions and time periods</div>
+          <div className="text-muted-foreground mb-2 mt-4">{/* With custom dimensions and time periods */}</div>
           <div>{`<PortfolioChart
   data={portfolioData}
   width={800}
