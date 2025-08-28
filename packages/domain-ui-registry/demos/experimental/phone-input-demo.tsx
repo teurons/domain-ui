@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { PhoneInput, getPhoneData, type PhoneData } from "@workspace/domain-ui-registry/components/domain-ui/experimental/phone-input"
+import { PhoneInput, type PhoneData } from "@workspace/domain-ui-registry/components/domain-ui/experimental/phone-input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/domain-ui-registry/components/ui/card"
 import { Badge } from "@workspace/domain-ui-registry/components/ui/badge"
 
@@ -105,16 +105,16 @@ export default function PhoneInputDemo() {
 
       <div className="space-y-4">
         <h4 className="text-base font-medium">Form Example</h4>
-        <form className="space-y-4 max-w-md">
+        <form className="max-w-md space-y-4">
           <div>
-            <label htmlFor="phone" className="block text-sm font-medium mb-2">
+            <label htmlFor="phone" className="mb-2 block font-medium text-sm">
               Phone Number *
             </label>
             <PhoneInput
-              defaultCountry="US"
+              defaultCountry="IN"
               placeholder="Enter a valid phone number"
             />
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="mt-1 text-muted-foreground text-xs">
               Select your country and enter your phone number
             </p>
           </div>

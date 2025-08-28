@@ -4,67 +4,67 @@ import * as React from "react"
 import { Input } from "@workspace/domain-ui-registry/components/ui/input"
 import { cn } from "@workspace/domain-ui-registry/lib/utils"
 
-// Country data with flags, names, and calling codes
+// Country data with flags, names, and calling codes (sorted alphabetically by name)
 const COUNTRIES = [
-  { code: "US", name: "United States", flag: "🇺🇸", dialCode: "+1" },
-  { code: "CA", name: "Canada", flag: "🇨🇦", dialCode: "+1" },
-  { code: "GB", name: "United Kingdom", flag: "🇬🇧", dialCode: "+44" },
-  { code: "AU", name: "Australia", flag: "🇦🇺", dialCode: "+61" },
-  { code: "DE", name: "Germany", flag: "🇩🇪", dialCode: "+49" },
-  { code: "FR", name: "France", flag: "🇫🇷", dialCode: "+33" },
-  { code: "IT", name: "Italy", flag: "🇮🇹", dialCode: "+39" },
-  { code: "ES", name: "Spain", flag: "🇪🇸", dialCode: "+34" },
-  { code: "NL", name: "Netherlands", flag: "🇳🇱", dialCode: "+31" },
-  { code: "BE", name: "Belgium", flag: "🇧🇪", dialCode: "+32" },
-  { code: "CH", name: "Switzerland", flag: "🇨🇭", dialCode: "+41" },
-  { code: "AT", name: "Austria", flag: "🇦🇹", dialCode: "+43" },
-  { code: "SE", name: "Sweden", flag: "🇸🇪", dialCode: "+46" },
-  { code: "NO", name: "Norway", flag: "🇳🇴", dialCode: "+47" },
-  { code: "DK", name: "Denmark", flag: "🇩🇰", dialCode: "+45" },
-  { code: "FI", name: "Finland", flag: "🇫🇮", dialCode: "+358" },
-  { code: "PL", name: "Poland", flag: "🇵🇱", dialCode: "+48" },
-  { code: "CZ", name: "Czech Republic", flag: "🇨🇿", dialCode: "+420" },
-  { code: "HU", name: "Hungary", flag: "🇭🇺", dialCode: "+36" },
-  { code: "RO", name: "Romania", flag: "🇷🇴", dialCode: "+40" },
-  { code: "BG", name: "Bulgaria", flag: "🇧🇬", dialCode: "+359" },
-  { code: "HR", name: "Croatia", flag: "🇭🇷", dialCode: "+385" },
-  { code: "SI", name: "Slovenia", flag: "🇸🇮", dialCode: "+386" },
-  { code: "SK", name: "Slovakia", flag: "🇸🇰", dialCode: "+421" },
-  { code: "LT", name: "Lithuania", flag: "🇱🇹", dialCode: "+370" },
-  { code: "LV", name: "Latvia", flag: "🇱🇻", dialCode: "+371" },
-  { code: "EE", name: "Estonia", flag: "🇪🇪", dialCode: "+372" },
-  { code: "IE", name: "Ireland", flag: "🇮🇪", dialCode: "+353" },
-  { code: "PT", name: "Portugal", flag: "🇵🇹", dialCode: "+351" },
-  { code: "GR", name: "Greece", flag: "🇬🇷", dialCode: "+30" },
-  { code: "CY", name: "Cyprus", flag: "🇨🇾", dialCode: "+357" },
-  { code: "MT", name: "Malta", flag: "🇲🇹", dialCode: "+356" },
-  { code: "LU", name: "Luxembourg", flag: "🇱🇺", dialCode: "+352" },
-  { code: "IS", name: "Iceland", flag: "🇮🇸", dialCode: "+354" },
-  { code: "JP", name: "Japan", flag: "🇯🇵", dialCode: "+81" },
-  { code: "KR", name: "South Korea", flag: "🇰🇷", dialCode: "+82" },
-  { code: "CN", name: "China", flag: "🇨🇳", dialCode: "+86" },
-  { code: "IN", name: "India", flag: "🇮🇳", dialCode: "+91" },
-  { code: "SG", name: "Singapore", flag: "🇸🇬", dialCode: "+65" },
-  { code: "HK", name: "Hong Kong", flag: "🇭🇰", dialCode: "+852" },
-  { code: "TW", name: "Taiwan", flag: "🇹🇼", dialCode: "+886" },
-  { code: "MY", name: "Malaysia", flag: "🇲🇾", dialCode: "+60" },
-  { code: "TH", name: "Thailand", flag: "🇹🇭", dialCode: "+66" },
-  { code: "PH", name: "Philippines", flag: "🇵🇭", dialCode: "+63" },
-  { code: "ID", name: "Indonesia", flag: "🇮🇩", dialCode: "+62" },
-  { code: "VN", name: "Vietnam", flag: "🇻🇳", dialCode: "+84" },
-  { code: "NZ", name: "New Zealand", flag: "🇳🇿", dialCode: "+64" },
-  { code: "ZA", name: "South Africa", flag: "🇿🇦", dialCode: "+27" },
-  { code: "BR", name: "Brazil", flag: "🇧🇷", dialCode: "+55" },
-  { code: "MX", name: "Mexico", flag: "🇲🇽", dialCode: "+52" },
   { code: "AR", name: "Argentina", flag: "🇦🇷", dialCode: "+54" },
-  { code: "CL", name: "Chile", flag: "🇨🇱", dialCode: "+56" },
-  { code: "CO", name: "Colombia", flag: "🇨🇴", dialCode: "+57" },
-  { code: "PE", name: "Peru", flag: "🇵🇪", dialCode: "+51" },
-  { code: "UY", name: "Uruguay", flag: "🇺🇾", dialCode: "+598" },
-  { code: "PY", name: "Paraguay", flag: "🇵🇾", dialCode: "+595" },
+  { code: "AU", name: "Australia", flag: "🇦🇺", dialCode: "+61" },
+  { code: "AT", name: "Austria", flag: "🇦🇹", dialCode: "+43" },
+  { code: "BE", name: "Belgium", flag: "🇧🇪", dialCode: "+32" },
   { code: "BO", name: "Bolivia", flag: "🇧🇴", dialCode: "+591" },
+  { code: "BR", name: "Brazil", flag: "🇧🇷", dialCode: "+55" },
+  { code: "BG", name: "Bulgaria", flag: "🇧🇬", dialCode: "+359" },
+  { code: "CA", name: "Canada", flag: "🇨🇦", dialCode: "+1" },
+  { code: "CL", name: "Chile", flag: "🇨🇱", dialCode: "+56" },
+  { code: "CN", name: "China", flag: "🇨🇳", dialCode: "+86" },
+  { code: "CO", name: "Colombia", flag: "🇨🇴", dialCode: "+57" },
+  { code: "HR", name: "Croatia", flag: "🇭🇷", dialCode: "+385" },
+  { code: "CY", name: "Cyprus", flag: "🇨🇾", dialCode: "+357" },
+  { code: "CZ", name: "Czech Republic", flag: "🇨🇿", dialCode: "+420" },
+  { code: "DK", name: "Denmark", flag: "🇩🇰", dialCode: "+45" },
   { code: "EC", name: "Ecuador", flag: "🇪🇨", dialCode: "+593" },
-  { code: "VE", name: "Venezuela", flag: "🇻🇪", dialCode: "+58" }
+  { code: "EE", name: "Estonia", flag: "🇪🇪", dialCode: "+372" },
+  { code: "FI", name: "Finland", flag: "🇫🇮", dialCode: "+358" },
+  { code: "FR", name: "France", flag: "🇫🇷", dialCode: "+33" },
+  { code: "DE", name: "Germany", flag: "🇩🇪", dialCode: "+49" },
+  { code: "GR", name: "Greece", flag: "🇬🇷", dialCode: "+30" },
+  { code: "HK", name: "Hong Kong", flag: "🇭🇰", dialCode: "+852" },
+  { code: "HU", name: "Hungary", flag: "🇭🇺", dialCode: "+36" },
+  { code: "IS", name: "Iceland", flag: "🇮🇸", dialCode: "+354" },
+  { code: "IN", name: "India", flag: "🇮🇳", dialCode: "+91" },
+  { code: "ID", name: "Indonesia", flag: "🇮🇩", dialCode: "+62" },
+  { code: "IE", name: "Ireland", flag: "🇮🇪", dialCode: "+353" },
+  { code: "IT", name: "Italy", flag: "🇮🇹", dialCode: "+39" },
+  { code: "JP", name: "Japan", flag: "🇯🇵", dialCode: "+81" },
+  { code: "LV", name: "Latvia", flag: "🇱🇻", dialCode: "+371" },
+  { code: "LT", name: "Lithuania", flag: "🇱🇹", dialCode: "+370" },
+  { code: "LU", name: "Luxembourg", flag: "🇱🇺", dialCode: "+352" },
+  { code: "MY", name: "Malaysia", flag: "🇲🇾", dialCode: "+60" },
+  { code: "MT", name: "Malta", flag: "🇲🇹", dialCode: "+356" },
+  { code: "MX", name: "Mexico", flag: "🇲🇽", dialCode: "+52" },
+  { code: "NL", name: "Netherlands", flag: "🇳🇱", dialCode: "+31" },
+  { code: "NZ", name: "New Zealand", flag: "🇳🇿", dialCode: "+64" },
+  { code: "NO", name: "Norway", flag: "🇳🇴", dialCode: "+47" },
+  { code: "PY", name: "Paraguay", flag: "🇵🇾", dialCode: "+595" },
+  { code: "PE", name: "Peru", flag: "🇵🇪", dialCode: "+51" },
+  { code: "PH", name: "Philippines", flag: "🇵🇭", dialCode: "+63" },
+  { code: "PL", name: "Poland", flag: "🇵🇱", dialCode: "+48" },
+  { code: "PT", name: "Portugal", flag: "🇵🇹", dialCode: "+351" },
+  { code: "RO", name: "Romania", flag: "🇷🇴", dialCode: "+40" },
+  { code: "SG", name: "Singapore", flag: "🇸🇬", dialCode: "+65" },
+  { code: "SK", name: "Slovakia", flag: "🇸🇰", dialCode: "+421" },
+  { code: "SI", name: "Slovenia", flag: "🇸🇮", dialCode: "+386" },
+  { code: "ZA", name: "South Africa", flag: "🇿🇦", dialCode: "+27" },
+  { code: "KR", name: "South Korea", flag: "🇰🇷", dialCode: "+82" },
+  { code: "ES", name: "Spain", flag: "🇪🇸", dialCode: "+34" },
+  { code: "SE", name: "Sweden", flag: "🇸🇪", dialCode: "+46" },
+  { code: "CH", name: "Switzerland", flag: "🇨🇭", dialCode: "+41" },
+  { code: "TW", name: "Taiwan", flag: "🇹🇼", dialCode: "+886" },
+  { code: "TH", name: "Thailand", flag: "🇹🇭", dialCode: "+66" },
+  { code: "GB", name: "United Kingdom", flag: "🇬🇧", dialCode: "+44" },
+  { code: "US", name: "United States", flag: "🇺🇸", dialCode: "+1" },
+  { code: "UY", name: "Uruguay", flag: "🇺🇾", dialCode: "+598" },
+  { code: "VE", name: "Venezuela", flag: "🇻🇪", dialCode: "+58" },
+  { code: "VN", name: "Vietnam", flag: "🇻🇳", dialCode: "+84" }
 ]
 
 export interface PhoneData {
@@ -118,7 +118,7 @@ const validatePhoneNumber = (digits: string, countryCode: string): boolean => {
 
 // Extract phone data utility
 export const getPhoneData = (phoneNumber: string, selectedCountry: string): PhoneData => {
-  const country = COUNTRIES.find(c => c.code === selectedCountry) || COUNTRIES[0]
+  const country = COUNTRIES.find(c => c.code === selectedCountry) || COUNTRIES[0]!
   const digits = phoneNumber.replace(/\D/g, "")
   
   const nationalNumber = digits
@@ -147,7 +147,7 @@ export const getPhoneData = (phoneNumber: string, selectedCountry: string): Phon
 }
 
 export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
-  ({ value = "", onChange, onPhoneDataChange, placeholder = "Enter phone number", disabled, className, defaultCountry = "US" }, ref) => {
+  ({ value = "", onChange, onPhoneDataChange, placeholder = "Enter phone number", disabled, className, defaultCountry = "IN" }, ref) => {
     const [selectedCountry, setSelectedCountry] = React.useState(defaultCountry)
     const [isDropdownOpen, setIsDropdownOpen] = React.useState(false)
     const [searchQuery, setSearchQuery] = React.useState("")
@@ -156,7 +156,7 @@ export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
     const dropdownRef = React.useRef<HTMLDivElement>(null)
     const searchRef = React.useRef<HTMLInputElement>(null)
 
-    const selectedCountryData = COUNTRIES.find(c => c.code === selectedCountry) || COUNTRIES[0]
+    const selectedCountryData = COUNTRIES.find(c => c.code === selectedCountry) || COUNTRIES[0]!
 
     // Filter countries based on search
     const filteredCountries = React.useMemo(() => {
