@@ -1,0 +1,57 @@
+---
+title: Phone Input
+description: A comprehensive phone input component with country selection, formatting, and validation.
+---
+
+import PhoneInputDemo from "@workspace/domain-ui-registry/demos/experimental/phone-input-demo";
+
+## Demo
+
+<ComponentPreview demo={<PhoneInputDemo />}>
+  <include>../../../domain-ui-registry/demos/experimental/phone-input-demo.tsx</include>
+</ComponentPreview>
+
+## Installation
+
+### CLI
+
+<RegistryCliCommands name="phone-input" type="free" />
+
+### Manual
+
+Copy and paste the following code into your project:
+
+<RegistryAllFiles name="phone-input" type="free" />
+
+## Usage
+
+```tsx
+import { PhoneInput, getPhoneData } from "@/components/domain-ui/experimental/phone-input"
+```
+
+```tsx
+export default function PhoneInputExample() {
+  const [phone, setPhone] = useState("")
+  const [phoneData, setPhoneData] = useState(null)
+
+  return (
+    <PhoneInput
+      value={phone}
+      onChange={setPhone}
+      onPhoneDataChange={setPhoneData}
+      defaultCountry="IN"
+      placeholder="Enter phone number"
+    />
+  )
+}
+```
+
+## Features
+
+- **Country Selection**: Searchable dropdown with 50+ countries and flag icons
+- **Automatic Formatting**: US/Canada format `(XXX) XXX-XXXX` and international spacing
+- **Real-time Validation**: Validates phone numbers based on country-specific rules
+- **Phone Data Extraction**: Extract country code, calling code, national/international numbers
+- **Responsive Design**: Click-outside-to-close dropdown functionality
+- **TypeScript Support**: Full TypeScript interfaces and type safety
+- **Self-contained**: No external dependencies beyond React and shadcn/ui components

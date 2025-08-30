@@ -1,0 +1,197 @@
+---
+title: Portfolio Chart
+description: A Robinhood-style interactive portfolio chart component with time series visualization, hover tooltips, and dynamic styling.
+---
+
+import PortfolioChartDemo from "@workspace/domain-ui-registry/demos/experimental/portfolio-chart-demo";
+
+## Demo
+
+<ComponentPreview demo={<PortfolioChartDemo />}>
+  <include>../../../domain-ui-registry/demos/experimental/portfolio-chart-demo.tsx</include>
+</ComponentPreview>
+
+## Installation
+
+### CLI
+
+<RegistryCliCommands name="portfolio-chart" type="free" />
+
+### Manual
+
+Copy and paste the following code into your project:
+
+<RegistryAllFiles name="portfolio-chart" type="free" />
+
+## Usage
+
+```tsx
+import { PortfolioChart } from "@/components/domain-ui/experimental/portfolio-chart"
+
+const portfolioData = [
+  { timestamp: 1640995200000, value: 10000 },
+  { timestamp: 1641081600000, value: 10250 },
+  { timestamp: 1641168000000, value: 9800 },
+  // ... more data points
+]
+
+export function MyPortfolio() {
+  return (
+    <PortfolioChart
+      data={portfolioData}
+      width={600}
+      height={300}
+      showGrid={true}
+      showTooltip={true}
+    />
+  )
+}
+```
+
+## Examples
+
+### Basic Chart
+
+```tsx
+<PortfolioChart data={portfolioData} />
+```
+
+### With Time Period Selection
+
+```tsx
+const [selectedPeriod, setSelectedPeriod] = useState("1M")
+
+<PortfolioChart
+  data={portfolioData}
+  selectedTimePeriod={selectedPeriod}
+  onTimePeriodChange={setSelectedPeriod}
+  timePeriods={[
+    { label: "1D", value: "1D", days: 1 },
+    { label: "1W", value: "1W", days: 7 },
+    { label: "1M", value: "1M", days: 30 },
+    { label: "3M", value: "3M", days: 90 },
+    { label: "1Y", value: "1Y", days: 365 }
+  ]}
+/>
+```
+
+### Compact View
+
+```tsx
+<PortfolioChart
+  data={portfolioData}
+  width={300}
+  height={150}
+  showGrid={false}
+  timePeriods={[
+    { label: "1D", value: "1D", days: 1 },
+    { label: "1W", value: "1W", days: 7 }
+  ]}
+/>
+```
+
+### Custom Styling
+
+```tsx
+<PortfolioChart
+  data={portfolioData}
+  lineColor="#FF6B6B"
+  fillColor="rgba(255, 107, 107, 0.1)"
+  className="border rounded-lg p-4"
+/>
+```
+
+## API Reference
+
+### PortfolioChart
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `data` | `PortfolioDataPoint[]` | - | Array of portfolio data points with timestamp and value |
+| `className` | `string` | - | Additional CSS classes |
+| `width` | `number` | `400` | Chart width in pixels |
+| `height` | `number` | `200` | Chart height in pixels |
+| `showGrid` | `boolean` | `true` | Whether to show grid lines |
+| `showTooltip` | `boolean` | `true` | Whether to show hover tooltips |
+| `lineColor` | `string` | `"#00C805"` | Color of the chart line (overridden by dynamic colors) |
+| `fillColor` | `string` | `"rgba(0, 200, 5, 0.1)"` | Color of the filled area (overridden by dynamic colors) |
+| `timePeriods` | `TimePeriod[]` | Default periods | Array of available time periods |
+| `onTimePeriodChange` | `(period: string) => void` | - | Callback when time period changes |
+| `selectedTimePeriod` | `string` | `"1D"` | Currently selected time period |
+
+### PortfolioDataPoint
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `timestamp` | `number` | Unix timestamp in milliseconds |
+| `value` | `number` | Portfolio value at this timestamp |
+
+### TimePeriod
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `label` | `string` | Display label for the time period |
+| `value` | `string` | Unique identifier for the time period |
+| `days` | `number` | Number of days this period represents (-1 for all time) |
+
+## Features
+
+### Interactive Hover
+- Hover over any point on the chart to see detailed value and timestamp
+- Smooth animations and visual feedback
+- Tooltip follows cursor position
+
+### Dynamic Colors
+- Automatically changes colors based on portfolio performance
+- Green for gains, red for losses
+- Consistent with financial app conventions
+
+### Time Period Selection
+- Built-in time period buttons (1D, 1W, 1M, 3M, 1Y, ALL)
+- Fully customizable time periods
+- Callback support for data filtering
+
+### Responsive Design
+- Customizable dimensions
+- Works on all screen sizes
+- Optional grid lines for better readability
+
+### Currency Formatting
+- Automatic currency formatting
+- Percentage change calculations
+- Localized number formatting
+
+## Data Format
+
+The component expects data in the following format:
+
+```tsx
+const portfolioData: PortfolioDataPoint[] = [
+  {
+    timestamp: 1640995200000, // Unix timestamp in milliseconds
+    value: 10000.50          // Portfolio value as number
+  },
+  // ... more data points
+]
+```
+
+## Accessibility
+
+- Semantic SVG structure
+- Proper ARIA labels
+- Keyboard navigation support for time period buttons
+- High contrast colors for better visibility
+
+## Performance
+
+- Efficient SVG rendering
+- Optimized hover detection
+- Minimal re-renders with React optimization
+- Handles large datasets smoothly
+
+## Browser Support
+
+- Modern browsers with SVG support
+- IE11+ (with polyfills)
+- Mobile browsers
+- Touch-friendly interactions
