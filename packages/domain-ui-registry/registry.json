@@ -341,7 +341,8 @@
     {
       "name": "phone-input",
       "type": "registry:component",
-      "registryDependencies": ["input", "card", "badge"],
+      "registryDependencies": ["input", "button", "command", "popover", "scroll-area"],
+      "dependencies": ["react-phone-number-input", "lucide-react"],
       "files": [
         {
           "path": "components/domain-ui/experimental/phone-input.tsx",
