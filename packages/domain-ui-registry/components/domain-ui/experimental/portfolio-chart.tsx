@@ -1,7 +1,14 @@
 "use client"
 
 import * as React from "react"
+import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { cn } from "@workspace/domain-ui-registry/lib/utils"
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  type ChartConfig,
+} from "@workspace/domain-ui-registry/components/ui/chart"
 
 export interface PortfolioDataPoint {
   timestamp: number
@@ -11,12 +18,9 @@ export interface PortfolioDataPoint {
 export interface PortfolioChartProps {
   data: PortfolioDataPoint[]
   className?: string
-  width?: number
   height?: number
   showGrid?: boolean
   showTooltip?: boolean
-  lineColor?: string
-  fillColor?: string
   timePeriods?: Array<{
     label: string
     value: string
@@ -35,93 +39,46 @@ const DEFAULT_TIME_PERIODS = [
   { label: "ALL", value: "ALL", days: -1 }
 ]
 
+const chartConfig = {
+  value: {
+    label: "Portfolio Value",
+    color: "hsl(var(--chart-1))",
+  },
+} satisfies ChartConfig
+
 export function PortfolioChart({
   data,
   className,
-  width = 400,
   height = 200,
   showGrid = true,
   showTooltip = true,
-  lineColor = "#00C805",
-  fillColor = "rgba(0, 200, 5, 0.1)",
   timePeriods = DEFAULT_TIME_PERIODS,
   onTimePeriodChange,
   selectedTimePeriod = "1D"
 }: PortfolioChartProps) {
-  const [hoveredPoint, setHoveredPoint] = React.useState<PortfolioDataPoint | null>(null)
-  const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
-  const svgRef = React.useRef<SVGSVGElement>(null)
-
-  // Calculate chart dimensions with padding
-  const padding = { top: 20, right: 20, bottom: 40, left: 20 }
-  const chartWidth = width - padding.left - padding.right
-  const chartHeight = height - padding.top - padding.bottom
-
-  // Calculate data bounds
-  const minValue = data.length > 0 ? Math.min(...data.map(d => d.value)) : 0
-  const maxValue = data.length > 0 ? Math.max(...data.map(d => d.value)) : 0
-  const minTime = data.length > 0 ? Math.min(...data.map(d => d.timestamp)) : 0
-  const maxTime = data.length > 0 ? Math.max(...data.map(d => d.timestamp)) : 0
-
-  // Add some padding to the value range
-  const valueRange = maxValue - minValue
-  const paddedMinValue = minValue - valueRange * 0.1
-  const paddedMaxValue = maxValue + valueRange * 0.1
-
-  // Scale functions
-  const xScale = (timestamp: number) => 
-    ((timestamp - minTime) / (maxTime - minTime)) * chartWidth
-
-  const yScale = (value: number) => 
-    chartHeight - ((value - paddedMinValue) / (paddedMaxValue - paddedMinValue)) * chartHeight
-
-  // Generate path for the line chart
-  const linePath = data.reduce((path, point, index) => {
-    const x = xScale(point.timestamp)
-    const y = yScale(point.value)
-    return path + (index === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`)
-  }, "")
-
-  // Generate path for the filled area
-  const areaPath = data.length > 0 ? linePath + 
-    ` L ${xScale(data[data.length - 1]!.timestamp)} ${chartHeight}` +
-    ` L ${xScale(data[0]!.timestamp)} ${chartHeight} Z` : ""
-
-  // Handle mouse events
-  const handleMouseMove = (event: React.MouseEvent<SVGSVGElement>) => {
-    if (!svgRef.current) return
-
-    const rect = svgRef.current.getBoundingClientRect()
-    const mouseX = event.clientX - rect.left - padding.left
-    const mouseY = event.clientY - rect.top - padding.top
-
-    // Find closest data point
-    const relativeX = mouseX / chartWidth
-    const targetTimestamp = minTime + (maxTime - minTime) * relativeX
-    
-    let closestPoint = data[0]!
-    let minDistance = Math.abs(data[0]!.timestamp - targetTimestamp)
-    
-    for (const point of data) {
-      const distance = Math.abs(point.timestamp - targetTimestamp)
-      if (distance < minDistance) {
-        minDistance = distance
-        closestPoint = point
-      }
-    }
-
-    setHoveredPoint(closestPoint)
-    setMousePosition({ x: event.clientX, y: event.clientY })
-  }
-
-  const handleMouseLeave = () => {
-    setHoveredPoint(null)
-  }
+  // Transform data for Recharts
+  const chartData = React.useMemo(() => {
+    return data.map((point) => ({
+      timestamp: point.timestamp,
+      value: point.value,
+      date: new Date(point.timestamp).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      }),
+      time: new Date(point.timestamp).toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+    }))
+  }, [data])
 
   // Determine if portfolio is up or down
-  const isPositive = data.length > 1 && data[data.length - 1].value >= data[0].value
-  const currentLineColor = isPositive ? "#00C805" : "#FF3B30"
-  const currentFillColor = isPositive ? "rgba(0, 200, 5, 0.1)" : "rgba(255, 59, 48, 0.1)"
+  const isPositive = data.length > 1 && 
+    data[data.length - 1]?.value !== undefined && 
+    data[0]?.value !== undefined && 
+    data[data.length - 1].value >= data[0].value
+  const currentColor = isPositive ? "#00C805" : "#FF3B30"
 
   // Format currency
   const formatCurrency = (value: number) => {
@@ -132,33 +89,25 @@ export function PortfolioChart({
     }).format(value)
   }
 
-  // Format date
-  const formatDate = (timestamp: number) => {
-    return new Date(timestamp).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
-    })
-  }
-
   // Calculate percentage change
   const calculateChange = () => {
     if (data.length < 2) return { amount: 0, percentage: 0 }
-    const start = data[0]!.value
-    const end = data[data.length - 1]!.value
+    const start = data[0]?.value || 0
+    const end = data[data.length - 1]?.value || 0
     const amount = end - start
-    const percentage = (amount / start) * 100
+    const percentage = start !== 0 ? (amount / start) * 100 : 0
     return { amount, percentage }
   }
 
   const change = calculateChange()
+  const currentValue = data[data.length - 1]?.value || 0
 
   return (
     <div className={cn("relative", className)}>
       {/* Header with current value and change */}
       <div className="mb-4">
         <div className="text-2xl font-bold">
-          {formatCurrency(hoveredPoint?.value || data[data.length - 1]?.value || 0)}
+          {formatCurrency(currentValue)}
         </div>
         <div className={cn(
           "text-sm font-medium",
@@ -166,11 +115,6 @@ export function PortfolioChart({
         )}>
           {isPositive ? "+" : ""}{formatCurrency(change.amount)} ({isPositive ? "+" : ""}{change.percentage.toFixed(2)}%)
         </div>
-        {hoveredPoint && (
-          <div className="text-xs text-muted-foreground">
-            {formatDate(hoveredPoint.timestamp)}
-          </div>
-        )}
       </div>
 
       {/* Time period selector */}
@@ -192,93 +136,88 @@ export function PortfolioChart({
       </div>
 
       {/* Chart */}
-      <div className="relative">
-        <svg
-          ref={svgRef}
-          width={width}
-          height={height}
-          className="overflow-visible"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
+      <ChartContainer
+        config={chartConfig}
+        className={cn("h-[200px]", `h-[${height}px]`)}
+      >
+        <AreaChart
+          accessibilityLayer
+          data={chartData}
+          margin={{
+            left: 12,
+            right: 12,
+            top: 12,
+            bottom: 12,
+          }}
         >
-          {/* Grid lines */}
           {showGrid && (
-            <g className="opacity-20">
-              {/* Horizontal grid lines */}
-              {[0, 0.25, 0.5, 0.75, 1].map((ratio) => (
-                <line
-                  key={`h-${ratio}`}
-                  x1={padding.left}
-                  y1={padding.top + ratio * chartHeight}
-                  x2={padding.left + chartWidth}
-                  y2={padding.top + ratio * chartHeight}
-                  stroke="currentColor"
-                  strokeWidth={0.5}
-                />
-              ))}
-              {/* Vertical grid lines */}
-              {[0, 0.2, 0.4, 0.6, 0.8, 1].map((ratio) => (
-                <line
-                  key={`v-${ratio}`}
-                  x1={padding.left + ratio * chartWidth}
-                  y1={padding.top}
-                  x2={padding.left + ratio * chartWidth}
-                  y2={padding.top + chartHeight}
-                  stroke="currentColor"
-                  strokeWidth={0.5}
-                />
-              ))}
-            </g>
-          )}
-
-          {/* Chart area */}
-          <g transform={`translate(${padding.left}, ${padding.top})`}>
-            {/* Filled area */}
-            <path
-              d={areaPath}
-              fill={currentFillColor}
-              className="transition-colors duration-200"
-            />
-
-            {/* Line */}
-            <path
-              d={linePath}
-              fill="none"
-              stroke={currentLineColor}
-              strokeWidth={2}
-              className="transition-colors duration-200"
-            />
-
-            {/* Hover indicator */}
-            {hoveredPoint && (
-              <circle
-                cx={xScale(hoveredPoint.timestamp)}
-                cy={yScale(hoveredPoint.value)}
-                r={4}
-                fill={currentLineColor}
-                stroke="white"
-                strokeWidth={2}
-                className="drop-shadow-sm"
+            <>
+              <XAxis
+                dataKey="timestamp"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                hide
               />
-            )}
-          </g>
-        </svg>
-
-        {/* Tooltip */}
-        {showTooltip && hoveredPoint && (
-          <div
-            className="fixed z-50 px-2 py-1 text-xs bg-popover border rounded shadow-lg pointer-events-none"
-            style={{
-              left: mousePosition.x + 10,
-              top: mousePosition.y - 10,
-              transform: 'translateY(-100%)'
+              <YAxis
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                hide
+              />
+            </>
+          )}
+          {showTooltip && (
+            <ChartTooltip
+              cursor={false}
+              content={
+                <ChartTooltipContent
+                  hideLabel
+                  formatter={(value, name, props) => (
+                    <div className="flex flex-col gap-1">
+                      <div className="font-medium">
+                        {formatCurrency(value as number)}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        {props.payload?.date} at {props.payload?.time}
+                      </div>
+                    </div>
+                  )}
+                />
+              }
+            />
+          )}
+          <defs>
+            <linearGradient id="fillValue" x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="5%"
+                stopColor={currentColor}
+                stopOpacity={0.3}
+              />
+              <stop
+                offset="95%"
+                stopColor={currentColor}
+                stopOpacity={0.1}
+              />
+            </linearGradient>
+          </defs>
+          <Area
+            dataKey="value"
+            type="monotone"
+            fill="url(#fillValue)"
+            fillOpacity={0.4}
+            stroke={currentColor}
+            strokeWidth={2}
+            dot={false}
+            activeDot={{
+              r: 4,
+              fill: currentColor,
+              stroke: "white",
+              strokeWidth: 2,
             }}
-          >
-            <div className="font-medium">{formatCurrency(hoveredPoint.value)}</div>
-            <div className="text-muted-foreground">{formatDate(hoveredPoint.timestamp)}</div>
-          </div>
-        )}
-      </div>
+          />
+        </AreaChart>
+      </ChartContainer>
     </div>
   )
 }

@@ -69,7 +69,6 @@ export default function PortfolioChartDemo() {
       <div className="border rounded-lg p-6 bg-card">
         <PortfolioChart
           data={currentData}
-          width={600}
           height={300}
           selectedTimePeriod={selectedPeriod}
           onTimePeriodChange={handleTimePeriodChange}
@@ -85,7 +84,6 @@ export default function PortfolioChartDemo() {
           <h3 className="text-lg font-semibold mb-4">Compact View</h3>
           <PortfolioChart
             data={portfolioDatasets["1W"]}
-            width={300}
             height={150}
             showGrid={false}
             timePeriods={[
@@ -105,7 +103,6 @@ export default function PortfolioChartDemo() {
               ...point,
               value: point.value * 0.85 // Make it decline
             }))}
-            width={300}
             height={150}
             showGrid={false}
             timePeriods={[
@@ -169,7 +166,6 @@ export default function PortfolioChartDemo() {
           <div className="text-muted-foreground mb-2 mt-4">{/* With custom dimensions and time periods */}</div>
           <div>{`<PortfolioChart
   data={portfolioData}
-  width={800}
   height={400}
   selectedTimePeriod="1M"
   onTimePeriodChange={handlePeriodChange}
