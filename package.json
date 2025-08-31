@@ -19,7 +19,7 @@
     "domain:build": "pnpm --filter @workspace/domain-ui-registry registry:build",
     "domain-pro:build": "pnpm --filter @workspace/domain-ui-pro-registry registry:build",
     "registry:build": "pnpm domain:build && pnpm domain-pro:build",
-    "update-common-packages": "pnpm update fumadocs-core fumadocs-mdx fumadocs-ui next tailwindcss tw-animate-css react react-dom lucide-react better-auth @tailwindcss/postcss @types/mdx postcss kysely @types/react @types/react-dom zod tailwind-merge --recursive --latest",
+    "update-common-packages": "pnpm update fumadocs-core fumadocs-mdx fumadocs-ui next tailwindcss tw-animate-css react react-dom lucide-react better-auth @tailwindcss/postcss @types/mdx postcss kysely @types/react @types/react-dom zod tailwind-merge shadcn --recursive --latest",
     "organize-imports": "organize-imports-cli packages/ui/src/**/*.{ts,tsx}"
   },
   "devDependencies": {

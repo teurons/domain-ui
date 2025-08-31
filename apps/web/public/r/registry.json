@@ -1,0 +1,417 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "domain-ui",
+  "homepage": "https://domain-ui.dev",
+  "items": [
+    {
+      "name": "regex-input",
+      "type": "registry:component",
+      "registryDependencies": ["input"],
+      "files": [
+        {
+          "path": "components/domain-ui/regex-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "hooks/use-simple-regex.ts",
+          "type": "registry:hook"
+        }
+      ],
+      "meta": {
+        "tags": ["input", "regex", "validation", "form", "simple"]
+      }
+    },
+    {
+      "name": "regex-input-incremental",
+      "type": "registry:component",
+      "registryDependencies": ["input"],
+      "files": [
+        {
+          "path": "components/domain-ui/regex-input-incremental.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "hooks/use-incremental-regex.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "lib/incremental-regex.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/nfa.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "lib/nfa-builder.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "meta": {
+        "tags": ["input", "regex", "validation", "form", "incremental", "nfa"]
+      }
+    },
+    {
+      "name": "pan-input",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/india/pan-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "pan",
+          "india",
+          "validation",
+          "identity",
+          "kyc",
+          "form"
+        ]
+      }
+    },
+    {
+      "name": "pan-input-incremental",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input-incremental.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/india/pan-input-incremental.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "pan",
+          "india",
+          "validation",
+          "identity",
+          "kyc",
+          "form",
+          "incremental"
+        ]
+      }
+    },
+    {
+      "name": "usa-passport-input",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/usa/passport-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "usa",
+          "validation",
+          "identity",
+          "kyc",
+          "form"
+        ]
+      }
+    },
+    {
+      "name": "usa-passport-input-incremental",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input-incremental.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/usa/passport-input-incremental.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "usa",
+          "validation",
+          "identity",
+          "kyc",
+          "form",
+          "incremental"
+        ]
+      }
+    },
+    {
+      "name": "uk-passport-input",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/uk/passport-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "uk",
+          "validation",
+          "identity",
+          "kyc",
+          "form"
+        ]
+      }
+    },
+    {
+      "name": "uk-passport-input-incremental",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input-incremental.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/uk/passport-input-incremental.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "uk",
+          "validation",
+          "identity",
+          "kyc",
+          "form",
+          "incremental"
+        ]
+      }
+    },
+    {
+      "name": "passport-input",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "label",
+        "http://localhost:3000/r/regex-input.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/india/passport-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "india",
+          "validation",
+          "identity",
+          "kyc",
+          "form"
+        ]
+      }
+    },
+    {
+      "name": "passport-input-incremental",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "label",
+        "http://localhost:3000/r/regex-input-incremental.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/india/passport-input-incremental.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "passport",
+          "india",
+          "validation",
+          "identity",
+          "kyc",
+          "form",
+          "incremental"
+        ]
+      }
+    },
+    {
+      "name": "usa-ssn-input",
+      "type": "registry:component",
+      "registryDependencies": [
+        "input",
+        "http://localhost:3000/r/regex-input.json"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/usa/ssn-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "ssn",
+          "social-security",
+          "usa",
+          "validation",
+          "identity",
+          "kyc",
+          "form"
+        ]
+      }
+    },
+    {
+      "name": "responsive-resizable-preview",
+      "type": "registry:component",
+      "registryDependencies": ["button", "badge", "resizable"],
+      "files": [
+        {
+          "path": "components/domain-ui/responsive-resizable-preview/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/domain-ui/responsive-resizable-preview/breakpoints.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "components/domain-ui/responsive-resizable-preview/settings.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "preview",
+          "responsive",
+          "resizable",
+          "breakpoint",
+          "testing",
+          "development",
+          "layout",
+          "viewport"
+        ]
+      }
+    },
+    {
+      "name": "tree",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/domain-ui/tree.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "tree",
+          "file-tree",
+          "hierarchy",
+          "navigation",
+          "expand",
+          "collapse",
+          "nested",
+          "folders",
+          "files"
+        ]
+      }
+    },
+    {
+      "name": "phone-input",
+      "type": "registry:component",
+      "registryDependencies": ["input", "button", "command", "popover", "scroll-area"],
+      "dependencies": ["react-phone-number-input", "lucide-react"],
+      "files": [
+        {
+          "path": "components/domain-ui/experimental/phone-input.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "input",
+          "phone",
+          "international",
+          "country",
+          "validation",
+          "formatting",
+          "experimental",
+          "form",
+          "contact"
+        ]
+      }
+    },
+    {
+      "name": "portfolio-chart",
+      "type": "registry:component",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/domain-ui/experimental/portfolio-chart.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "chart",
+          "portfolio",
+          "timeline",
+          "finance",
+          "visualization",
+          "interactive",
+          "svg",
+          "experimental",
+          "robinhood",
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "shadcn-registry-item-code-block",
+      "type": "registry:component",
+      "registryDependencies": [
+        "button",
+        "tree"
+      ],
+      "files": [
+        {
+          "path": "components/domain-ui/shadcn-registry-item-code-block.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "meta": {
+        "tags": [
+          "shadcn",
+          "registry",
+          "code-block",
+          "file-tree",
+          "code-viewer",
+          "syntax-highlighting",
+          "tree-view"
+        ]
+      }
+    }
+  ]
+}
